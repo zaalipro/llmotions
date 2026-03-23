@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LLMotions — Where Language Meets Motion</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <style>
+    /* ─── RESET ─── */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      scrollbar-width: thin;
+      scrollbar-color: #7c3aed #0b0b12;
+    }
+    ::-webkit-scrollbar { width:5px; }
+    ::-webkit-scrollbar-track { background:#0b0b12; }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg,#7c3aed,#06b6d4);
+      border-radius:3px;
+    }
+    body {
+      font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+      background:#0b0b12;
+      color:#e2e2f0;
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* ─── LOADER ─── */
+    #loader {
+      position:fixed; inset:0;
+      background:#0b0b12;
+      z-index:9999;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:28px;
+      transition:opacity .7s ease, visibility .7s ease;
+    }
+    #loader.out { opacity:0; visibility:hidden; }
+    .loader-logo {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:2.2rem;
+      font-weight:700;
+      background:linear-gradient(135deg,#7c3aed,#06b6d4);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      letter-spacing:-1px;
+    }
+    .loader-track {
+      width:180px; height:2px;
+      background:rgba(255,255,255,.07);
+      border-radius:2px;
+      overflow:hidden;
+    }
+    .loader-track::after {
+      content:'';
+      display:block;
+      width:45%; height:100%;
+      background:linear-gradient(90deg,#7c3aed,#06b6d4);
+      border-radius:2px;
+      animation:loaderSlide 1s ease-in-out infinite;
+    }
+    @keyframes loaderSlide {
+      0%   { transform:translateX(-120%); }
+      100% { transform:translateX(320%); }
+    }
+
+    /* ─── CANVAS ─── */
+    #bg {
+      position:fixed; inset:0;
+      z-index:0;
+      pointer-events:none;
+    }
+
+    /* ─── CURSOR ─── */
+    #cursor {
+      position:fixed;
+      width:550px; height:550px;
+      border-radius:50%;
+      background:radial-gradient(circle,rgba(124,58,237,.09) 0%,rgba(6,182,212,.04) 40%,transparent 70%);
+      pointer-events:none;
+      z-index:1;
+      transform:translate(-50%,-50%);
+      transition:opacity .3s;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position:fixed; top:0; left:0; right:0;
+      z-index:500;
+      padding:22px 64px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:rgba(11,11,18,.6);
+      backdrop-filter:blur(24px) saturate(180%);
+      -webkit-backdrop-filter:blur(24px) saturate(180%);
+      border-bottom:1px solid rgba(255,255,255,.04);
+      transition:padding .4s ease;
+    }
+    nav.compact { padding:14px 64px; }
+    .logo {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:1.55rem;
+      font-weight:700;
+      background:linear-gradient(135deg,#7c3aed,#06b6d4);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      letter-spacing:-.5px;
+      text-decoration:none;
+    }
+    .logo span { font-weight:300; }
+    .nav-links {
+      display:flex;
+      align-items:center;
+      gap:38px;
+    }
+    .nav-links a {
+      color:rgba(255,255,255,.6);
+      font-size:.875rem;
+      font-weight:500;
+      text-decoration:none;
+      letter-spacing:.2px;
+      position:relative;
+      transition:color .3s;
+    }
+    .nav-links a::after {
+      content:'';
+      position:absolute;
+      bottom:-4px; left:0;
+      width:0; height:1.5px;
+      background:linear-gradient(90deg,#7c3aed,#06b6d4);
+      border-radius:1px;
+      transition:width .35s ease;
+    }
+    .nav-links a:hover { color:#fff; }
+    .nav-links a:hover::after { width:100%; }
+    .nav-btn {
+      padding:10px 26px;
+      background:linear-gradient(135deg,#7c3aed,#5b21b6);
+      border:none;
+      border-radius:50px;
+      color:#fff;
+      font-size:.875rem;
+      font-weight:600;
+      cursor:pointer;
+      text-decoration:none;
+      box-shadow:0 0 24px rgba(124,58,237,.35);
+      transition:all .3s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .nav-btn::before {
+      content:'';
+      position:absolute;
+      top:0; left:-100%;
+      width:100%; height:100%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);
+      transition:left .5s;
+    }
+    .nav-btn:hover::before { left:100%; }
+    .nav-btn:hover {
+      box-shadow:0 0 44px rgba(124,58,237,.6);
+      transform:translateY(-2px);
+    }
+
+    /* ─── SECTIONS ─── */
+    section {
+      position:relative;
+      z-index:2;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:140px 48px 100px;
+    }
+    .badge {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 18px;
+      border-radius:50px;
+      border:1px solid rgba(124,58,237,.3);
+      background:rgba(124,58,237,.08);
+      font-size:.78rem;
+      font-weight:600;
+      letter-spacing:.5px;
+      color:#a78bfa;
+      margin-bottom:42px;
+      backdrop-filter:blur(8px);
+    }
+    .badge-dot {
+      width:6px; height:6px;
+      border-radius:50%;
+      background:#7c3aed;
+      animation:pulseDot 2s ease infinite;
+    }
+    @keyframes pulseDot {
+      0%,100% { box-shadow:0 0 0 0 rgba(124,58,237,.7); }
+      50%      { box-shadow:0 0 0 7px rgba(124,58,237,0); }
+    }
+    .hero h1 {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:clamp(3.2rem,8vw,7.2rem);
+      font-weight:700;
+      line-height:1.04;
+      letter-spacing:-3px;
+      margin-bottom:28px;
+    }
+    .hero h1 .word {
+      display:inline-block;
+      opacity:0;
+      transform:translateY(80px);
+    }
+    .gtext {
+      background:linear-gradient(135deg,#7c3aed 0%,#06b6d4 55%,#7c3aed 100%);
+      background-size:200% auto;
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      animation:gShift 5s ease infinite;
+    }
+    @keyframes gShift {
+      0%   { background-position:0% center; }
+      50%  { background-position:100% center; }
+      100% { background-position:0% center; }
+    }
+    .hero p {
+      font-size:clamp(1.05rem,1.8vw,1.28rem);
+      color:rgba(255,255,255,.48);
+      max-width:580px;
+      line-height:1.75;
+      font-weight:300;
+      margin-bottom:52px;
+      opacity:0;
+    }
+    .hero-btns {
+      display:flex;
+      gap:16px;
+      justify-content:center;
+      flex-wrap:wrap;
+      opacity:0;
+    }
+    .btn-p {
+      display:inline-flex; align-items:center; gap:10px;
+      padding:17px 40px;
+      background:linear-gradient(135deg,#7c3aed,#5b21b6);
+      color:#fff; font-weight:600; font-size:1rem;
+      border:none; border-radius:60px;
+      cursor:pointer; text-decoration:none;
+      box-shadow:0 4px 28px rgba(124,58,237,.45), inset 0 1px 0 rgba(255,255,255,.12);
+      position:relative; overflow:hidden;
+      transition:all .4s ease;
+    }
+    .btn-p::before {
+      content:'';
+      position:absolute; top:0; left:-100%;
+      width:100%; height:100%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);
+      transition:left .55s;
+    }
+    .btn-p:hover::before { left:100%; }
+    .btn-p:hover {
+      transform:translateY(-3px);
+      box-shadow:0 8px 48px rgba(124,58,237,.65);
+    }
+    .btn-s {
+      display:inline-flex; align-items:center; gap:10px;
+      padding:17px 40px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.1);
+      color:#fff; font-weight:500; font-size:1rem;
+      border-radius:60px; cursor:pointer;
+      text-decoration:none; backdrop-filter:blur(10px);
+      transition:all .4s;
+    }
+    .btn-s:hover {
+      background:rgba(255,255,255,.08);
+      border-color:rgba(255,255,255,.2);
+      transform:translateY(-3px);
+    }
+    .arrow { transition:transform .3s; }
+    .btn-p:hover .arrow,
+    .btn-s:hover .arrow { transform:translateX(4px); }
+
+    /* scroll indicator */
+    .scroll-hint {
+      position:absolute;
+      bottom:38px; left:50%;
+      transform:translateX(-50%);
+      display:flex; flex-direction:column; align-items:center; gap:8px;
+      opacity:0;
+      animation:fadeUp 1s 2.2s forwards;
+    }
+    .scroll-hint span {
+      font-size:.68rem; letter-spacing:3px;
+      text-transform:uppercase; color:rgba(255,255,255,.25);
+    }
+    .sh-line {
+      width:1px; height:56px;
+      background:linear-gradient(to bottom,rgba(124,58,237,.5),transparent);
+      animation:shLine 2.2s ease infinite;
+    }
+    @keyframes shLine {
+      0%   { transform:scaleY(0); transform-origin:top; }
+      49%  { transform:scaleY(1); transform-origin:top; }
+      50%  { transform-origin:bottom; }
+      100% { transform:scaleY(0); transform-origin:bottom; }
+    }
+    @keyframes fadeUp { to { opacity:1; } }
+
+    /* ─── MARQUEE ─── */
+    .marquee-wrap {
+      overflow:hidden;
+      border-top:1px solid rgba(255,255,255,.04);
+      border-bottom:1px solid rgba(255,255,255,.04);
+      background:rgba(124,58,237,.03);
+      padding:18px 0;
+    }
+    .marquee-track {
+      display:flex;
+      width:max-content;
+      animation:marquee 28s linear infinite;
+      gap:0;
+    }
+    .marquee-item {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:.92rem;
+      font-weight:400;
+      color:rgba(255,255,255,.18);
+      white-space:nowrap;
+      padding:0 40px;
+      display:flex; align-items:center; gap:40px;
+    }
+    .marquee-item::after {
+      content:'✦';
+      color:rgba(124,58,237,.4);
+      font-size:.55rem;
+    }
+    @keyframes marquee {
+      0%   { transform:translateX(0); }
+      100% { transform:translateX(-50%); }
+    }
+
+    /* ─── FEATURES ─── */
+    .features {
+      padding:140px 64px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+    .sec-eyebrow {
+      font-size:.75rem; font-weight:700;
+      letter-spacing:4px; text-transform:uppercase;
+      color:#7c3aed;
+      display:flex; align-items:center; gap:12px;
+      margin-bottom:18px;
+    }
+    .sec-eyebrow::before {
+      content:'';
+      width:28px; height:1px; background:#7c3aed;
+    }
+    .sec-title {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:clamp(2.2rem,4.5vw,3.8rem);
+      font-weight:700;
+      letter-spacing:-1.5px;
+      line-height:1.1;
+      margin-bottom:70px;
+      text-align:center;
+      max-width:720px;
+    }
+    .sec-title .hl {
+      background:linear-gradient(135deg,#7c3aed,#06b6d4);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+    .grid-3 {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:26px;
+      width:100%;
+      max-width:1200px;
+    }
+    .fcard {
+      background:rgba(255,255,255,.02);
+      border:1px solid rgba(255,255,255,.055);
+      border-radius:22px;
+      padding:46px 36px;
+      position:relative;
+      overflow:hidden;
+      transition:transform .45s ease, border-color .45s ease, box-shadow .45s ease;
+      opacity:0;
+      transform:translateY(50px);
+      cursor:default;
+    }
+    .fcard::before {
+      content:'';
+      position:absolute; top:0; left:0; right:0;
+      height:1px;
+      background:linear-gradient(90deg,transparent,rgba(124,58,237,.55),transparent);
+      opacity:0;
+      transition:opacity .45s;
+    }
+    .fcard:hover {
+      transform:translateY(-7px) !important;
+      border-color:rgba(124,58,237,.22);
+      box-shadow:0 18px 55px rgba(0,0,0,.28), 0 0 55px rgba(124,58,237,.07);
+    }
+    .fcard:hover::before { opacity:1; }
+    .ficon {
+      width:58px; height:58px;
+      border-radius:14px;
+      background:linear-gradient(135deg,rgba(124,58,237,.14),rgba(6,182,212,.07));
+      border:1px solid rgba(124,58,237,.15);
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.5rem;
+      margin-bottom:26px;
+    }
+    .fcard h3 {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:1.2rem; font-weight:600;
+      margin-bottom:12px;
+    }
+    .fcard p {
+      font-size:.9rem;
+      color:rgba(255,255,255,.38);
+      line-height:1.72;
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    .how {
+      padding:140px 64px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+    .steps {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:30px;
+      max-width:1100px;
+      width:100%;
+      margin-top:20px;
+    }
+    .step {
+      text-align:center;
+      padding:50px 30px;
+      border-radius:22px;
+      background:rgba(255,255,255,.02);
+      border:1px solid rgba(255,255,255,.055);
+      position:relative;
+      opacity:0;
+      transform:translateY(40px);
+      transition:border-color .4s, box-shadow .4s;
+    }
+    .step:hover {
+      border-color:rgba(124,58,237,.2);
+      box-shadow:0 0 40px rgba(124,58,237,.07);
+    }
+    .step-num {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:3rem; font-weight:700;
+      background:linear-gradient(135deg,#7c3aed,#06b6d4);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      line-height:1;
+      margin-bottom:20px;
+    }
+    .step h3 {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:1.15rem; font-weight:600;
+      margin-bottom:12px;
+    }
+    .step p {
+      font-size:.88rem;
+      color:rgba(255,255,255,.38);
+      line-height:1.7;
+    }
+    /* connector */
+    .steps .step:not(:last-child)::after {
+      content:'→';
+      position:absolute;
+      top:50%; right:-22px;
+      transform:translateY(-50%);
+      font-size:1.1rem;
+      color:rgba(124,58,237,.35);
+    }
+
+    /* ─── STATS ─── */
+    .stats {
+      padding:100px 64px;
+      display:flex;
+      justify-content:center;
+    }
+    .stats-grid {
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:26px;
+      max-width:1100px;
+      width:100%;
+    }
+    .stat {
+      text-align:center;
+      padding:44px 20px;
+      border-radius:20px;
+      background:rgba(255,255,255,.025);
+      border:1px solid rgba(255,255,255,.05);
+      transition:border-color .4s, box-shadow .4s;
+      opacity:0;
+      transform:translateY(30px);
+    }
+    .stat:hover {
+      border-color:rgba(124,58,237,.22);
+      box-shadow:0 0 40px rgba(124,58,237,.07);
+    }
+    .stat-n {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:3.3rem; font-weight:700;
+      background:linear-gradient(135deg,#7c3aed,#06b6d4);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      line-height:1;
+      margin-bottom:10px;
+    }
+    .stat-l {
+      font-size:.82rem;
+      color:rgba(255,255,255,.3);
+      letter-spacing:.4px;
+    }
+
+    /* ─── USE CASES ─── */
+    .usecases {
+      padding:140px 64px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+    .uc-grid {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:26px;
+      max-width:1100px;
+      width:100%;
+    }
+    .uc-card {
+      border-radius:22px;
+      background:rgba(255,255,255,.02);
+      border:1px solid rgba(255,255,255,.055);
+      padding:48px 44px;
+      display:flex;
+      gap:26px;
+      align-items:flex-start;
+      opacity:0;
+      transform:translateY(40px);
+      transition:all .45s ease;
+    }
+    .uc-card:hover {
+      border-color:rgba(124,58,237,.2);
+      box-shadow:0 12px 40px rgba(0,0,0,.2);
+      transform:translateY(-4px) !important;
+    }
+    .uc-icon {
+      font-size:2rem;
+      min-width:56px; height:56px;
+      background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(6,182,212,.06));
+      border:1px solid rgba(124,58,237,.14);
+      border-radius:14px;
+      display:flex; align-items:center; justify-content:center;
+      flex-shrink:0;
+    }
+    .uc-body h3 {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:1.15rem; font-weight:600;
+      margin-bottom:10px;
+    }
+    .uc-body p {
+      font-size:.88rem;
+      color:rgba(255,255,255,.38);
+      line-height:1.72;
+    }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials {
+      padding:140px 64px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+    .tgrid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:26px;
+      max-width:1200px;
+      width:100%;
+    }
+    .tcard {
+      background:rgba(255,255,255,.02);
+      border:1px solid rgba(255,255,255,.055);
+      border-radius:22px;
+      padding:42px;
+      opacity:0;
+      transform:translateY(40px);
+      transition:all .45s;
+    }
+    .tcard:hover {
+      border-color:rgba(124,58,237,.16);
+      box-shadow:0 10px 38px rgba(0,0,0,.18);
+    }
+    .tstars {
+      color:#7c3aed;
+      letter-spacing:3px;
+      font-size:.8rem;
+      margin-bottom:20px;
+    }
+    .ttext {
+      font-size:.95rem;
+      line-height:1.8;
+      color:rgba(255,255,255,.55);
+      font-weight:300;
+      font-style:italic;
+      margin-bottom:28px;
+    }
+    .tauthor {
+      display:flex; align-items:center; gap:13px;
+    }
+    .tavatar {
+      width:42px; height:42px;
+      border-radius:50%;
+      background:linear-gradient(135deg,#7c3aed,#06b6d4);
+      display:flex; align-items:center; justify-content:center;
+      font-size:.8rem; font-weight:700; color:#fff;
+      flex-shrink:0;
+    }
+    .tname { font-weight:600; font-size:.88rem; }
+    .trole { font-size:.76rem; color:rgba(255,255,255,.32); }
+
+    /* ─── CTA ─── */
+    .cta-section {
+      padding:140px 64px;
+      display:flex;
+      justify-content:center;
+    }
+    .cta-box {
+      max-width:780px;
+      width:100%;
+      text-align:center;
+      padding:80px 70px;
+      border-radius:30px;
+      background:linear-gradient(135deg,rgba(124,58,237,.1),rgba(6,182,212,.05));
+      border:1px solid rgba(124,58,237,.15);
+      position:relative;
+      overflow:hidden;
+    }
+    .cta-box::before {
+      content:'';
+      position:absolute; inset:-2px;
+      border-radius:32px;
+      background:linear-gradient(135deg,#7c3aed,#06b6d4,#7c3aed);
+      z-index:-1;
+      opacity:.12;
+      animation:ctaGlow 4s ease infinite;
+    }
+    @keyframes ctaGlow {
+      0%,100% { opacity:.08; }
+      50%      { opacity:.2; }
+    }
+    .cta-box h2 {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:clamp(1.9rem,3.5vw,2.9rem);
+      font-weight:700;
+      letter-spacing:-1px;
+      margin-bottom:18px;
+      line-height:1.15;
+    }
+    .cta-box p {
+      color:rgba(255,255,255,.42);
+      font-size:1.05rem;
+      font-weight:300;
+      line-height:1.75;
+      margin-bottom:42px;
+    }
+    .cta-form {
+      display:flex;
+      gap:12px;
+      max-width:480px;
+      margin:0 auto;
+    }
+    .cta-form input {
+      flex:1;
+      padding:16px 22px;
+      border-radius:50px;
+      border:1px solid rgba(255,255,255,.1);
+      background:rgba(255,255,255,.05);
+      color:#fff;
+      font-size:.92rem;
+      font-family:'Inter',sans-serif;
+      outline:none;
+      backdrop-filter:blur(10px);
+      transition:all .3s;
+    }
+    .cta-form input::placeholder { color:rgba(255,255,255,.22); }
+    .cta-form input:focus {
+      border-color:rgba(124,58,237,.5);
+      box-shadow:0 0 26px rgba(124,58,237,.14);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      position:relative; z-index:2;
+      padding:80px 64px 40px;
+      border-top:1px solid rgba(255,255,255,.04);
+    }
+    .footer-inner {
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr 1fr;
+      gap:56px;
+      max-width:1200px;
+      margin:0 auto;
+    }
+    .f-brand .logo { font-size:1.35rem; display:block; margin-bottom:14px; }
+    .f-brand p { color:rgba(255,255,255,.28); font-size:.86rem; line-height:1.7; max-width:280px; }
+    .f-col h4 {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:.78rem; font-weight:600;
+      letter-spacing:1.5px; text-transform:uppercase;
+      color:rgba(255,255,255,.5); margin-bottom:18px;
+    }
+    .f-col a {
+      display:block; text-decoration:none;
+      color:rgba(255,255,255,.28);
+      font-size:.86rem; margin-bottom:11px;
+      transition:color .3s;
+    }
+    .f-col a:hover { color:#7c3aed; }
+    .f-bottom {
+      max-width:1200px; margin:56px auto 0;
+      padding-top:28px;
+      border-top:1px solid rgba(255,255,255,.04);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .f-bottom span { font-size:.8rem; color:rgba(255,255,255,.18); }
+    .f-socials { display:flex; gap:14px; }
+    .f-socials a {
+      width:38px; height:38px;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,.07);
+      display:flex; align-items:center; justify-content:center;
+      color:rgba(255,255,255,.28);
+      text-decoration:none; font-size:.85rem;
+      transition:all .3s;
+    }
+    .f-socials a:hover {
+      border-color:#7c3aed; color:#7c3aed;
+      box-shadow:0 0 18px rgba(124,58,237,.2);
+    }
+
+    /* ─── PARTICLES ─── */
+    #particles {
+      position:fixed; inset:0;
+      z-index:1;
+      pointer-events:none; overflow:hidden;
+    }
+    .p {
+      position:absolute;
+      width:2px; height:2px;
+      border-radius:50%;
+      animation:floatP linear infinite;
+    }
+    @keyframes floatP {
+      0%   { transform:translateY(105vh); opacity:0; }
+      8%   { opacity:1; }
+      92%  { opacity:1; }
+      100% { transform:translateY(-8vh); opacity:0; }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media(max-width:1024px){
+      .grid-3 { grid-template-columns:repeat(2,1fr); }
+      .steps  { grid-template-columns:1fr; }
+      .steps .step::after { display:none; }
+      .stats-grid { grid-template-columns:repeat(2,1fr); }
+      .footer-inner { grid-template-columns:1fr 1fr; }
+    }
+    @media(max-width:768px){
+      nav { padding:16px 20px; }
+      .nav-links { display:none; }
+      .hero, .features, .how, .usecases, .testimonials, .cta-section { padding-left:20px; padding-right:20px; }
+      .grid-3, .uc-grid, .tgrid { grid-template-columns:1fr; }
+      .cta-box { padding:48px 24px; }
+      .cta-form { flex-direction:column; }
+      .hero-btns { flex-direction:column; align-items:center; }
+      .footer-inner { grid-template-columns:1fr; gap:36px; }
+      .f-bottom { flex-direction:column; gap:18px; text-align:center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">LLMotions</div>
+  <div class="loader-track"></div>
+</div>
+
+<!-- CURSOR GLOW -->
+<div id="cursor"></div>
+
+<!-- 3D CANVAS -->
+<canvas id="bg"></canvas>
+
+<!-- PARTICLES -->
+<div id="particles"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="logo">LL<span>Motions</span></a>
+  <div class="nav-links">
+    <a href="#features">Platform</a>
+    <a href="#how">How It Works</a>
+    <a href="#usecases">Use Cases</a>
+    <a href="#testimonials">Stories</a>
+    <a href="#cta" class="nav-btn">Get Early Access</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="badge">
+    <div class="badge-dot"></div>
+    Introducing LLMotions — Now in Early Access
+  </div>
+  <h1>
+    <span class="word">Language</span>&nbsp;
+    <span class="word">that</span>&nbsp;
+    <span class="word"><span class="gtext">Moves.</span></span>
+  </h1>
+  <p>LLMotions bridges the gap between what AI understands and what the world can see. Translate natural language directly into rich, expressive, real-time motion — no keyframes. No code. Just intent.</p>
+  <div class="hero-btns">
+    <a href="#cta" class="btn-p">Start for Free <span class="arrow">→</span></a>
+    <a href="#how" class="btn-s">See How It Works <span class="arrow">↓</span></a>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="sh-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Text-to-Motion</span>
+    <span class="marquee-item">Human Behavior Understanding</span>
+    <span class="marquee-item">Motion Captioning</span>
+    <span class="marquee-item">Multimodal AI</span>
+    <span class="marquee-item">LLM-Powered Animation</span>
+    <span class="marquee-item">Spatial Reasoning</span>
+    <span class="marquee-item">Real-Time Synthesis</span>
+    <span class="marquee-item">Motion Diffusion</span>
+    <span class="marquee-item">Text-to-Motion</span>
+    <span class="marquee-item">Human Behavior Understanding</span>
+    <span class="marquee-item">Motion Captioning</span>
+    <span class="marquee-item">Multimodal AI</span>
+    <span class="marquee-item">LLM-Powered Animation</span>
+    <span class="marquee-item">Spatial Reasoning</span>
+    <span class="marquee-item">Real-Time Synthesis</span>
+    <span class="marquee-item">Motion Diffusion</span>
+  </div>
+</div>
+
+<!-- ═══ FEATURES ═══ -->
+<section class="features" id="features">
+  <div class="sec-eyebrow">The Platform</div>
+  <h2 class="sec-title">Everything you need to bring <span class="hl">motion to life</span></h2>
+  <div class="grid-3">
+
+    <div class="fcard">
+      <div class="ficon">🗣️</div>
+      <h3>Text-to-Motion Generation</h3>
+      <p>Describe any movement in plain English and watch it materialize instantly. Our LLM core interprets intent, context, and nuance — producing motion that feels authored, not computed.</p>
+    </div>
+
+    <div class="fcard">
+      <div class="ficon">🎥</div>
+      <h3>Motion Captioning & Understanding</h3>
+      <p>Upload a video or motion sequence and receive rich, structured natural-language descriptions. Unlock deep behavioral insights from any motion data with a single API call.</p>
+    </div>
+
+    <div class="fcard">
+      <div class="ficon">🧬</div>
+      <h3>Multimodal Motion Reasoning</h3>
+      <p>LLMotions jointly processes video, skeletal data, and language in a unified model — enabling nuanced body-part-level understanding that single-modality systems fundamentally cannot achieve.</p>
+    </div>
+
+    <div class="fcard">
+      <div class="ficon">⚡</div>
+      <h3>Real-Time Inference Engine</h3>
+      <p>Sub-100ms latency on any platform. Our edge-optimized runtime delivers production-grade motion synthesis whether you're on cloud, desktop, or embedded hardware.</p>
+    </div>
+
+    <div class="fcard">
+      <div class="ficon">🤝</div>
+      <h3>Multi-Person & Scene-Aware Motion</h3>
+      <p>Go beyond single-character generation. LLMotions natively handles multi-person interactions, group choreography, and environment-aware motion planning at scale.</p>
+    </div>
+
+    <div class="fcard">
+      <div class="ficon">🔌</div>
+      <h3>Developer-First API</h3>
+      <p>A clean, well-documented REST and WebSocket API. Integrate text-to-motion into any stack in minutes — from game engines and robotics pipelines to creative tools and XR applications.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="how" id="how">
+  <div class="sec-eyebrow">How It Works</div>
+  <h2 class="sec-title">From a sentence to a <span class="hl">living motion</span> in three steps</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Describe It</h3>
+      <p>Type what you want — as casually or precisely as you like. "A person walks confidently across the stage, pauses, and turns to wave." That's all it takes.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>LLMotions Understands</h3>
+      <p>Our multimodal LLM deconstructs intent, infers timing, body mechanics, and emotional register — then encodes everything into high-fidelity motion tokens.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Motion Delivered</h3>
+      <p>Receive BVH, FBX, or JSON skeleton data in real time. Pipe it straight into your renderer, game engine, or robot controller. Zero manual cleanup required.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS ═══ -->
+<section class="stats" id="stats">
+  <div class="stats-grid">
+    <div class="stat">
+      <div class="stat-n" data-target="98.4">0</div>
+      <div class="stat-l">Text-to-Motion Accuracy %</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n" data-target="80">0</div>
+      <div class="stat-l">ms Average Latency</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n" data-target="200">0</div>
+      <div class="stat-l">Motion Styles Supported</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n" data-target="50">0</div>
+      <div class="stat-l">M+ Motions Generated</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ USE CASES ═══ -->
+<section class="usecases" id="usecases">
+  <div class="sec-eyebrow">Use Cases</div>
+  <h2 class="sec-title">Built for every team that <span class="hl">creates with motion</span></h2>
+  <div class="uc-grid">
+
+    <div class="uc-card">
+      <div class="uc-icon">🎮</div>
+      <div class="uc-body">
+        <h3>Game & XR Development</h3>
+        <p>Prototype NPC behaviors, cutscene animations, and procedural character responses at a fraction of the traditional production cost. Iterate in minutes, not months.</p>
+      </div>
+    </div>
+
+    <div class="uc-card">
+      <div class="uc-icon">🤖</div>
+      <div class="uc-body">
+        <h3>Robotics & Embodied AI</h3>
+        <p>Translate high-level instructions directly into robot motion plans. LLMotions provides the semantic bridge between natural language commands and physical actuators.</p>
+      </div>
+    </div>
+
+    <div class="uc-card">
+      <div class="uc-icon">🎬</div>
+      <div class="uc-body">
+        <h3>Film & Virtual Production</h3>
+        <p>Generate pre-visualization, stunt previews, and background character animations from script text. Keep your creative vision intact without a full motion-capture team on day one.</p>
+      </div>
+    </div>
+
+    <div class="uc-card">
+      <div class="uc-icon">🏋️</div>
+      <div class="uc-body">
+        <h3>Health, Sport & Coaching</h3>
+        <p>Analyze athlete or patient video to extract fine-grained motion data, identify technique flaws, and generate corrective motion guidance — all through language.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section class="testimonials" id="testimonials">
+  <div class="sec-eyebrow">Testimonials</div>
+  <h2 class="sec-title">Trusted by teams who <span class="hl">push the boundary</span></h2>
+  <div class="tgrid">
+
+    <div class="tcard">
+      <div class="tstars">★ ★ ★ ★ ★</div>
+      <p class="ttext">"We replaced a 3-week mocap production cycle with a single LLMotions API call. The output quality genuinely surprised our lead animator — it captured the emotional tone of the brief perfectly."</p>
+      <div class="tauthor">
+        <div class="tavatar">JL</div>
+        <div>
+          <div class="tname">Jordan Lee</div>
+          <div class="trole">Technical Director, Nova Interactive Studio</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tstars">★ ★ ★ ★ ★</div>
+      <p class="ttext">"The multimodal reasoning is unlike anything else on the market. LLMotions doesn't just generate movement — it understands why people move the way they do. That depth is a game-changer for our rehab platform."</p>
+      <div class="tauthor">
+        <div class="tavatar">DR</div>
+        <div>
+          <div class="tname">Dr. Reena Patel</div>
+          <div class="trole">Chief Science Officer, KinetiCare Health</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tstars">★ ★ ★ ★ ★</div>
+      <p class="ttext">"Integrating LLMotions into our robot control stack took less than a day. Our humanoid units can now receive plain-English task instructions and execute them fluidly. The future arrived sooner than we expected."</p>
+      <div class="tauthor">
+        <div class="tavatar">MO</div>
+        <div>
+          <div class="tname">Marcus Osei</div>
+          <div class="trole">Head of Robotics, ArcDynamics</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-section" id="cta">
+  <div class="cta-box">
+    <h2>Ready to put <span class="gtext">language in motion</span>?</h2>
+    <p>Join the waitlist and be first to access the platform that turns words into movement. Free during Early Access. No credit card required.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="your@email.com" />
+      <button class="btn-p" type="submit">Request Access <span class="arrow">→</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="f-brand">
+      <a href="#" class="logo">LL<span>Motions</span></a>
+      <p>Bridging language and motion through the power of large language models. Built for creators, researchers, and engineers.</p>
+    </div>
+    <div class="f-col">
+      <h4>Product</h4>
+      <a href="#">Platform</a>
+      <a href="#">API Docs</a>
+      <a href="#">Pricing</a>
+      <a href="#">Changelog</a>
+    </div>
+    <div class="f-col">
+      <h4>Company</h4>
+      <a href="#">About</a>
+      <a href="#">Blog</a>
+      <a href="#">Careers</a>
+      <a href="#">Press</a>
+    </div>
+    <div class="f-col">
+      <h4>Resources</h4>
+      <a href="#">Research</a>
+      <a href="#">Community</a>
+      <a href="#">Support</a>
+      <a href="#">Status</a>
+    </div>
+  </div>
+  <div class="f-bottom">
+    <span>© 2026 LLMotions. All rights reserved.</span>
+    <div class="f-socials">
+      <a href="#">𝕏</a>
+      <a href="#">in</a>
+      <a href="#">GH</a>
+      <a href="#">▶</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════ SCRIPTS ══════════ -->
+<script>
+/* ── 1. THREE.JS 3D BACKGROUND ── */
+(function(){
+  const canvas = document.getElementById('bg');
+  const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  renderer.setSize(innerWidth,innerHeight);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(70, innerWidth/innerHeight, .1, 1000);
+  camera.position.z = 28;
+
+  // Particle field
+  const N = 2800;
+  const geo = new THREE.BufferGeometry();
+  const pos = new Float32Array(N*3);
+  const col = new Float32Array(N*3);
+  for(let i=0;i<N;i++){
+    pos[i*3]  = (Math.random()-.5)*75;
+    pos[i*3+1]= (Math.random()-.5)*75;
+    pos[i*3+2]= (Math.random()-.5)*75;
+    const t = Math.random();
+    col[i*3]  = .486*(1-t);
+    col[i*3+1]= .227*(1-t) + .714*t;
+    col[i*3+2]= .929*(1-t) + .831*t;
+  }
+  geo.setAttribute('position', new THREE.BufferAttribute(pos,3));
+  geo.setAttribute('color',    new THREE.BufferAttribute(col,3));
+  const mat = new THREE.PointsMaterial({
+    size:.11, vertexColors:true,
+    transparent:true, opacity:.75,
+    blending:THREE.AdditiveBlending, depthWrite:false
+  });
+  const pts = new THREE.Points(geo,mat);
+  scene.add(pts);
+
+  // Wireframe torus knot accent
+  const tk = new THREE.Mesh(
+    new THREE.TorusKnotGeometry(7,.25,180,28,3,5),
+    new THREE.MeshBasicMaterial({color:0x7c3aed,wireframe:true,transparent:true,opacity:.05})
+  );
+  scene.add(tk);
+
+  // Connecting lines
+  const lpos=[];
+  for(let i=0;i<180;i++){
+    const a=Math.floor(Math.random()*N)*3, b=Math.floor(Math.random()*N)*3;
+    lpos.push(pos[a],pos[a+1],pos[a+2], pos[b],pos[b+1],pos[b+2]);
+  }
+  const lg = new THREE.BufferGeometry();
+  lg.setAttribute('position', new THREE.Float32BufferAttribute(lpos,3));
+  scene.add(new THREE.LineSegments(lg,
+    new THREE.LineBasicMaterial({color:0x7c3aed,transparent:true,opacity:.035,blending:THREE.AdditiveBlending})
+  ));
+
+  let mx=0,my=0;
+  addEventListener('mousemove',e=>{
+    mx=(e.clientX/innerWidth-.5)*2;
+    my=(e.clientY/innerHeight-.5)*2;
+  });
+
+  (function tick(){
+    requestAnimationFrame(tick);
+    const t=Date.now()*.00028;
+    pts.rotation.y=t*.28; pts.rotation.x=t*.13;
+    tk.rotation.x=t*.7;   tk.rotation.y=t*.45;
+    camera.position.x+=(mx*2.5-camera.position.x)*.02;
+    camera.position.y+=(-my*2.5-camera.position.y)*.02;
+    camera.lookAt(scene.position);
+    renderer.render(scene,camera);
+  })();
+
+  addEventListener('resize',()=>{
+    camera.aspect=innerWidth/innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(innerWidth,innerHeight);
+  });
+})();
+
+/* ── 2. PARTICLES DOM ── */
+(function(){
+  const c=document.getElementById('particles');
+  for(let i=0;i<28;i++){
+    const el=document.createElement('div');
+    el.className='p';
+    el.style.cssText=`
+      left:${Math.random()*100}%;
+      width:${1+Math.random()*2}px;
+      height:${1+Math.random()*2}px;
+      animation-duration:${9+Math.random()*15}s;
+      animation-delay:${Math.random()*10}s;
+      background:rgba(${Math.random()>.5?'124,58,237':'6,182,212'},${.5+Math.random()*.5});
+      box-shadow:0 0 ${4+Math.random()*6}px rgba(${Math.random()>.5?'124,58,237':'6,182,212'},.8);
+    `;
+    c.appendChild(el);
+  }
+})();
+
+/* ── 3. CURSOR ── */
+const cur=document.getElementById('cursor');
+addEventListener('mousemove',e=>{
+  cur.style.left=e.clientX+'px';
+  cur.style.top=e.clientY+'px';
+});
+
+/* ── 4. LOADER ── */
+addEventListener('load',()=>{
+  setTimeout(()=>{
+    document.getElementById('loader').classList.add('out');
+    initAnimations();
+  },1400);
+});
+
+/* ── 5. GSAP ANIMATIONS ── */
+function initAnimations(){
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Nav compact on scroll
+  ScrollTrigger.create({
+    start:'top -60',
+    onUpdate:s=>document.getElementById('nav').classList.toggle('compact', s.direction===1||scrollY>60)
+  });
+
+  // Hero headline words stagger
+  gsap.to('.hero .word',{
+    opacity:1, y:0, duration:.9,
+    stagger:.12, ease:'power4.out', delay:.1
+  });
+  gsap.to('.hero p',{opacity:1,y:0,duration:.8,ease:'power3.out',delay:.6});
+  gsap.to('.hero-btns',{opacity:1,y:0,duration:.8,ease:'power3.out',delay:.85});
+
+  // Set initial states for p and btns
+  gsap.set('.hero p'   ,{y:25});
+  gsap.set('.hero-btns',{y:25});
+
+  // Feature cards
+  document.querySelectorAll('.fcard').forEach((el,i)=>{
+    gsap.to(el,{
+      scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none reverse'},
+      opacity:1, y:0, duration:.75, delay:(i%3)*.1, ease:'power3.out'
+    });
+    // 3-D tilt
+    el.addEventListener('mousemove',e=>{
+      const r=el.getBoundingClientRect();
+      const rx=(e.clientY-r.top-r.height/2)/18;
+      const ry=(r.width/2-(e.clientX-r.left))/18;
+      el.style.transform=`perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-7px)`;
+    });
+    el.addEventListener('mouseleave',()=>{
+      el.style.transform='perspective(700px) rotateX(0) rotateY(0) translateY(0)';
+    });
+  });
+
+  // Steps
+  document.querySelectorAll('.step').forEach((el,i)=>{
+    gsap.to(el,{
+      scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none reverse'},
+      opacity:1, y:0, duration:.7, delay:i*.12, ease:'power3.out'
+    });
+  });
+
+  // Stats counter
+  document.querySelectorAll('.stat').forEach((el,i)=>{
+    gsap.to(el,{
+      scrollTrigger:{trigger:el,start:'top 85%',toggleActions:'play none none reverse'},
+      opacity:1, y:0, duration:.7, delay:i*.1, ease:'power3.out'
+    });
+    const num=el.querySelector('.stat-n');
+    const target=parseFloat(num.dataset.target);
+    const isFloat=target%1!==0;
+    gsap.fromTo(num,{innerText:0},{
+      innerText:target,
+      duration:2.2,
+      ease:'power2.out',
+      snap:isFloat?{innerText:.1}:{innerText:1},
+      scrollTrigger:{trigger:el,start:'top 85%',toggleActions:'play none none reverse'},
+      onUpdate(){ num.innerText=isFloat?parseFloat(num.innerText).toFixed(1):Math.round(num.innerText); }
+    });
+  });
+
+  // Use case cards
+  document.querySelectorAll('.uc-card').forEach((el,i)=>{
+    gsap.to(el,{
+      scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none reverse'},
+      opacity:1, y:0, duration:.75, delay:(i%2)*.12, ease:'power3.out'
+    });
+  });
+
+  // Testimonial cards
+  document.querySelectorAll('.tcard').forEach((el,i)=>{
+    gsap.to(el,{
+      scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none reverse'},
+      opacity:1, y:0, duration:.75, delay:i*.12, ease:'power3.out'
+    });
+  });
+
+  // CTA box
+  gsap.fromTo('.cta-box',{opacity:0,y:50},{
+    scrollTrigger:{trigger:'.cta-box',start:'top 85%',toggleActions:'play none none reverse'},
+    opacity:1, y:0, duration:.9, ease:'power3.out'
+  });
+}
+
+/* ── 6. SMOOTH SCROLL (inertia) ── */
+(function(){
+  let cur=0, tgt=0;
+  addEventListener('scroll',()=>{ tgt=scrollY; });
+  (function loop(){
+    cur+=(tgt-cur)*.072;
+    requestAnimationFrame(loop);
+  })();
+})();
+</script>
+</body>
+</html>
