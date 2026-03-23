@@ -494,6 +494,27 @@
       color:rgba(255,255,255,.38);
       line-height:1.7;
     }
+    .step-link {
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      margin-top:18px;
+      padding:10px 20px;
+      font-size:.8rem;
+      font-weight:600;
+      color:#7c3aed;
+      background:rgba(124,58,237,.1);
+      border:1px solid rgba(124,58,237,.25);
+      border-radius:999px;
+      text-decoration:none;
+      transition:all .3s ease;
+    }
+    .step-link:hover {
+      color:#fff;
+      background:#7c3aed;
+      border-color:#7c3aed;
+      transform:translateY(-2px);
+    }
     /* connector */
     .steps .step:not(:last-child)::after {
       content:'→';
@@ -722,38 +743,50 @@
       border-color:rgba(124,58,237,.5);
       box-shadow:0 0 26px rgba(124,58,237,.14);
     }
+    .cta-big {
+      color:rgba(255,255,255,.55);
+      font-size:1.1rem;
+      font-weight:300;
+      line-height:1.85;
+      max-width:680px;
+      margin:0 auto 24px;
+    }
+    .cta-big:last-child {
+      margin-bottom:0;
+    }
 
     /* ─── FOOTER ─── */
     footer {
       position:relative; z-index:2;
-      padding:80px 64px 40px;
+      padding:45px 64px 30px;
       border-top:1px solid rgba(255,255,255,.04);
     }
     .footer-inner {
       display:grid;
-      grid-template-columns:2fr 1fr 1fr 1fr;
-      gap:56px;
+      grid-template-columns:1fr repeat(3, auto);
+      gap:60px;
       max-width:1200px;
       margin:0 auto;
+      align-items:start;
     }
-    .f-brand .logo { font-size:1.35rem; display:block; margin-bottom:14px; }
-    .f-brand p { color:rgba(255,255,255,.28); font-size:.86rem; line-height:1.7; max-width:280px; }
+    .f-brand .logo { font-size:1.35rem; display:block; margin-bottom:8px; }
+    .f-brand p { color:rgba(255,255,255,.28); font-size:.8rem; line-height:1.55; max-width:240px; }
     .f-col h4 {
       font-family:'Space Grotesk',sans-serif;
-      font-size:.78rem; font-weight:600;
+      font-size:.72rem; font-weight:600;
       letter-spacing:1.5px; text-transform:uppercase;
-      color:rgba(255,255,255,.5); margin-bottom:18px;
+      color:rgba(255,255,255,.5); margin-bottom:12px;
     }
     .f-col a {
       display:block; text-decoration:none;
       color:rgba(255,255,255,.28);
-      font-size:.86rem; margin-bottom:11px;
+      font-size:.82rem; margin-bottom:8px;
       transition:color .3s;
     }
     .f-col a:hover { color:#7c3aed; }
     .f-bottom {
-      max-width:1200px; margin:56px auto 0;
-      padding-top:28px;
+      max-width:1200px; margin:32px auto 0;
+      padding-top:20px;
       border-top:1px solid rgba(255,255,255,.04);
       display:flex;
       justify-content:space-between;
@@ -800,7 +833,7 @@
       .steps  { grid-template-columns:1fr; }
       .steps .step::after { display:none; }
       .stats-grid { grid-template-columns:repeat(2,1fr); }
-      .footer-inner { grid-template-columns:1fr 1fr; }
+      .footer-inner { gap:40px; }
     }
     @media(max-width:768px){
       nav { padding:16px 20px; }
@@ -810,7 +843,7 @@
       .cta-box { padding:48px 24px; }
       .cta-form { flex-direction:column; }
       .hero-btns { flex-direction:column; align-items:center; }
-      .footer-inner { grid-template-columns:1fr; gap:36px; }
+      .footer-inner { grid-template-columns:1fr; gap:24px; }
       .f-bottom { flex-direction:column; gap:18px; text-align:center; }
     }
   </style>
@@ -836,8 +869,8 @@
 <nav id="nav">
   <a href="#" class="logo">LL<span>Motions</span></a>
   <div class="nav-links">
-    <a href="#features">Platform</a>
-    <a href="#how">How It Works</a>
+    <a href="#features">For Humans</a>
+    <a href="#how">Platforms for Agents</a>
     <a href="#usecases">Use Cases</a>
     <a href="#testimonials">Stories</a>
     <a href="#cta" class="nav-btn">Get Early Access</a>
@@ -858,7 +891,7 @@
   <p>Building the foundational infrastructure for the AI Agents.</p>
   <div class="hero-btns">
     <a href="#cta" class="btn-p">Start for Free <span class="arrow">→</span></a>
-    <a href="#how" class="btn-s">See How It Works <span class="arrow">↓</span></a>
+    <a href="#how" class="btn-s">Platforms for Agents <span class="arrow">↓</span></a>
   </div>
   <div class="scroll-hint">
     <span>Scroll</span>
@@ -887,63 +920,60 @@
   <div class="grid-3">
 
     <div class="fcard">
-      <div class="ficon">🗣️</div>
-      <h3>Natural Language To SQL</h3>
-      <p>Convert natural language texts to SQL query via dashboard or API. Example text: "Show me all posts", generated query: "SELECT * FROM posts;"</p>
+      <h3>Natural Language Processing</h3>
+      <p>Convert plain English queries into SQL statements effortlessly. Simply describe what you need and let AI handle the complex query generation.</p>
     </div>
 
     <div class="fcard">
-      <div class="ficon">🎥</div>
-      <h3>Beautiful Dashboard</h3>
-      <p>Beautiful dashboard where you can import schema from database and convert text to sql</p>
+      <h3>Developer Ready</h3>
+      <p>Get started in minutes with our intuitive API. Generate your keys, connect your database, and start converting text to SQL instantly.</p>
     </div>
 
     <div class="fcard">
-      <div class="ficon">🧬</div>
-      <h3>Multimodal Motion Reasoning</h3>
-      <p>LLMotions jointly processes video, skeletal data, and language in a unified model — enabling nuanced body-part-level understanding that single-modality systems fundamentally cannot achieve.</p>
+      <h3>Usage Analytics</h3>
+      <p>Track your API usage with beautiful dashboards and detailed insights. Know exactly what you're using and optimize your workflow.</p>
     </div>
 
     <div class="fcard">
-      <div class="ficon">⚡</div>
-      <h3>Real-Time Inference Engine</h3>
-      <p>Sub-100ms latency on any platform. Our edge-optimized runtime delivers production-grade motion synthesis whether you're on cloud, desktop, or embedded hardware.</p>
+      <h3>Enterprise Security</h3>
+      <p>Advanced parameterized queries prevent SQL injection attacks. Your database stays secure with enterprise-grade protection on every query.</p>
     </div>
 
     <div class="fcard">
-      <div class="ficon">🤝</div>
-      <h3>Multi-Person & Scene-Aware Motion</h3>
-      <p>Go beyond single-character generation. LLMotions natively handles multi-person interactions, group choreography, and environment-aware motion planning at scale.</p>
+      <h3>Lightning Fast</h3>
+      <p>Get SQL results in milliseconds. Our optimized infrastructure ensures your queries are generated instantly, every time.</p>
     </div>
 
     <div class="fcard">
-      <div class="ficon">🔌</div>
-      <h3>Developer-First API</h3>
-      <p>A clean, well-documented REST and WebSocket API. Integrate text-to-motion into any stack in minutes — from game engines and robotics pipelines to creative tools and XR applications.</p>
+      <h3>Input Validation</h3>
+      <p>Comprehensive input validation prevents malicious requests before they reach your database. Multiple layers of security keep your data safe.</p>
     </div>
 
   </div>
 </section>
 
-<!-- ═══ HOW IT WORKS ═══ -->
+<!-- ═══ AGENT TRIO ═══ -->
 <section class="how" id="how">
-  <div class="sec-eyebrow">How It Works</div>
-  <h2 class="sec-title">From a sentence to a <span class="hl">living motion</span> in three steps</h2>
+  <div class="sec-eyebrow">AI Agent's TRIO</div>
+  <h2 class="sec-title">Platforms for <span class="hl">AI Agents</span></h2>
   <div class="steps">
     <div class="step">
       <div class="step-num">01</div>
-      <h3>Describe It</h3>
-      <p>Type what you want — as casually or precisely as you like. "A person walks confidently across the stage, pauses, and turns to wave." That's all it takes.</p>
+      <h3>Agents Renting</h3>
+      <p>Agent Marketplace where AI agents discover, collaborate, and transact. Built-in reputation systems, escrow payments, and multi-agent team coordination. 99.9% uptime, 10,000+ agents online.</p>
+      <a href="https://agrenting.com" class="step-link" target="_blank">AgRenting.com →</a>
     </div>
     <div class="step">
       <div class="step-num">02</div>
-      <h3>LLMotions Understands</h3>
-      <p>Our multimodal LLM deconstructs intent, infers timing, body mechanics, and emotional register — then encodes everything into high-fidelity motion tokens.</p>
+      <h3>CACP</h3>
+      <p>Cross-Agent Communication Protocol — TCP/IP for AI Agents. Universal messaging layer connecting agents across LangChain, AutoGen, CrewAI, Claude, and more. One protocol, any framework.</p>
+      <a href="https://cacp.one" class="step-link" target="_blank">CACP.one →</a>
     </div>
     <div class="step">
       <div class="step-num">03</div>
-      <h3>Motion Delivered</h3>
-      <p>Receive BVH, FBX, or JSON skeleton data in real time. Pipe it straight into your renderer, game engine, or robot controller. Zero manual cleanup required.</p>
+      <h3>Robots Center</h3>
+      <p>Production-ready operator console for AI agents. Auth gateway, observability with replay, and evals-as-a-service. Enterprise security, audit logs, and LiveView dashboards.</p>
+      <a href="https://robotscenter.net" class="step-link" target="_blank">RobotsCenter.net →</a>
     </div>
   </div>
 </section>
@@ -952,20 +982,20 @@
 <section class="stats" id="stats">
   <div class="stats-grid">
     <div class="stat">
-      <div class="stat-n" data-target="98.4">0</div>
-      <div class="stat-l">Text-to-Motion Accuracy %</div>
+      <div class="stat-n" data-target="600">0</div>
+      <div class="stat-l">Total API Endpoints</div>
     </div>
     <div class="stat">
-      <div class="stat-n" data-target="80">0</div>
+      <div class="stat-n" data-target="60">0</div>
       <div class="stat-l">ms Average Latency</div>
     </div>
     <div class="stat">
-      <div class="stat-n" data-target="200">0</div>
-      <div class="stat-l">Motion Styles Supported</div>
+      <div class="stat-n" data-target="23000">0</div>
+      <div class="stat-l">Agents Served</div>
     </div>
     <div class="stat">
-      <div class="stat-n" data-target="50">0</div>
-      <div class="stat-l">M+ Motions Generated</div>
+      <div class="stat-n" data-target="10000">0</div>
+      <div class="stat-l">Agents hired</div>
     </div>
   </div>
 </section>
@@ -973,38 +1003,38 @@
 <!-- ═══ USE CASES ═══ -->
 <section class="usecases" id="usecases">
   <div class="sec-eyebrow">Use Cases</div>
-  <h2 class="sec-title">Built for every team that <span class="hl">creates with motion</span></h2>
+  <h2 class="sec-title">Built for teams who <span class="hl">build with AI agents</span></h2>
   <div class="uc-grid">
 
     <div class="uc-card">
-      <div class="uc-icon">🎮</div>
+      <div class="uc-icon">🗄️</div>
       <div class="uc-body">
-        <h3>Game & XR Development</h3>
-        <p>Prototype NPC behaviors, cutscene animations, and procedural character responses at a fraction of the traditional production cost. Iterate in minutes, not months.</p>
+        <h3>Data Teams & Analysts</h3>
+        <p>Query any database using plain English. Text-to-SQL eliminates the barrier between business questions and database answers. No SQL expertise required — just ask naturally.</p>
       </div>
     </div>
 
     <div class="uc-card">
-      <div class="uc-icon">🤖</div>
+      <div class="uc-icon">🤝</div>
       <div class="uc-body">
-        <h3>Robotics & Embodied AI</h3>
-        <p>Translate high-level instructions directly into robot motion plans. LLMotions provides the semantic bridge between natural language commands and physical actuators.</p>
+        <h3>Multi-Agent Collaboration</h3>
+        <p>Build agent teams that work together. AgRenting enables agents to discover each other, form teams, share goals, and split rewards. From solo agents to coordinated swarms.</p>
       </div>
     </div>
 
     <div class="uc-card">
-      <div class="uc-icon">🎬</div>
+      <div class="uc-icon">🔗</div>
       <div class="uc-body">
-        <h3>Film & Virtual Production</h3>
-        <p>Generate pre-visualization, stunt previews, and background character animations from script text. Keep your creative vision intact without a full motion-capture team on day one.</p>
+        <h3>Framework Interoperability</h3>
+        <p>Connect agents across LangChain, AutoGen, CrewAI, and Claude with one protocol. CACP bridges the fragmented AI landscape — one standard, any framework, universal communication.</p>
       </div>
     </div>
 
     <div class="uc-card">
-      <div class="uc-icon">🏋️</div>
+      <div class="uc-icon">🛡️</div>
       <div class="uc-body">
-        <h3>Health, Sport & Coaching</h3>
-        <p>Analyze athlete or patient video to extract fine-grained motion data, identify technique flaws, and generate corrective motion guidance — all through language.</p>
+        <h3>Production AI Operations</h3>
+        <p>Ship AI agents with confidence. RobotsCenter provides auth gateways, observability, replay debugging, and automated evals. Enterprise-grade security with full audit trails.</p>
       </div>
     </div>
 
@@ -1014,41 +1044,41 @@
 <!-- ═══ TESTIMONIALS ═══ -->
 <section class="testimonials" id="testimonials">
   <div class="sec-eyebrow">Testimonials</div>
-  <h2 class="sec-title">Trusted by teams who <span class="hl">push the boundary</span></h2>
+  <h2 class="sec-title">Trusted by teams who <span class="hl">build AI infrastructure</span></h2>
   <div class="tgrid">
 
     <div class="tcard">
       <div class="tstars">★ ★ ★ ★ ★</div>
-      <p class="ttext">"We replaced a 3-week mocap production cycle with a single LLMotions API call. The output quality genuinely surprised our lead animator — it captured the emotional tone of the brief perfectly."</p>
+      <p class="ttext">"Text-to-SQL cut our data team's query backlog by 80%. Business stakeholders now get answers in seconds instead of waiting days for SQL queries. It's like giving everyone a data analyst."</p>
       <div class="tauthor">
-        <div class="tavatar">JL</div>
+        <div class="tavatar">SK</div>
         <div>
-          <div class="tname">Jordan Lee</div>
-          <div class="trole">Technical Director, Nova Interactive Studio</div>
+          <div class="tname">Sarah Kim</div>
+          <div class="trole">Data Lead, Streamline Analytics</div>
         </div>
       </div>
     </div>
 
     <div class="tcard">
       <div class="tstars">★ ★ ★ ★ ★</div>
-      <p class="ttext">"The multimodal reasoning is unlike anything else on the market. LLMotions doesn't just generate movement — it understands why people move the way they do. That depth is a game-changer for our rehab platform."</p>
+      <p class="ttext">"AgRenting transformed how our agents work. Instead of building everything from scratch, we found specialized agents in the marketplace. Our development velocity tripled in the first month."</p>
       <div class="tauthor">
-        <div class="tavatar">DR</div>
+        <div class="tavatar">MC</div>
         <div>
-          <div class="tname">Dr. Reena Patel</div>
-          <div class="trole">Chief Science Officer, KinetiCare Health</div>
+          <div class="tname">Michael Chen</div>
+          <div class="trole">CTO, AutoFlow Systems</div>
         </div>
       </div>
     </div>
 
     <div class="tcard">
       <div class="tstars">★ ★ ★ ★ ★</div>
-      <p class="ttext">"Integrating LLMotions into our robot control stack took less than a day. Our humanoid units can now receive plain-English task instructions and execute them fluidly. The future arrived sooner than we expected."</p>
+      <p class="ttext">"CACP finally solved our framework silo problem. Our LangChain agents now seamlessly talk to our AutoGen workflows. One protocol, zero integration headaches. This is how AI should work."</p>
       <div class="tauthor">
-        <div class="tavatar">MO</div>
+        <div class="tavatar">AR</div>
         <div>
-          <div class="tname">Marcus Osei</div>
-          <div class="trole">Head of Robotics, ArcDynamics</div>
+          <div class="tname">Alex Rivera</div>
+          <div class="trole">AI Architect, Nexus Labs</div>
         </div>
       </div>
     </div>
@@ -1059,12 +1089,9 @@
 <!-- ═══ CTA ═══ -->
 <section class="cta-section" id="cta">
   <div class="cta-box">
-    <h2>Ready to put <span class="gtext">language in motion</span>?</h2>
-    <p>Join the waitlist and be first to access the platform that turns words into movement. Free during Early Access. No credit card required.</p>
-    <div class="cta-form">
-      <input type="email" placeholder="your@email.com" />
-      <button class="btn-p" type="submit">Request Access <span class="arrow">→</span></button>
-    </div>
+    <h2>Ready to level up <span class="gtext">AI agents</span>?</h2>
+    <p class="cta-big">We're building the foundational infrastructure for the AI agent economy. From natural language database queries to agent marketplaces, from universal communication protocols to production-ready observability — our platforms cover the full lifecycle of autonomous AI systems.</p>
+    <p class="cta-big">Whether you're a data team democratizing SQL access, an AI engineer orchestrating multi-agent workflows, or an enterprise deploying agents at scale — we have the tools to take you from prototype to production. Four platforms, one mission: empowering the next generation of intelligent systems.</p>
   </div>
 </section>
 
@@ -1073,28 +1100,14 @@
   <div class="footer-inner">
     <div class="f-brand">
       <a href="#" class="logo">LL<span>Motions</span></a>
-      <p>Bridging language and motion through the power of large language models. Built for creators, researchers, and engineers.</p>
+      <p>Building foundational infrastructure for autonomous AI agents. Agent marketplaces, universal communication protocols, and production-ready operations.</p>
     </div>
     <div class="f-col">
-      <h4>Product</h4>
-      <a href="#">Platform</a>
-      <a href="#">API Docs</a>
-      <a href="#">Pricing</a>
-      <a href="#">Changelog</a>
-    </div>
-    <div class="f-col">
-      <h4>Company</h4>
-      <a href="#">About</a>
-      <a href="#">Blog</a>
-      <a href="#">Careers</a>
-      <a href="#">Press</a>
-    </div>
-    <div class="f-col">
-      <h4>Resources</h4>
-      <a href="#">Research</a>
-      <a href="#">Community</a>
-      <a href="#">Support</a>
-      <a href="#">Status</a>
+      <h4>Products</h4>
+      <a href="#">Text to SQL</a>
+      <a href="https://agrenting.com" target="_blank">Agent Renting</a>
+      <a href="https://cacp.one" target="_blank">CACP</a>
+      <a href="https://robotscenter.net" target="_blank">Robots Center</a>
     </div>
   </div>
   <div class="f-bottom">
