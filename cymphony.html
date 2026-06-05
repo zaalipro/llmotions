@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Cymphony — Linear Tickets into Autonomous Coding Sessions · LLMotions</title>
+        <meta
+            name="description"
+            content="Cymphony turns Linear tickets into autonomous Claude Code sessions. Drop a ticket into Todo and it spins up a sandboxed workspace, opens a PR, and resumes the same branch on your feedback. You manage work, not agents."
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="assets/llm.css" />
+        <style>
+            body {
+                --accent: #06b6d4;
+                --accent2: #3b82f6;
+            }
+            .badge {
+                border-color: rgba(6, 182, 212, 0.32);
+                background: rgba(6, 182, 212, 0.08);
+                color: #7dd3fc;
+            }
+        </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    </head>
+    <body>
+        <!-- LOADER -->
+        <div id="loader">
+            <div class="loader-logo">Cymphony</div>
+            <div class="loader-track"></div>
+        </div>
+
+        <div id="cursor"></div>
+        <canvas id="bg"></canvas>
+        <div id="particles"></div>
+
+        <!-- NAV -->
+        <nav id="nav">
+            <a href="index.html" class="logo nav-back">← LL<span>Motions</span></a>
+            <div class="nav-links">
+                <a href="#overview">Overview</a>
+                <a href="#screens">Screens</a>
+                <a href="#workflow">Workflow</a>
+                <a href="#providers">Providers</a>
+                <a href="#install">Install</a>
+                <a
+                    href="https://github.com/zaalipro/cymphony"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="nav-btn"
+                    >View on GitHub</a
+                >
+            </div>
+        </nav>
+
+        <!-- ═══ HERO ═══ -->
+        <section class="app-hero">
+            <div class="wrap">
+                <div>
+                    <div class="badge">
+                        <div class="badge-dot"></div>
+                        Autonomous Coding Sessions
+                    </div>
+                    <h1>Cymphony</h1>
+                    <p class="tagline">
+                        Turn Linear tickets into autonomous coding sessions. You
+                        manage <span class="hl">work, not agents</span>.
+                    </p>
+                    <p class="sub">
+                        A modern rewrite of openai/symphony, powered by Claude
+                        Code. Drop a ticket into "Todo" and Cymphony picks it up,
+                        spins up a sandboxed workspace, and lets Claude Code work
+                        on it until the issue closes — then opens a pull request
+                        for your review.
+                    </p>
+                    <div class="btn-row">
+                        <a href="#install" class="btn-p"
+                            >Install Cymphony <span class="arrow">→</span></a
+                        >
+                        <a
+                            href="https://github.com/zaalipro/cymphony"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn-s"
+                            >View on GitHub</a
+                        >
+                    </div>
+                </div>
+                <div style="opacity: 1; transform: none">
+                    <div class="shot">
+                        <div class="shot-bar">
+                            <i></i><i></i><i></i>
+                            <span>Cymphony — Operations</span>
+                        </div>
+                        <img
+                            src="assets/cymphony/webui.png"
+                            alt="Cymphony Phoenix LiveView web dashboard showing per-project sections with kill, retry, pause, and set-provider controls per running session and real-time activity"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ OVERVIEW ═══ -->
+        <section class="block" id="overview">
+            <div class="wrap">
+                <div class="block-head reveal">
+                    <div class="sec-eyebrow">Why Cymphony</div>
+                    <h2 class="sec-title">
+                        Everything <span class="hl">openai/symphony</span> does —
+                        plus what a small team needs
+                    </h2>
+                    <p class="lede">
+                        The core idea is the same: tickets become coding sessions.
+                        Cymphony adds the pieces that turn it from a
+                        single-developer toy into something a team can lean on.
+                    </p>
+                </div>
+                <ul class="checks reveal">
+                    <li>
+                        <b>Claude Code</b> as the coding agent instead of Codex
+                    </li>
+                    <li>
+                        <b>One command from anywhere</b> — <code>cymphony</code>
+                        launches the orchestrator + dashboard;
+                        <code>cymphony start</code> runs it as a daemon
+                    </li>
+                    <li>
+                        <b>Multi-project orchestration</b> with a per-project cap
+                        on concurrent sessions, changeable live
+                    </li>
+                    <li>
+                        <b>Custom Claude command per project</b> — point one at
+                        the official CLI, another at a credential-swapping wrapper
+                    </li>
+                    <li>
+                        <b>Rotate across Claude-compatible backends</b> to avoid
+                        any single provider's rate limit
+                    </li>
+                    <li>
+                        <b>Phoenix LiveView dashboard</b> — kill, retry, pause,
+                        and set-provider per running session
+                    </li>
+                    <li>
+                        <b>HTTP API</b> — <code>/api/v1/*</code> for state, pause,
+                        concurrency, providers, and refresh
+                    </li>
+                    <li>
+                        <b>Workspace lifecycle hooks</b> and an optional retention
+                        sweep, plus optional bearer-token auth
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ═══ SCREENS ═══ -->
+        <section class="block" id="screens">
+            <div class="wrap">
+                <div class="block-head reveal">
+                    <div class="sec-eyebrow">Two Ways To Watch</div>
+                    <h2 class="sec-title">
+                        Same data, <span class="hl">browser or terminal</span>
+                    </h2>
+                    <p class="lede">
+                        A real-time Phoenix LiveView dashboard when you want
+                        controls, and a grouped terminal status when you want to
+                        stay in the shell.
+                    </p>
+                </div>
+                <div class="gallery">
+                    <figure class="reveal">
+                        <div class="shot">
+                            <div class="shot-bar">
+                                <i></i><i></i><i></i><span>Web dashboard</span>
+                            </div>
+                            <img
+                                src="assets/cymphony/webui.png"
+                                loading="lazy"
+                                alt="Cymphony web dashboard with per-project sections and per-session controls"
+                            />
+                        </div>
+                        <figcaption>
+                            <b>Web dashboard.</b> Per-project sections with
+                            kill / retry / pause / set-provider on every running
+                            session, live runtime, token accounting, and
+                            real-time activity.
+                        </figcaption>
+                    </figure>
+                    <figure class="reveal">
+                        <div class="shot">
+                            <div class="shot-bar">
+                                <i></i><i></i><i></i><span>Terminal status</span>
+                            </div>
+                            <img
+                                src="assets/cymphony/tui.png"
+                                loading="lazy"
+                                alt="Cymphony terminal status grouped by project showing stage, PID, age, tokens, and events"
+                            />
+                        </div>
+                        <figcaption>
+                            <b>Terminal status.</b> The same orchestration state
+                            with no browser — sessions grouped by project, each
+                            with stage, PID, age, tokens, and the latest event.
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ WORKFLOW ═══ -->
+        <section class="block" id="workflow">
+            <div class="wrap">
+                <div class="block-head reveal">
+                    <div class="sec-eyebrow">How It Works</div>
+                    <h2 class="sec-title">
+                        Review like it's a
+                        <span class="hl">human teammate</span>
+                    </h2>
+                    <p class="lede">
+                        Cymphony isn't a one-shot dispatcher. Because it reuses one
+                        workspace per issue, the agent keeps full context across
+                        rounds — your feedback lands on top of everything it
+                        already knows.
+                    </p>
+                </div>
+                <div class="steps">
+                    <div class="step reveal">
+                        <div class="step-n">1</div>
+                        <div>
+                            <h3>Drop a ticket</h3>
+                            <p>
+                                Move a Linear ticket into "Todo". On the next
+                                poll, Cymphony spins up an isolated workspace and
+                                the agent gets to work.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="step reveal">
+                        <div class="step-n">2</div>
+                        <div>
+                            <h3>It opens a PR</h3>
+                            <p>
+                                When it's done it pushes a branch, opens a pull
+                                request, and moves the ticket to your terminal
+                                state.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="step reveal">
+                        <div class="step-n">3</div>
+                        <div>
+                            <h3>You review &amp; comment</h3>
+                            <p>
+                                Something off? Don't open a new ticket — comment on
+                                the same issue and move it back to an active
+                                state.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="step reveal">
+                        <div class="step-n">4</div>
+                        <div>
+                            <h3>It resumes the branch</h3>
+                            <p>
+                                Cymphony reuses the same workspace and branch,
+                                reads your comment, applies the feedback, and
+                                force-pushes to the existing PR.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="step reveal">
+                        <div class="step-n">5</div>
+                        <div>
+                            <h3>Repeat until merge</h3>
+                            <p>
+                                Iterate as many rounds as you like. You never pay
+                                for a fresh re-read of the codebase — context
+                                carries over each time.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="step reveal">
+                        <div class="step-n">↻</div>
+                        <div>
+                            <h3>You manage work, not agents</h3>
+                            <p>
+                                The whole loop runs against your existing Linear
+                                board — no new tool for your team to learn.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ PROVIDERS ═══ -->
+        <section class="block" id="providers">
+            <div class="wrap">
+                <div class="install" style="align-items: center; gap: 48px">
+                        <div class="reveal">
+                            <div class="sec-eyebrow">Provider Rotation</div>
+                            <h2 class="sec-title">
+                                Run more sessions without
+                                <span class="hl">hitting a wall</span>
+                            </h2>
+                            <p class="lede" style="margin-bottom: 26px">
+                                Parallel sessions hit upstream rate limits fast.
+                                Cymphony spreads them across multiple
+                                Claude-compatible backends — Anthropic's official
+                                API, z.ai (GLM), Kimi (Moonshot), OpenRouter, or
+                                any Anthropic-compatible vendor. List two or more
+                                and new sessions are distributed at random.
+                            </p>
+                            <ul
+                                class="checks"
+                                style="grid-template-columns: 1fr"
+                            >
+                                <li>
+                                    Configure via shell functions or plain JSON —
+                                    whichever fits how you already work
+                                </li>
+                                <li>
+                                    Set providers per project, or per session live
+                                    from the dashboard
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="code reveal" style="align-self: center">
+                            <div class="code-head">
+                                <span class="dot"></span> ~/.cld — one function
+                                per backend
+                            </div>
+                            <pre><span class="c"># each fn name starts with "c" (Cymphony's rule)</span>
+cz()  { _unset; export \
+  ANTHROPIC_BASE_URL=<span class="g">https://api.z.ai/api/anthropic</span> \
+  ANTHROPIC_API_KEY=<span class="g">$ZAI_KEY</span>; }
+
+ck1() { _unset; export \
+  ANTHROPIC_BASE_URL=<span class="g">https://api.moonshot.ai/anthropic</span> \
+  ANTHROPIC_API_KEY=<span class="g">$KIMI_KEY</span>; }
+
+<span class="c"># point a project at "cz, ck1" — Cymphony</span>
+<span class="c"># rotates new sessions across them.</span></pre>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <!-- ═══ FEATURES ═══ -->
+        <section class="block">
+            <div class="wrap">
+                <div class="block-head reveal">
+                    <div class="sec-eyebrow">Capabilities</div>
+                    <h2 class="sec-title">
+                        Built for a <span class="hl">small team</span>
+                    </h2>
+                </div>
+                <div class="fgrid">
+                    <div class="fcard reveal">
+                        <div class="fic">🤖</div>
+                        <h3>Claude Code agent</h3>
+                        <p>
+                            Each ticket becomes a sandboxed Claude Code session
+                            that works until the issue closes.
+                        </p>
+                    </div>
+                    <div class="fcard reveal">
+                        <div class="fic">⚡</div>
+                        <h3>One command, anywhere</h3>
+                        <p>
+                            <code>cymphony</code> launches the orchestrator and
+                            dashboard; <code>cymphony start</code> runs it as a
+                            background daemon.
+                        </p>
+                    </div>
+                    <div class="fcard reveal">
+                        <div class="fic">🗂️</div>
+                        <h3>Multi-project</h3>
+                        <p>
+                            Orchestrate many repos at once with a per-project cap
+                            on concurrent sessions — change it live.
+                        </p>
+                    </div>
+                    <div class="fcard reveal">
+                        <div class="fic">🔀</div>
+                        <h3>Provider rotation</h3>
+                        <p>
+                            Spread sessions across Anthropic, z.ai, Kimi,
+                            OpenRouter, or any Anthropic-compatible backend.
+                        </p>
+                    </div>
+                    <div class="fcard reveal">
+                        <div class="fic">📊</div>
+                        <h3>LiveView dashboard</h3>
+                        <p>
+                            Kill, retry, pause, and set-provider per running
+                            session, with real-time activity per project.
+                        </p>
+                    </div>
+                    <div class="fcard reveal">
+                        <div class="fic">🔌</div>
+                        <h3>HTTP API</h3>
+                        <p>
+                            <code>/api/v1/*</code> exposes state, pause,
+                            concurrency, providers, and refresh for automation.
+                        </p>
+                    </div>
+                    <div class="fcard reveal">
+                        <div class="fic">🪝</div>
+                        <h3>Workspace hooks</h3>
+                        <p>
+                            after_create / before_run / after_run / before_remove
+                            hooks, plus an optional retention sweep.
+                        </p>
+                    </div>
+                    <div class="fcard reveal">
+                        <div class="fic">📦</div>
+                        <h3>One-liner install</h3>
+                        <p>
+                            <code>brew install</code> on macOS or a
+                            <code>.deb</code> on Ubuntu/Debian — Erlang bundled,
+                            no system deps.
+                        </p>
+                    </div>
+                    <div class="fcard reveal">
+                        <div class="fic">🔑</div>
+                        <h3>Optional auth</h3>
+                        <p>
+                            Put a <code>CYMPHONY_API_TOKEN</code> bearer token in
+                            front of the dashboard and API when you need it.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ INSTALL ═══ -->
+        <section class="block" id="install">
+            <div class="wrap">
+                <div class="block-head reveal">
+                    <div class="sec-eyebrow">Install</div>
+                    <h2 class="sec-title">
+                        Up and running in <span class="hl">one line</span>
+                    </h2>
+                    <p class="lede">
+                        Erlang is bundled, so there are no system dependencies to
+                        manage. After installing, run <code>cymphony</code> once
+                        and an interactive wizard walks you through your first
+                        project.
+                    </p>
+                </div>
+                <div class="install">
+                    <div class="code reveal">
+                        <div class="code-head">
+                            <span class="dot"></span> macOS — Homebrew
+                        </div>
+                        <pre>brew tap zaalipro/cymphony
+<span class="c"># bundles Erlang/Elixir, zero system deps</span>
+brew install cymphony
+<span class="c"># or smaller, uses your existing Elixir:</span>
+brew install cymphony-lite
+
+cymphony   <span class="c"># first run → setup wizard</span></pre>
+                    </div>
+                    <div class="code reveal">
+                        <div class="code-head">
+                            <span class="dot"></span> Ubuntu / Debian
+                        </div>
+                        <pre><span class="c"># Cymphony needs the Claude CLI on $PATH</span>
+npm install -g <span class="g">@anthropic-ai/claude-code</span>
+
+wget <span class="g">https://github.com/zaalipro/cymphony/\
+releases/latest/download/cymphony_amd64.deb</span>
+sudo dpkg -i cymphony_amd64.deb</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ CTA ═══ -->
+        <section class="cta-section">
+            <div class="cta-box reveal">
+                <h2>Ship from your <span class="hl">Linear board</span></h2>
+                <p>
+                    Already running openai/symphony? Switching is mostly: install
+                    Cymphony, run <code>cymphony setup</code>, and paste your
+                    Linear API key. Then manage work, not agents.
+                </p>
+                <div class="btn-row" style="justify-content: center">
+                    <a
+                        href="https://github.com/zaalipro/cymphony"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn-p"
+                        >View on GitHub <span class="arrow">→</span></a
+                    >
+                    <a href="index.html#apps" class="btn-s">Back to all apps</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ FOOTER ═══ -->
+        <footer>
+            <div class="footer-inner">
+                <a href="index.html" class="logo">LL<span>Motions</span></a>
+                <div class="f-links">
+                    <a href="cympho.html">Cympho</a>
+                    <a href="cymphony.html">Cymphony</a>
+                    <a href="https://agrenting.com" target="_blank">Agrenting</a>
+                    <a href="https://cacp.one" target="_blank">CACP</a>
+                    <a href="https://robotscenter.net" target="_blank"
+                        >Robots Center</a
+                    >
+                    <a href="https://ai-memory.shop" target="_blank">AI Memory</a>
+                </div>
+            </div>
+            <div class="f-copy">© 2026 LLMotions. All rights reserved.</div>
+        </footer>
+
+        <script src="assets/site.js"></script>
+    </body>
+</html>

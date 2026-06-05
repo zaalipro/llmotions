@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Cympho — Autonomous Company OS for AI Agents · LLMotions</title>
+        <meta
+            name="description"
+            content="Cympho turns owner requests into coordinated company work. A CEO agent routes priorities, the CTO decomposes issues, and engineer agents ship inspectable changes with full evidence and review trails."
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="assets/llm.css" />
+        <style>
+            body {
+                --accent: #8b5cf6;
+                --accent2: #7c3aed;
+            }
+        </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    </head>
+    <body>
+        <!-- LOADER -->
+        <div id="loader">
+            <div class="loader-logo">Cympho</div>
+            <div class="loader-track"></div>
+        </div>
+
+        <div id="cursor"></div>
+        <canvas id="bg"></canvas>
+        <div id="particles"></div>
+
+        <!-- NAV -->
+        <nav id="nav">
+            <a href="index.html" class="logo nav-back">← LL<span>Motions</span></a>
+            <div class="nav-links">
+                <a href="#overview">Overview</a>
+                <a href="#screens">Screens</a>
+                <a href="#roles">Roles</a>
+                <a href="#workflow">Workflow</a>
+                <a href="#install">Install</a>
+                <a
+                    href="https://github.com/zaalipro/cympho"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="nav-btn"
+                    >View on GitHub</a
+                >
+            </div>
+        </nav>
+
+        <!-- ═══ HERO ═══ -->
+        <section class="app-hero">
+            <div class="wrap">
+                <div>
+                    <div class="badge">
+                        <div class="badge-dot"></div>
+                        Autonomous Company OS
+                    </div>
+                    <h1>Cympho</h1>
+                    <p class="tagline">
+                        An autonomous company OS for
+                        <span class="hl">AI agents</span>.
+                    </p>
+                    <p class="sub">
+                        Cympho turns owner requests into coordinated company
+                        work. A CEO agent routes priorities, Product and Design
+                        shape the brief, the CTO breaks large work into
+                        executable issues, and engineer agents produce
+                        inspectable changes with comments, runs, work products,
+                        PR evidence, and review trails.
+                    </p>
+                    <div class="btn-row">
+                        <a href="#install" class="btn-p"
+                            >Install Cympho <span class="arrow">→</span></a
+                        >
+                        <a
+                            href="https://github.com/zaalipro/cympho"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn-s"
+                            >View on GitHub</a
+                        >
+                    </div>
+                </div>
+                <div class="reveal" style="opacity: 1; transform: none">
+                    <div class="shot">
+                        <div class="shot-bar">
+                            <i></i><i></i><i></i>
+                            <span>Cympho — Command Center</span>
+                        </div>
+                        <img
+                            src="assets/cympho/dashboard.png"
+                            alt="Cympho Command Center showing operating mode, runtime capacity, an execution-health brief, a KPI instrument band, the active agent roster, issue and agent status, and recent inbox activity"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ OVERVIEW ═══ -->
+        <section class="block" id="overview">
+            <div class="wrap">
+                <div class="block-head reveal">
+                    <div class="sec-eyebrow">Why Cympho</div>
+                    <h2 class="sec-title">
+                        Not an issue tracker with a
+                        <span class="hl">run button</span>
+                    </h2>
+                    <p class="lede">
+                        Most agent tools run one agent against one ticket and
+                        leave humans to infer what happened from terminal logs.
+                        Cympho gives agents a company structure, durable memory,
+                        role contracts, project context, workflow state, and a UI
+                        where owners can see progress without spelunking through
+                        raw output.
+                    </p>
+                </div>
+                <ul class="checks reveal">
+                    <li>
+                        Company structure — CEO, CTO, Product, Design, QA, and
+                        Engineers with role-specific prompts and handoffs
+                    </li>
+                    <li>
+                        Owner intake routes every issue through CEO-first triage
+                        with project, priority, and owner context
+                    </li>
+                    <li>
+                        Work decomposition — split large requests into sub-issues
+                        with full lineage
+                    </li>
+                    <li>
+                        Evidence trail — comments, runs, failures, work products,
+                        child issues, tool traces, PR links, and review notes
+                    </li>
+                    <li>
+                        Prompt quality — Instruction Studio, deterministic
+                        contracts, and role coverage scoring
+                    </li>
+                    <li>
+                        Runtime operations — capacity, adapter health, blocked
+                        work, review nudges, and execution mode
+                    </li>
+                    <li>
+                        Safety posture — review mode, scoped auth, governance
+                        gates, budgets, and explicit background-worker flags
+                    </li>
+                    <li>
+                        Adapter choice — Claude Code, Codex, Cursor, OpenClaw,
+                        HTTP, and local process adapters per agent
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ═══ SCREENS ═══ -->
+        <section class="block" id="screens">
+            <div class="wrap">
+                <div class="block-head reveal">
+                    <div class="sec-eyebrow">Product Surface</div>
+                    <h2 class="sec-title">
+                        See the whole loop, <span class="hl">not just logs</span>
+                    </h2>
+                    <p class="lede">
+                        Every surface is designed to answer the owner's real
+                        question: what happened, who did it, what evidence
+                        exists, and what decision is next.
+                    </p>
+                </div>
+                <div class="gallery">
+                    <figure class="reveal">
+                        <div class="shot">
+                            <div class="shot-bar">
+                                <i></i><i></i><i></i><span>Command Center</span>
+                            </div>
+                            <img
+                                src="assets/cympho/dashboard.png"
+                                loading="lazy"
+                                alt="Cympho Command Center dashboard"
+                            />
+                        </div>
+                        <figcaption>
+                            <b>Command Center.</b> Operating mode, runtime
+                            capacity, an execution-health brief, a KPI instrument
+                            band, the active agent roster, issue and agent status,
+                            and recent inbox activity — company health at a
+                            glance.
+                        </figcaption>
+                    </figure>
+                    <figure class="reveal">
+                        <div class="shot">
+                            <div class="shot-bar">
+                                <i></i><i></i><i></i><span>Board</span>
+                            </div>
+                            <img
+                                src="assets/cympho/board.png"
+                                loading="lazy"
+                                alt="Cympho Kanban board with status-coded columns and delivery-evidence signals"
+                            />
+                        </div>
+                        <figcaption>
+                            <b>Board.</b> Kanban flow across Backlog, To Do, In
+                            Progress, and In Review with title-first issue cards
+                            carrying delivery-evidence signals, plus filters,
+                            swimlanes, and safe review-mode controls.
+                        </figcaption>
+                    </figure>
+                    <figure class="reveal">
+                        <div class="shot">
+                            <div class="shot-bar">
+                                <i></i><i></i><i></i><span>Inbox</span>
+                            </div>
+                            <img
+                                src="assets/cympho/inbox.png"
+                                loading="lazy"
+                                alt="Cympho Inbox showing agent handoffs and review signals as scannable cards"
+                            />
+                        </div>
+                        <figcaption>
+                            <b>Inbox.</b> Agent handoffs and review signals as
+                            scannable cards with unread markers, evidence
+                            requests, issue context, and queue filtering.
+                        </figcaption>
+                    </figure>
+                    <figure class="reveal">
+                        <div class="shot">
+                            <div class="shot-bar">
+                                <i></i><i></i><i></i><span>Project</span>
+                            </div>
+                            <img
+                                src="assets/cympho/project.png"
+                                loading="lazy"
+                                alt="Cympho project page showing repository settings, environment variables, status counts, and recent issues"
+                            />
+                        </div>
+                        <figcaption>
+                            <b>Projects.</b> Repository settings, environment
+                            variables, status counts, and recent issues — all the
+                            workspace metadata in one editable page.
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ FEATURES ═══ -->
+        <section class="block">
+            <div class="wrap">
+                <div class="block-head reveal">
+                    <div class="sec-eyebrow">Capabilities</div>
+                    <h2 class="sec-title">
+                        An operating system, <span class="hl">not a wrapper</span>
+                    </h2>
+                </div>
+                <div class="fgrid">
+                    <div class="fcard reveal">
+                        <div class="fic">🛰️</div>
+                        <h3>Operations console</h3>
+                        <p>
+                            Monitor runtime mode, agent capacity, adapter health,
+                            prompt readiness, blocked work, review nudges, and
+                            execution risk from one place.
+                        </p>
+                    </div>
+                    <div class="fcard reveal">
+                        <div class="fic">🎛️</div>
+                        <h3>Instruction Studio</h3>
+                        <p>
+                            Inspect agent instructions before they run, detect
+                            weak prompts, tune role playbooks, and preview
+                            contract coverage for every role.
+                        </p>
+                    </div>
+                    <div class="fcard reveal">
+                        <div class="fic">🧠</div>
+                        <h3>Issue digest & memory</h3>
+                        <p>
+                            Issue pages synthesize comments, runs, work products,
+                            child issues, failures, and PR state into an
+                            owner-readable brief.
+                        </p>
+                    </div>
+                    <div class="fcard reveal">
+                        <div class="fic">🚦</div>
+                        <h3>Review gates & nudges</h3>
+                        <p>
+                            Cympho detects missing delivery notes, verification,
+                            PR references, CTO review, and owner updates, then
+                            queues targeted follow-ups for the right agent.
+                        </p>
+                    </div>
+                    <div class="fcard reveal">
+                        <div class="fic">🔀</div>
+                        <h3>PR quality contract</h3>
+                        <p>
+                            Agents are guided toward issue-aware branch names,
+                            clear PR titles, task-list descriptions, review
+                            evidence, and owner-facing status.
+                        </p>
+                    </div>
+                    <div class="fcard reveal">
+                        <div class="fic">🔌</div>
+                        <h3>Adapter choice</h3>
+                        <p>
+                            Claude Code, Codex, Cursor, OpenClaw, HTTP, and local
+                            process adapters can be configured per agent with safe
+                            runtime env handling.
+                        </p>
+                    </div>
+                    <div class="fcard reveal">
+                        <div class="fic">🛒</div>
+                        <h3>Agrenting remote agents</h3>
+                        <p>
+                            Connect an Agrenting API key, browse marketplace
+                            agents inside Cympho, and rent remote specialists as
+                            local Cympho operators.
+                        </p>
+                    </div>
+                    <div class="fcard reveal">
+                        <div class="fic">🔒</div>
+                        <h3>Multi-tenant auth</h3>
+                        <p>
+                            Dashboard pages require login, LiveViews and APIs use
+                            company-scoped lookups, and tests guard against
+                            cross-company leaks.
+                        </p>
+                    </div>
+                    <div class="fcard reveal">
+                        <div class="fic">🛟</div>
+                        <h3>Review mode by default</h3>
+                        <p>
+                            Run the UI safely without background agent execution
+                            or provider spend, then opt into autonomous execution
+                            when you are ready.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ ROLES ═══ -->
+        <section class="block" id="roles">
+            <div class="wrap">
+                <div class="block-head reveal">
+                    <div class="sec-eyebrow">Agent Roles</div>
+                    <h2 class="sec-title">
+                        A default <span class="hl">autonomous roster</span>
+                    </h2>
+                    <p class="lede">
+                        Each role gets a playbook, action examples, a quality bar,
+                        anti-patterns, and a prompt contract that Cympho can
+                        inspect before the agent runs.
+                    </p>
+                </div>
+                <div class="roles">
+                    <div class="role reveal">
+                        <span class="tag">CEO</span>
+                        <h3>Direction & priorities</h3>
+                        <p>
+                            Owns company direction, owner updates, prioritization,
+                            and final business status.
+                        </p>
+                    </div>
+                    <div class="role reveal">
+                        <span class="tag">CTO</span>
+                        <h3>Technical decomposition</h3>
+                        <p>
+                            Decomposes technical work, reviews engineering
+                            delivery, and guards implementation quality.
+                        </p>
+                    </div>
+                    <div class="role reveal">
+                        <span class="tag">Product Lead</span>
+                        <h3>Scope & acceptance</h3>
+                        <p>
+                            Turns ambiguous owner requests into product scope and
+                            clear acceptance criteria.
+                        </p>
+                    </div>
+                    <div class="role reveal">
+                        <span class="tag">Design Lead</span>
+                        <h3>UX & polish</h3>
+                        <p>
+                            Owns UX clarity, interface quality, and user-facing
+                            polish across the work.
+                        </p>
+                    </div>
+                    <div class="role reveal">
+                        <span class="tag">Engineers</span>
+                        <h3>Implementation & evidence</h3>
+                        <p>
+                            Implement work, attach evidence, comment with delivery
+                            notes, and open review-ready PRs.
+                        </p>
+                    </div>
+                    <div class="role reveal">
+                        <span class="tag">QA & Specialists</span>
+                        <h3>Testing & operations</h3>
+                        <p>
+                            Add agents for testing, browser review, operations, or
+                            any project-specific workflow.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ WORKFLOW ═══ -->
+        <section class="block" id="workflow">
+            <div class="wrap">
+                <div class="block-head reveal">
+                    <div class="sec-eyebrow">How The Loop Works</div>
+                    <h2 class="sec-title">
+                        From owner request to
+                        <span class="hl">review-ready delivery</span>
+                    </h2>
+                    <p class="lede">
+                        The goal is not just to start an agent. The goal is to
+                        make the whole operating loop visible, governable, and
+                        repeatable.
+                    </p>
+                </div>
+                <div class="steps">
+                    <div class="step reveal">
+                        <div class="step-n">1</div>
+                        <div>
+                            <h3>Owner request</h3>
+                            <p>The owner creates a business request.</p>
+                        </div>
+                    </div>
+                    <div class="step reveal">
+                        <div class="step-n">2</div>
+                        <div>
+                            <h3>CEO triage</h3>
+                            <p>
+                                The CEO triages the request and delegates to the
+                                right role.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="step reveal">
+                        <div class="step-n">3</div>
+                        <div>
+                            <h3>Product & Design</h3>
+                            <p>
+                                They clarify scope, UX, and acceptance criteria
+                                when needed.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="step reveal">
+                        <div class="step-n">4</div>
+                        <div>
+                            <h3>CTO decomposition</h3>
+                            <p>
+                                The CTO splits large work into smaller tickets and
+                                assigns engineers.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="step reveal">
+                        <div class="step-n">5</div>
+                        <div>
+                            <h3>Engineers execute</h3>
+                            <p>
+                                Engineers run through configured adapters and
+                                attach proof of work.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="step reveal">
+                        <div class="step-n">6</div>
+                        <div>
+                            <h3>Issue digest</h3>
+                            <p>
+                                Cympho synthesizes comments, runs, work products,
+                                PR state, and sub-issues.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="step reveal">
+                        <div class="step-n">7</div>
+                        <div>
+                            <h3>Review gates</h3>
+                            <p>
+                                Gates decide readiness for CTO review, CEO update,
+                                or owner-visible closure.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="step reveal">
+                        <div class="step-n">8</div>
+                        <div>
+                            <h3>Targeted nudges</h3>
+                            <p>
+                                Agents are nudged when they miss evidence, review
+                                notes, PR quality, or owner updates.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ INSTALL ═══ -->
+        <section class="block" id="install">
+            <div class="wrap">
+                <div class="block-head reveal">
+                    <div class="sec-eyebrow">Installation</div>
+                    <h2 class="sec-title">
+                        One command, <span class="hl">local or VPS</span>
+                    </h2>
+                    <p class="lede">
+                        Cympho ships a robust automated installer that sets up the
+                        entire application on macOS (local) and Ubuntu/Linux
+                        (VPS). It auto-detects your OS, installs dependencies, and
+                        on a VPS provisions SSL, secrets, and a systemd service so
+                        Cympho stays running reliably.
+                    </p>
+                </div>
+                <div class="install">
+                    <div class="code reveal">
+                        <div class="code-head">
+                            <span class="dot"></span> one-line install
+                        </div>
+                        <pre><span class="c"># macOS (local) or an empty Ubuntu VPS</span>
+curl -sL <span class="g">https://raw.githubusercontent.com/\
+zaalipro/cympho/main/install.sh</span> | bash</pre>
+                    </div>
+                    <div class="code reveal">
+                        <div class="code-head">
+                            <span class="dot"></span> run from source
+                        </div>
+                        <pre><span class="c"># Elixir 1.19 · Erlang 28 · PostgreSQL</span>
+mix setup
+mix phx.server
+<span class="c"># open http://localhost:4000 — boots in review mode</span></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ CTA ═══ -->
+        <section class="cta-section">
+            <div class="cta-box reveal">
+                <h2>Run your own <span class="hl">autonomous company</span></h2>
+                <p>
+                    Give your agents a company structure, durable memory, role
+                    contracts, and a UI where every decision is visible — then opt
+                    into autonomous execution when you are ready.
+                </p>
+                <div class="btn-row" style="justify-content: center">
+                    <a
+                        href="https://github.com/zaalipro/cympho"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn-p"
+                        >View on GitHub <span class="arrow">→</span></a
+                    >
+                    <a href="index.html#apps" class="btn-s">Back to all apps</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ FOOTER ═══ -->
+        <footer>
+            <div class="footer-inner">
+                <a href="index.html" class="logo">LL<span>Motions</span></a>
+                <div class="f-links">
+                    <a href="cympho.html">Cympho</a>
+                    <a href="cymphony.html">Cymphony</a>
+                    <a href="https://agrenting.com" target="_blank">Agrenting</a>
+                    <a href="https://cacp.one" target="_blank">CACP</a>
+                    <a href="https://robotscenter.net" target="_blank"
+                        >Robots Center</a
+                    >
+                    <a href="https://ai-memory.shop" target="_blank">AI Memory</a>
+                </div>
+            </div>
+            <div class="f-copy">© 2026 LLMotions. All rights reserved.</div>
+        </footer>
+
+        <script src="assets/site.js"></script>
+    </body>
+</html>

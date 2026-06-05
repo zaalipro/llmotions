@@ -1623,7 +1623,7 @@
             }
             .f-products {
                 display: flex;
-                flex-wrap: nowrap;
+                flex-wrap: wrap;
                 gap: 6px;
                 justify-content: flex-end;
                 align-items: center;
@@ -1788,6 +1788,232 @@
                     display: none;
                 }
             }
+
+            /* ─── FLAGSHIP APPS ─── */
+            .apps {
+                padding: 140px 64px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .apps-lede {
+                max-width: 720px;
+                text-align: center;
+                color: rgba(255, 255, 255, 0.5);
+                font-size: 1.05rem;
+                line-height: 1.78;
+                font-weight: 300;
+                margin: -30px 0 70px;
+            }
+            .apps-grid {
+                display: flex;
+                flex-direction: column;
+                gap: 90px;
+                width: 100%;
+                max-width: 1160px;
+            }
+            .app-showcase {
+                display: grid;
+                grid-template-columns: 1.12fr 1fr;
+                gap: 56px;
+                align-items: center;
+            }
+            .app-showcase.reverse {
+                grid-template-columns: 1fr 1.12fr;
+            }
+            .app-showcase.reverse .app-media {
+                order: 2;
+            }
+            .app-media {
+                display: block;
+                position: relative;
+                border-radius: 16px;
+                overflow: hidden;
+                border: 1px solid rgba(255, 255, 255, 0.09);
+                background: #0e0e17;
+                text-decoration: none;
+                box-shadow:
+                    0 30px 80px rgba(0, 0, 0, 0.5),
+                    0 0 60px color-mix(in srgb, var(--ac) 18%, transparent);
+                opacity: 0;
+                transform: translateY(40px);
+                transition:
+                    transform 0.5s ease,
+                    box-shadow 0.5s ease;
+            }
+            .app-showcase:hover .app-media {
+                transform: translateY(-6px);
+                box-shadow:
+                    0 38px 90px rgba(0, 0, 0, 0.55),
+                    0 0 80px color-mix(in srgb, var(--ac) 28%, transparent);
+            }
+            .app-bar {
+                display: flex;
+                align-items: center;
+                gap: 7px;
+                padding: 11px 16px;
+                background: rgba(255, 255, 255, 0.03);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            }
+            .app-bar i {
+                width: 11px;
+                height: 11px;
+                border-radius: 50%;
+                display: inline-block;
+            }
+            .app-bar i:nth-child(1) {
+                background: #ff5f56;
+            }
+            .app-bar i:nth-child(2) {
+                background: #ffbd2e;
+            }
+            .app-bar i:nth-child(3) {
+                background: #27c93f;
+            }
+            .app-bar span {
+                margin-left: 12px;
+                font-size: 0.72rem;
+                color: rgba(255, 255, 255, 0.35);
+                font-family: "Space Grotesk", sans-serif;
+                letter-spacing: 0.3px;
+            }
+            .app-media img {
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+            .app-body {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            .app-eyebrow {
+                font-size: 0.72rem;
+                font-weight: 700;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+                color: var(--ac);
+                margin-bottom: 16px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            .app-eyebrow::before {
+                content: "";
+                width: 24px;
+                height: 1px;
+                background: var(--ac);
+            }
+            .app-name {
+                font-family: "Space Grotesk", sans-serif;
+                font-size: 2.4rem;
+                font-weight: 700;
+                letter-spacing: -1px;
+                margin-bottom: 14px;
+            }
+            .app-tag {
+                font-size: 1.08rem;
+                color: rgba(255, 255, 255, 0.8);
+                line-height: 1.5;
+                margin-bottom: 14px;
+                font-weight: 400;
+            }
+            .app-desc {
+                font-size: 0.95rem;
+                color: rgba(255, 255, 255, 0.45);
+                line-height: 1.75;
+                font-weight: 300;
+                margin-bottom: 24px;
+            }
+            .app-points {
+                list-style: none;
+                display: grid;
+                gap: 11px;
+                margin-bottom: 30px;
+            }
+            .app-points li {
+                position: relative;
+                padding-left: 26px;
+                font-size: 0.92rem;
+                color: rgba(255, 255, 255, 0.72);
+                line-height: 1.5;
+            }
+            .app-points li::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 3px;
+                width: 14px;
+                height: 14px;
+                border-radius: 50%;
+                background: var(--ac);
+                box-shadow: 0 0 12px color-mix(in srgb, var(--ac) 50%, transparent);
+            }
+            .app-points li::after {
+                content: "✓";
+                position: absolute;
+                left: 3px;
+                top: 1px;
+                font-size: 0.62rem;
+                font-weight: 800;
+                color: #fff;
+            }
+            .app-actions {
+                display: flex;
+                gap: 12px;
+                flex-wrap: wrap;
+            }
+            .app-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 9px;
+                padding: 13px 26px;
+                border-radius: 50px;
+                font-size: 0.9rem;
+                font-weight: 600;
+                text-decoration: none;
+                transition: all 0.35s ease;
+                background: var(--ac);
+                color: #fff;
+                border: none;
+                box-shadow: 0 4px 22px color-mix(in srgb, var(--ac) 40%, transparent);
+            }
+            .app-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 34px color-mix(in srgb, var(--ac) 55%, transparent);
+            }
+            .app-btn.ghost {
+                background: rgba(255, 255, 255, 0.04);
+                border: 1px solid rgba(255, 255, 255, 0.12);
+                color: #fff;
+                box-shadow: none;
+                font-weight: 500;
+            }
+            .app-btn.ghost:hover {
+                background: rgba(255, 255, 255, 0.08);
+                border-color: rgba(255, 255, 255, 0.22);
+            }
+            .app-btn .arrow {
+                transition: transform 0.3s;
+            }
+            .app-btn:hover .arrow {
+                transform: translateX(4px);
+            }
+            @media (max-width: 900px) {
+                .apps {
+                    padding: 90px 20px;
+                }
+                .app-showcase,
+                .app-showcase.reverse {
+                    grid-template-columns: 1fr;
+                    gap: 30px;
+                }
+                .app-showcase.reverse .app-media {
+                    order: 0;
+                }
+                .app-name {
+                    font-size: 2rem;
+                }
+            }
         </style>
     </head>
     <body>
@@ -1812,6 +2038,7 @@
             <div class="nav-links">
                 <a href="#features">For Humans</a>
                 <a href="#how">Agent Platforms</a>
+                <a href="#apps">Apps</a>
                 <a href="#agrenting">Agrenting</a>
                 <a href="#marketplaces">AgentFarm</a>
                 <a href="#usecases">Use Cases</a>
@@ -1850,6 +2077,8 @@
         <div class="marquee-wrap">
             <div class="marquee-track">
                 <span class="marquee-item">TTSQL.com</span>
+                <span class="marquee-item">Cympho</span>
+                <span class="marquee-item">Cymphony</span>
                 <span class="marquee-item">Agrenting.com</span>
                 <span class="marquee-item">RobotsCenter.net</span>
                 <span class="marquee-item">CACP.one</span>
@@ -2221,6 +2450,131 @@
             </div>
         </section>
 
+        <!-- ═══ FLAGSHIP APPS ═══ -->
+        <section class="apps" id="apps">
+            <div class="sec-eyebrow">Flagship Apps</div>
+            <h2 class="sec-title">
+                Autonomous software you can <span class="hl">run today</span>
+            </h2>
+            <p class="apps-lede">
+                Beyond protocols and marketplaces, we ship full applications that
+                put agents to work. Two of them are open and installable right
+                now — an autonomous company OS, and a ticket-to-PR coding
+                orchestrator.
+            </p>
+
+            <div class="apps-grid">
+                <!-- Cympho -->
+                <article class="app-showcase" style="--ac: #8b5cf6">
+                    <a href="cympho.html" class="app-media">
+                        <div class="app-bar">
+                            <i></i><i></i><i></i>
+                            <span>Cympho — Command Center</span>
+                        </div>
+                        <img
+                            src="assets/cympho/dashboard.png"
+                            loading="lazy"
+                            alt="Cympho Command Center dashboard showing operating mode, runtime capacity, execution-health brief, KPI band, active agent roster, and inbox"
+                        />
+                    </a>
+                    <div class="app-body">
+                        <div class="app-eyebrow">Autonomous Company OS</div>
+                        <h3 class="app-name">Cympho</h3>
+                        <p class="app-tag">
+                            An autonomous company OS for AI agents.
+                        </p>
+                        <p class="app-desc">
+                            A CEO agent routes priorities, Product and Design
+                            shape the brief, the CTO breaks work into executable
+                            issues, and engineer agents ship inspectable changes —
+                            with comments, runs, work products, PR evidence, and
+                            review trails.
+                        </p>
+                        <ul class="app-points">
+                            <li>
+                                CEO · CTO · Product · Design · QA · Engineers,
+                                each with a role contract
+                            </li>
+                            <li>
+                                Operations console, Instruction Studio, and
+                                owner-readable issue digests
+                            </li>
+                            <li>
+                                Review gates, targeted nudges, and review mode on
+                                by default
+                            </li>
+                        </ul>
+                        <div class="app-actions">
+                            <a href="cympho.html" class="app-btn"
+                                >Explore Cympho <span class="arrow">→</span></a
+                            >
+                            <a
+                                href="https://github.com/zaalipro/cympho"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="app-btn ghost"
+                                >GitHub</a
+                            >
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Cymphony -->
+                <article class="app-showcase reverse" style="--ac: #06b6d4">
+                    <a href="cymphony.html" class="app-media">
+                        <div class="app-bar">
+                            <i></i><i></i><i></i>
+                            <span>Cymphony — Operations</span>
+                        </div>
+                        <img
+                            src="assets/cymphony/webui.png"
+                            loading="lazy"
+                            alt="Cymphony Phoenix LiveView dashboard with per-project sections and per-session kill, retry, pause, and set-provider controls"
+                        />
+                    </a>
+                    <div class="app-body">
+                        <div class="app-eyebrow">Autonomous Coding Sessions</div>
+                        <h3 class="app-name">Cymphony</h3>
+                        <p class="app-tag">
+                            Turn Linear tickets into autonomous coding sessions.
+                        </p>
+                        <p class="app-desc">
+                            A modern rewrite of openai/symphony, powered by Claude
+                            Code. Drop a ticket into "Todo" — Cymphony spins up a
+                            sandboxed workspace, opens a PR, and resumes the same
+                            branch when you comment. You manage work, not agents.
+                        </p>
+                        <ul class="app-points">
+                            <li>
+                                Multi-project orchestration with live concurrency
+                                caps
+                            </li>
+                            <li>
+                                Rotate across Anthropic, z.ai, Kimi & OpenRouter
+                                backends
+                            </li>
+                            <li>
+                                Phoenix LiveView dashboard + one-liner brew / .deb
+                                install
+                            </li>
+                        </ul>
+                        <div class="app-actions">
+                            <a href="cymphony.html" class="app-btn"
+                                >Explore Cymphony <span class="arrow">→</span></a
+                            >
+                            <a
+                                href="https://github.com/zaalipro/cymphony"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="app-btn ghost"
+                                >GitHub</a
+                            >
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
         <!-- ═══ AGRENTING SPOTLIGHT ═══ -->
         <section class="agrenting" id="agrenting">
             <div class="sec-eyebrow">Agent Marketplace</div>
@@ -2584,6 +2938,8 @@
                     </p>
                 </div>
                 <div class="f-products">
+                    <a href="cympho.html">Cympho</a>
+                    <a href="cymphony.html">Cymphony</a>
                     <a href="https://ttsql.com" target="_blank">TTSQL</a>
                     <a href="https://agrenting.com" target="_blank"
                         >Agent Renting</a
@@ -2889,6 +3245,23 @@
                         ease: "power3.out",
                     });
                 });
+
+                // Flagship app showcases
+                document
+                    .querySelectorAll(".app-media, .app-body")
+                    .forEach((el) => {
+                        gsap.to(el, {
+                            scrollTrigger: {
+                                trigger: el,
+                                start: "top 86%",
+                                toggleActions: "play none none reverse",
+                            },
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.8,
+                            ease: "power3.out",
+                        });
+                    });
 
                 // Stats counter
                 document.querySelectorAll(".stat").forEach((el, i) => {
