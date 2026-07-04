@@ -428,9 +428,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-    });
+    modal.addEventListener('click', closeModal);
 
     // ESC key to close
     document.addEventListener('keydown', (e) => {
