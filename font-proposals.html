@@ -1,0 +1,137 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&family=Manrope:wght@500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&family=Sora:wght@500;600;700&family=Space+Grotesk:wght@500;600;700&family=Syne:wght@600;700&display=swap" rel="stylesheet">
+
+<div id="llmotions-font-proposals">
+  <style>
+    #llmotions-font-proposals {
+      --fp-bg: #090b12;
+      --fp-panel: #111522;
+      --fp-border: rgba(255,255,255,.11);
+      --fp-muted: rgba(255,255,255,.48);
+      --fp-white: #f7f9ff;
+      --fp-cyan: #22d3ee;
+      color: var(--fp-white);
+      background: var(--fp-bg);
+      font-family: "Instrument Sans", sans-serif;
+      padding: 34px;
+      border-radius: 22px;
+    }
+    #llmotions-font-proposals .fp-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    #llmotions-font-proposals h2 {
+      margin: 0;
+      font: 600 clamp(1.3rem, 2vw, 1.9rem)/1.1 "Instrument Sans", sans-serif;
+      letter-spacing: -.04em;
+    }
+    #llmotions-font-proposals .fp-head p {
+      max-width: 440px;
+      margin: 0;
+      color: var(--fp-muted);
+      font-size: .88rem;
+      line-height: 1.5;
+    }
+    #llmotions-font-proposals .fp-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(150px, 1fr));
+      gap: 12px;
+    }
+    #llmotions-font-proposals .fp-option {
+      min-height: 178px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 18px;
+      border: 1px solid var(--fp-border);
+      border-radius: 16px;
+      background: linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+    }
+    #llmotions-font-proposals .fp-option.fp-recommended {
+      border-color: rgba(34,211,238,.7);
+      box-shadow: 0 0 0 1px rgba(34,211,238,.12), 0 18px 60px rgba(34,211,238,.08);
+    }
+    #llmotions-font-proposals .fp-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      color: var(--fp-muted);
+      font-size: .72rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    #llmotions-font-proposals .fp-pick {
+      color: var(--fp-cyan);
+      font-size: .61rem;
+      letter-spacing: .06em;
+    }
+    #llmotions-font-proposals .fp-lockup {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--fp-white);
+      font-size: clamp(1.45rem, 2.25vw, 2rem);
+      letter-spacing: -.06em;
+      white-space: nowrap;
+    }
+    #llmotions-font-proposals .fp-lockup img {
+      width: 29px;
+      height: 33px;
+      object-fit: contain;
+      filter: invert(1) brightness(1.85);
+      flex: 0 0 auto;
+    }
+    #llmotions-font-proposals .fp-note {
+      margin: 14px 0 0;
+      color: rgba(255,255,255,.62);
+      font-size: .76rem;
+      line-height: 1.45;
+    }
+    #llmotions-font-proposals .fp-syne { font-family: "Syne", sans-serif; }
+    #llmotions-font-proposals .fp-space { font-family: "Space Grotesk", sans-serif; }
+    #llmotions-font-proposals .fp-instrument { font-family: "Instrument Sans", sans-serif; }
+    #llmotions-font-proposals .fp-jakarta { font-family: "Plus Jakarta Sans", sans-serif; }
+    #llmotions-font-proposals .fp-sora { font-family: "Sora", sans-serif; }
+    #llmotions-font-proposals .fp-lockup b { font-weight: 600; }
+    @media (max-width: 900px) {
+      #llmotions-font-proposals .fp-grid { grid-template-columns: repeat(2, minmax(150px, 1fr)); }
+    }
+    @media (max-width: 560px) {
+      #llmotions-font-proposals { padding: 22px; }
+      #llmotions-font-proposals .fp-head { display: block; }
+      #llmotions-font-proposals .fp-head p { margin-top: 10px; }
+      #llmotions-font-proposals .fp-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <div class="fp-head">
+    <h2>LLMotions wordmark directions</h2>
+    <p>All options use the mark’s white as the text color. Instrument Sans is the premium editorial pick; Space Grotesk keeps the strongest motion-tech character.</p>
+  </div>
+  <div class="fp-grid">
+    <div class="fp-option">
+      <div class="fp-label"><span>Current</span><span>Syne</span></div>
+      <div><div class="fp-lockup fp-syne"><img src="assets/brand/logo-transparent.png" alt=""><b>LLMotions</b></div><p class="fp-note">Expressive and geometric, but slightly more display-like.</p></div>
+    </div>
+    <div class="fp-option fp-recommended">
+      <div class="fp-label"><span>Option A</span><span class="fp-pick">Recommended</span></div>
+      <div><div class="fp-lockup fp-instrument"><img src="assets/brand/logo-transparent.png" alt=""><b>LLMotions</b></div><p class="fp-note">Refined, editorial, and clean at both nav and hero sizes.</p></div>
+    </div>
+    <div class="fp-option">
+      <div class="fp-label"><span>Option B</span><span>Space Grotesk</span></div>
+      <div><div class="fp-lockup fp-space"><img src="assets/brand/logo-transparent.png" alt=""><b>LLMotions</b></div><p class="fp-note">Distinctive technical rhythm with a confident silhouette.</p></div>
+    </div>
+    <div class="fp-option">
+      <div class="fp-label"><span>Option C</span><span>Jakarta Sans</span></div>
+      <div><div class="fp-lockup fp-jakarta"><img src="assets/brand/logo-transparent.png" alt=""><b>LLMotions</b></div><p class="fp-note">Warm, polished, and highly readable for a product brand.</p></div>
+    </div>
+    <div class="fp-option">
+      <div class="fp-label"><span>Option D</span><span>Sora</span></div>
+      <div><div class="fp-lockup fp-sora"><img src="assets/brand/logo-transparent.png" alt=""><b>LLMotions</b></div><p class="fp-note">Softer and more futuristic, with a friendly AI feel.</p></div>
+    </div>
+  </div>
+</div>
