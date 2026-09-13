@@ -210,11 +210,18 @@ nav.compact {
 }
 
 .logo-lockup .logo-word {
+    font-family: "Instrument Sans", "Inter", sans-serif;
     font-weight: 700;
-    background: linear-gradient(135deg, #8b5cf6, #06b6d4);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.045em;
+    color: #f7f9ff;
+    background: none;
+    -webkit-text-fill-color: #f7f9ff;
+}
+
+.logo-lockup .logo-word > span {
+    font-weight: 500;
+    color: #f7f9ff;
+    -webkit-text-fill-color: #f7f9ff;
 }
 
 .logo-lockup:hover .logo-mark {
