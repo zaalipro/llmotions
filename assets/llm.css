@@ -190,6 +190,49 @@ nav.compact {
     transition: transform 0.3s ease;
 }
 
+/* Brand mark cut out from logo.jpg and reused as a crisp transparent lockup. */
+.logo-lockup {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: none;
+    -webkit-text-fill-color: initial;
+}
+
+.logo-lockup .logo-mark {
+    width: 30px;
+    height: 34px;
+    object-fit: contain;
+    flex: 0 0 auto;
+    /* The source mark is black; lift it for the dark landing-page chrome. */
+    filter: invert(1) brightness(1.8);
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.logo-lockup .logo-word {
+    font-weight: 700;
+    background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.logo-lockup:hover .logo-mark {
+    transform: rotate(-4deg) scale(1.06);
+    filter: invert(1) brightness(2.1);
+}
+
+.logo-lockup .back-arrow {
+    color: rgba(255, 255, 255, 0.6);
+    -webkit-text-fill-color: initial;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.logo-lockup:hover .back-arrow {
+    color: #fff;
+    transform: translateX(-2px);
+}
+
 .logo:hover {
     transform: scale(1.05);
 }
@@ -286,6 +329,14 @@ section {
     text-align: center;
     padding: 160px 48px 120px;
     position: relative;
+}
+
+.hero-logo-mark {
+    width: 82px;
+    height: 94px;
+    object-fit: contain;
+    margin-bottom: 30px;
+    filter: invert(1) brightness(1.85) drop-shadow(0 0 24px rgba(139, 92, 246, 0.28));
 }
 
 .badge {
@@ -945,6 +996,11 @@ footer {
 
 .footer-inner .logo {
     font-size: 1.3rem;
+}
+
+.footer-inner .logo-mark {
+    width: 24px;
+    height: 28px;
 }
 
 .f-links {
