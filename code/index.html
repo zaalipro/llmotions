@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ncode: a coding harness for the Mac and the terminal</title>
+<meta name="description" content="ncode is a coding harness where every run, agent and operation is a process with its own progress bar. A native Mac app and a CLI on one engine. Bring your own model key.">
+<link rel="canonical" href="https://code.llmotions.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ncode">
+<meta property="og:title" content="ncode: a coding harness for the Mac and the terminal">
+<meta property="og:description" content="Every run, agent and operation is a process with its own progress bar. A native Mac app and a CLI on one engine.">
+<meta property="og:url" content="https://code.llmotions.com/">
+<meta name="theme-color" content="#0a0a0f">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/assets/brand/ncode-icon.svg?v=e073b97c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/llm.css?v=46210d3e">
+<link rel="stylesheet" href="/assets/ncode.css?v=12ce4cbe">
+<script src="/assets/ncode.js?v=200b28f6" defer></script>
+</head>
+<body class="nc">
+<a class="nc-skip" href="#main">Skip to content</a>
+<div class="nc-progress" aria-hidden="true"><span></span></div>
+
+<nav class="nc-nav" aria-label="ncode">
+    <a class="nc-lock" href="/" aria-label="ncode home">
+        <svg class="nc-mark" viewBox="-30 0 520 520" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="36" stroke-linecap="round"><path d="M313.1 41.3 A223.5 223.5 0 1 0 365.1 455.5"/><path d="M131.9 303.9 L124.5 353.9"/><path d="M201.2 265.1 L182.0 393.9"/><path d="M276.8 218.5 L268.2 275.5"/><path d="M254.9 367.5 L247.5 416.5"/><path d="M351.7 173.4 L317.3 404.2"/><path d="M424.7 117.9 L387.3 367.7"/></g><circle cx="259.3" cy="319.4" r="22.5" fill="currentColor"/></svg>
+        <span>ncode</span>
+    </a>
+    <ul class="nc-links">
+        <li><a href="#faces">Two faces</a></li>
+        <li><a href="#modes">Modes</a></li>
+        <li><a href="#run">How a run works</a></li>
+        <li><a href="/docs/">Docs</a></li>
+    </ul>
+    <a class="nc-cta" href="#download">Get ncode</a>
+</nav>
+
+<main id="main">
+
+<!-- ═══ hero: the run card is the one moving thing on the page ═══ -->
+<section class="nc-hero" aria-labelledby="hero-h">
+    <div class="nc-hero-text">
+        <h1 id="hero-h">
+            <span class="nc-word"><svg class="nc-mark" viewBox="-30 0 520 520" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="36" stroke-linecap="round"><path d="M313.1 41.3 A223.5 223.5 0 1 0 365.1 455.5"/><path d="M131.9 303.9 L124.5 353.9"/><path d="M201.2 265.1 L182.0 393.9"/><path d="M276.8 218.5 L268.2 275.5"/><path d="M254.9 367.5 L247.5 416.5"/><path d="M351.7 173.4 L317.3 404.2"/><path d="M424.7 117.9 L387.3 367.7"/></g><circle cx="259.3" cy="319.4" r="22.5" fill="currentColor"/></svg>ncode</span>
+            <span class="nc-claim">A coding harness where every run, agent and operation is a process, and everything has a progress bar.</span>
+        </h1>
+        <p class="nc-sub">Ask for a change and watch it happen. Agents split the work, every tool call runs on its own, and nothing writes to your project beyond the approval mode you picked. One engine, as a native Mac app and as a full-screen terminal session.</p>
+        <p class="nc-actions">
+            <a class="nc-btn nc-btn-ember" href="#download">Download for Mac</a>
+            <a class="nc-btn" href="#install">Install the CLI</a>
+        </p>
+        <p class="nc-fine">Developer preview for macOS 15 or later on Apple silicon. Bring your own model key.</p>
+    </div>
+
+    <figure class="nc-run" aria-labelledby="run-cap">
+        <div class="rc" data-live>
+            <div class="rc-head">
+                <span class="rc-kind">⋔</span>
+                <span class="rc-title">swarm review changes</span>
+                <span class="rc-found">1 of 4 in</span>
+                <span class="rc-clock" data-clock="975">16:15</span>
+            </div>
+            <ol class="rc-tree">
+                <li class="rc-row rc-lead" style="--p:.13;--d:5">
+                    <span class="rc-glyph">◌</span><span class="rc-name">Lead</span>
+                    <span class="rc-doing">waiting for 2</span><span class="rc-n">4/30</span>
+                    <span class="rc-bar"><i></i></span>
+                </li>
+                <li class="rc-row rc-ok" style="--p:1;--d:1;--lane:var(--teal)">
+                    <span class="rc-glyph">✓</span><span class="rc-name">TS removal</span>
+                    <span class="rc-doing">done</span><span class="rc-n">8:34</span>
+                    <span class="rc-bar"><i></i></span>
+                </li>
+                <li class="rc-row" style="--p:.7;--d:2;--lane:var(--violet)">
+                    <span class="rc-glyph" data-spin>◒</span><span class="rc-name">Docs accuracy</span>
+                    <span class="rc-doing">checking app data</span><span class="rc-n">21/30</span>
+                    <span class="rc-bar"><i></i></span>
+                </li>
+                <li class="rc-row rc-quiet" style="--p:.45;--d:3;--lane:var(--gold)">
+                    <span class="rc-glyph" data-spin>◒</span><span class="rc-name">Strategy fit</span>
+                    <span class="rc-doing">weighing 2 plans</span><span class="rc-n rc-warn">quiet 1m</span>
+                    <span class="rc-bar"><i></i></span>
+                </li>
+                <li class="rc-row rc-err" style="--p:1;--d:4;--lane:var(--pink)">
+                    <span class="rc-glyph">✗</span><span class="rc-name">Build check</span>
+                    <span class="rc-doing">turn limit</span><span class="rc-n">30/30</span>
+                    <span class="rc-bar"><i></i></span>
+                </li>
+            </ol>
+            <p class="rc-said"><span class="rc-said-who">TS removal</span> Deleting ailogic_typescript/ is safe: nothing in lib/ or assets/ imports it.</p>
+        </div>
+        <figcaption id="run-cap">A swarm reviewing changes: the Lead waits on its reviewers, one is done, one ran out of turns. Rows from the CLI's side panel.</figcaption>
+    </figure>
+</section>
+
+<!-- ═══ one engine, two faces: the same run, drawn by each product ═══ -->
+<section id="faces" class="nc-sec nc-faces" aria-labelledby="faces-h">
+    <header class="nc-head">
+        <h2 id="faces-h">One engine, two faces</h2>
+        <p>The Mac app and the CLI run the same engine on the same local database, so a conversation started in one is waiting in the other. They take turns with that database: quit one before you open the other.</p>
+    </header>
+
+    <div class="nc-split">
+        <article class="face" aria-labelledby="face-app">
+            <h3 id="face-app">ncode for Mac</h3>
+            <p class="face-lede">A native window that draws a run as it happens: the transcript on one side, the agents working on the other.</p>
+            <!-- phase-2 slot: replace this drawing with /assets/shots/desktop/workspace.png once the seeded capture exists -->
+            <div class="win" role="img" aria-label="The ncode desktop window: a sidebar with the ailogic project, a transcript with an approval card for mix test, and the agents pane with the Lead and four reviewers, each with a progress bar.">
+                <div class="win-bar"><i></i><i></i><i></i><span>ncode</span></div>
+                <div class="win-body">
+                    <div class="win-side">
+                        <p class="ws-proj">ailogic</p>
+                        <p class="ws-conv ws-on">swarm review changes</p>
+                        <p class="ws-conv">lets plan how to make this app better</p>
+                        <p class="ws-conv">Remove the TypeScript client</p>
+                    </div>
+                    <div class="win-chat">
+                        <p class="wc-user">Review the uncommitted changes before I commit.</p>
+                        <div class="wc-card">
+                            <p class="wc-card-h"><span class="wc-kind">⋔</span> swarm review changes <span class="wc-live">running</span></p>
+                            <p class="wc-said">One review is in. Build check ran out of turns, so the report will miss the build.</p>
+                        </div>
+                        <div class="wc-ask">
+                            <p class="wc-ask-h">Run a command?</p>
+                            <p class="wc-cmd">mix test</p>
+                            <p class="wc-pills"><span class="wc-pill wc-yes">Approve</span><span class="wc-pill">Deny</span><span class="wc-pill">Deny &amp; stop</span><span class="wc-pill">Always allow “mix test”</span></p>
+                        </div>
+                    </div>
+                    <div class="win-agents">
+                        <p class="wa-tabs"><span class="wa-on">Cards</span><span>Timeline</span><span>Changes</span></p>
+                        <div class="wa-node wa-lead" style="--p:.13"><b>Lead</b><span>waiting for 2</span><i></i></div>
+                        <div class="wa-node" style="--p:1;--lane:var(--teal)"><b>✓ TS removal</b><span>done</span><i></i></div>
+                        <div class="wa-node" style="--p:.7;--lane:var(--violet)"><b>◒ Docs accuracy</b><span>checking app data</span><i></i></div>
+                        <div class="wa-node" style="--p:.45;--lane:var(--gold)"><b>◒ Strategy fit</b><span>weighing 2 plans</span><i></i></div>
+                        <div class="wa-node wa-err" style="--p:1;--lane:var(--pink)"><b>✗ Build check</b><span>turn limit</span><i></i></div>
+                    </div>
+                </div>
+            </div>
+            <ul class="face-facts">
+                <li>The agents pane shows every agent as a card with its own bar, a timeline of what each one did, and the files the run changed.</li>
+                <li>Approve, Deny, Deny &amp; stop or Always allow, answered right in the transcript.</li>
+                <li>A side chat beside any run (<kbd>⌘⇧S</kbd>) and a file finder over the project (<kbd>⌘P</kbd>).</li>
+                <li>Close the window and runs keep going; the menu bar icon brings it back. Scheduled tasks fire from the app.</li>
+            </ul>
+        </article>
+
+        <article class="face" aria-labelledby="face-cli">
+            <h3 id="face-cli">ncode in the terminal</h3>
+            <p class="face-lede">A full-screen session with the same runs, the same agents and the same approvals, kept to the keyboard.</p>
+            <!-- phase-2 slot: replace this drawing with a capture under /assets/shots/cli/ once the seeded capture exists -->
+            <div class="tty" role="img" aria-label="The ncode terminal session: the swarm run card with the Lead and four reviewers, the found line with one of four reports in, and the key hints for agents, needs you and the side panel.">
+<pre><span class="t-ac">●</span> <b>ailogic</b>   <span class="t-sw">⋔</span> <span class="t-tm">swarm review changes</span> <span class="t-ac">●</span> <span class="t-tm">16:15</span>
+
+ <span class="t-sw">⋔</span> <b class="t-sw">Lead</b>                         <span class="t-ac">thinking ▌</span>
+   <span class="t-tf">├</span> ◒ <span class="t-l2">Docs accuracy</span>  <span class="t-tm">thinking</span>    running a command
+   <span class="t-tf">├</span> <span class="t-ok">✓</span> <span class="t-l1">TS removal</span>     <span class="t-ok">done</span>        Deleting ailogic_typescript/…
+   <span class="t-tf">├</span> ◒ <span class="t-l4">Strategy fit</span>   <span class="t-tm">thinking</span>    wrapping up.
+   <span class="t-tf">╰</span> <span class="t-er">✗</span> <span class="t-l3">Build check</span>    <span class="t-er">turn limit</span>  <span class="t-tm">no answer after 30 turns</span>
+
+ <span class="t-tm">found</span>           <span class="t-tm">1 of 4 in</span> <span class="t-tf">· no files changed</span>
+ <span class="t-sw">⋔</span> <span class="t-l1">▄▄▄▄▄▄▄▄</span> <span class="t-er">▁▁▁▁▁▁▁▁</span> <span class="t-tf">▁▁▁▁▁▁▁▁ ▁▁▁▁▁▁▁▁</span>
+
+ <span class="t-ac">▌</span><span class="t-tf">                                             </span>
+ <b class="t-tm">^F</b> <span class="t-tf">agents</span>  <b class="t-tm">^N</b> <span class="t-tf">needs you</span>  <b class="t-tm">^B</b> <span class="t-tf">panel</span></pre>
+            </div>
+            <ul class="face-facts">
+                <li>A side panel of agents sorted by what needs you (<kbd>Ctrl</kbd>+<kbd>B</kbd>), and a hint letter to jump into any one of them (<kbd>Ctrl</kbd>+<kbd>F</kbd>).</li>
+                <li>Approvals by one letter: <kbd>y</kbd> once, <kbd>Y</kbd> for this run, <kbd>A</kbd> always for this command.</li>
+                <li>Keep typing while a run works: a message steers the running turn or waits in the queue.</li>
+                <li><code>ncode -p "run the tests and fix what fails" --json</code> runs one turn without the full screen, for scripts.</li>
+            </ul>
+        </article>
+    </div>
+</section>
+
+<!-- ═══ modes: the composer's own menu, with the code's own hints ═══ -->
+<section id="modes" class="nc-sec nc-modes" aria-labelledby="modes-h">
+    <header class="nc-head">
+        <h2 id="modes-h">Six ways to send a message</h2>
+        <p>The composer carries a mode. It decides what the next message starts: a turn that edits, a read-only plan, a goal, a workflow or a judged plan. <kbd>Shift</kbd>+<kbd>Tab</kbd> flips between Build and Plan in the app, and a slash command that names a mode selects it.</p>
+    </header>
+    <div class="composer" role="img" aria-label="The ncode composer with its mode menu open, listing Build, Plan, Goal, Ultra, Workflow and Consensus with their hints.">
+        <ul class="cm-menu">
+            <li class="cm-on"><span class="cm-g">🛠</span><b>Build</b><span>the assistant reads, writes and runs</span></li>
+            <li><span class="cm-g">▤</span><b>Plan</b><span>read-only tools, a step-by-step plan</span></li>
+            <li><span class="cm-g">◎</span><b>Goal</b><span>the next message sets a goal to pursue</span></li>
+            <li><span class="cm-g">⧉</span><b>Ultra</b><span>big tasks become workflows</span></li>
+            <li><span class="cm-g">⧉</span><b>Workflow</b><span>the next message authors and launches a workflow</span></li>
+            <li><span class="cm-g">⚖</span><b>Consensus</b><span>a second model judges the plan first</span></li>
+        </ul>
+        <div class="cm-box">
+            <p class="cm-draft">lets plan how to make this app better<span class="cm-caret"></span></p>
+            <p class="cm-foot"><span class="cm-chip">🛠 Build</span><span class="cm-model">auto</span></p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ how a run works: a real sequence, so it is numbered ═══ -->
+<section id="run" class="nc-sec nc-steps" aria-labelledby="run-h">
+    <header class="nc-head">
+        <h2 id="run-h">What happens when you send</h2>
+        <p>Every run is a small tree of processes. Stop it and everything under it stops with it.</p>
+    </header>
+    <div class="st-track" aria-hidden="true"><i style="--lane:var(--ember)"></i><i style="--lane:var(--teal)"></i><i style="--lane:var(--cream)"></i><i style="--lane:var(--violet)"></i></div>
+    <ol class="st-list">
+        <li style="--lane:var(--ember)">
+            <h3>It thinks</h3>
+            <p>The agent reads your message, the project's instructions (<code>AGENTS.md</code> and friends, once you trust the project) and the project's memory, and decides what to do.</p>
+        </li>
+        <li style="--lane:var(--teal)">
+            <h3>Each tool call is its own operation</h3>
+            <p>Reading a file, a search, a command, a web page: every call runs on its own with its own bar, and the agent thinks again when they return. Reads are always allowed; writes and commands follow your approval mode.</p>
+        </li>
+        <li style="--lane:var(--cream)">
+            <h3>A checkpoint before every write</h3>
+            <p>Right before an agent changes a file, ncode keeps a copy of it. <code>/rewind</code> puts your files back the way they were before an earlier turn.</p>
+        </li>
+        <li style="--lane:var(--violet)">
+            <h3>Big work fans out</h3>
+            <p>A Lead splits the task across sub-agents that run in parallel, each able to work in its own isolated copy of the project, then checks what came back and reports.</p>
+        </li>
+    </ol>
+</section>
+
+<!-- ═══ long work: the slash commands themselves are the vocabulary ═══ -->
+<section id="commands" class="nc-sec nc-cmds" aria-labelledby="cmds-h">
+    <header class="nc-head">
+        <h2 id="cmds-h">Built for work that takes a while</h2>
+        <p>Type <kbd>/</kbd> in the composer. These are the same in both faces.</p>
+    </header>
+    <dl class="cmd-list">
+        <div><dt><code>/swarm &lt;task&gt;</code></dt><dd>A Lead breaks the task down, hands the parts to sub-agents running in parallel, then verifies and reports.</dd></div>
+        <div><dt><code>/goal &lt;text&gt;</code></dt><dd>Sets a goal every agent keeps in mind, across runs, until it is achieved.</dd></div>
+        <div><dt><code>/plan &lt;task&gt;</code></dt><dd>Plans with read-only tools. Approve the plan and it becomes the prompt for the build.</dd></div>
+        <div><dt><code>/consensus</code></dt><dd>A planner and a judge take turns until the judge approves, against checks you choose: scope, edge cases, keeping changes minimal.</dd></div>
+        <div><dt><code>/workflow &lt;name&gt;</code></dt><dd>Runs a workflow: a deterministic program of phases, agents and panels. Every step it takes on the host is journaled, so a stopped run can resume. <code>/create-workflow</code> writes one with you.</dd></div>
+        <div><dt><code>/review</code></dt><dd>Reviews the uncommitted changes and reports problems.</dd></div>
+        <div><dt><code>/compact</code></dt><dd>Writes a summary the model carries forward: the goal, decisions, files touched, open threads. Nothing in the conversation is deleted.</dd></div>
+        <div><dt><code>/rewind</code></dt><dd>Restores files to how they were before an earlier turn.</dd></div>
+        <div><dt>Deep research</dt><dd>Runs in the background, from Fastest (one round of four agents) to Ultra (four rounds of ten), and ends in a written report.</dd></div>
+        <div><dt>Scheduled tasks</dt><dd>A chat, swarm or workflow once, daily, weekly, monthly or on a cron line. They fire from the Mac app.</dd></div>
+        <div><dt>MCP servers</dt><dd>Add stdio or HTTP servers and switch off the single tools you do not want an agent to see.</dd></div>
+    </dl>
+</section>
+
+<!-- ═══ keys and data ═══ -->
+<section id="keys" class="nc-sec nc-keys" aria-labelledby="keys-h">
+    <header class="nc-head">
+        <h2 id="keys-h">Your key, your Mac</h2>
+    </header>
+    <div class="keys-grid">
+        <div class="keys-col">
+            <h3>Bring your own model</h3>
+            <p>Add a key for Anthropic, or point ncode at any OpenAI-compatible endpoint: OpenAI, OpenRouter, DeepSeek, or a model on your own machine through Ollama or LM Studio. Pick a model for each role: the chat, sub-agents, the judge, research.</p>
+            <ul class="prov" aria-label="Endpoints ncode can use">
+                <li>Anthropic</li><li>OpenAI</li><li>OpenRouter</li><li>DeepSeek</li><li>Ollama</li><li>LM Studio</li><li>any OpenAI-compatible URL</li>
+            </ul>
+        </div>
+        <div class="keys-col">
+            <h3>Local first</h3>
+            <p>Conversations, runs, settings and keys live in one database on your Mac. There is no account to create. ncode talks to the providers, search engines and MCP servers you add.</p>
+        </div>
+        <div class="keys-col">
+            <h3>You set how far it goes</h3>
+            <p>A new project starts read-only. Trust it to allow edits. In auto, writes are allowed and safe commands run while other commands ask; a dangerous command asks even in full access. Commands run with a scrubbed environment by default.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ get it: the two installs, side by side ═══ -->
+<section id="get" class="nc-sec nc-get" aria-labelledby="get-h">
+    <header class="nc-head">
+        <h2 id="get-h">Get ncode</h2>
+        <p>Version 0.1.0 is a developer preview for macOS 15 or later on Apple silicon. Take either face, or both.</p>
+    </header>
+    <div class="get-grid">
+        <div id="download" class="get get-app">
+            <h3>The Mac app</h3>
+            <p><a class="nc-btn nc-btn-ember" href="/downloads/ncode-0.1.0.dmg">Download ncode-0.1.0.dmg</a></p>
+            <dl class="get-meta">
+                <div><dt>Needs</dt><dd>macOS 15 or later, Apple silicon</dd></div>
+                <!-- lane F: stamp the DMG's SHA-256 here when the release is built -->
+                <div><dt>SHA-256</dt><dd><code class="get-sha" id="dmg-sha">TBD</code> <a href="/downloads/SHA256SUMS">SHA256SUMS</a></dd></div>
+            </dl>
+            <p class="get-note">This preview is not notarized, so macOS asks you to confirm the first launch in System Settings. <a href="/docs/desktop/install/#first-launch">How to open it</a></p>
+        </div>
+        <div id="install" class="get get-cli">
+            <h3>The CLI</h3>
+            <div class="get-line">
+                <code id="install-line">curl -fsSL https://code.llmotions.com/install.sh | sh</code>
+                <button type="button" class="nc-copy" data-copy="install-line" hidden>Copy</button>
+            </div>
+            <dl class="get-meta">
+                <div><dt>Needs</dt><dd>macOS 15 or later, Apple silicon</dd></div>
+                <div><dt>Update</dt><dd>run the same line again</dd></div>
+            </dl>
+            <p class="get-note">Then open a project with <code>cd your-project &amp;&amp; ncode</code>. <a href="/docs/cli/install/">Install guide</a></p>
+        </div>
+    </div>
+    <p class="get-key">Either way, the first thing to do is add your key: <b>Settings → Providers &amp; models</b> in the app (<kbd>⌘</kbd>+<kbd>,</kbd>), or <code>ncode settings providers</code> in the terminal.</p>
+</section>
+
+<!-- ═══ docs ═══ -->
+<section class="nc-sec nc-docs" aria-labelledby="docs-h">
+    <h2 id="docs-h" class="nc-docs-h">Read the guides</h2>
+    <div class="docs-links">
+        <a class="docs-link" href="/docs/desktop/"><b>Mac app guide</b><span>Install, the window, runs and agents, workflows, settings.</span></a>
+        <a class="docs-link" href="/docs/cli/"><b>CLI guide</b><span>Install, the session screen, keys, headless runs, settings.</span></a>
+        <a class="docs-link" href="/releases/"><b>Releases</b><span>What changed in each version, with checksums.</span></a>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <a href="https://llmotions.com/" class="logo logo-lockup" aria-label="LLMotions home">
+            <img class="logo-mark" src="/assets/brand/logo-transparent.png" alt="" />
+            <span class="logo-word">LL<span>Motions</span></span>
+        </a>
+        <div class="f-links">
+            <a href="/docs/">Docs</a>
+            <a href="/releases/">Releases</a>
+            <a href="https://github.com/zaalipro/swarm-code-cli">CLI source</a>
+            <a href="https://llmotions.com/cympho.html">Cympho</a>
+            <a href="https://llmotions.com/cymphony.html">Cymphony</a>
+        </div>
+    </div>
+    <div class="f-copy">© 2026 LLMotions. ncode 0.1.0 is a developer preview.</div>
+</footer>
+</body>
+</html>
