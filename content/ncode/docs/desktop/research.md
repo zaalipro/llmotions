@@ -32,7 +32,7 @@ When a research is done:
 - **Download** saves it.
 - The designed report, when it is built, is a richer page of the same answer.
 
-Every research is also saved as files (`result.md`, `report.html` and, if built, `designed.html`) in its own folder; see the Names section of [Data and privacy](/docs/desktop/privacy/) for where.
+Every research is also saved as files (`result.md`, `report.html` and, if built, `designed.html`) in its own folder; see [Names](/docs/desktop/privacy/#names) for where.
 
 <!-- shot: desktop/research-report.png | a finished designed research report opened in the app, headline, sections and numbered sources visible -->
 
