@@ -55,7 +55,7 @@ Explain how this project is organised and where the entry point is.
 
 Press [[Return]] to send ([[Shift]]+[[Return]] adds a new line). The answer streams into the transcript, and the agents pane on the right shows each tool call as it happens.
 
-<!-- shot: desktop/quickstart-empty-state.png | the start screen of a newly opened project: the greeting, "Ready when you are — <project> is open.", and the four suggestion cards -->
+<!-- shot: desktop/quickstart-empty-state.png | the start screen of a newly opened project: the greeting, "Ready when you are — (project name) is open.", and the four suggestion cards -->
 
 ## 6. Approve a command
 
