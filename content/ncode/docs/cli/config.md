@@ -1,6 +1,6 @@
 ---
 title: ncode config
-description: Read and change every setting from scripts, dotfiles and SSH - values, providers, search engines, MCP servers and keys - with the same checks as the settings screen.
+description: Read and change every setting from scripts, dotfiles and SSH (values, providers, search engines, MCP servers, keys) with the checks of the settings screen.
 ---
 
 `{{cmd}} config` does what the [settings screen](/docs/cli/settings/) does, from a shell: it goes through the same service and the same checks, so a value it accepts is one the screen would accept. `{{cmd}} config help` lists every command.
