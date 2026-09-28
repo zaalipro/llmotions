@@ -37,7 +37,7 @@ Each server's card shows its status (ready, connecting, stopped, or the error it
 - **Reconnect**, after you fix a problem or change the server;
 - **Edit** and delete (its tools disappear from every agent in scope);
 - the tool list: open it and click a tool to switch it off or on. A tool that is off is never offered to an agent;
-- the server's own output, to see why a server does not start.
+- **Recent output**: what the server itself reported (for a local server, also what it printed as errors), to see why it does not start.
 
 ## Keys and safety
 
@@ -45,4 +45,4 @@ Each server's card shows its status (ready, connecting, stopped, or the error it
 - A stdio server is a program running on your Mac with your permissions. Add only servers you trust.
 - Tools a server does not mark as read-only need approval like shell commands, unless the project is in Full access.
 
-<!-- source: D:lib/swarm_code/mcp/server.ex:11-34, D:lib/swarm_code/mcp.ex:220-230, D:lib/swarm_code/tools/ref.ex:58-59, D:lib/swarm_code_web/live/settings_live.html.heex:999-1150,1720-1790, D:lib/swarm_code_web/live/settings_live.ex:2199-2202 -->
+<!-- source: D:lib/swarm_code/mcp/server.ex:11-34, D:lib/swarm_code/mcp.ex:220-230, D:lib/swarm_code/tools/ref.ex:58-59, D:lib/swarm_code_web/live/settings_live.html.heex:999-1150,1720-1790, D:lib/swarm_code_web/live/settings_live.ex:2199-2202, D:lib/swarm_code_web/live/settings_live.html.heex:1114-1142 -->

@@ -17,11 +17,11 @@ The app writes a log file for troubleshooting: up to three files of 5 MB each in
 
 - **One conversation**: delete it from the sidebar.
 - **Old data in bulk**: see [Storage and cleanup](/docs/desktop/storage/).
-- **Everything**: quit {{product}} and delete `{{data_dir}}`. This also removes the data of the `{{cmd}}` terminal app, which shares it.
+- **Everything**: quit {{product}} and delete `{{data_dir}}`, plus the research and log folders listed under [Names](/docs/desktop/privacy/#names). This also removes the data of the `{{cmd}}` terminal app, which shares it.
 - **A project's own files**: delete the `{{project_dir}}` folder in that project.
 
 ## Names {#names}
 
 {{> shared/names}}
 
-<!-- source: D:config/runtime.exs:18-29, D:lib/swarm_code/desktop.ex:125-142,488-495, D:lib/swarm_code_web/components/frame.ex:1210-1220, D:lib/swarm_code_web/components/storage_section.ex:60-64 -->
+<!-- source: D:config/runtime.exs:18-29, D:lib/swarm_code/desktop.ex:125-142,488-495, D:lib/swarm_code_web/components/frame.ex:1210-1220, D:lib/swarm_code_web/components/storage_section.ex:60-64, D:lib/swarm_code/research.ex:17 -->

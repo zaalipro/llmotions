@@ -33,7 +33,7 @@ Agents' commands run in a login shell, which reads `.zprofile`, `.profile` or `.
 
 ## An MCP server's tools are missing
 
-In **Settings → MCP servers**, check the server's status. Open its output to see why it does not start; fix the command, arguments or environment, then click **Reconnect**. Check that the server and the tool are switched on, and that the server's scope includes the project you are in.
+In **Settings → MCP servers**, check the server's status. Open its **Recent output** to see why it does not start; fix the command, arguments or environment, then click **Reconnect**. Check that the server and the tool are switched on, and that the server's scope includes the project you are in.
 
 ## A scheduled task did not run
 
@@ -57,4 +57,4 @@ See [Storage and cleanup](/docs/desktop/storage/). Delete or prune old sessions,
 
 The app's log is in your Logs folder: see [Names](/docs/desktop/privacy/#names) for the exact path. Open it in Console or any text editor.
 
-<!-- source: D:lib/swarm_code/engine/policy.ex:16-17,31-32, D:lib/swarm_code/engine/operation.ex:310-311, D:lib/swarm_code/providers.ex:150-162, D:lib/swarm_code/llm/anthropic.ex:94, D:lib/swarm_code/llm/openai.ex:90, D:lib/swarm_code/search.ex:144-158, D:lib/swarm_code_web/live/settings_live.html.heex:1040-1100,1560-1618, D:lib/swarm_code/scheduler.ex:140-155, D:lib/swarm_code_web/live/scheduled_live.ex:530-580, D:lib/swarm_code/desktop.ex:45-47,125-142, D:lib/swarm_code/tray_menu.ex:50-60, C:README.md:122-124, C:apps/swarm_code_cli/lib/swarm_code_cli/release/persisted_session.ex:8,41,955-973 -->
+<!-- source: D:lib/swarm_code/engine/policy.ex:16-17,31-32, D:lib/swarm_code/engine/operation.ex:310-311, D:lib/swarm_code/providers.ex:150-162, D:lib/swarm_code/llm/anthropic.ex:94, D:lib/swarm_code/llm/openai.ex:90, D:lib/swarm_code/search.ex:144-158, D:lib/swarm_code_web/live/settings_live.html.heex:1040-1100,1560-1618, D:lib/swarm_code/scheduler.ex:140-155, D:lib/swarm_code_web/live/scheduled_live.ex:530-580, D:lib/swarm_code/desktop.ex:45-47,125-142, D:lib/swarm_code/tray_menu.ex:50-60, C:README.md:122-124, C:apps/swarm_code_cli/lib/swarm_code_cli/release/persisted_session.ex:8,41,955-973, D:lib/swarm_code_web/live/settings_live.html.heex:1114-1142 -->
