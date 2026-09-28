@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Workflow language · ncode Desktop docs</title>
+<meta name="description" content="The workflow file format: the meta map, the functions a workflow may call, safe project reads with host, structured answers, the rules and a worked example.">
+<link rel="canonical" href="https://code.llmotions.com/docs/desktop/workflow-language/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ncode">
+<meta property="og:title" content="Workflow language · ncode Desktop docs">
+<meta property="og:description" content="The workflow file format: the meta map, the functions a workflow may call, safe project reads with host, structured answers, the rules and a worked example.">
+<meta property="og:url" content="https://code.llmotions.com/docs/desktop/workflow-language/">
+<meta name="theme-color" content="#0a0a0f">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/assets/brand/ncode-icon.svg?v=e073b97c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/docs.css?v=77bd5446">
+<script src="/assets/docs.js?v=bc353f2b" defer></script>
+</head>
+<body class="d" data-product="desktop">
+<a class="skip" href="#main">Skip to content</a>
+<header class="d-top"><a class="d-brand" href="/" aria-label="ncode home"><svg class="mark" viewBox="-30 0 520 520" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="36" stroke-linecap="round"><path d="M313.1 41.3 A223.5 223.5 0 1 0 365.1 455.5"/><path d="M131.9 303.9 L124.5 353.9"/><path d="M201.2 265.1 L182.0 393.9"/><path d="M276.8 218.5 L268.2 275.5"/><path d="M254.9 367.5 L247.5 416.5"/><path d="M351.7 173.4 L317.3 404.2"/><path d="M424.7 117.9 L387.3 367.7"/></g><circle cx="259.3" cy="319.4" r="22.5" fill="currentColor"/></svg><span class="d-word">ncode</span></a><span class="d-docs" aria-hidden="true">docs</span><nav class="d-switch" aria-label="Documentation set"><a href="/docs/desktop/" aria-current="true">Desktop</a><a href="/docs/cli/">CLI</a></nav><div class="d-search" data-search="/docs/desktop/search.json" hidden><label class="sr" for="d-q">Search the Desktop docs</label><input id="d-q" type="search" placeholder="Search Desktop docs" autocomplete="off" spellcheck="false" aria-controls="d-hits"><kbd class="d-slash" aria-hidden="true">/</kbd><div class="d-hits" id="d-hits" hidden><ul></ul></div></div><p class="sr" id="d-count" aria-live="polite"></p><nav class="d-links" aria-label="Site"><a href="/docs/">All docs</a><a href="/releases/">Releases</a><a href="/#download">Download</a></nav></header>
+<div class="d-shell"><nav class="d-side" aria-label="Desktop docs"><div class="d-group"><p class="d-group-h">Get started</p><ul aria-label="Get started"><li><a href="/docs/desktop/">Overview</a></li><li><a href="/docs/desktop/install/">Install on macOS</a></li><li><a href="/docs/desktop/quickstart/">Quickstart</a></li></ul></div><div class="d-group"><p class="d-group-h">The workspace</p><ul aria-label="The workspace"><li><a href="/docs/desktop/tour/">A tour of the window</a></li><li><a href="/docs/desktop/composer/">Composer, modes and goals</a></li><li><a href="/docs/desktop/approvals/">Approvals and trust</a></li><li><a href="/docs/desktop/agents/">Watching agents work</a></li><li><a href="/docs/desktop/plans/">Plans you approve</a></li><li><a href="/docs/desktop/consensus/">Consensus</a></li><li><a href="/docs/desktop/swarms/">Swarms</a></li><li><a href="/docs/desktop/rewind/">Rewind</a></li><li><a href="/docs/desktop/files/">Images, search and export</a></li></ul></div><div class="d-group"><p class="d-group-h">Automation</p><ul aria-label="Automation"><li><a href="/docs/desktop/workflows/">Workflows</a></li><li><a href="/docs/desktop/workflow-language/" aria-current="page">Workflow language</a></li><li><a href="/docs/desktop/scheduled/">Scheduled tasks</a></li><li><a href="/docs/desktop/research/">Deep research</a></li></ul></div><div class="d-group"><p class="d-group-h">Customize</p><ul aria-label="Customize"><li><a href="/docs/desktop/settings/">Settings</a></li><li><a href="/docs/desktop/providers/">Providers, models and web search</a></li><li><a href="/docs/desktop/mcp/">MCP servers</a></li><li><a href="/docs/desktop/instructions/">Instructions, memory and project config</a></li><li><a href="/docs/desktop/extend/">Commands, agents and skills</a></li><li><a href="/docs/desktop/limits/">Limits and isolation</a></li><li><a href="/docs/desktop/themes/">Themes</a></li><li><a href="/docs/desktop/keys/">Keyboard shortcuts</a></li></ul></div><div class="d-group"><p class="d-group-h">Maintain</p><ul aria-label="Maintain"><li><a href="/docs/desktop/storage/">Storage and cleanup</a></li><li><a href="/docs/desktop/privacy/">Data and privacy</a></li><li><a href="/docs/desktop/update/">Update and uninstall</a></li><li><a href="/docs/desktop/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/desktop/cli/">Using with the CLI</a></li></ul></div></nav><details class="d-menu"><summary>Desktop docs <span>Workflow language</span></summary><nav aria-label="Desktop docs, menu"><div class="d-group"><p class="d-group-h">Get started</p><ul aria-label="Get started"><li><a href="/docs/desktop/">Overview</a></li><li><a href="/docs/desktop/install/">Install on macOS</a></li><li><a href="/docs/desktop/quickstart/">Quickstart</a></li></ul></div><div class="d-group"><p class="d-group-h">The workspace</p><ul aria-label="The workspace"><li><a href="/docs/desktop/tour/">A tour of the window</a></li><li><a href="/docs/desktop/composer/">Composer, modes and goals</a></li><li><a href="/docs/desktop/approvals/">Approvals and trust</a></li><li><a href="/docs/desktop/agents/">Watching agents work</a></li><li><a href="/docs/desktop/plans/">Plans you approve</a></li><li><a href="/docs/desktop/consensus/">Consensus</a></li><li><a href="/docs/desktop/swarms/">Swarms</a></li><li><a href="/docs/desktop/rewind/">Rewind</a></li><li><a href="/docs/desktop/files/">Images, search and export</a></li></ul></div><div class="d-group"><p class="d-group-h">Automation</p><ul aria-label="Automation"><li><a href="/docs/desktop/workflows/">Workflows</a></li><li><a href="/docs/desktop/workflow-language/" aria-current="page">Workflow language</a></li><li><a href="/docs/desktop/scheduled/">Scheduled tasks</a></li><li><a href="/docs/desktop/research/">Deep research</a></li></ul></div><div class="d-group"><p class="d-group-h">Customize</p><ul aria-label="Customize"><li><a href="/docs/desktop/settings/">Settings</a></li><li><a href="/docs/desktop/providers/">Providers, models and web search</a></li><li><a href="/docs/desktop/mcp/">MCP servers</a></li><li><a href="/docs/desktop/instructions/">Instructions, memory and project config</a></li><li><a href="/docs/desktop/extend/">Commands, agents and skills</a></li><li><a href="/docs/desktop/limits/">Limits and isolation</a></li><li><a href="/docs/desktop/themes/">Themes</a></li><li><a href="/docs/desktop/keys/">Keyboard shortcuts</a></li></ul></div><div class="d-group"><p class="d-group-h">Maintain</p><ul aria-label="Maintain"><li><a href="/docs/desktop/storage/">Storage and cleanup</a></li><li><a href="/docs/desktop/privacy/">Data and privacy</a></li><li><a href="/docs/desktop/update/">Update and uninstall</a></li><li><a href="/docs/desktop/troubleshooting/">Troubleshooting</a></li><li><a href="/docs/desktop/cli/">Using with the CLI</a></li></ul></div></nav></details><main id="main" class="d-main" tabindex="-1"><article class="d-article"><p class="d-crumb"><a href="/docs/desktop/">ncode Desktop</a> <span aria-hidden="true">/</span> Automation</p><h1>Workflow language</h1>
+<p>This page is the reference for writing workflows by hand. You do not need it to run workflows, and the assistant can write them for you (<code>/create-workflow</code>); read it when you want to adjust one or understand what it does.</p>
+<h3 id="what-a-workflow-is">What a workflow is<a class="hash" href="#what-a-workflow-is" aria-label="Link to What a workflow is">#</a></h3>
+<p>A workflow is a small program that runs agents in a fixed, repeatable order: first review, then verify, then report, for example. It is written in Elixir as a single <code>.exs</code> file: a <code>meta</code> map followed by plain calls.</p>
+<div class="code"><div class="code-bar"><span class="code-lang">elixir</span><button type="button" class="copy" hidden>Copy</button></div><pre><code class="language-elixir">meta = %{
+  name: "summarize-changes",
+  description: "Summarize the uncommitted changes in plain words",
+  phases: ["Read", "Write"],
+  budget: 4,
+  args: %{base: %{type: :string, default: "", doc: "Git ref to compare with"}}
+}
+
+phase("Read")
+files = host(:changed_files, base: args.base)
+if files == [], do: complete(%{summary: "Nothing changed."})
+
+phase("Write")
+summary = agent("Summarize the changes in these files: #{Enum.join(files, ", ")}", name: "writer")
+path = write_report("summary.md", summary || "No summary.")
+complete(%{summary: "Wrote #{path}"})</code></pre></div>
+<h3 id="the-meta-map">The <code>meta</code> map<a class="hash" href="#the-meta-map" aria-label="Link to The meta map">#</a></h3>
+<div class="tbl" role="region" tabindex="0" aria-label="Table: Key, Meaning"><table><thead><tr><th>Key</th><th>Meaning</th></tr></thead><tbody><tr><td><code>name</code></td><td>the workflow's name; it also becomes a slash command</td></tr><tr><td><code>description</code></td><td>one line shown in lists</td></tr><tr><td><code>phases</code></td><td>the phase titles, in order, shown as the run's progress</td></tr><tr><td><code>budget</code></td><td>the most agents one run may start (1 to 1,024); without it, the workflow agent budget setting applies (128 by default)</td></tr><tr><td><code>max_live</code></td><td>how many of its agents may work at the same time (1 to 64); without it, the max live workflow agents setting applies (16 by default)</td></tr><tr><td><code>args</code></td><td>named arguments, each with <code>type</code>, <code>default</code> and <code>doc</code>; the program reads them as <code>args.&lt;name&gt;</code></td></tr></tbody></table></div>
+<h3 id="functions">Functions<a class="hash" href="#functions" aria-label="Link to Functions">#</a></h3>
+<div class="tbl" role="region" tabindex="0" aria-label="Table: Function, What it does"><table><thead><tr><th>Function</th><th>What it does</th></tr></thead><tbody><tr><td><code>phase(title)</code></td><td>marks the start of a phase</td></tr><tr><td><code>log(text)</code></td><td>adds a line to the run log (up to 500 lines)</td></tr><tr><td><code>agent(prompt, opts)</code></td><td>runs one agent and returns its final text, or <code>nil</code> if it failed</td></tr><tr><td><code>panel(items, fun)</code></td><td>runs <code>fun</code> for every item at the same time, one agent each, and returns the results in item order (<code>nil</code> for a failed slot)</td></tr><tr><td><code>host(op, opts)</code></td><td>reads the project safely (see below)</td></tr><tr><td><code>present?(x)</code></td><td><code>true</code> when <code>x</code> is not <code>nil</code>; filter panel results with it</td></tr><tr><td><code>budget()</code></td><td><code>%{total:, spent:, remaining:}</code> agent slots of this run</td></tr><tr><td><code>fingerprint(value)</code></td><td>a stable 16-character fingerprint, for removing duplicates</td></tr><tr><td><code>json_encode(value)</code></td><td>the value as compact JSON</td></tr><tr><td><code>write_report(filename, text)</code></td><td>saves a report in the run's folder and returns its path</td></tr><tr><td><code>read_report(filename)</code></td><td>reads a report back, or <code>nil</code></td></tr><tr><td><code>last_error()</code></td><td>the error of the most recent failed agent call, or <code>nil</code></td></tr><tr><td><code>integrate(result)</code></td><td>merges an isolated agent's changes into the project</td></tr><tr><td><code>await_user(question, opts)</code></td><td>pauses the run with a question and returns your answer when you resume; <code>options:</code> offers choices</td></tr><tr><td><code>pause(kind, message)</code></td><td>stops the step with a reason, for example <code>pause(:no_progress, "Every reviewer failed")</code></td></tr><tr><td><code>complete(value)</code></td><td>ends the run successfully with <code>value</code> as its result</td></tr></tbody></table></div>
+<p><code>agent/2</code> options:</p>
+<ul><li><code>schema:</code> a JSON-schema-like map; the agent must answer with a matching object, which you get back as a map;</li><li><code>name:</code> the label shown for the agent;</li><li><code>capability:</code> what the agent may do: <code>:read_only</code> (the default: read and search), <code>:read_write</code> (may also create, edit, move and delete files), <code>:execute</code> (may also run commands), <code>:all</code> (every tool a workflow agent can have) or <code>:none</code> (no tools: it answers from the prompt alone);</li><li><code>model:</code> and <code>provider:</code> (by name) and <code>effort:</code> (<code>"low"</code>, <code>"medium"</code>, <code>"high"</code> or <code>"max"</code>) to run this agent on something other than the workflow's default;</li><li><code>isolation: :worktree</code> to give the agent its own copy of the project, and <code>max_turns:</code> to cap how many steps it may take.</li></ul>
+<h3 id="reading-the-project-with-host">Reading the project with <code>host</code><a class="hash" href="#reading-the-project-with-host" aria-label="Link to Reading the project with host">#</a></h3>
+<p>A workflow never touches files or the shell directly. It asks <code>host(op, opts)</code>, and every answer is recorded so a run can be replayed and resumed exactly:</p>
+<p><code>:changed_files</code>, <code>:git_diff</code>, <code>:git_log</code>, <code>:glob</code>, <code>:files</code>, <code>:subdirs</code>, <code>:read_file</code>, <code>:list_dir</code>, <code>:exists?</code>, <code>:dir?</code>, <code>:grep</code>, <code>:now</code>.</p>
+<h3 id="rules-a-workflow-must-follow">Rules a workflow must follow<a class="hash" href="#rules-a-workflow-must-follow" aria-label="Link to Rules a workflow must follow">#</a></h3>
+<p>Before a workflow is saved or run, a smoke check parses it, checks its arguments and runs the path they select with stand-in agents. It rejects:</p>
+<ul><li>direct file-system and shell access: the <code>File</code> module, <code>System.cmd</code>, <code>System.shell</code>, <code>:os.cmd</code>, <code>Path.expand</code>, <code>Path.absname</code>, <code>Path.wildcard</code> (use <code>host</code> instead);</li><li>anything that differs between two runs: clocks, random numbers, unique integers, <code>Process.sleep</code> (use <code>host(:now)</code> for the time);</li><li>a path that finishes without starting a single agent, when checked against a real project.</li></ul>
+<p>A running script that grows past 512 MB of memory is stopped.</p>
+<h2 id="structured-answers-with-schema">Structured answers with <code>schema:</code><a class="hash" href="#structured-answers-with-schema" aria-label="Link to Structured answers with schema:">#</a></h2>
+<p>Give <code>agent/2</code> a <code>schema:</code> and it returns a map you can use in the next step, instead of free text. The schema is a map in JSON-schema style: <code>type</code>, <code>properties</code>, <code>items</code>, <code>required</code>, <code>enum</code>. If the agent fails or cannot produce a matching answer, you get <code>nil</code>, so check with <code>present?/1</code>:</p>
+<div class="code"><div class="code-bar"><span class="code-lang">elixir</span><button type="button" class="copy" hidden>Copy</button></div><pre><code class="language-elixir">finding_schema = %{
+  type: :object,
+  properties: %{
+    file: %{type: :string},
+    title: %{type: :string},
+    severity: %{type: :string, enum: ["low", "medium", "high"]}
+  },
+  required: [:file, :title, :severity]
+}
+
+result = agent("Find the riskiest function in lib/payments.ex", schema: finding_schema, name: "scout")
+if present?(result), do: log("#{result.severity}: #{result.title} in #{result.file}")</code></pre></div>
+<h2 id="replay-and-resume">Replay and resume<a class="hash" href="#replay-and-resume" aria-label="Link to Replay and resume">#</a></h2>
+<p>A workflow run keeps a journal of every <code>host</code> read, every agent result and every answer you gave. When a paused or interrupted run resumes, the program runs again from the top, but every recorded step returns its recorded value at once, so only the unfinished part really runs. This is why a workflow must not read the clock or random numbers directly: a replay would see different values and no longer match its journal. <code>host(:now)</code> and <code>budget()</code> are recorded, so they are safe.</p>
+<h2 id="worked-example-review-changes">Worked example: <code>review-changes</code><a class="hash" href="#worked-example-review-changes" aria-label="Link to Worked example: review-changes">#</a></h2>
+<p>The built-in <code>review-changes</code> workflow in outline:</p>
+<div class="code"><div class="code-bar"><span class="code-lang">elixir</span><button type="button" class="copy" hidden>Copy</button></div><pre><code class="language-elixir">meta = %{
+  name: "review-changes",
+  description: "Review the uncommitted changes from several angles and keep only findings that survive an adversarial check",
+  phases: ["Review", "Verify", "Report"],
+  budget: 48,
+  args: %{
+    base: %{type: :string, default: "", doc: "Git ref to diff against (empty = working tree vs HEAD)"},
+    dimensions: %{type: :list, default: ["correctness", "security", "performance", "maintainability"], doc: "Review lenses, one agent each"}
+  }
+}
+
+phase("Review")
+diff = host(:git_diff, base: args.base)
+if String.trim(diff) == "", do: complete(%{summary: "No changes to review.", confirmed: []})
+files = host(:changed_files, base: args.base)
+
+reviews =
+  panel(args.dimensions, fn dim -&gt;
+    agent("You review code changes for #{dim} problems only. …",
+      schema: findings_schema, capability: :read_only, name: "review:#{dim}")
+  end)
+
+if Enum.all?(reviews, &amp;is_nil/1), do: pause(:no_progress, "Every reviewer failed")
+
+phase("Verify")
+# one skeptical agent per finding tries to refute it; only findings with quoted evidence survive
+
+phase("Report")
+path = write_report("review.md", report)
+complete(%{summary: "… see #{path}", confirmed: confirmed, report: path})</code></pre></div>
+<p>What it shows:</p>
+<ul><li><strong>Arguments with defaults</strong>: <code>/workflow review-changes base=main</code> overrides <code>base</code>; <code>dimensions</code> keeps its four lenses.</li><li><strong>An early exit</strong>: with nothing to review, <code>complete/1</code> ends the run successfully at once.</li><li><strong>A panel</strong>: four reviewers run at the same time, one per lens, all read-only.</li><li><strong>A deliberate pause</strong>: if every reviewer failed, the run stops with a reason instead of reporting "no problems".</li><li><strong>A report</strong>: <code>write_report/2</code> saves <code>review.md</code> in the run's folder and the result points to it.</li></ul>
+<p>The full source is in the library: open <strong>Workflows</strong>, select <code>review-changes</code> and scroll to <strong>Source</strong>, or <strong>Duplicate to project</strong> to get an editable copy.</p>
+<nav class="d-pager" aria-label="Previous and next page"><a class="d-prev" rel="prev" href="/docs/desktop/workflows/"><span>Previous</span>Workflows</a><a class="d-next" rel="next" href="/docs/desktop/scheduled/"><span>Next</span>Scheduled tasks</a></nav></article></main><aside class="d-toc" aria-labelledby="d-toc-h"><p id="d-toc-h">On this page</p><ul><li><ul><li><a href="#what-a-workflow-is">What a workflow is</a></li><li><a href="#the-meta-map">The <code>meta</code> map</a></li><li><a href="#functions">Functions</a></li><li><a href="#reading-the-project-with-host">Reading the project with <code>host</code></a></li><li><a href="#rules-a-workflow-must-follow">Rules a workflow must follow</a></li></ul></li><li><a href="#structured-answers-with-schema">Structured answers with <code>schema:</code></a></li><li><a href="#replay-and-resume">Replay and resume</a></li><li><a href="#worked-example-review-changes">Worked example: <code>review-changes</code></a></li></ul></aside></div>
+<footer class="d-foot"><div class="d-foot-in"><p><a class="d-foot-brand" href="/"><svg class="mark" viewBox="-30 0 520 520" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="36" stroke-linecap="round"><path d="M313.1 41.3 A223.5 223.5 0 1 0 365.1 455.5"/><path d="M131.9 303.9 L124.5 353.9"/><path d="M201.2 265.1 L182.0 393.9"/><path d="M276.8 218.5 L268.2 275.5"/><path d="M254.9 367.5 L247.5 416.5"/><path d="M351.7 173.4 L317.3 404.2"/><path d="M424.7 117.9 L387.3 367.7"/></g><circle cx="259.3" cy="319.4" r="22.5" fill="currentColor"/></svg><span>ncode</span></a> 0.1.0 · developer preview</p><p class="d-foot-links"><a href="/docs/">Docs</a><a href="/releases/">Releases</a><a href="https://github.com/zaalipro/swarm-code-cli">CLI source</a><a href="https://llmotions.com/">LLMotions</a></p></div></footer>
+</body>
+</html>
