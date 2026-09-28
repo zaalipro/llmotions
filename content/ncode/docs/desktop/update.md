@@ -3,6 +3,8 @@ title: Update and uninstall
 description: Update ncode by replacing the app, move from the earlier app name, and uninstall with or without your data, knowing every folder ncode uses.
 ---
 
+How to move to a new version, move from the earlier app name, or remove {{product}} from your Mac, without losing data you want to keep.
+
 ## Updating
 
 {{product}} does not update itself yet. When a new version is out:
