@@ -58,12 +58,12 @@ Provider presets are `anthropic`, `openai`, `openrouter`, `deepseek`, `ollama`, 
 
 ## Secrets
 
-Keys are read from standard input only, so they never land in your shell history or the process list. An argument that looks like a key is refused with a sentence that says so.
+Keys are read from standard input only, so they never land in your shell history or the process list. Naming a key as a setting, as in `{{cmd}} config set provider:Anthropic.api_key …` or an MCP server's `env.` or `headers.` slot, is refused with exit code `2` and a sentence that points you to `{{cmd}} config secret … --stdin`.
 
 ```sh
 printf '%s' "$ANTHROPIC_API_KEY" | {{cmd}} config secret provider:Anthropic --stdin
 printf '%s' "$TAVILY_KEY" | {{cmd}} config secret search_provider:tavily --stdin
-printf '%s' "$GITHUB_TOKEN" | {{cmd}} config secret mcp_server:github.env.GITHUB_TOKEN --stdin
+printf '%s' "$GITHUB_TOKEN" | {{cmd}} config secret mcp_server:github.env.GITHUB_PERSONAL_ACCESS_TOKEN --stdin
 printf '%s' "$TOKEN" | {{cmd}} config secret mcp_server:docs.headers.Authorization --stdin
 ```
 
@@ -106,7 +106,7 @@ checks the files and the environment {{product}} relies on (the same checks as S
 
 ## While a session is open
 
-Settings stored in the shared database belong to the session that holds it. While another `{{cmd}}` session is open, `config set` on such a setting exits with code `3` and names the process that holds the database; change it in that session instead. This terminal's own settings (theme, panel, mouse and the other `terminal.*` keys, kept in `cli.json`) can always be set.
+While a `{{cmd}}` session is open, settings kept in the shared database can be changed only from that session: `config set` on one of them exits with code `3` and names the process that holds the database. This terminal's own settings (theme, panel, mouse and the other `terminal.*` keys, kept in `cli.json`) can always be set.
 
 While the desktop app is open, `{{cmd}} config` refuses with code `3` like every other `{{cmd}}` command; see [Works with the desktop app](/docs/cli/desktop/).
 
@@ -120,4 +120,4 @@ While the desktop app is open, `{{cmd}} config` refuses with code `3` like every
 | `3` | startup refused (the database is held by a session or the app) |
 | `4` | changed elsewhere (`--expect` did not match) |
 
-<!-- source: C:apps/swarm_code_cli/lib/swarm_code_cli/release/config_command.ex:38-75, C:apps/swarm_code_cli/lib/swarm_code_cli/release/config_command.ex:79-82,308-329,766-768,799-821, C:README.md:255-258, C:README.md:264-281, C:rel/overlays/bin/swarmcode:124-145, C:apps/swarm_code_cli/lib/swarm_code_cli/release/config_command.ex:165,191,230-240,1161-1172, C:docs/settings.md:1-9, C:apps/swarm_code_core/lib/swarm_code/settings/registry/actions.ex:8-70, C:apps/swarm_code_daemon/lib/swarm_code/daemon/service/settings/providers.ex:1062-1089 -->
+<!-- source: C:apps/swarm_code_cli/lib/swarm_code_cli/release/config_command.ex:38-75, C:apps/swarm_code_cli/lib/swarm_code_cli/release/config_command.ex:79-82, C:apps/swarm_code_cli/lib/swarm_code_cli/release/config_command.ex:295-329,308-329,766-768,799-821, C:README.md:255-258, C:README.md:264-281, C:rel/overlays/bin/swarmcode:124-145, C:apps/swarm_code_cli/lib/swarm_code_cli/release/config_command.ex:165,191,230-240,1161-1172, C:docs/settings.md:1-9, C:apps/swarm_code_core/lib/swarm_code/settings/registry/actions.ex:8-70, C:apps/swarm_code_daemon/lib/swarm_code/daemon/service/settings/providers.ex:1062-1089 -->
