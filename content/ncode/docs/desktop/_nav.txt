@@ -1,0 +1,38 @@
+# Get started
+overview | Overview
+install | Install on macOS
+quickstart | Quickstart
+
+# The workspace
+tour | A tour of the window
+composer | Composer, modes and goals
+approvals | Approvals and trust
+agents | Watching agents work
+plans | Plans you approve
+consensus | Consensus
+swarms | Swarms
+rewind | Rewind
+files | Images, search and export
+
+# Automation
+workflows | Workflows
+workflow-language | Workflow language
+scheduled | Scheduled tasks
+research | Deep research
+
+# Customize
+settings | Settings
+providers | Providers, models and web search
+mcp | MCP servers
+instructions | Instructions, memory and project config
+extend | Commands, agents and skills
+limits | Limits and isolation
+themes | Themes
+keys | Keyboard shortcuts
+
+# Maintain
+storage | Storage and cleanup
+privacy | Data and privacy
+update | Update and uninstall
+troubleshooting | Troubleshooting
+cli | Using with the CLI
