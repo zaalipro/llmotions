@@ -210,8 +210,8 @@ class Denylist(unittest.TestCase):
         self.assertEqual((rep.errors, rep.warnings), ([], []))
         rep = B.Report()
         B.denylist_scan("cli/x.md", ["Not the Keychain. <!-- allow: Keychain -->"], 1, rep, False)
-        self.assertEqual(rep.errors, [])
-        self.assertTrue(rep.warnings, "an allow outside the two partials is flagged")
+        self.assertEqual(len(errors_of(rep, "denylisted 'Keychain'")), 1, "an allow outside the two partials is ignored")
+        self.assertTrue([w for w in rep.warnings if "is ignored" in w], "and the warning says why")
         rep = B.Report()
         B.denylist_scan("shared/names.md", ["SwarmCode and swarmcode <!-- allow: SwarmCode -->"], 1, rep, True)
         self.assertEqual(len(rep.errors), 1, "an allow covers only the named term")
@@ -222,6 +222,16 @@ class Denylist(unittest.TestCase):
 
     def test_names_partial_uses_its_allow(self):
         self.assertFalse(errors_of(Tree(self).check(), "denylisted"))
+
+    def test_partials_no_page_includes_are_scanned_too(self):
+        tree = Tree(self, {"content/docs/shared/privacy.md":
+                           "<!-- source: D:README.md:1 -->\n### Privacy\n\nNothing leaves the daemon.\n",
+                           "content/import/settings.md":
+                           "<!-- source: C:docs/settings.md -->\n### Settings\n\nRun swarmcode.\n"})
+        rep = tree.check()
+        self.assertEqual(len(errors_of(rep, "denylisted 'daemon'")), 1)
+        self.assertEqual(len(errors_of(rep, "denylisted 'swarmcode'")), 1)
+        self.assertTrue([w for w in rep.warnings if "lane A" in w])
 
     def test_import_hits_are_reported_for_lane_a(self):
         tree = Tree(self, {"content/import/keybindings.md":

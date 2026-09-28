@@ -182,7 +182,8 @@ def denylist_scan(label, lines, first_line, rep, allow_ok):
         for m in ALLOW_RE.finditer(line):
             allowed.update(t.strip() for t in m.group(1).split(",") if t.strip())
         if allowed and not allow_ok:
-            rep.warn(where, "an `allow:` comment outside shared/secrets.md and shared/names.md")
+            rep.warn(where, "an `allow:` comment outside shared/secrets.md and shared/names.md is ignored")
+            allowed = set()
         # the parts of the line outside HTML comments (comments may span lines)
         visible = []
         rest = line
@@ -1302,11 +1303,16 @@ def build(content, site, assets_src, draft, rep):
         files["docs/%s/search.json" % product] = search_index(product, pages).encode("utf-8")
         sets[product] = (groups, pages)
         all_pages += pages
-    # partials on disk that no page includes are worth a look, not a failure
+    # every partial on disk is scanned, included or not (the repo is public); the cache makes
+    # this a no-op for the ones a page already included. Outside the fixed set: a warning.
     shared = content / "docs" / "shared"
     for path in sorted(shared.glob("*.md")) if shared.is_dir() else []:
         if path.stem not in SHARED_PARTIALS:
             rep.warn(rel(path, ROOT), "not in the fixed partial set")
+        read_partial(content, "shared", path.stem, cache, rep)
+    imports = content / "import"
+    for path in sorted(imports.glob("*.md")) if imports.is_dir() else []:
+        read_partial(content, "import", path.stem, cache, rep)
     files["docs/index.html"] = render_hub(site_ctx, sets).encode("utf-8")
     origin["docs/index.html"] = "the /docs/ hub (tools/build_ncode.py)"
     releases = content / "releases.md"
