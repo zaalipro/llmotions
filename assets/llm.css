@@ -1610,3 +1610,22 @@ footer {
 .shot:hover img {
     transform: scale(1.02);
 }
+
+/* ─── ncode: the third product orb (appended; the two-column rule above stays) ─── */
+.products-grid.has-3 {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1240px;
+}
+
+.product-orb[data-product="ncode"] {
+    --orb-color: #ff6a1a;
+    box-shadow: 0 25px 80px rgba(255, 106, 26, 0.22);
+}
+
+.product-orb[data-product="ncode"]:hover {
+    box-shadow: 0 35px 100px rgba(255, 106, 26, 0.45), 0 0 80px rgba(255, 106, 26, 0.25);
+}
+
+@media (max-width: 1024px) {
+    .products-grid.has-3 { grid-template-columns: 1fr; }
+}
