@@ -18,7 +18,7 @@
     --ok: #4ade80;
     --err: #f87171;
     --mute: #a3a3bd;
-    --faint: #6b6b85;
+    --faint: #8a8aa3;
     --line: rgba(255, 255, 255, 0.08);
     --line-2: rgba(255, 255, 255, 0.14);
     --panel: #111118;
@@ -271,8 +271,7 @@ nav.nc-nav { padding: 14px 40px; gap: 28px; }
 }
 @media (max-width: 860px) {
     nav.nc-nav { padding: 12px 20px; }
-    .nc-links { display: none; }
-    .nc-cta { margin-left: auto; }
+    .nc-links li:not(:last-child) { display: none; }
     .nc-hero, .nc-sec { padding-left: 20px; padding-right: 20px; }
     .nc-sec { padding-top: 96px; }
     .win-body { grid-template-columns: minmax(0, 1fr) 42%; }
@@ -280,6 +279,7 @@ nav.nc-nav { padding: 14px 40px; gap: 28px; }
     .get-grid, .docs-links { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 560px) {
+    nav.nc-nav { gap: 18px; }
     .nc { font-size: 16px; }
     .nc-word { font-size: clamp(3.6rem, 22vw, 5rem); }
     .rc { padding: 16px 14px 14px; font-size: 0.78rem; }
