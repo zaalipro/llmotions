@@ -344,7 +344,7 @@ class Release(unittest.TestCase):
     RELEASE = ("## 0.1.0 — 2026-10-02 {#v0-1-0}\n- cli: ncode-0.1.0-darwin-arm64.tar.gz sha256 %s\n"
                "- desktop: ncode-0.1.0.dmg sha256 %s\n\n- First preview.\n" % ("a" * 64, "b" * 64))
 
-    def tree(self, install):
+    def tree(self, install, dmg_sha="b" * 64):
         overrides = {"content/releases.md": self.RELEASE}
         for rel in ("content/docs/cli/overview.md", "content/docs/desktop/overview.md",
                     "content/docs/desktop/install.md"):
@@ -352,11 +352,15 @@ class Release(unittest.TestCase):
             overrides[rel] = "\n".join(l for l in text.split("\n") if "capture:" not in l and "shot:" not in l)
         if install is not None:
             overrides["site/install.sh"] = install
+        landing = (FX / "site" / "index.html").read_text()
+        overrides["site/index.html"] = landing.replace(
+            '<h1 id="top">', '<p>ncode 0.1.0 <code id="dmg-sha">%s</code></p><h1 id="top">' % dmg_sha)
         return Tree(self, overrides)
 
+    STAMPED = 'main() {\n  VERSION="${NCODE_VERSION:-0.1.0}"\n  SHA256="%s"\n}\nmain "$@"\n' % ("a" * 64)
+
     def test_release_passes_when_everything_is_stamped(self):
-        install = 'main() {\n  VERSION="${NCODE_VERSION:-0.1.0}"\n  SHA256="%s"\n}\nmain "$@"\n' % self.SHA
-        code, log = self.tree(install).run("--check", "--no-drift", "--release")
+        code, log = self.tree(self.STAMPED).run("--check", "--no-drift", "--release")
         self.assertEqual(code, 0, log)
 
     def test_install_sh_pinning_an_older_release_fails(self):
@@ -372,10 +376,46 @@ class Release(unittest.TestCase):
         code, log = self.tree(install).run("--check", "--no-drift", "--release")
         self.assertEqual(code, 1)
 
-    def test_missing_install_sh_is_a_warning(self):
-        code, log = self.tree(None).run("--check", "--no-drift", "--release")
+    def test_missing_install_sh_warns_and_fails_release(self):
+        code, log = self.tree(None).run("--check", "--no-drift")
         self.assertEqual(code, 0, log)
-        self.assertIn("install.sh: missing", log)
+        self.assertRegex(log, r"warning: \S*install\.sh: missing")
+        code, log = self.tree(None).run("--check", "--no-drift", "--release")
+        self.assertEqual(code, 1, "a release without the installer is not a release")
+        self.assertRegex(log, r"error: \S*install\.sh: missing")
+
+    def test_landing_dmg_sha_must_match_releases(self):
+        for sha, needle in (("c" * 64, "does not match the newest release"),
+                            ("TBD", "does not match the newest release")):
+            tree = self.tree(self.STAMPED, dmg_sha=sha)
+            code, log = tree.run("--check", "--no-drift")
+            self.assertEqual(code, 0, "a warning outside --release: " + log)
+            self.assertIn(needle, log)
+            code, log = tree.run("--check", "--no-drift", "--release")
+            self.assertEqual(code, 1)
+            self.assertRegex(log, r"error: \S*index\.html: DMG SHA-256")
+        tree = self.tree(self.STAMPED)
+        index = tree.site / "index.html"
+        index.write_text(index.read_text().replace('<code id="dmg-sha">', "<code>"), encoding="utf-8")
+        code, log = tree.run("--check", "--no-drift", "--release")
+        self.assertEqual(code, 1)
+        self.assertIn('no <code id="dmg-sha">', log)
+
+    def test_landing_version_and_dmg_name_follow_releases(self):
+        tree = self.tree(self.STAMPED)
+        index = tree.site / "index.html"
+        index.write_text(index.read_text().replace("ncode 0.1.0", "ncode 0.0.9")
+                         .replace("/downloads/ncode-0.1.0.dmg", "/downloads/ncode-0.0.9.dmg"), encoding="utf-8")
+        code, log = tree.run("--check", "--no-drift", "--release")
+        self.assertEqual(code, 1)
+        self.assertIn("version 0.0.9 is not the newest release 0.1.0", log)
+        self.assertIn("no download link to /downloads/ncode-0.1.0.dmg", log)
+        tree = self.tree(self.STAMPED)
+        names = tree.content / "names.json"
+        names.write_text(names.read_text().replace('"ncode-0.1.0.dmg"', '"ncode-0.2.0.dmg"'), encoding="utf-8")
+        code, log = tree.run("--check", "--no-drift", "--release")
+        self.assertEqual(code, 1)
+        self.assertIn("names.json: dmg 'ncode-0.2.0.dmg' differs", log)
 
     def test_tbd_in_a_hand_written_page(self):
         tree = self.tree(None)

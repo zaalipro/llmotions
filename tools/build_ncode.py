@@ -1147,9 +1147,11 @@ def check_release(content, site, rep, release):
             if re.search(r"\bTBD\b", line):
                 report("%s:%d" % (rel(page, ROOT), n), "TBD left in a hand-written page")
     info = newest_release(text)
+    check_landing(content, site, info, report)
     install = site / "install.sh"
     if not install.is_file():
-        rep.warn(rel(install, ROOT), "missing, a warning in phase 1 (lane F copies the stamped installer here)")
+        # the contract's phase-1 warning; a release without the installer is not a release
+        report(rel(install, ROOT), "missing (lane F copies the stamped installer here)")
         return
     script = install.read_text(encoding="utf-8", errors="replace")
     ver = re.search(r'VERSION="\$\{NCODE_VERSION:-([^}"]*)\}"', script)
@@ -1160,6 +1162,42 @@ def check_release(content, site, rep, release):
     if ver != info["version"] or sha != cli_sha or not sha or not re.match(r"^[0-9a-f]{64}$", sha or ""):
         report(rel(install, ROOT), "stamps VERSION=%r SHA256=%r do not match the newest release %r / %r"
                % (ver, sha, info["version"], cli_sha))
+
+
+LANDING_VERSION_RE = re.compile(r"(?:\bncode[- ]|\b[Vv]ersion )(\d+\.\d+\.\d+)")
+DMG_SHA_RE = re.compile(r'id="dmg-sha"[^>]*>([^<]*)<')
+
+
+def check_landing(content, site, info, report):
+    """The landing's download facts follow the newest releases.md entry and names.json (K14 for
+    the DMG): the SHA-256 in <code id="dmg-sha">, the /downloads/<dmg> link and every
+    "ncode X.Y.Z" / "Version X.Y.Z" / "ncode-X.Y.Z.dmg". `report` warns, or fails under --release."""
+    page = site / "index.html"
+    if not page.is_file():
+        return
+    label = rel(page, ROOT)
+    text = page.read_text(encoding="utf-8")
+    version = info["version"]
+    dmg, dmg_sha = info["desktop"] or (None, None)
+    names_label = rel(content / "names.json", ROOT)
+    names = load_names(content, Report())       # build() already reported a broken names.json
+    if dmg is None:
+        report(rel(content / "releases.md", ROOT), "the newest release has no `- desktop:` line")
+    elif names.get("dmg") != dmg:
+        report(names_label, "dmg %r differs from the newest release's %r" % (names.get("dmg"), dmg))
+    if names.get("version") != version:
+        report(names_label, "version %r differs from the newest release's %r" % (names.get("version"), version))
+    shown = DMG_SHA_RE.search(text)
+    if not shown:
+        report(label, 'no <code id="dmg-sha"> showing the DMG\'s SHA-256')
+    elif shown.group(1).strip() != dmg_sha or not re.match(r"^[0-9a-f]{64}$", shown.group(1).strip()):
+        report(label, "DMG SHA-256 %r does not match the newest release's %r" % (shown.group(1).strip(), dmg_sha))
+    if dmg and ('href="/downloads/%s"' % dmg) not in text:
+        report(label, "no download link to /downloads/%s" % dmg)
+    for n, line in enumerate(text.split("\n"), 1):
+        for found in LANDING_VERSION_RE.findall(line):
+            if found != version:
+                report("%s:%d" % (label, n), "version %s is not the newest release %s" % (found, version))
 
 
 # ----------------------------------------------------------------------------- build
