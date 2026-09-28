@@ -42,7 +42,7 @@ The status lines are written by a model. Turn them off with `/panel summaries of
 [[Ctrl]]+[[F]] (or [[Ctrl]]+[[Space]]) puts a letter badge before every agent in the panel:
 
 - press an agent's letter to open its overlay;
-- press a digit to show one run, `0` for all runs;
+- press a digit to show one run, or `0` to open the runs dashboard (every run);
 - press [[Ctrl]]+[[F]] again to jump to the next approval or question, like [[Ctrl]]+[[N]];
 - [[Esc]] cancels.
 
@@ -66,10 +66,10 @@ A badge letter, or [[Enter]] on an agent row in select mode, opens that agent fu
 | `[` / `]` | previous / next agent of the run |
 | [[Tab]] | move between the request, the activity and the composer |
 | `o` | every raw operation |
-| `x` | stop this agent |
+| `x` | stop this agent (asks first) |
 | [[Esc]] | back to the chat, at the same scroll and with the same draft |
 
-The approval letters and `o`, `[`, `]` act only while the overlay's composer is empty.
+The approval letters and `o`, `[`, `]`, `x` act only while the overlay's composer is empty. Here `a` is a second key for "allow once", beside `y`.
 
 <!-- capture: cli/agent-overlay | the overlay of a worker: brief, time axis, grouped activity with three edits and one command, its composer empty | 120x40 -->
 
@@ -85,4 +85,4 @@ A conversation can have several runs at once: a chat turn, a swarm, a workflow, 
 
 How many agents may run at once, how deep they may start sub-agents, how many turns each may take and how long a sub-agent may run are settings in **Agents & limits** (by default: 4 at once, depth 2, 60 turns, 30 minutes). Sub-agents work in isolated copies of the project by default, and their changes are merged back when the lead integrates them.
 
-<!-- source: C:README.md:89-101, C:AGENTS.md:217-227, C:docs/keybindings.md:31-38,55-56, C:docs/settings.md:88-98,142,154, C:apps/swarm_code_core/lib/swarm_code/commands.ex:14 -->
+<!-- source: C:README.md:89-101, C:AGENTS.md:217-227, C:docs/keybindings.md:31-38, C:docs/keybindings.md:660-661,706, C:apps/swarm_code_cli/lib/swarm_code_cli/ui/keymap/bindings.ex:225-233,55-56, C:docs/settings.md:88-98,142,154, C:apps/swarm_code_core/lib/swarm_code/commands.ex:14 -->

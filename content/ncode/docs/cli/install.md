@@ -70,7 +70,7 @@ It replaces the release in place. Your conversations, settings and keys stay whe
 {{uninstall}}
 ```
 
-This removes the release and the `{{cmd}}` command. By hand, the same is:
+This removes the release, the `{{cmd}}` command and the `{{old_cmd}}` alias the installer wrote. By hand, the same is:
 
 ```sh
 rm -f ~/.local/bin/{{cmd}} ~/.local/bin/{{old_cmd}}
@@ -87,7 +87,7 @@ rm -rf ~/.local/share/{{cmd}} ~/.local/share/{{old_cmd}}
 
 ## Developer preview: why it opens without a warning {#developer-preview}
 
-{{product}} {{version}} is a developer preview and is not notarized by Apple. The files are signed on the build machine only, not with an Apple Developer ID.
+{{product}} {{version}} is a developer preview. It is not notarized by Apple, because notarizing needs a paid Apple Developer ID, which {{product}} does not have yet.
 
 macOS checks an unnotarized program when it carries a *quarantine* mark, which browsers and Mail add to everything they download. `curl` adds no such mark, so a release installed by the one-line installer starts without a Gatekeeper prompt. This holds **only for downloads made with `curl`**. A release downloaded with a browser is quarantined, and macOS refuses to run its programs until the mark is removed (see the manual install below).
 
@@ -138,6 +138,7 @@ scripts/install.sh
 <!-- notes:
 carried over (the contributor installer today): C:scripts/install.sh:4-15 (prefix, share and bin paths), C:scripts/install.sh:22-25 (replace in place, COOKIE 0600), C:scripts/install.sh:27-37 (the command shim, the PATH hint), C:scripts/install.sh:7-9 (nothing outside the prefix, conversations survive), C:README.md:179-186 (update = re-run), C:rel/overlays/bin/swarmcode:66-79 (--version prints "<cmd> <vsn>", the launcher follows a symlink), C:rel/overlays/bin/swarmcode:165-168 (--help/--version answered by the launcher), C:scripts/dev/build_release.sh:9-24, C:AGENTS.md:16-19,25,27,42 (toolchain, mix setup, precommit needs the desktop checkout), C:.tool-versions:1-3.
 post-rename (lane A branch ncode/A, not yet on main): scripts/install.sh:16-17 (NCODE_PREFIX, SWARMCODE_PREFIX still read, share/ncode), :30-41 (ncode and swarmcode shims), rel/overlays/bin/swarmcode:13-16 (the alias note on a terminal's stderr).
-depends on lane F's install.sh (plan-v2 §4.6 steps 3, 5-13), re-verify before release: the macOS/arm64 refusal, the pinned SHA-256 check, --uninstall and what it removes, the tarball name and layout ncode-<v>/bin/ncode, the Releases download URL, the PATH hint wording, NCODE_PREFIX in the one-liner.
+blocked on lane F (phase 3): --check --release must not pass until these are re-read from code/install.sh. Depends on lane F's install.sh (plan-v2 §4.6 steps 3, 5-13), re-verify before release: the macOS/arm64 refusal, the pinned SHA-256 check, --uninstall and what it removes, the tarball name and layout ncode-<v>/bin/ncode, the Releases download URL, the PATH hint wording, NCODE_PREFIX in the one-liner.
+No signing claim: the only codesign step is the build's ad-hoc signature of the platform helper (C:apps/swarm_code_daemon/mix.exs:50-65); lane A dropped its 'signed' wording (ncode/A 8a70a02).
 K11: quarantine applies to browser downloads, not curl (plan-critique K11; inv-docs §9, GUESSED standard macOS behaviour, not re-tested here).
 -->

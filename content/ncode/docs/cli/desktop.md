@@ -41,7 +41,7 @@ Neither message changes anything in the database.
 | `/resume` | resumes the last stopped run | opens a conversation (the run is `/resume-run`) |
 | Model and approvals | controls in the composer | `/model`, `/swarm_model`, `/approval`, `/trust` |
 | Answering approvals | buttons | the keys `y Y A d D n` |
-| Provider presets | enter the details yourself | eight presets |
+| Provider presets | enter the details yourself | presets for Anthropic, OpenAI, OpenRouter, DeepSeek, Ollama, LM Studio and any OpenAI-compatible endpoint |
 | MCP `.mcp.json` import | no | yes |
 | Settings from scripts | no | [`{{cmd}} config`](/docs/cli/config/) |
 | Themes | several themes, each dark and light | dark and light, with an accent colour |

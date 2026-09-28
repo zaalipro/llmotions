@@ -8,7 +8,7 @@ description: What ncode keeps on your Mac and where, where your keys are stored,
 ## What the terminal adds
 
 - **`cli.json`**, beside the database, holds this terminal's own settings (theme, side panel, mouse, keys). It is readable only by you (mode `0600`) and at most 64 KB.
-- **A log file**, `cli.log`, in the app's logs folder (see the table below), readable only by you and rotated. `{{cmd}}` never writes log lines to your terminal. `{{cmd}} config path` prints its exact location.
+- **A log file**, `cli.log`, in the app's logs folder (see [Names you may still see](#names-you-may-still-see)), readable only by you and rotated. `{{cmd}}` never writes log lines to your terminal. `{{cmd}} config path` prints its exact location.
 - Files `{{cmd}}` creates for itself are private to you: it runs with a `077` umask. Commands the agents run in your project keep your own umask, so the files they create look like yours.
 
 {{> shared/secrets}}

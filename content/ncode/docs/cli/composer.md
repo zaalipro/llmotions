@@ -17,7 +17,7 @@ Type and press [[Enter]]. If the conversation is still loading, [[Enter]] keeps 
 
 ## Slash commands and file paths
 
-Typing `/` lists every command above the composer, and the list narrows as you type. [[Tab]] completes the highlighted command. [[Enter]] takes it too: a command without an argument runs at once (`/com` then [[Enter]] runs `/compact`); one that needs text waits for it after `/<name> `.
+Typing `/` lists every command above the composer, and the list narrows as you type. [[Tab]] completes the highlighted command. [[Enter]] takes it too: a command that needs no argument runs at once (`/com` then [[Enter]] runs `/compact`); one that needs text waits for it after `/<name> `.
 
 [[Tab]] also completes a file path after `@`, so you can point the assistant at a file by name: `explain @lib/app/router.ex`.
 
@@ -53,4 +53,4 @@ When a message talks about a *workflow*, the word is highlighted and [[Enter]] s
 - [[Ctrl]]+[[C]] closes an open layer, else clears your draft ([[Ctrl]]+[[Z]] brings it back), else stops the turn.
 - `/stop` stops everything running in this conversation.
 
-<!-- source: C:README.md:74-85, C:README.md:216-219, C:AGENTS.md:171-192, C:AGENTS.md:241-249, C:docs/keybindings.md:41-49,63-88, C:apps/swarm_code_core/lib/swarm_code/commands.ex:25,33, C:apps/swarm_code_cli/lib/swarm_code_cli/ui/keymap.ex:165-196 -->
+<!-- source: C:README.md:74-85, C:README.md:216-219, C:AGENTS.md:171-192, C:AGENTS.md:241-249, C:docs/keybindings.md:41-49,63-88, C:apps/swarm_code_core/lib/swarm_code/commands.ex:25,33, C:apps/swarm_code_cli/lib/swarm_code_cli/ui/keymap.ex:165-196, C:apps/swarm_code_cli/lib/swarm_code_cli/ui/slash_palette.ex:64,158-193, C:apps/swarm_code_cli/lib/swarm_code_cli/ui/composer.ex:162-169 -->

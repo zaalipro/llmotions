@@ -15,7 +15,7 @@ Everything stays on your Mac: conversations, runs, settings and your keys live i
 |---|---|---|
 | The full-screen session | `{{cmd}}` or `{{cmd}} ~/dev/app` | everyday work: chat, watch agents, answer approvals and questions |
 | One headless turn | `{{cmd}} -p "your prompt"` | a single task from a script; prints the answer and exits |
-| The plain presenter | `{{cmd}} --plain` | pipes, SSH and terminals where the full screen cannot draw; one command per line |
+| Plain mode | `{{cmd}} --plain` | pipes, SSH and terminals where the full screen cannot draw; one command per line |
 
 Two more entry points change settings: `{{cmd}} settings` opens the settings screen on its own, and `{{cmd}} config …` reads and writes settings from scripts.
 

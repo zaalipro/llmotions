@@ -16,7 +16,7 @@ A conversation has a **mode** that shapes what your next message does, and each 
 | Workflow | the message authors and launches a workflow |
 | Consensus | a second model judges the plan before anything changes |
 
-Switch with the commands below, or set **Mode** in Settings → Models & effort for this conversation.
+`/plan` and `/ultra` turn their mode on and off, and `/consensus` alone switches to Consensus. **Mode** in Settings → Models & effort sets Build, Plan, Consensus, Ultra or Workflow (shown as "Writing a workflow") for this conversation. Goal has no switch in the terminal: `/goal <text>` sets a goal and starts on it at once.
 
 ## Plan
 
@@ -32,11 +32,11 @@ Switch with the commands below, or set **Mode** in Settings → Models & effort 
 
 ## Consensus
 
-`/consensus <task>` runs that turn as a judged plan: a planner writes a plan, a judge model checks it against a list of checks over one or more rounds, and only then an implementer carries it out. In Settings, per conversation:
+`/consensus` alone switches the conversation to Consensus mode. `/consensus <task>` runs that one turn as a judged plan without changing the mode: a planner writes a plan, a judge model checks it against a list of checks over one or more rounds, and only then an implementer carries it out. In Settings, per conversation:
 
 | Setting | Default |
 |---|---|
-| Consensus checks | the 7 defaults |
+| Consensus checks | 7 of the 12 checks are on; tick them on or off in Settings |
 | Consensus rounds | 2 |
 | Judge model | the sub-agent model |
 | Implementer model | the planner implements |
@@ -62,9 +62,9 @@ Switch with the commands below, or set **Mode** in Settings → Models & effort 
 | `/model` | this conversation's chat model; alone, it opens a picker with the model in use first |
 | `/model <model>` | set it directly |
 | `/swarm_model …` | the model the conversation's sub-agents use |
-| `/effort <level>` | how hard the chat model thinks: `low`, `medium`, `high`, `max`, and `xhigh` where the model offers it |
+| `/effort <level>` | how hard the chat model thinks: `low`, `medium`, `high`, `max`; `none`, `minimal` and `xhigh` where the model offers them |
 | `/swarm_effort <level>` | the same for the sub-agents |
 
 `/model` also accepts `<provider_id>|<model>` to name the provider as well. `/effort` accepts only the levels the conversation's model offers. To try another model for one session without changing the conversation, start `{{cmd}} --model <model>` (or `--model provider/model`); nothing is written, and an explicit `/model` ends it. [Providers and models](/docs/cli/providers/) covers the defaults per role.
 
-<!-- source: C:apps/swarm_code_core/lib/swarm_code/commands.ex:4-34, C:apps/swarm_code_core/lib/swarm_code/commands.ex:68-78,200-224, C:README.md:155-158, C:README.md:223-228, C:AGENTS.md:45-51, C:AGENTS.md:241-245, C:docs/settings.md:15-37, C:docs/research/2026-09-23-pass70-outcome.md:31-32 -->
+<!-- source: C:apps/swarm_code_core/lib/swarm_code/commands.ex:4-34, C:apps/swarm_code_core/lib/swarm_code/commands.ex:68-78,200-224,245-296, C:apps/swarm_code_core/lib/swarm_code/settings/registry/session.ex:9-22,91-105,130-142, C:apps/swarm_code_daemon/lib/swarm_code/daemon/service/command_dispatcher.ex:143-165, C:README.md:155-158, C:README.md:223-228, C:AGENTS.md:45-51, C:AGENTS.md:241-245, C:docs/settings.md:15-37, C:docs/research/2026-09-23-pass70-outcome.md:31-32 -->

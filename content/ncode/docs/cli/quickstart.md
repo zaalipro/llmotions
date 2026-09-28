@@ -11,7 +11,7 @@ This page takes you from a fresh install to a first finished task in a few minut
 
 ```term
 No model provider is set up yet.
-Run '{{cmd}} settings providers' to add one, or set …
+Run '{{cmd}} settings providers' to add one, or set {{env_prefix}}MODEL, {{env_prefix}}BASE_URL and {{env_prefix}}API_KEY in ~/.secrets (the older {{old_env_prefix}}* names still work).
 ```
 
 There are two ways to add one.
@@ -26,7 +26,7 @@ This opens the settings screen at **Providers**, even with no provider set up.
 
 1. Add a provider and pick a preset: **Anthropic**, **OpenAI**, **OpenRouter**, **DeepSeek**, **Ollama**, **LM Studio**, or **Other** for any OpenAI-compatible endpoint. The preset fills in the kind and the base URL.
 2. Paste your key. It is never shown: the row reads `●●●●●●●● set · ends 4f2a`.
-3. Press [[Ctrl]]+[[S]]. {{product}} creates the provider and tests the key against the endpoint before saving it.
+3. Press [[Ctrl]]+[[S]]. {{product}} creates the provider, stores the key and tests the connection. A failed test shows on the provider's row; fix the key and test again.
 4. Fetch the model list and pick the model you want to chat with.
 
 The same from a shell, for example with Anthropic (the key is read from stdin, so it never lands in your shell history):
@@ -41,7 +41,7 @@ printf '%s' "$ANTHROPIC_API_KEY" | {{cmd}} config secret provider:Anthropic --st
 
 ### From the environment (first run only) {#from-the-environment}
 
-If the database has no usable provider yet, the first launch can create one from environment variables and says that it did. It needs all four: the kind, the model, the endpoint and the key.
+If the database has no usable provider yet, the first launch can create one from environment variables and says that it did. Two of them are required, the model and the endpoint; the kind defaults to `openai`, and the key may be empty for a local server.
 
 ```sh
 {{env_prefix}}PROVIDER=anthropic \
@@ -56,7 +56,7 @@ If the database has no usable provider yet, the first launch can create one from
 - A local server may use an empty key: `{{env_prefix}}API_KEY=`.
 - Setting only a key does nothing: without a model and an endpoint no provider is created.
 
-After the first run these variables are ignored: the providers in Settings decide. The older `{{old_env_prefix}}…` names are still read. See [Environment variables](/docs/cli/env/).
+Instead of exporting them, you can put the same lines in `~/.secrets` (one `NAME=value` per line): `{{cmd}}` reads that file when no key is exported. After the first run these variables are ignored: the providers in Settings decide. The older `{{old_env_prefix}}…` names are still read. See [Environment variables](/docs/cli/env/#where-they-are-loaded-from).
 
 ## Open a project
 
@@ -118,5 +118,5 @@ Press [[Ctrl]]+[[C]] twice within a second and a half. If runs are still working
 
 Plain `{{cmd}}` in the same folder also reopens the latest conversation. Next: [the session screen](/docs/cli/session/) and [the composer](/docs/cli/composer/).
 
-<!-- source: C:README.md:13-18, C:README.md:236-238, C:README.md:255-258, C:README.md:264-272, C:README.md:188-193, C:README.md:205-208, C:README.md:103-126, C:README.md:155-156, C:AGENTS.md:45-55, C:AGENTS.md:171-181, C:AGENTS.md:127-129, C:apps/swarm_code_core/lib/swarm_code/settings/registry/actions.ex:8-80, C:apps/swarm_code_cli/lib/swarm_code_cli/release/config_command.ex:43-70, C:apps/swarm_code_cli/lib/swarm_code_cli/release/persisted_session.ex:1034-1040, C:apps/swarm_code_daemon/lib/swarm_code/daemon/service/session_configuration.ex:24,98-121,196-218, C:apps/swarm_code_daemon/lib/swarm_code/daemon/service/settings/providers.ex:1062-1089, C:rel/overlays/bin/swarmcode:46-50, C:docs/settings.md:15, D:lib/swarm_code/projects.ex:175-191 -->
+<!-- source: C:README.md:13-18, C:README.md:236-238, C:README.md:255-258, C:README.md:264-272, C:README.md:188-193, C:README.md:205-208, C:README.md:103-126, C:README.md:155-156, C:AGENTS.md:45-55, C:AGENTS.md:171-181, C:AGENTS.md:127-129, C:apps/swarm_code_core/lib/swarm_code/settings/registry/actions.ex:8-80, C:apps/swarm_code_cli/lib/swarm_code_cli/release/config_command.ex:43-70, C:apps/swarm_code_cli/lib/swarm_code_cli/release/persisted_session.ex:1034-1040, C:apps/swarm_code_cli/lib/swarm_code_cli/ui/settings/sections/providers.ex:8-11,1266-1273, C:scripts/dev/load_provider_env.sh:5-16,26-47, C:apps/swarm_code_daemon/lib/swarm_code/daemon/service/session_configuration.ex:24,98-121,196-218, C:apps/swarm_code_daemon/lib/swarm_code/daemon/runtime/configuration.ex:9-17,37-54, C:apps/swarm_code_daemon/lib/swarm_code/daemon/service/settings/providers.ex:1062-1089, C:rel/overlays/bin/swarmcode:46-50, C:docs/settings.md:15, D:lib/swarm_code/projects.ex:175-191 -->
 <!-- notes: post-rename launcher help lists NCODE_MODEL/BASE_URL/API_KEY/PROVIDER (ncode/A rel/overlays/bin/ncode:46-60, NCODE_X copied over SWARM_X at :89-100). The llmotions preset and seeded row are deliberately not mentioned (owner decision). -->
