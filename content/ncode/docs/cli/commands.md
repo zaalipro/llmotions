@@ -78,4 +78,4 @@ Custom commands and saved workflows appear in the same `/` list. A Markdown file
 
 > **Note** On the desktop app `/resume` resumes the last stopped run; in the terminal that is `/resume-run`, and `/resume` opens a conversation.
 
-<!-- source: C:apps/swarm_code_core/lib/swarm_code/commands.ex:13-56, C:apps/swarm_code_cli/lib/swarm_code_cli/ui/keymap.ex:165-201, C:README.md:77, C:README.md:111-118, C:README.md:210-219, C:README.md:223-227, C:AGENTS.md:227, D:lib/swarm_code_web/components/chat.ex:65,130-131 -->
+<!-- source: C:apps/swarm_code_core/lib/swarm_code/commands.ex:13-56, C:apps/swarm_code_cli/lib/swarm_code_cli/ui/keymap.ex:165-201, C:README.md:77, C:README.md:111-118, C:README.md:210-219, C:README.md:223-227, C:AGENTS.md:227, D:lib/swarm_code_web/components/chat.ex:66,130-131 -->

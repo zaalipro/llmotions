@@ -59,4 +59,4 @@ Reports a workflow writes go under `{{project_dir}}/workflows/runs/<run>/` in th
 
 {{> shared/workflows}}
 
-<!-- source: C:apps/swarm_code_core/lib/swarm_code/commands.ex:26-31,140, C:README.md:223-227, C:README.md:300-303, C:AGENTS.md:227, C:AGENTS.md:241-243, C:AGENTS.md:188-190, C:apps/swarm_code_daemon/lib/swarm_code/domain/workflows.ex:24-49,90-97, C:apps/swarm_code_daemon/priv/workflows/research.exs:1-4, C:apps/swarm_code_daemon/priv/workflows/review-changes.exs:1-4, D:lib/swarm_code/workflows/api.ex:353, D:lib/swarm_code_web/components/chat.ex:130-142 -->
+<!-- source: C:apps/swarm_code_core/lib/swarm_code/commands.ex:26-31,140, C:README.md:223-227, C:README.md:300-303, C:AGENTS.md:227, C:AGENTS.md:241-243, C:AGENTS.md:188-190, C:apps/swarm_code_daemon/lib/swarm_code/domain/workflows.ex:24-49,90-97, C:apps/swarm_code_daemon/priv/workflows/research.exs:1-4, C:apps/swarm_code_daemon/priv/workflows/review-changes.exs:1-4, D:lib/swarm_code/workflows/api.ex:353, D:lib/swarm_code_web/components/chat.ex:128-142 -->
