@@ -377,6 +377,17 @@ class Release(unittest.TestCase):
         self.assertEqual(code, 0, log)
         self.assertIn("install.sh: missing", log)
 
+    def test_tbd_in_a_hand_written_page(self):
+        tree = self.tree(None)
+        index = tree.site / "index.html"
+        index.write_text(index.read_text().replace("<h1 id=\"top\">", "<p>SHA-256 TBD</p><h1 id=\"top\">"),
+                         encoding="utf-8")
+        code, log = tree.run("--check", "--no-drift")
+        self.assertEqual(code, 0, log)
+        self.assertIn("TBD left in a hand-written page", log)
+        code, log = tree.run("--check", "--no-drift", "--release")
+        self.assertEqual(code, 1)
+
     def test_newest_release(self):
         info = B.newest_release(self.RELEASE + "\n## 0.0.1 — 2026-01-01\n- cli: old sha256 dead\n")
         self.assertEqual(info["version"], "0.1.0")

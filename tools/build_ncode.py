@@ -51,19 +51,21 @@ UNBUILT_PREFIXES = ("/downloads/",)
 # not searched inside HTML comments (source comments cite real repo paths); secret-shaped terms
 # are searched everywhere, comments included.
 DENYLIST = (
-    ("pipeline(", re.compile(r"pipeline\("), "brand"),
-    ("Keychain", re.compile(r"keychain", re.I), "brand"),
-    ("SwarmCode", re.compile(r"SwarmCode"), "brand"),
-    ("swarmcode", re.compile(r"swarmcode"), "brand"),
-    ("swarm_code", re.compile(r"swarm_code"), "brand"),
-    ("daemon", re.compile(r"daemon", re.I), "brand"),
+    # The words are split so that a plain grep of this repository for the denylist finds only
+    # real leaks, never this table.
+    ("pipeline" "(", re.compile(r"pipeline\("), "brand"),
+    ("Key" "chain", re.compile("key" "chain", re.I), "brand"),
+    ("Swarm" "Code", re.compile("Swarm" "Code"), "brand"),
+    ("swarm" "code", re.compile("swarm" "code"), "brand"),
+    ("swarm" "_code", re.compile("swarm" "_code"), "brand"),
+    ("dae" "mon", re.compile("dae" "mon", re.I), "brand"),
     ("spec N", re.compile(r"\bspec \d+", re.I), "brand"),
     ("pass N", re.compile(r"\bpass \d+", re.I), "brand"),
-    ("/Users/", re.compile(r"/Users/"), "secret"),
-    ("sk-ant-", re.compile(r"sk-ant-"), "secret"),
-    ("sk-proj-", re.compile(r"sk-proj-"), "secret"),
-    ("tvly-", re.compile(r"tvly-"), "secret"),
-    ("LLMOTIONS_API_KEY=", re.compile(r"LLMOTIONS_API_KEY="), "secret"),
+    ("/Us" "ers/", re.compile("/Us" "ers/"), "secret"),
+    ("sk-" "ant-", re.compile("sk-" "ant-"), "secret"),
+    ("sk-" "proj-", re.compile("sk-" "proj-"), "secret"),
+    ("tvly" "-", re.compile("tvly" "-"), "secret"),
+    ("LLMOTIONS_API_KEY" "=", re.compile("LLMOTIONS_API_KEY" "="), "secret"),
 )
 ALLOW_RE = re.compile(r"<!--\s*allow:\s*([^>]*?)\s*-->")
 COMMENT_RE = re.compile(r"<!--.*?-->")
@@ -1140,6 +1142,10 @@ def check_release(content, site, rep, release):
             report("%s:%d" % (rel(path, ROOT), n), "release date not set")
         if line.strip() == "Notes as a list.":
             report("%s:%d" % (rel(path, ROOT), n), "release notes not written yet")
+    for page in sorted(site.glob("*.html")) if site.is_dir() else []:
+        for n, line in enumerate(page.read_text(encoding="utf-8").split("\n"), 1):
+            if re.search(r"\bTBD\b", line):
+                report("%s:%d" % (rel(page, ROOT), n), "TBD left in a hand-written page")
     info = newest_release(text)
     install = site / "install.sh"
     if not install.is_file():
