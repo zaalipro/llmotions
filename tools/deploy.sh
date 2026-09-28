@@ -15,14 +15,16 @@
 # and assets/, and nothing on the server is deleted.
 #
 # Before --apply the tree must be committed and `tools/build_ncode.py --check --release` must pass
-# (it also ties code/install.sh to the newest release).
+# (it also ties code/install.sh and the landing's DMG SHA-256 to the newest release).
+# Order: deploy the apex only after https://code.llmotions.com/ answers (DNS + certificate live),
+# because its pages link there; `--apex --apply` checks that and refuses otherwise.
 #
 # Testing: NCODE_DEPLOY_ROOT=/some/dir makes that directory play the server (no ssh, no sudo):
 # staging is <root>/home/deploy/<site>, the webroot <root>/var/www/<site>. Only in that mode
 # NCODE_DEPLOY_SKIP_CHECK=1 skips the build check. NCODE_DEPLOY_HOST overrides the ssh alias.
 set -euo pipefail
 
-usage() { sed -n '2,24p' "$0" | sed 's/^# \{0,1\}//'; }
+usage() { awk 'NR == 1 { next } /^#/ { sub(/^# ?/, ""); print; next } { exit }' "$0"; }
 
 APPLY=0
 APEX=0
@@ -102,11 +104,18 @@ if [ "$ROLLBACK" = 1 ]; then
 fi
 
 # ---- pre-flight ----------------------------------------------------------------------------
-DIRTY=$(git -C "$REPO" status --porcelain -- "${SOURCES[@]}" tools/ content/ 2>/dev/null || true)
+# assets/llm.css and assets/brand/ are copied into code/ by the build, so they count for both sites
+DIRTY=$(git -C "$REPO" status --porcelain -- "${SOURCES[@]}" tools/ content/ assets/llm.css assets/brand/ 2>/dev/null || true)
 if [ -n "$DIRTY" ]; then
   say "the tree has uncommitted changes under the deployed paths:"
   printf '%s\n' "$DIRTY" | sed 's/^/    /'
   if [ "$APPLY" = 1 ]; then say "refusing to deploy: commit first"; exit 1; fi
+fi
+if [ "$APEX" = 1 ] && [ -z "$LOCAL_ROOT" ]; then
+  if ! curl -sfI --max-time 15 https://code.llmotions.com/ >/dev/null 2>&1; then
+    if [ "$APPLY" = 1 ]; then say "refusing to deploy the apex: https://code.llmotions.com/ does not answer yet (the apex links there)"; exit 1; fi
+    say "(https://code.llmotions.com/ does not answer yet; --apex --apply would refuse)"
+  fi
 fi
 if [ "$APEX" = 0 ]; then
   if [ -n "$LOCAL_ROOT" ] && [ "${NCODE_DEPLOY_SKIP_CHECK:-0}" = 1 ]; then
