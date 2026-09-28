@@ -3,6 +3,8 @@
 #
 #   tools/deploy.sh                    dry run: show what would change on the live site, print every step
 #   tools/deploy.sh --apply            deploy code/ to code.llmotions.com
+#   tools/deploy.sh --preview [--apply]   deploy code/ before a release: the build check is --check,
+#                                      not --check --release (downloads and install.sh not published yet)
 #   tools/deploy.sh --apex [--apply]   deploy the apex pages from an explicit list, never deleting
 #   tools/deploy.sh --rollback [--apply]   put the .prev copy back
 #
@@ -29,16 +31,20 @@ usage() { awk 'NR == 1 { next } /^#/ { sub(/^# ?/, ""); print; next } { exit }' 
 APPLY=0
 APEX=0
 ROLLBACK=0
+PREVIEW=0
 while [ $# -gt 0 ]; do
   case "$1" in
     --apply) APPLY=1 ;;
     --apex) APEX=1 ;;
     --rollback) ROLLBACK=1 ;;
+    --preview) PREVIEW=1 ;;
     -h|--help) usage; exit 0 ;;
     *) echo "deploy.sh: unknown option $1" >&2; usage >&2; exit 2 ;;
   esac
   shift
 done
+
+if [ "$PREVIEW" = 1 ] && [ "$APEX" = 1 ]; then echo "deploy.sh: --preview is for code.llmotions.com only" >&2; exit 2; fi
 
 REPO=$(cd "$(dirname "$0")/.." && pwd)
 HOST=${NCODE_DEPLOY_HOST:-gcp}
@@ -120,6 +126,11 @@ fi
 if [ "$APEX" = 0 ]; then
   if [ -n "$LOCAL_ROOT" ] && [ "${NCODE_DEPLOY_SKIP_CHECK:-0}" = 1 ]; then
     say "build check skipped (local test root)"
+  elif [ "$PREVIEW" = 1 ]; then
+    if ! python3 "$REPO/tools/build_ncode.py" --check; then
+      if [ "$APPLY" = 1 ]; then say "refusing to deploy the preview: tools/build_ncode.py --check failed"; exit 1; fi
+      say "(the build check fails; --apply would refuse)"
+    fi
   elif ! python3 "$REPO/tools/build_ncode.py" --check --release; then
     if [ "$APPLY" = 1 ]; then say "refusing to deploy: tools/build_ncode.py --check --release failed"; exit 1; fi
     say "(the build check fails; --apply would refuse)"
