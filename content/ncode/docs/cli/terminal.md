@@ -67,4 +67,4 @@ The editor [[Ctrl]]+[[X]] opens is `$VISUAL`, then `$EDITOR`, then `vi`; **Edito
 - In Terminal.app, select text with [[Option]]-drag while the wheel is on.
 - [[Ctrl]]+[[Shift]]+[[Z]] (redo) needs a terminal that reports Ctrl with Shift.
 
-<!-- source: C:AGENTS.md:165-168, C:AGENTS.md:186-188, C:AGENTS.md:193-202, C:README.md:90-92, C:README.md:115-118, C:README.md:197-200, C:README.md:332-333, C:docs/settings.md:123-155, C:docs/keybindings.md:9-13,76 -->
+<!-- source: C:AGENTS.md:165-168, C:AGENTS.md:186-188, C:AGENTS.md:193-202, C:README.md:90-92, C:README.md:115-118, C:README.md:197-200, C:README.md:332-333, C:docs/settings.md:123-155, C:docs/keybindings.md:9-13,77 -->

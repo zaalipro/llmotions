@@ -21,7 +21,7 @@ Each `-p` run starts a **new conversation**, so it does not carry the context of
 
 ```sh
 {{cmd}} -p - < review-request.md
-git diff | {{cmd}} -p - --model anthropic/<model-id>
+git diff | {{cmd}} -p - --model Anthropic/<model-id>
 ```
 
 `--model` answers with another model for this run only; nothing is written to your providers or the conversation.
@@ -62,7 +62,7 @@ A headless run has nobody to ask, so the project's [approval mode](/docs/cli/app
 - anything that would still need a person is **denied**, and a line on stderr says what (in full access, the line says that nothing asks);
 - a question from an agent **stops** the run.
 
-A new project is read-only until you trust it, so in a project you have never opened, a headless run can read but not change anything. Open it once with `{{cmd}}` and type `/trust` first.
+A new project is read-only until you trust it, so in a project you have never opened, a headless run can read but not change anything. Open it once with `{{cmd}}` and type `/trust` first. From a script, `{{cmd}} config set project.trusted on --project ~/dev/app` does the same, once {{product}} has opened the folder at least once (a `-p` run counts); before that, `config` answers that the folder is not a project yet.
 
 ## Exit codes
 
@@ -91,4 +91,4 @@ fi
 
 > **Note** The database is shared with the desktop app and with interactive sessions, so a headless run exits with code `3` while either of them is open. See [Works with the desktop app](/docs/cli/desktop/).
 
-<!-- source: C:README.md:155-177, C:rel/overlays/bin/swarmcode:29-44, C:rel/overlays/bin/swarmcode:171-199, C:rel/overlays/bin/swarmcode:224-230, C:rel/overlays/bin/swarmcode:244-246, C:AGENTS.md:40, C:AGENTS.md:45-51, C:AGENTS.md:127-129, C:docs/settings.md:108, C:docs/research/2026-09-23-pass70-outcome.md:47 -->
+<!-- source: C:README.md:155-177, C:rel/overlays/bin/swarmcode:29-44, C:rel/overlays/bin/swarmcode:171-199, C:rel/overlays/bin/swarmcode:224-230, C:rel/overlays/bin/swarmcode:244-246, C:AGENTS.md:40, C:AGENTS.md:45-51, C:AGENTS.md:127-129, C:docs/settings.md:108, C:docs/research/2026-09-23-pass70-outcome.md:47, C:apps/swarm_code_core/lib/swarm_code/settings/registry/project.ex:22-32, C:apps/swarm_code_cli/lib/swarm_code_cli/release/config_command.ex:470-496, C:apps/swarm_code_daemon/lib/swarm_code/daemon/service/settings/headless.ex:20-28, C:apps/swarm_code_daemon/lib/swarm_code/daemon/service/settings/values.ex:978-992, C:apps/swarm_code_daemon/lib/swarm_code/domain/projects.ex:145-150, C:apps/swarm_code_daemon/lib/swarm_code/daemon/service/session_selection.ex:65-69, C:apps/swarm_code_daemon/lib/swarm_code/daemon/service/session_configuration.ex:137-160 -->
