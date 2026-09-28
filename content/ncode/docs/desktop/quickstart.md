@@ -19,6 +19,8 @@ This page takes you from a freshly installed app to a first finished task. You n
 
 <!-- shot: desktop/quickstart-provider-form.png | Settings → Providers & models with the Add provider form open: Name "anthropic", Kind Anthropic, Base URL https://api.anthropic.com, API key field masked -->
 
+> **Note** A fresh install already lists one provider with an empty key. Ignore it: the steps above add your own, and step 2 below makes new conversations use yours. You can delete that row once your provider works.
+
 > **Tip** A local server such as Ollama (`http://localhost:11434/v1`) or LM Studio (`http://localhost:1234/v1`) works too: choose OpenAI-compatible and leave the key empty.
 
 ## 2. Make it the default
@@ -31,7 +33,7 @@ Each conversation can still switch models later from the composer.
 ## 3. Open a project
 
 1. Close Settings and click **Add project** (in the sidebar or on the start screen).
-2. Click **Choose folder…** and pick a folder with code, or type its path. A git repository works best: it enables file snapshots, isolated agents and the Changes view.
+2. Click **Choose folder…** and pick a folder with code, or type its path. A git repository works best: it enables isolated agents and the Changes view. File snapshots and rewind work in any folder.
 3. Click **Create**.
 
 A banner appears above the message box: the project is read-only until you trust it.
@@ -95,4 +97,4 @@ A lead agent splits the work, sub-agents do the parts in parallel, and the lead 
 - [Composer, modes and goals](/docs/desktop/composer/)
 - [Providers, models and web search](/docs/desktop/providers/)
 
-<!-- source: D:lib/swarm_code_web/components/frame.ex:465-471, D:lib/swarm_code_web/live/settings_live.ex:34-48, D:lib/swarm_code_web/live/settings_live.html.heex:57-75,93-99,750-898, D:lib/swarm_code/llm/anthropic.ex:94,229, D:lib/swarm_code/llm/openai.ex:90,439, D:lib/swarm_code_web/live/workspace_live/workspace.html.heex:118-130,236-246,630-652, D:lib/swarm_code/projects.ex:175-189, D:lib/swarm_code_web/components/chat.ex:19-47,330-340,765-812, D:assets/js/hooks.js:880, D:README.md:23-29 -->
+<!-- source: D:lib/swarm_code_web/components/frame.ex:465-471, D:lib/swarm_code_web/live/settings_live.ex:34-48, D:lib/swarm_code_web/live/settings_live.html.heex:57-75,93-99,750-898, D:lib/swarm_code/llm/anthropic.ex:94,229, D:lib/swarm_code/llm/openai.ex:90,439, D:lib/swarm_code_web/live/workspace_live/workspace.html.heex:118-130,236-246,630-652, D:lib/swarm_code/projects.ex:175-189, D:lib/swarm_code_web/components/chat.ex:19-47,330-340,765-812, D:assets/js/hooks.js:880, D:README.md:23-29, D:lib/swarm_code/providers.ex:124-145, D:lib/swarm_code/bootstrap.ex:32,47, D:lib/swarm_code/checkpoints.ex:1-7,196-202 -->

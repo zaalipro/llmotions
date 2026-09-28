@@ -28,7 +28,8 @@ complete(%{summary: "Wrote #{path}"})
 | `name` | the workflow's name; it also becomes a slash command |
 | `description` | one line shown in lists |
 | `phases` | the phase titles, in order, shown as the run's progress |
-| `budget` | the most agents one run may start |
+| `budget` | the most agents one run may start (1 to 1,024); without it, the workflow agent budget setting applies (128 by default) |
+| `max_live` | how many of its agents may work at the same time (1 to 64); without it, the max live workflow agents setting applies (16 by default) |
 | `args` | named arguments, each with `type`, `default` and `doc`; the program reads them as `args.<name>` |
 
 ### Functions
@@ -56,7 +57,9 @@ complete(%{summary: "Wrote #{path}"})
 
 - `schema:` a JSON-schema-like map; the agent must answer with a matching object, which you get back as a map;
 - `name:` the label shown for the agent;
-- `capability:` what the agent may do: `:read_only` (the default), `:read_write` (may edit files), `:execute` (may also run commands) or `:none` (no tools).
+- `capability:` what the agent may do: `:read_only` (the default: read and search), `:read_write` (may also create, edit, move and delete files), `:execute` (may also run commands), `:all` (every tool a workflow agent can have) or `:none` (no tools: it answers from the prompt alone);
+- `model:` and `provider:` (by name) and `effort:` (`"low"`, `"medium"`, `"high"` or `"max"`) to run this agent on something other than the workflow's default;
+- `isolation: :worktree` to give the agent its own copy of the project, and `max_turns:` to cap how many steps it may take.
 
 ### Reading the project with `host`
 
@@ -74,4 +77,4 @@ Before a workflow is saved or run, a smoke check parses it, checks its arguments
 
 A running script that grows past 512 MB of memory is stopped.
 
-<!-- source: D:lib/swarm_code/workflows/api.ex:60-460, D:lib/swarm_code/workflows/host.ex:49-63, D:lib/swarm_code/workflows/smoke.ex:1-65, D:lib/swarm_code/tools.ex:231-247, D:lib/swarm_code/engine/run_server.ex:1076-1077, D:lib/swarm_code/workflows/runner.ex:340,542, D:priv/workflows/review-changes.exs:1-82 -->
+<!-- source: D:lib/swarm_code/workflows/api.ex:60-460, D:lib/swarm_code/workflows/host.ex:49-63, D:lib/swarm_code/workflows/smoke.ex:1-65, D:lib/swarm_code/tools.ex:230-266, D:lib/swarm_code/engine/workflow_prompts.ex:86-90, D:lib/swarm_code/engine/run_server.ex:1073-1120, D:lib/swarm_code/workflows.ex:255-266,639-642,1393-1398,1443-1445, D:lib/swarm_code/engine/run_server.ex:1076-1077, D:lib/swarm_code/workflows/runner.ex:340,542, D:priv/workflows/review-changes.exs:1-82 -->

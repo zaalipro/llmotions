@@ -11,7 +11,7 @@ Install it with one line:
 {{install}}
 ```
 
-See the [CLI docs](/docs/cli/) for everything about the terminal app.
+See the [CLI docs](/docs/cli/) for everything about the terminal app, especially [Install](/docs/cli/install/) and [Works with the desktop app](/docs/cli/desktop/).
 
 {{> shared/together}}
 
@@ -30,7 +30,7 @@ The two apps share their features but not their screens:
 |---|---|
 | approval buttons on cards | single-key answers |
 | the agents pane with tree, grid, timeline and changes | a side panel and an agents overlay |
-| settings in the Settings window | settings in a full-screen settings view, and `{{cmd}} config` for scripts |
+| settings in the Settings window | settings in a full-screen settings view, and [`{{cmd}} config`](/docs/cli/config/) for scripts |
 | schedules fire | schedules can be managed but do not fire |
 
 <!-- source: C:README.md:64-68,122-124, C:AGENTS.md:10-14,122-137, C:native/platform_identity/README.md:30, C:apps/swarm_code_daemon/lib/swarm_code/daemon/boot.ex:14, D:config/runtime.exs:21-29, D:lib/swarm_code/scheduler.ex:1-19 -->

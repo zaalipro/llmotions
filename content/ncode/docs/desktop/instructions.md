@@ -28,6 +28,6 @@ Open **Settings → Memory**. Pick a project to edit its memory, and edit your g
 
 ### Switching profiles
 
-In a conversation, type `/profile <name>` to apply a profile from the project file; {{product}} confirms with *Switched to profile* and the profile name. `/profile` alone lists the available profiles.
+In a conversation, type `/profile <name>` in full (it is not in the `/` list) to apply a profile from the project file; {{product}} confirms with *Switched to profile: careful*. `/profile` alone lists the available profiles, and with none defined it tells you to add them to `{{project_dir}}/config.json`.
 
 <!-- source: D:lib/swarm_code_web/components/frame.ex:780-819,3362-3375, D:lib/swarm_code_web/live/workspace_live/editor.ex:1-20, D:lib/swarm_code/engine/project_context.ex:66-78, D:lib/swarm_code_web/live/settings_live.html.heex:1150-1258, D:lib/swarm_code_web/live/workspace_live.ex:7494-7556 -->

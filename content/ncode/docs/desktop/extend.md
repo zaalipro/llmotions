@@ -47,7 +47,8 @@ prewalk: false
 max_turns: 20
 ---
 You are a scout. Your job is to explore the codebase, find relevant code,
-and report your findings. You must not change any files.
+and report your findings. You must not change any files. Be thorough but
+concise in your report.
 ```
 
 A project definition with the same name replaces yours, and yours replaces a bundled one.
@@ -56,4 +57,4 @@ A project definition with the same name replaces yours, and yours replaces a bun
 
 A skill is a folder with a `SKILL.md` file and any assets it needs, for example a report template. {{product}} bundles one, `html-report`. Add your own in `{{project_dir}}/skills/` in the project, or in `skills` inside `{{data_dir}}` for every project. A project skill with the same name wins over yours, and yours over a bundled one.
 
-<!-- source: D:lib/swarm_code_web/live/settings_live.html.heex:1259-1325,1386-1415, D:lib/swarm_code_web/live/settings_live.ex:1813-1841,2204-2207, D:lib/swarm_code/commands.ex:1-31,68-73, D:lib/swarm_code/agents.ex:1-10,135-152,251-252, D:priv/agents/scout.md:1-10, D:lib/swarm_code/skills.ex:1-25,60-66, D:priv/agents/reviewer.md:1-4, D:priv/agents/implementer.md:1-4 -->
+<!-- source: D:lib/swarm_code_web/live/settings_live.html.heex:1259-1325,1386-1415, D:lib/swarm_code_web/live/settings_live.ex:1813-1841,2204-2207, D:lib/swarm_code/commands.ex:1-31,68-73, D:lib/swarm_code/agents.ex:1-10,135-152,251-252, D:priv/agents/scout.md:1-10, D:lib/swarm_code/skills.ex:1-25,60-66, D:priv/agents/reviewer.md:1-4, D:priv/agents/implementer.md:1-4, D:priv/agents/scout.md:1-11 -->

@@ -3,6 +3,8 @@ title: Troubleshooting
 description: Fixes for the common problems: the first launch is blocked, the model does not answer, agents cannot write or find a command, search or schedules do not work.
 ---
 
+The problems people meet first, each with the place in the app that fixes it.
+
 ## "Apple could not verify ncode…"
 
 The app is not notarized yet, so macOS asks you to allow it once. Follow [First launch](/docs/desktop/install/#first-launch).
@@ -31,7 +33,7 @@ Agents' commands run in a login shell, which reads `.zprofile`, `.profile` or `.
 
 ## An MCP server's tools are missing
 
-In **Settings → MCP servers**, check the server's status. Open its output to see why it does not start; fix the command, arguments or environment, then click **Reconnect**. Check that the server and the tool are switched on, and that the server's scope includes the project you are in.
+In **Settings → MCP servers**, check the server's status. Open its **Recent output** to see why it does not start; fix the command, arguments or environment, then click **Reconnect**. Check that the server and the tool are switched on, and that the server's scope includes the project you are in.
 
 ## A scheduled task did not run
 
@@ -45,7 +47,7 @@ Closing the window only hides it; your runs keep going. Click the {{product}} ic
 
 ## `{{cmd}}` refuses to start
 
-The terminal app refuses while the desktop app is running under your account, and exits with status 3. Quit the app first. See [Using with the CLI](/docs/desktop/cli/).
+The terminal app refuses while the desktop app is running under your account, and exits with status 3. Quit the app first. See [Using with the CLI](/docs/desktop/cli/) (and [the CLI's page on it](/docs/cli/desktop/)).
 
 ## The database is large
 
@@ -55,4 +57,4 @@ See [Storage and cleanup](/docs/desktop/storage/). Delete or prune old sessions,
 
 The app's log is in your Logs folder: see [Names](/docs/desktop/privacy/#names) for the exact path. Open it in Console or any text editor.
 
-<!-- source: D:lib/swarm_code/engine/policy.ex:16-17,31-32, D:lib/swarm_code/engine/operation.ex:310-311, D:lib/swarm_code/providers.ex:150-162, D:lib/swarm_code/llm/anthropic.ex:94, D:lib/swarm_code/llm/openai.ex:90, D:lib/swarm_code/search.ex:144-158, D:lib/swarm_code_web/live/settings_live.html.heex:1040-1100,1560-1618, D:lib/swarm_code/scheduler.ex:140-155, D:lib/swarm_code_web/live/scheduled_live.ex:530-580, D:lib/swarm_code/desktop.ex:45-47,125-142, D:lib/swarm_code/tray_menu.ex:50-60, C:README.md:122-124 -->
+<!-- source: D:lib/swarm_code/engine/policy.ex:16-17,31-32, D:lib/swarm_code/engine/operation.ex:310-311, D:lib/swarm_code/providers.ex:150-162, D:lib/swarm_code/llm/anthropic.ex:94, D:lib/swarm_code/llm/openai.ex:90, D:lib/swarm_code/search.ex:144-158, D:lib/swarm_code_web/live/settings_live.html.heex:1040-1100,1560-1618, D:lib/swarm_code/scheduler.ex:140-155, D:lib/swarm_code_web/live/scheduled_live.ex:530-580, D:lib/swarm_code/desktop.ex:45-47,125-142, D:lib/swarm_code/tray_menu.ex:50-60, C:README.md:122-124, C:apps/swarm_code_cli/lib/swarm_code_cli/release/persisted_session.ex:8,41,955-973, D:lib/swarm_code_web/live/settings_live.html.heex:1114-1142 -->

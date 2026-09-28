@@ -28,7 +28,7 @@ A scheduled task is a prompt {{product}} runs by itself: a nightly dependency ch
 
 The Scheduled tasks page shows a calendar and the tasks of the selected day. Each task's menu has **Run now**, **Edit**, **Pause** (or **Enable** for a paused task) and **Delete**. You can filter the calendar by project and export your tasks as JSON.
 
-In the Chats sidebar, **Scheduled tasks** lists each task with its latest runs underneath; click a run to open its conversation. Tasks are grouped by project; tasks without a project appear under a **Global** group, which you can hide in **Settings → Appearance** (Show global scheduled tasks).
+In the Chats sidebar, **Scheduled tasks** lists each task with its latest runs underneath; click a run to open its conversation. Tasks are grouped by project; tasks without a project appear under a **GLOBAL** group, which you can hide in **Settings → Appearance** (Show global scheduled tasks).
 
 <!-- shot: desktop/scheduled-calendar.png | the Scheduled tasks page with a month calendar showing coloured task dots and the selected day's three tasks listed on the right -->
 
@@ -38,4 +38,4 @@ In the Chats sidebar, **Scheduled tasks** lists each task with its latest runs u
 - A task that changes files still follows the project's approval mode. In Auto, a command that needs approval waits for you (for up to 10 minutes), so let unattended tasks read and report, or give them commands you have already approved with **Always allow**.
 - Scheduled runs use the **Default scheduled model** from Settings unless the task has its own.
 
-<!-- source: D:lib/swarm_code_web/live/scheduled_live.html.heex:39-60,130-232,310-600, D:lib/swarm_code_web/live/scheduled_live.ex:530-580,832-840, D:lib/swarm_code_web/components/frame.ex:891-1011,2463, D:lib/swarm_code/desktop.ex:45-47, D:lib/swarm_code/engine/questions.ex:10-13, D:lib/swarm_code_web/live/settings_live.html.heex:93-107,715-730, C:apps/swarm_code_daemon/lib/swarm_code/daemon/boot.ex:14 -->
+<!-- source: D:lib/swarm_code_web/live/scheduled_live.html.heex:39-60,130-232,310-600, D:lib/swarm_code_web/live/scheduled_live.ex:530-580,832-840, D:lib/swarm_code_web/components/frame.ex:891-1011,2463, D:lib/swarm_code/desktop.ex:45-47, D:lib/swarm_code/engine/questions.ex:10-13, D:lib/swarm_code_web/live/settings_live.html.heex:93-107,715-730, C:apps/swarm_code_daemon/lib/swarm_code/daemon/boot.ex:14, D:lib/swarm_code/scheduled/sidebar.ex:296-301 -->

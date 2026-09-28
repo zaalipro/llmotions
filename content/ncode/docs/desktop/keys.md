@@ -3,6 +3,8 @@ title: Keyboard shortcuts
 description: The ncode desktop shortcuts, the fixed keys of the composer and research page, and how to change them in Settings → Keybindings.
 ---
 
+Every {{product}} shortcut: the nine app-wide ones you can change, and the fixed keys of the composer and the research page.
+
 ## App shortcuts
 
 These nine shortcuts work anywhere in the window, and you can change every one of them:
@@ -11,7 +13,7 @@ These nine shortcuts work anywhere in the window, and you can change every one o
 |---|---|
 | Toggle panel (show or hide the sidebar) | [[⌘]]+[[B]] |
 | New chat | [[⌘]]+[[N]] |
-| Search conversations | [[⌘]]+[[K]] |
+| Search (find a conversation or a message) | [[⌘]]+[[K]] |
 | Settings | [[⌘]]+[[,]] |
 | Quit | [[⌘]]+[[Q]] |
 | Toggle side chat | [[⌘]]+[[Shift]]+[[S]] |
@@ -39,4 +41,4 @@ These nine shortcuts work anywhere in the window, and you can change every one o
 
 **Reset all to defaults** restores the nine defaults.
 
-<!-- source: D:lib/swarm_code/settings.ex:98-110, D:lib/swarm_code_web/live/settings_live.ex:2614-2641,2059-2090, D:lib/swarm_code_web/live/settings_live.html.heex:1325-1386, D:assets/js/hooks.js:679-690,720-730,853-860,879-882, D:lib/swarm_code_web/components/chat.ex:5783, D:lib/swarm_code_web/live/research_live.html.heex:197, D:lib/swarm_code/settings/setting.ex:343-371 -->
+<!-- source: D:lib/swarm_code/settings.ex:98-110, D:lib/swarm_code_web/live/settings_live.ex:2614-2641,2059-2090, D:lib/swarm_code_web/live/settings_live.html.heex:1325-1386, D:assets/js/hooks.js:679-690,720-730,853-860,879-882, D:lib/swarm_code_web/components/chat.ex:5783, D:lib/swarm_code_web/live/research_live.html.heex:197, D:lib/swarm_code/settings/setting.ex:343-371, D:lib/swarm_code_web/live/settings_live.ex:2614-2641 -->

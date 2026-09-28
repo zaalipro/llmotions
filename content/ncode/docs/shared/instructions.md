@@ -4,12 +4,13 @@ Instruction files tell agents how your project works: conventions, commands, thi
 
 1. `AGENTS.override.md`
 2. `AGENTS.md`
-3. `SWARMCODE.md`
-4. `CLAUDE.md`
+3. `NCODE.md`
+4. `SWARMCODE.md` (the earlier name, still read)
+5. `CLAUDE.md`
 
 The root's file comes first. At most 12 files and 32,000 characters in total reach the prompt. Instructions are used only after you trust the project.
 
-When you edit instructions from {{product}}, it edits the first of `AGENTS.md`, `SWARMCODE.md` or `CLAUDE.md` that exists in the project root, or creates `AGENTS.md`.
+When you edit instructions from {{product}}, it edits the first of `AGENTS.md`, `NCODE.md`, `SWARMCODE.md` or `CLAUDE.md` that exists in the project root, or creates `AGENTS.md`.
 
 ### Memory
 
@@ -46,4 +47,4 @@ An agent definition is a Markdown file with front matter (`name`, `description`,
 
 A skill is a folder with a `SKILL.md` file (plus any assets it needs) that an agent can load for a specific job. Project skills win over your own, and yours over the bundled `html-report` skill.
 
-<!-- source: D:lib/swarm_code/engine/project_context.ex:12-26,66-78,108-116, D:lib/swarm_code/memory.ex:1-25, D:lib/swarm_code/projects/workspace.ex:44-53, D:lib/swarm_code/desktop.ex:492-495, D:lib/swarm_code/commands.ex:1-31, D:lib/swarm_code_web/components/chat.ex:119-131, D:lib/swarm_code/agents.ex:1-10,135-140,251-252, D:lib/swarm_code/skills.ex:1-16,60-65 -->
+<!-- source: D:lib/swarm_code/engine/project_context.ex:12-26,66-78,108-116 (ncode/B lib/swarm_code/engine/project_context.ex:18,21 adds NCODE.md; the CLI gets it in phase-2 A3, C:apps/swarm_code_daemon/lib/swarm_code/domain/engine/project_context.ex:17,20), D:lib/swarm_code/memory.ex:1-25, D:lib/swarm_code/projects/workspace.ex:44-53, D:lib/swarm_code/desktop.ex:492-495, D:lib/swarm_code/commands.ex:1-31, D:lib/swarm_code_web/components/chat.ex:119-131, D:lib/swarm_code/agents.ex:1-10,135-140,251-252, D:lib/swarm_code/skills.ex:1-16,60-65 -->

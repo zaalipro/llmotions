@@ -37,7 +37,7 @@ Everything else stays on your Mac: conversations, settings and keys live in a lo
 
 ## Also in the terminal
 
-The same engine is available as a terminal app, `{{cmd}}`, which shares the app's projects, conversations and settings. See [Using with the CLI](/docs/desktop/cli/) and the [CLI docs](/docs/cli/).
+The same engine is available as a terminal app, `{{cmd}}`, which shares the app's projects, conversations and settings. See [Using with the CLI](/docs/desktop/cli/), [Install the CLI](/docs/cli/install/) and the [CLI docs](/docs/cli/).
 
 ## Next steps
 
