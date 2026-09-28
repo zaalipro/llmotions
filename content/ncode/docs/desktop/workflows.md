@@ -73,6 +73,6 @@ If two workflows share a name, the built-in one wins, then the project's, then y
 
 ## Budgets
 
-Each run may start at most 128 agents in total and 16 at the same time (a workflow can set a lower budget of its own). Change both under **Settings → Limits**.
+A workflow's `budget` sets how many agents one run may start in total (the built-in `review-changes` allows 48), and its `max_live` how many work at the same time. A workflow that sets neither uses **Workflow agent budget** (128) and **Max live workflow agents** (16) from **Settings → Limits**.
 
-<!-- source: D:lib/swarm_code_web/components/frame.ex:1625-1740,1951-1993, D:lib/swarm_code_web/live/workflows_live.html.heex:50-100,320-436, D:priv/workflows/review-changes.exs:1-10, D:priv/workflows/research.exs:1-3, D:lib/swarm_code_web/components/chat.ex:65-81,130-142,3318-3340, D:lib/swarm_code/workflows.ex:24-37,86-96, D:lib/swarm_code/workflows/api.ex:337-353,434-452, D:lib/swarm_code/workflows/smoke.ex:1-12, D:lib/swarm_code_web/components/quit_modal.ex:84-88,118-120, D:lib/swarm_code/settings/setting.ex:51-52 -->
+<!-- source: D:lib/swarm_code_web/components/frame.ex:1625-1740,1951-1993, D:lib/swarm_code_web/live/workflows_live.html.heex:50-100,320-436, D:priv/workflows/review-changes.exs:1-10, D:priv/workflows/research.exs:1-3, D:lib/swarm_code_web/components/chat.ex:65-81,130-142,3318-3340, D:lib/swarm_code/workflows.ex:24-37,86-96, D:lib/swarm_code/workflows/api.ex:337-353,434-452, D:lib/swarm_code/workflows/smoke.ex:1-12, D:lib/swarm_code_web/components/quit_modal.ex:84-88,118-120, D:lib/swarm_code/settings/setting.ex:51-52, D:lib/swarm_code/workflows.ex:639-642, D:priv/workflows/review-changes.exs:5 -->
