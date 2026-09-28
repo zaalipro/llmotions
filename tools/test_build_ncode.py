@@ -108,6 +108,21 @@ class GoldenPage(unittest.TestCase):
         tree.run("--out", str(out))
         self.assertFalse((out / "docs/cli/old").exists(), "a rebuild removes stale pages")
 
+    def test_copies_of_removed_apex_assets_are_stale(self):
+        tree = Tree(self)
+        out = tree.root / "out"
+        (tree.assets / "brand" / "old.png").write_bytes(b"old")
+        self.assertEqual(tree.run("--out", str(out))[0], 0)
+        self.assertTrue((out / "assets/brand/old.png").is_file())
+        (tree.assets / "brand" / "old.png").unlink()
+        code, log = tree.run("--out", str(out), "--check")
+        self.assertEqual(code, 1)
+        self.assertIn("assets/brand/old.png: stale", log)
+        self.assertEqual(tree.run("--out", str(out))[0], 0)
+        self.assertFalse((out / "assets/brand/old.png").exists(), "a rebuild removes the stale copy")
+        self.assertTrue((out / "assets/brand/ncode-icon.svg").is_file(), "the site's own marks stay")
+        self.assertEqual(tree.run("--out", str(out), "--check")[0], 0)
+
 
 class Links(unittest.TestCase):
     def test_broken_internal_link(self):

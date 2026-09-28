@@ -1207,8 +1207,29 @@ def sha8(data):
     return hashlib.sha1(data).hexdigest()[:8]
 
 
+OWN_BRAND = ("ncode-icon.svg", "ncode-mark.svg")   # hand-written; the rest of assets/brand/ is copied
+
+
+def generated_copy(relpath):
+    """assets/llm.css and assets/brand/* (except OWN_BRAND) are copies of llmotions.com's assets."""
+    if relpath == "assets/llm.css":
+        return True
+    return relpath.startswith("assets/brand/") and relpath[len("assets/brand/"):] not in OWN_BRAND
+
+
+def stale_copies(files, out):
+    """Copied apex assets under `out` that the apex no longer has."""
+    found = [out / "assets" / "llm.css"]
+    brand = out / "assets" / "brand"
+    found += sorted(brand.rglob("*")) if brand.is_dir() else []
+    return [p for p in found if p.is_file() and p.name != ".DS_Store"
+            and generated_copy(p.relative_to(out).as_posix())
+            and p.relative_to(out).as_posix() not in files]
+
+
 def handwritten_files(site):
-    """The site's own files: everything under code/ outside the generated folders and uploads."""
+    """The site's own files: everything under code/ outside the generated folders, the copied
+    apex assets and the uploads."""
     out = {}
     if not site.is_dir():
         return out
@@ -1216,7 +1237,7 @@ def handwritten_files(site):
         if not path.is_file() or path.name == ".DS_Store":
             continue
         relpath = path.relative_to(site).as_posix()
-        if relpath.split("/", 1)[0] in ("docs", "releases", "downloads"):
+        if relpath.split("/", 1)[0] in ("docs", "releases", "downloads") or generated_copy(relpath):
             continue
         out[relpath] = path.read_bytes()
     return out
@@ -1354,6 +1375,8 @@ def drift(files, out, rep):
             relpath = path.relative_to(out).as_posix()
             if path.is_file() and path.name != ".DS_Store" and relpath not in files:
                 rep.error("code/" + relpath, "stale: no source builds it")
+    for path in stale_copies(files, out):
+        rep.error("code/" + path.relative_to(out).as_posix(), "stale: a copy of an apex asset that is gone")
 
 
 def write(files, hand, out, site):
@@ -1371,6 +1394,8 @@ def write(files, hand, out, site):
                 path.unlink()
             elif path.is_dir() and not any(path.iterdir()):
                 path.rmdir()
+    for path in stale_copies(files, out):
+        path.unlink()
     written = 0
     for relpath, data in sorted(files.items()):
         target = out / relpath
