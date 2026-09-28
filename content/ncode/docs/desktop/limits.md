@@ -15,7 +15,7 @@ Limits keep a runaway swarm from spending forever, and isolation keeps parallel 
 | Sub-agent time limit (s) | 1800 (30 minutes) | a sub-agent that runs longer is stopped and its partial work reported; 0 means no limit |
 | Workflow agent budget | 128 | the most agents a workflow run may start in total, when the workflow sets no `budget` of its own |
 | Max live workflow agents | 16 | how many of them work at the same time, when the workflow sets no `max_live`; each one uses memory |
-| Command timeout (ms) | 120,000 (2 minutes) | the floor for every shell command; an agent may ask for more for one command, never less |
+| Command timeout (ms) | 120,000 (2 minutes) | the floor for every shell command; an agent may ask for more for one command (up to 10 minutes), never less |
 | Tool timeout (s) | 120 | web fetch, web search and MCP calls |
 
 A command that is still running after 10 seconds is not killed: it moves to the background, the agent gets its output so far and can check on it or stop it later. See [Watching agents work](/docs/desktop/agents/#commands-left-running).
@@ -46,4 +46,4 @@ Commands agents run go through your shell, with a few safeguards:
 
 The last part of **Settings → Limits** lists the command families you allowed with **Always allow**, per project. See [Approvals and trust](/docs/desktop/approvals/#forgetting-remembered-commands).
 
-<!-- source: D:lib/swarm_code_web/live/settings_live.html.heex:1415-1660, D:lib/swarm_code/settings/setting.ex:33-56,105-115,124, D:lib/swarm_code/tools/run_command.ex:26,697-703, D:lib/swarm_code/engine/isolation.ex:1-25, D:lib/swarm_code_web/components/swarm_pane.ex:3482, D:lib/swarm_code/workflows.ex:639-642 -->
+<!-- source: D:lib/swarm_code_web/live/settings_live.html.heex:1415-1660, D:lib/swarm_code/settings/setting.ex:33-56,105-115,124, D:lib/swarm_code/tools/run_command.ex:26,160-171,697-703, D:lib/swarm_code/engine/isolation.ex:1-25, D:lib/swarm_code_web/components/swarm_pane.ex:3482, D:lib/swarm_code/workflows.ex:639-642 -->
