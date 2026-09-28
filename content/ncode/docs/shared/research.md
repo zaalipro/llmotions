@@ -25,4 +25,4 @@ Each research produces a Markdown answer (`result.md`) and a rendered HTML repor
 | A headline after each round | on |
 | Lead, worker and reporter models | the defaults, or one each |
 
-<!-- source: D:lib/swarm_code/research/levels.ex:14-45, D:lib/swarm_code/settings/setting.ex:63-97, D:lib/swarm_code/research.ex:15-47, D:lib/swarm_code_web/live/settings_live.html.heex:211-228,457-472 -->
+<!-- source: D:lib/swarm_code/research/levels.ex:14-46, D:lib/swarm_code/settings/setting.ex:63-97, D:lib/swarm_code/research.ex:15-47, D:lib/swarm_code_web/live/settings_live.html.heex:211-228,457-472 -->

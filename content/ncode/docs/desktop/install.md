@@ -7,14 +7,15 @@ description: Download the ncode disk image, check it, move the app to Applicatio
 
 ## Download
 
-1. Download [{{dmg}}]({{dmg_url}}).
-2. Check that the file is intact and is the one we published. Open Terminal and run:
+Download [{{dmg}}]({{dmg_url}}).
 
-   ```sh
-   shasum -a 256 ~/Downloads/{{dmg}}
-   ```
+Then check that the file is intact and is the one we published. Open Terminal and run:
 
-3. Compare the long number it prints with the line for `{{dmg}}` in [SHA256SUMS]({{sums_url}}). They must match exactly. If they do not, delete the file and download it again.
+```sh
+shasum -a 256 ~/Downloads/{{dmg}}
+```
+
+Compare the long number it prints with the line for `{{dmg}}` in [SHA256SUMS]({{sums_url}}). They must match exactly. If they do not, delete the file and download it again.
 
 ## Move to Applications
 

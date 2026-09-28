@@ -44,4 +44,4 @@ Type `/deep_research` in the composer to attach a finished research to your next
 
 **Settings → Deep research** holds the default level, the limits, domain filters, the models of the lead, the workers and the reporter, and when the designed report is built. The table above lists the defaults.
 
-<!-- source: D:lib/swarm_code_web/live/research_live.html.heex:60-215,280-330,390-485, D:lib/swarm_code/research/levels.ex:14-45, D:lib/swarm_code/research.ex:15-47, D:lib/swarm_code/search.ex:144-158, D:lib/swarm_code/engine.ex:1170-1176, D:lib/swarm_code_web/components/chat.ex:90-94, D:lib/swarm_code_web/components/frame.ex:432-440, D:lib/swarm_code_web/live/settings_live.html.heex:211-600 -->
+<!-- source: D:lib/swarm_code_web/live/research_live.html.heex:60-215,280-330,390-485, D:lib/swarm_code/research/levels.ex:14-46, D:lib/swarm_code/research.ex:15-47, D:lib/swarm_code/search.ex:144-158, D:lib/swarm_code/engine.ex:1170-1176, D:lib/swarm_code_web/components/chat.ex:90-94, D:lib/swarm_code_web/components/frame.ex:432-440, D:lib/swarm_code_web/live/settings_live.html.heex:211-600 -->

@@ -1,6 +1,6 @@
 ---
 title: Limits and isolation
-description: Set how many agents run at once, how deep and how long, command timeouts and workflow budgets, isolate sub-agents in their own copy, and shape the agents' shell.
+description: Set how many agents run at once, how deep and how long, timeouts and workflow budgets, isolate sub-agents, and shape the agents' shell.
 ---
 
 Limits keep a runaway swarm from spending forever, and isolation keeps parallel agents from editing the same files at once. Both live in **Settings → Limits**; change the fields and click **Save limits**.

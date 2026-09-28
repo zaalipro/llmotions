@@ -12,12 +12,12 @@ A scheduled task is a prompt {{product}} runs by itself: a nightly dependency ch
 1. Click **Scheduled tasks** in the rail.
 2. Click **New scheduled task** (the **+** by the calendar), or **New task from a description** to have the assistant fill in the form from a sentence.
 3. Fill in the form:
-   - **Name** and **Prompt**: what the task is called and what it should do.
-   - **Kind**: **Chat**, **Swarm** or **Workflow** (then pick the workflow and its arguments).
-   - **Mode**: **Build**, or **Plan** for a read-only plan.
-   - **Project** the task runs in, and optionally a **Model** and **Effort** of its own.
-   - **Schedule**: once, daily, weekly, monthly or cron, with its date, time, days or expression.
-   - A colour, to tell tasks apart in the calendar and the sidebar.
+  - **Name** and **Prompt**: what the task is called and what it should do.
+  - **Kind**: **Chat**, **Swarm** or **Workflow** (then pick the workflow and its arguments).
+  - **Mode**: **Build**, or **Plan** for a read-only plan.
+  - **Project** the task runs in, and optionally a **Model** and **Effort** of its own.
+  - **Schedule**: once, daily, weekly, monthly or cron, with its date, time, days or expression.
+  - A colour, to tell tasks apart in the calendar and the sidebar.
 4. Click **Save task**.
 
 <!-- shot: desktop/scheduled-form.png | the New scheduled task dialog filled in: name "Nightly dependency check", kind Chat, mode Plan, schedule Daily at 02:00, colour teal -->

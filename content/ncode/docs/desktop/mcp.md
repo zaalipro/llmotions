@@ -11,11 +11,11 @@ MCP servers give agents new tools: a database browser, an issue tracker, a desig
 
 1. Open **Settings → MCP servers** and click **Add MCP server**.
 2. Fill in:
-   - **Name**, for example `filesystem`.
-   - **Transport**: **stdio (local process)** or **http (streamable)**.
-   - For stdio: **Command** (for example `npx`), **Arguments (one line, shell-quoted)** and **Environment (KEY=VALUE per line)**.
-   - For http: **URL** and **Headers (Name: value per line)**, for example `Authorization: Bearer …`.
-   - **Scope**: **Global**, or one of your projects.
+  - **Name**, for example `filesystem`.
+  - **Transport**: **stdio (local process)** or **http (streamable)**.
+  - For stdio: **Command** (for example `npx`), **Arguments (one line, shell-quoted)** and **Environment (KEY=VALUE per line)**.
+  - For http: **URL** and **Headers (Name: value per line)**, for example `Authorization: Bearer …`.
+  - **Scope**: **Global**, or one of your projects.
 3. Save. {{product}} starts or connects to the server and lists its tools.
 
 Example: a stdio server that exposes one folder.

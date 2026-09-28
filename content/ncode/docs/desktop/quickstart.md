@@ -10,10 +10,10 @@ This page takes you from a freshly installed app to a first finished task. You n
 1. Open **Settings**: press [[⌘]]+[[,]] or click the gear at the bottom of the narrow bar on the left.
 2. Go to **Providers & models** and click **Add provider**.
 3. Fill in the form:
-   - **Name**: anything you like, for example `anthropic`.
-   - **Kind**: **Anthropic** for Anthropic's API; **OpenAI-compatible** for everything else.
-   - **Base URL**: for Anthropic `https://api.anthropic.com`; for OpenAI `https://api.openai.com/v1`; for another service, the base URL from its documentation, usually ending in `/v1`.
-   - **API key**: paste your key.
+  - **Name**: anything you like, for example `anthropic`.
+  - **Kind**: **Anthropic** for Anthropic's API; **OpenAI-compatible** for everything else.
+  - **Base URL**: for Anthropic `https://api.anthropic.com`; for OpenAI `https://api.openai.com/v1`; for another service, the base URL from its documentation, usually ending in `/v1`.
+  - **API key**: paste your key.
 4. Click **Save provider**.
 5. On your new provider's row, click **Fetch models**. {{product}} asks the endpoint for its model list. If models appear, the key works.
 

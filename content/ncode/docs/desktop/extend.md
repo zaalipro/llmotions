@@ -9,17 +9,17 @@ Three kinds of Markdown files extend what {{product}} does: **custom commands** 
 
 1. Open **Settings → Commands**. (The project it works on is the one picked in **Settings → Memory**.)
 2. Click **New command**. {{product}} creates `new-command.md` from a template, in the project's `{{project_dir}}/commands/` folder (or your global one if no project is picked), and opens the folder in the Finder.
-3. Rename the file to the command you want (`release-notes.md` becomes `/release-notes`) and edit it:
+3. Rename the file to the command you want (`release-notes.md` becomes `/release-notes`) and edit it, for example:
 
-   ```markdown
-   ---
-   description: Draft release notes since a tag
-   mode: plan
-   ---
-   Read `git log $ARGUMENTS..HEAD` and draft release notes grouped by feature, fix and chore.
-   ```
+```markdown
+---
+description: Draft release notes since a tag
+mode: plan
+---
+Read `git log $ARGUMENTS..HEAD` and draft release notes grouped by feature, fix and chore.
+```
 
-4. Type `/` in the composer: the command appears in the list with its description. `/release-notes v1.2.0` runs it with `v1.2.0` in place of `$ARGUMENTS`.
+Then type `/` in the composer: the command appears in the list with its description. `/release-notes v1.2.0` runs it with `v1.2.0` in place of `$ARGUMENTS`.
 
 **Open project commands** and **Open global commands** open the two folders in the Finder. Commit the project folder to share commands with your team.
 

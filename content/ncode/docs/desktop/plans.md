@@ -19,10 +19,10 @@ A finished plan carries three buttons at the foot of its card (also in the side 
 - **✓ Approve** asks one question: who implements it?
   - **Assistant**: one agent, full access, in this chat.
   - **Swarm**: a lead that fans the work out to workers.
-
-  The implementation starts at once with the plan as its instructions: follow the steps in order, do not re-plan, verify the work the way the plan says, and finish with what changed, file by file. The composer switches back to Build.
 - **✎ Revise** lets you write what to change; the Planner produces a new plan as a follow-up.
 - **✕ Decline** keeps the plan on the record and runs nothing.
+
+After **Approve**, the implementation starts at once with the plan as its instructions: follow the steps in order, do not re-plan, verify the work the way the plan says, and finish with what changed, file by file. The composer switches back to Build.
 
 <!-- shot: desktop/plans-gate.png | a finished Planner card with ✓ Approve, ✎ Revise and ✕ Decline at its foot, and the Assistant / Swarm chooser open above Approve -->
 

@@ -27,14 +27,15 @@ The main area shows the selected run as a board of phases and agents, or the sel
 
 ## Running a workflow
 
-- From the library: select a workflow and click **Run ▸**. A form asks for its arguments, with their defaults filled in; click **Run ▸** again.
-- From a conversation: type `/workflow <name>`, with arguments as `key=value`:
+From the library: select a workflow and click **Run ▸**. A form asks for its arguments, with their defaults filled in; click **Run ▸** again.
 
-  ```text
-  /workflow review-changes base=main
-  ```
+From a conversation: type `/workflow <name>`, with arguments as `key=value`:
 
-  Saved workflows also appear in the `/` list under their own name.
+```text
+/workflow review-changes base=main
+```
+
+Saved workflows also appear in the `/` list under their own name.
 
 A workflow run shows as a card in the conversation and in the cockpit. Its agents appear in the agents pane like any others.
 
