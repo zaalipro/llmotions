@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Install · ncode CLI docs</title>
+<meta name="description" content="Install ncode with one line, check it, update it and remove it.">
+<link rel="canonical" href="https://code.llmotions.com/docs/cli/install/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ncode">
+<meta property="og:title" content="Install · ncode CLI docs">
+<meta property="og:description" content="Install ncode with one line, check it, update it and remove it.">
+<meta property="og:url" content="https://code.llmotions.com/docs/cli/install/">
+<meta name="theme-color" content="#0a0a0f">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/assets/brand/ncode-icon.svg?v=e073b97c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap">
+<link rel="stylesheet" href="/assets/docs.css?v=27e54296">
+<script src="/assets/docs.js?v=229f378c" defer></script>
+</head>
+<body class="d" data-product="cli">
+<a class="skip" href="#main">Skip to content</a>
+<header class="d-top"><a class="d-brand" href="/" aria-label="ncode home"><svg class="mark" viewBox="-30 0 520 520" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="36" stroke-linecap="round"><path d="M313.1 41.3 A223.5 223.5 0 1 0 365.1 455.5"/><path d="M131.9 303.9 L124.5 353.9"/><path d="M201.2 265.1 L182.0 393.9"/><path d="M276.8 218.5 L268.2 275.5"/><path d="M254.9 367.5 L247.5 416.5"/><path d="M351.7 173.4 L317.3 404.2"/><path d="M424.7 117.9 L387.3 367.7"/></g><circle cx="259.3" cy="319.4" r="22.5" fill="currentColor"/></svg><span class="d-word">ncode</span></a><span class="d-docs" aria-hidden="true">docs</span><nav class="d-switch" aria-label="Documentation set"><a href="/docs/desktop/">Desktop</a><a href="/docs/cli/" aria-current="true">CLI</a></nav><div class="d-search" data-search="/docs/cli/search.json" hidden><label class="sr" for="d-q">Search the CLI docs</label><input id="d-q" type="search" placeholder="Search CLI docs" autocomplete="off" spellcheck="false" aria-controls="d-hits" aria-expanded="false"><kbd class="d-slash" aria-hidden="true">/</kbd><div class="d-hits" id="d-hits" hidden><ul></ul></div></div><p class="sr" id="d-count" aria-live="polite"></p><nav class="d-links" aria-label="Site"><a href="/docs/">All docs</a><a href="/releases/">Releases</a><a href="/#download">Download</a></nav></header>
+<div class="d-shell"><nav class="d-side" aria-label="CLI docs"><div class="d-group"><p class="d-group-h">Get started</p><ul aria-label="Get started"><li><a href="/docs/cli/">Overview</a></li><li><a href="/docs/cli/install/" aria-current="page">Install</a></li></ul></div><div class="d-group"><p class="d-group-h">Reference</p><ul aria-label="Reference"><li><a href="/docs/cli/keys/">Keyboard reference</a></li></ul></div></nav><details class="d-menu"><summary>CLI docs <span>Install</span></summary><nav aria-label="CLI docs, menu"><div class="d-group"><p class="d-group-h">Get started</p><ul aria-label="Get started"><li><a href="/docs/cli/">Overview</a></li><li><a href="/docs/cli/install/" aria-current="page">Install</a></li></ul></div><div class="d-group"><p class="d-group-h">Reference</p><ul aria-label="Reference"><li><a href="/docs/cli/keys/">Keyboard reference</a></li></ul></div></nav></details><main id="main" class="d-main" tabindex="-1"><article class="d-article"><p class="d-crumb"><a href="/docs/cli/">ncode CLI</a> <span aria-hidden="true">/</span> Get started</p><h1>Install</h1>
+<p>Install with one line. It needs macOS 15 or later on Apple silicon (arm64).</p>
+<h2 id="install">Install<a class="hash" href="#install" aria-label="Link to Install">#</a></h2>
+<div class="code"><div class="code-bar"><span class="code-lang">sh</span><button type="button" class="copy" hidden>Copy</button></div><pre><code class="language-sh">curl -fsSL https://code.llmotions.com/install.sh | sh</code></pre></div>
+<div class="callout callout-note" role="note"><p><strong class="callout-label">Note</strong> Nothing is installed system-wide.</p></div>
+<h2 id="check-the-install">Check the install<a class="hash" href="#check-the-install" aria-label="Link to Check the install">#</a></h2>
+<div class="tbl" role="region" tabindex="0" aria-label="Table: Command, Prints"><table><thead><tr><th>Command</th><th>Prints</th></tr></thead><tbody><tr><td><code>ncode --version</code></td><td><code>ncode 0.1.0</code></td></tr><tr><td><code>a | b</code></td><td>a pipe inside code</td></tr></tbody></table></div>
+<p>Press <kbd>Ctrl</kbd>+<kbd>C</kbd> twice to quit. This is <strong>bold</strong>, this is <em>italic</em>, and a literal {{cmd}}.</p>
+<div class="term"><pre>╭─ ncode ─────────╮
+│ ready           │
+╰─────────────────╯</pre></div>
+<h2 id="uninstall">Uninstall<a class="hash" href="#uninstall" aria-label="Link to Uninstall">#</a></h2>
+<ol><li><p>Run the uninstaller:</p><div class="code"><div class="code-bar"><span class="code-lang">sh</span><button type="button" class="copy" hidden>Copy</button></div><pre><code class="language-sh">curl -fsSL https://code.llmotions.com/install.sh | sh -s -- --uninstall</code></pre></div></li><li>Keep or remove <code>~/Library/Application Support/SwarmCode</code>.</li></ol>
+<h2 id="uninstall-2">Uninstall<a class="hash" href="#uninstall-2" aria-label="Link to Uninstall">#</a></h2>
+<p>The second heading with the same text gets a numbered id.</p>
+<h3 id="approval-modes">Approval modes<a class="hash" href="#approval-modes" aria-label="Link to Approval modes">#</a></h3>
+<p>Three modes per project: read-only, auto and full access. A dangerous command always asks.</p>
+<nav class="d-pager" aria-label="Previous and next page"><a class="d-prev" rel="prev" href="/docs/cli/"><span>Previous</span>Overview</a><a class="d-next" rel="next" href="/docs/cli/keys/"><span>Next</span>Keyboard reference</a></nav></article></main><aside class="d-toc" aria-labelledby="d-toc-h"><p id="d-toc-h">On this page</p><ul><li><a href="#install">Install</a></li><li><a href="#check-the-install">Check the install</a></li><li><a href="#uninstall">Uninstall</a></li><li><a href="#uninstall-2">Uninstall</a><ul><li><a href="#approval-modes">Approval modes</a></li></ul></li></ul></aside></div>
+<footer class="d-foot"><div class="d-foot-in"><p><a class="d-foot-brand" href="/"><svg class="mark" viewBox="-30 0 520 520" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="36" stroke-linecap="round"><path d="M313.1 41.3 A223.5 223.5 0 1 0 365.1 455.5"/><path d="M131.9 303.9 L124.5 353.9"/><path d="M201.2 265.1 L182.0 393.9"/><path d="M276.8 218.5 L268.2 275.5"/><path d="M254.9 367.5 L247.5 416.5"/><path d="M351.7 173.4 L317.3 404.2"/><path d="M424.7 117.9 L387.3 367.7"/></g><circle cx="259.3" cy="319.4" r="22.5" fill="currentColor"/></svg><span>ncode</span></a> 0.1.0 · developer preview</p><p class="d-foot-links"><a href="/docs/">Docs</a><a href="/releases/">Releases</a><a href="https://github.com/zaalipro/swarm-code-cli">CLI source</a><a href="https://llmotions.com/">LLMotions</a></p></div></footer>
+</body>
+</html>
