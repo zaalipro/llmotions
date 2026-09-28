@@ -54,7 +54,7 @@ Type `/` at the start of the message to open the command list, then keep typing 
 | `/create-workflow [what it should do]` | write a new workflow with the assistant |
 | `/ultra` | switch Ultra mode on or off |
 | `/deep_research [id]` | attach a finished deep research to this message ([Deep research](/docs/desktop/research/)) |
-| `/profile <name>` | switch this conversation to a profile from the project file ([Instructions, memory and project config](/docs/desktop/instructions/)) |
+| `/profile <name>` | switch this conversation to a profile from the project file ([Instructions, memory and project config](/docs/desktop/instructions/)); type it in full, it is not in the list |
 
 Saved workflows and your own commands appear in the same list. If two share a name, a built-in command wins over a workflow, and a workflow over a custom command. See [Commands, agents and skills](/docs/desktop/extend/).
 
