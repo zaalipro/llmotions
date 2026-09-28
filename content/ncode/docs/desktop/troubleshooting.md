@@ -45,7 +45,7 @@ Closing the window only hides it; your runs keep going. Click the {{product}} ic
 
 ## `{{cmd}}` refuses to start
 
-The terminal app refuses while the desktop app is running under your account, and exits with status 3. Quit the app first. See [Using with the CLI](/docs/desktop/cli/).
+The terminal app refuses while the desktop app is running under your account, and exits with status 3. Quit the app first. See [Using with the CLI](/docs/desktop/cli/) (and [the CLI's page on it](/docs/cli/desktop/)).
 
 ## The database is large
 

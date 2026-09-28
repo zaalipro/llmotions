@@ -12,7 +12,7 @@ description: Update ncode by replacing the app, move from the earlier app name, 
 3. Drag the new {{product}} into Applications and choose **Replace**.
 4. Open it. If macOS stops it again, allow it as in [First launch](/docs/desktop/install/#first-launch).
 
-Your conversations, projects, settings and keys live outside the app, so they stay. A new version may upgrade the database the first time it opens; keep the `{{cmd}}` terminal app on the same version (see [Using with the CLI](/docs/desktop/cli/)).
+Your conversations, projects, settings and keys live outside the app, so they stay. A new version may upgrade the database the first time it opens; keep the `{{cmd}}` terminal app on the same version (see [Using with the CLI](/docs/desktop/cli/) and [the CLI's page on it](/docs/cli/desktop/)).
 
 The versions and their notes are listed on the [releases page](/releases/).
 
