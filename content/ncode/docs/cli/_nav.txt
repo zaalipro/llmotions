@@ -1,0 +1,42 @@
+# Get started
+overview | Overview
+install | Install
+quickstart | Quickstart
+
+# Using ncode
+session | The session screen
+composer | Composer: send, steer, queue
+approvals | Approvals and trust
+questions | Questions from agents
+agents | Agents: panel, hints, overlay
+modes | Modes and run types
+commands | Slash commands
+keys | Keyboard reference
+
+# Automation
+headless | Headless runs
+plain | Plain mode (experimental)
+config | ncode config
+
+# Features
+workflows | Workflows
+research | Deep research
+scheduled | Scheduled tasks
+rewind | Rewind and changes
+project | Project instructions, memory and config
+mcp | MCP servers
+search | Web search
+lsp | Language servers
+
+# Configure
+settings | Settings
+settings-reference | Settings reference
+providers | Providers and models
+terminal | Terminal, themes and mouse
+env | Environment variables
+
+# Help
+desktop | Works with the desktop app
+privacy | Data and privacy
+storage | Storage
+troubleshooting | Troubleshooting
