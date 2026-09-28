@@ -35,4 +35,4 @@ attaches finished research number 12 to your next message, so the assistant can 
 
 The settings above live in Settings → Deep research, and every key is in the [settings reference](/docs/cli/settings-reference/).
 
-<!-- source: C:apps/swarm_code_core/lib/swarm_code/commands.ex:32, C:README.md:223-227, C:apps/swarm_code_cli/lib/swarm_code_cli/ui/library.ex:282,436, C:apps/swarm_code_cli/lib/swarm_code_cli/ui/projector/dialog.ex:878-902, C:apps/swarm_code_daemon/lib/swarm_code/domain/feature_catalog.ex:158-209, C:docs/settings.md:45-64, C:README.md:237-242, D:lib/swarm_code/research.ex:17,34-47 -->
+<!-- source: C:apps/swarm_code_core/lib/swarm_code/commands.ex:32, C:README.md:223-227, C:apps/swarm_code_cli/lib/swarm_code_cli/ui/library.ex:282,436, C:apps/swarm_code_cli/lib/swarm_code_cli/ui/projector/dialog.ex:878-902, C:apps/swarm_code_daemon/lib/swarm_code/domain/feature_catalog.ex:158-209, C:docs/settings.md:45-64, C:README.md:237-242, D:lib/swarm_code/research.ex:17,34-47, D:lib/swarm_code/search.ex:145-151,236-247 -->
