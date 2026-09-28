@@ -816,7 +816,7 @@ def topbar(site, product=None):
             '<div class="d-search" data-search="/docs/%(p)s/search.json" hidden>'
             '<label class="sr" for="d-q">Search the %(n)s docs</label>'
             '<input id="d-q" type="search" placeholder="Search %(n)s docs" autocomplete="off" '
-            'spellcheck="false" aria-controls="d-hits" aria-expanded="false">'
+            'spellcheck="false" aria-controls="d-hits">'
             '<kbd class="d-slash" aria-hidden="true">/</kbd>'
             '<div class="d-hits" id="d-hits" hidden><ul></ul></div></div>'
             '<p class="sr" id="d-count" aria-live="polite"></p>'

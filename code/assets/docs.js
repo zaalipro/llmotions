@@ -53,9 +53,9 @@
       return loading;
     };
 
+    // a searchbox has no aria-expanded; the #d-count live region announces the results
     var open = function (on) {
       panel.hidden = !on;
-      input.setAttribute("aria-expanded", on ? "true" : "false");
     };
 
     var score = function (terms, text, weight) {
