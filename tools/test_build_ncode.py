@@ -309,6 +309,11 @@ class Partials(unittest.TestCase):
         self.assertIn("### Rail\n", out)
         self.assertFalse([l for l in out.split("\n") if re.match(r"^#{1,2} ", l)])
 
+    def test_convert_reference_names_the_project_folder(self):
+        out = B.convert_reference("# S\n\nRead `.swarm_code/config.json`; not ~/.swarm_code or swarm_code.\n")
+        self.assertIn("`{{project_dir}}/config.json`", out)
+        self.assertIn("~/.swarm_code or swarm_code.", out)
+
     def test_import_cli_writes_both_partials(self):
         tree = Tree(self)
         code, log = tree.run("--import-cli", str(FX / "cli"), "--ref", "abcdef1")
