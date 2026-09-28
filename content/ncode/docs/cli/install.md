@@ -3,6 +3,8 @@ title: Install
 description: Install the ncode command with one line, check it, put it on your PATH, update it, remove it, or build it from source.
 ---
 
+> **Note** This is a preview of the docs. The download and the one-line installer go live with the 0.1.0 release; until then these steps describe how they will work.
+
 The `{{cmd}}` command installs into your home folder with one line. It needs no administrator password and touches nothing outside its own folders.
 
 ## One-line install

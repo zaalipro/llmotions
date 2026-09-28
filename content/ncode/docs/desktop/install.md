@@ -3,6 +3,8 @@ title: Install on macOS
 description: Download the ncode disk image, check it, move the app to Applications and open it for the first time on macOS 15 or later.
 ---
 
+> **Note** This is a preview of the docs. The download and the one-line installer go live with the 0.1.0 release; until then these steps describe how they will work.
+
 {{product}} {{version}} is a developer preview. It runs on a Mac with {{arch}} and macOS {{min_macos}} or later. Installing takes a few minutes; the only unusual step is the first launch, because the app is not yet notarized by Apple.
 
 ## Download

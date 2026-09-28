@@ -3,6 +3,8 @@ title: Quickstart
 description: From install to a first answer: add your own provider key, open a project, trust it, send a message, approve a command, quit and come back.
 ---
 
+> **Note** This is a preview of the docs. The download and the one-line installer go live with the 0.1.0 release; until then these steps describe how they will work.
+
 This page takes you from a fresh install to a first finished task in a few minutes. You need `{{cmd}}` [installed](/docs/cli/install/) and a key for a model provider: Anthropic, OpenAI, OpenRouter, DeepSeek, or any other OpenAI-compatible endpoint. A local server such as Ollama or LM Studio works without a key.
 
 ## Add a model provider

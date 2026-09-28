@@ -295,3 +295,8 @@ nav.nc-nav { padding: 14px 40px; gap: 28px; }
     .get { padding: 22px 18px; }
     .tty pre { font-size: 10.5px; }
 }
+
+/* preview: downloads are not published yet (remove with the 0.1.0 release) */
+.get-soon { display: inline-block; margin-left: 8px; padding: 2px 8px; border: 1px solid var(--ember); border-radius: 999px; color: var(--ember); font: 600 0.72rem/1.4 "Inter", sans-serif; letter-spacing: 0.02em; vertical-align: middle; }
+.nc-btn.is-soon, .nc-btn.is-soon:hover { opacity: 0.55; cursor: default; }
+.get-later { color: var(--faint, #8a8aa3); font-size: 0.8rem; }

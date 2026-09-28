@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap">
 <link rel="stylesheet" href="/assets/llm.css?v=4c90c21c">
-<link rel="stylesheet" href="/assets/ncode.css?v=98e04c64">
+<link rel="stylesheet" href="/assets/ncode.css?v=9b1bc822">
 <script src="/assets/ncode.js?v=200b28f6" defer></script>
 </head>
 <body class="nc">
@@ -275,21 +275,22 @@
 <section id="get" class="nc-sec nc-get" aria-labelledby="get-h">
     <header class="nc-head">
         <h2 id="get-h">Get ncode</h2>
-        <p>Version 0.1.0 is a developer preview for macOS 15 or later on Apple silicon. Take either face, or both.</p>
+        <p>Version 0.1.0 is a developer preview for macOS 15 or later on Apple silicon. Take either face, or both. The downloads open with the 0.1.0 release; the guides are ready now.</p>
     </header>
     <div class="get-grid">
         <div id="download" class="get get-app">
-            <h3>The Mac app</h3>
-            <p><a class="nc-btn nc-btn-ember" href="/downloads/ncode-0.1.0.dmg">Download ncode-0.1.0.dmg</a></p>
+            <h3>The Mac app <span class="get-soon">Coming soon</span></h3>
+            <!-- preview: restore <a class="nc-btn nc-btn-ember" href="/downloads/ncode-0.1.0.dmg">Download ncode-0.1.0.dmg</a> at the release -->
+            <p><span class="nc-btn nc-btn-ember is-soon" aria-disabled="true">ncode-0.1.0.dmg · coming soon</span></p>
             <dl class="get-meta">
                 <div><dt>Needs</dt><dd>macOS 15 or later, Apple silicon</dd></div>
                 <!-- lane F: stamp the DMG's SHA-256 here when the release is built -->
-                <div><dt>SHA-256</dt><dd><code class="get-sha" id="dmg-sha">TBD</code> <a href="/downloads/SHA256SUMS">SHA256SUMS</a></dd></div>
+                <div><dt>SHA-256</dt><dd><code class="get-sha" id="dmg-sha">TBD</code> <span class="get-later">published with the download</span></dd></div>
             </dl>
             <p class="get-note">This preview is not notarized, so macOS asks you to confirm the first launch in System Settings. <a href="/docs/desktop/install/#first-launch">How to open it</a></p>
         </div>
         <div id="install" class="get get-cli">
-            <h3>The CLI</h3>
+            <h3>The CLI <span class="get-soon">Coming soon</span></h3>
             <div class="get-line">
                 <code id="install-line">curl -fsSL https://code.llmotions.com/install.sh | sh</code>
                 <button type="button" class="nc-copy" data-copy="install-line" hidden>Copy</button>
@@ -298,7 +299,7 @@
                 <div><dt>Needs</dt><dd>macOS 15 or later, Apple silicon</dd></div>
                 <div><dt>Update</dt><dd>run the same line again</dd></div>
             </dl>
-            <p class="get-note">Then open a project with <code>cd your-project &amp;&amp; ncode</code>. <a href="/docs/cli/install/">Install guide</a></p>
+            <p class="get-note">The installer goes live with the 0.1.0 release. Then open a project with <code>cd your-project &amp;&amp; ncode</code>. <a href="/docs/cli/install/">Install guide</a></p>
         </div>
     </div>
     <p class="get-key">Either way, the first thing to do is add your key: <b>Settings → Providers &amp; models</b> in the app (<kbd>⌘</kbd>+<kbd>,</kbd>), or <code>ncode settings providers</code> in the terminal.</p>
