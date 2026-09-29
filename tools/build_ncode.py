@@ -342,6 +342,40 @@ def check_url(url, where, rep):
     rep.error(where, "link %r must be root-absolute (`/docs/…/`) or a full URL" % url)
 
 
+SHOTS_PREFIX = "/assets/shots/"
+
+
+def image_size(data):
+    """(width, height) in pixels of a PNG or WebP (lossy, lossless or extended), else None."""
+    if data[:8] == b"\x89PNG\r\n\x1a\n" and data[12:16] == b"IHDR":
+        return int.from_bytes(data[16:20], "big"), int.from_bytes(data[20:24], "big")
+    if data[:4] == b"RIFF" and data[8:12] == b"WEBP":
+        chunk = data[12:16]
+        if chunk == b"VP8 " and data[23:26] == b"\x9d\x01\x2a":
+            return (int.from_bytes(data[26:28], "little") & 0x3FFF,
+                    int.from_bytes(data[28:30], "little") & 0x3FFF)
+        if chunk == b"VP8L" and data[20:21] == b"\x2f":
+            bits = int.from_bytes(data[21:25], "little")
+            return (bits & 0x3FFF) + 1, ((bits >> 14) & 0x3FFF) + 1
+        if chunk == b"VP8X":
+            return int.from_bytes(data[24:27], "little") + 1, int.from_bytes(data[27:30], "little") + 1
+    return None
+
+
+def figure_img(url, alt, images):
+    """A block image. Its width/height (so the page does not jump while it loads) come from the
+    file; screenshots under /assets/shots/ are 2x captures, so they declare half their pixels."""
+    size = images(url) if images else None
+    dims = ""
+    if size:
+        w, h = size
+        if url.startswith(SHOTS_PREFIX):
+            w, h = max(1, round(w / 2)), max(1, round(h / 2))
+        dims = ' width="%d" height="%d"' % (w, h)
+    return ('<figure><img src="%s" alt="%s"%s loading="lazy" decoding="async"></figure>'
+            % (attr(url), attr(html.escape(alt, quote=False)), dims))
+
+
 def render_inline(text, where, rep):
     codes = []
 
@@ -508,8 +542,8 @@ def render_code(lang, body, where, rep):
             % (html.escape(lang or "text"), ' class="language-%s"' % attr(lang) if lang else "", code))
 
 
-def render_markdown(items, rep, draft=False, doc=None):
-    """[(kind, text, where)] -> Doc."""
+def render_markdown(items, rep, draft=False, doc=None, images=None):
+    """[(kind, text, where)] -> Doc. images: url -> (width, height) or None, for block images."""
     doc = doc or Doc()
     i = 0
     para = []
@@ -627,8 +661,7 @@ def render_markdown(items, rep, draft=False, doc=None):
         if image:
             flush()
             check_url(image.group(2), where, rep)
-            doc.parts.append('<figure><img src="%s" alt="%s" loading="lazy"></figure>'
-                             % (attr(image.group(2)), attr(html.escape(image.group(1), quote=False))))
+            doc.parts.append(figure_img(image.group(2), image.group(1), images))
             i += 1
             continue
         if LIST_RE.match(text):
@@ -1270,6 +1303,12 @@ def build(content, site, assets_src, draft, rep):
         return "/%s?v=%s" % (relpath, sha8(data))
 
     site_ctx = Site(names, stamp, draft)
+
+    def images(url):
+        path = url.split("#", 1)[0].split("?", 1)[0]
+        data = files.get(path.lstrip("/"), hand.get(path.lstrip("/"))) if path.startswith("/") else None
+        return image_size(data) if data else None
+
     cache = {}
     sets = {}
     all_pages = []
@@ -1307,7 +1346,7 @@ def build(content, site, assets_src, draft, rep):
             denylist_scan(label, text.split("\n"), 1, rep, allow_ok=False)
             meta, body, first = split_front_matter(text, label, rep)
             src = expand(body, label, first, content, cache, rep)
-            doc = render_markdown(preprocess(src, names, rep), rep, draft)
+            doc = render_markdown(preprocess(src, names, rep), rep, draft, images=images)
             title = substitute_names(meta.get("title", slug), names, label, rep)
             description = substitute_names(meta.get("description", ""), names, label, rep)
             if len(description) > 160:

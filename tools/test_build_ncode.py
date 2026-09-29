@@ -75,6 +75,16 @@ def errors_of(rep, needle):
     return [e for e in rep.errors if needle in e]
 
 
+def png_header(w, h):
+    return b"\x89PNG\r\n\x1a\n\0\0\0\x0dIHDR" + w.to_bytes(4, "big") + h.to_bytes(4, "big") + b"\x08\x02\0\0\0"
+
+
+def webp_vp8l(w, h):
+    """The header of a lossless WebP: enough for image_size, not a decodable image."""
+    bits = (w - 1) | ((h - 1) << 14)
+    return b"RIFF\x1a\0\0\0WEBPVP8L\x0d\0\0\0\x2f" + bits.to_bytes(4, "little") + b"\0" * 9
+
+
 class GoldenPage(unittest.TestCase):
     def test_cli_install_page_matches_the_golden_file(self):
         rep = B.Report()
@@ -159,6 +169,21 @@ class Links(unittest.TestCase):
         index.write_text(index.read_text().replace("#first-launch", "#first-run"), encoding="utf-8")
         rep = tree.check()
         self.assertTrue(errors_of(rep, "no id 'first-run'"))
+
+    def test_page_image_gets_its_size_from_the_site_and_a_missing_one_is_broken(self):
+        body = "Intro.\n\n![The window](/assets/shots/desktop/w.webp)\n\n![Gone](/assets/shots/desktop/gone.webp)"
+        tree = Tree(self, {"content/docs/desktop/overview.md": page("The desktop app", body)})
+        shots = tree.site / "assets/shots/desktop"
+        shots.mkdir(parents=True)
+        (shots / "w.webp").write_bytes(webp_vp8l(1760, 1100))
+        rep = B.Report()
+        files, origin, hand, _ = B.build(tree.content, tree.site, tree.assets, False, rep)
+        page_html = files["docs/desktop/index.html"].decode()
+        self.assertIn('<img src="/assets/shots/desktop/w.webp" alt="The window" width="880" height="550" '
+                      'loading="lazy" decoding="async">', page_html)
+        B.check_output(files, hand, rep, origin)
+        self.assertTrue(errors_of(rep, "broken link '/assets/shots/desktop/gone.webp'"))
+        self.assertFalse(errors_of(rep, "w.webp"))
 
     def test_downloads_are_not_built_and_not_checked(self):
         self.assertFalse(errors_of(Tree(self).check(), "/downloads/"))
@@ -569,6 +594,28 @@ class Markdown(unittest.TestCase):
         html, _, rep = self.render("A **b** *c* `d <e>` [[⌘K]] [f](/docs/cli/) ![g](/assets/shots/cli/x.png) a * b")
         self.assertIn("A <strong>b</strong> <em>c</em> <code>d &lt;e&gt;</code> <kbd>⌘K</kbd> "
                       '<a href="/docs/cli/">f</a> <img src="/assets/shots/cli/x.png" alt="g" loading="lazy"> a * b', html)
+
+    def test_block_image_declares_its_size(self):
+        rep = B.Report()
+        src = B.Source()
+        src.extend(["![A shot](/assets/shots/desktop/x.webp)", "", "![Logo](/assets/brand/y.png)",
+                    "", "![Gone](/assets/shots/desktop/none.webp)"], "t.md", 1)
+        sizes = {"/assets/shots/desktop/x.webp": (1760, 1100), "/assets/brand/y.png": (40, 30)}
+        doc = B.render_markdown(B.preprocess(src, {}, rep), rep, images=sizes.get)
+        html = "\n".join(doc.parts)
+        self.assertIn('<figure><img src="/assets/shots/desktop/x.webp" alt="A shot" width="880" height="550" '
+                      'loading="lazy" decoding="async"></figure>', html, "shots are 2x: half their pixels")
+        self.assertIn('alt="Logo" width="40" height="30" loading="lazy"', html)
+        self.assertIn('<img src="/assets/shots/desktop/none.webp" alt="Gone" loading="lazy" decoding="async">', html)
+
+    def test_image_size_reads_png_and_webp_headers(self):
+        self.assertEqual(B.image_size(png_header(1504, 923)), (1504, 923))
+        self.assertEqual(B.image_size(webp_vp8l(1760, 1100)), (1760, 1100))
+        self.assertEqual(B.image_size(b"RIFF\0\0\0\0WEBPVP8X\x0a\0\0\0\0\0\0\0"
+                                      + (1759).to_bytes(3, "little") + (1099).to_bytes(3, "little")), (1760, 1100))
+        self.assertEqual(B.image_size(b"RIFF\0\0\0\0WEBPVP8 \0\0\0\0\0\0\0\x9d\x01\x2a"
+                                      + (880).to_bytes(2, "little") + (550).to_bytes(2, "little")), (880, 550))
+        self.assertIsNone(B.image_size(b"GIF89a"))
 
     def test_raw_html_is_escaped_and_warned(self):
         html, _, rep = self.render("Hi <script>alert(1)</script>")
