@@ -300,7 +300,7 @@ nav.nc-nav { padding: 14px 40px; gap: 28px; }
 
 .sc-fig { margin: 0; }
 .sc-stage {
-    position: relative; display: block; aspect-ratio: 16 / 10; overflow: hidden; border: 1px solid var(--line-2); border-radius: 16px;
+    position: relative; display: block; aspect-ratio: 3 / 2; overflow: hidden; border: 1px solid var(--line-2); border-radius: 16px;
     background:
         radial-gradient(90% 70% at 50% 118%, color-mix(in srgb, var(--lane) 16%, transparent), transparent 70%),
         radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1.3px) 0 0 / 18px 18px,
@@ -313,7 +313,6 @@ nav.nc-nav { padding: 14px 40px; gap: 28px; }
     position: absolute; inset: 0; margin: auto; width: auto; height: auto; max-width: calc(100% - 48px); max-height: calc(100% - 48px);
     border-radius: 10px; background: #191919; box-shadow: 0 0 0 1px var(--line), 0 24px 60px -24px rgba(0, 0, 0, 0.9);
 }
-.sc-full img { max-width: 100%; max-height: 100%; border-radius: 0; box-shadow: none; }
 .sc-fig figcaption {
     display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 28px; row-gap: 4px;
     min-height: 5em; margin-top: 18px; font-size: 0.93rem; line-height: 1.55;
@@ -354,7 +353,6 @@ html:has(.nc-zoom[open]) { overflow: hidden; }
     .sc-stage { border-radius: 12px; }
     .nc .sc-stage:focus-visible { border-radius: 12px; }
     .sc-stage img { max-width: calc(100% - 20px); max-height: calc(100% - 20px); border-radius: 6px; }
-    .sc-full img { max-width: 100%; max-height: 100%; border-radius: 0; }
     .sc-fig figcaption { grid-template-columns: minmax(0, 1fr); font-size: 0.9rem; }
     .nc main .sc-doc { grid-column: 1; grid-row: auto; }
     .zm-bar { flex-wrap: wrap; row-gap: 8px; }

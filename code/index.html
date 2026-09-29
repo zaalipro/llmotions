@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap">
 <link rel="stylesheet" href="/assets/llm.css?v=4c90c21c">
-<link rel="stylesheet" href="/assets/ncode.css?v=a1cf2660">
+<link rel="stylesheet" href="/assets/ncode.css?v=cef876a0">
 <script src="/assets/ncode.js?v=b06931d3" defer></script>
 </head>
 <body class="nc">
@@ -185,7 +185,7 @@
             <button type="button" role="tab" id="sc-t-goal" aria-controls="sc-goal" aria-selected="false" style="--lane: var(--violet)"><span class="sc-g" aria-hidden="true">◎</span><b>Goal</b><span class="sc-cmd">/goal</span><i aria-hidden="true"></i></button>
             <button type="button" role="tab" id="sc-t-ultra" aria-controls="sc-ultra" aria-selected="false" style="--lane: var(--pink)"><span class="sc-g" aria-hidden="true">⧉</span><b>Ultra</b><span class="sc-cmd">/ultra</span><i aria-hidden="true"></i></button>
             <button type="button" role="tab" id="sc-t-workflow" aria-controls="sc-workflow" aria-selected="false" style="--lane: var(--sky)"><span class="sc-g" aria-hidden="true">⧉</span><b>Workflow</b><span class="sc-cmd">/workflow</span><i aria-hidden="true"></i></button>
-            <button type="button" role="tab" id="sc-t-research" aria-controls="sc-research" aria-selected="false" style="--lane: var(--cream)"><span class="sc-g" aria-hidden="true">⌕</span><b>Research</b><i aria-hidden="true"></i></button>
+            <button type="button" role="tab" id="sc-t-research" aria-controls="sc-research" aria-selected="false" style="--lane: var(--cream)"><span class="sc-g" aria-hidden="true">∴</span><b>Research</b><i aria-hidden="true"></i></button>
             <button type="button" role="tab" id="sc-t-approvals" aria-controls="sc-approvals" aria-selected="false" style="--lane: var(--gold)"><span class="sc-g" aria-hidden="true">?</span><b>Approvals</b><i aria-hidden="true"></i></button>
             <button type="button" role="tab" id="sc-t-changes" aria-controls="sc-changes" aria-selected="false" style="--lane: var(--ok)"><span class="sc-g" aria-hidden="true">±</span><b>Changes</b><span class="sc-cmd">/rewind</span><i aria-hidden="true"></i></button>
         </div>
@@ -214,28 +214,28 @@
             <div class="sc-panel" id="sc-goal" style="--lane: var(--violet)">
                 <h3 class="sc-h"><span class="sc-g" aria-hidden="true">◎</span> Goal</h3>
                 <figure class="sc-fig">
-                    <a class="sc-stage sc-full" href="/assets/shots/desktop/goal.webp" data-zoom="1760"><img src="/assets/shots/desktop/goal.webp" width="880" height="550" loading="lazy" decoding="async" alt="The full window after a goal run: the purple goal badge and its text, done after 2 minutes 5 seconds and 24 ops, the assistant's report of doctests added to all 7 public functions with 19 tests passed and 0 failures, two changed files, and the agents pane with the Goal above the Assistant marked done."></a>
+                    <a class="sc-stage" href="/assets/shots/desktop/goal-stage.webp" data-zoom="1640"><img src="/assets/shots/desktop/goal-stage.webp" width="820" height="546" loading="lazy" decoding="async" alt="A finished goal run: the purple goal badge and its text, done after 2 minutes 5 seconds and 24 ops, the assistant's report of doctests added to all 7 public functions with 19 tests passed and 0 failures, the two changed files, $0.3010 spent, and the agents pane with the Goal above the Assistant, marked done."></a>
                     <figcaption><span class="sc-now">The goal: a doctest on every public function in Ailogic.Core.Pagination and a passing test run. One turn met it in 2m 05s, 19 passed and 0 failures.</span> <span class="sc-does">Goal mode, or <code>/goal</code>, sets something the conversation keeps working towards across turns.</span> <a class="sc-doc" href="/docs/desktop/composer/#goals">Goals in the composer guide</a></figcaption>
                 </figure>
             </div>
             <div class="sc-panel" id="sc-ultra" style="--lane: var(--pink)">
                 <h3 class="sc-h"><span class="sc-g" aria-hidden="true">⧉</span> Ultra</h3>
                 <figure class="sc-fig">
-                    <a class="sc-stage sc-full" href="/assets/shots/desktop/ultra.webp" data-zoom="1760"><img src="/assets/shots/desktop/ultra.webp" width="880" height="550" loading="lazy" decoding="async" alt="The full window in Ultra mode: a request to fan a review out as a workflow, the assistant's reply that it launched review-changes-3 with the phases Review, Verify and Report, the running review-changes-3 card, and the agents pane with its Review panel of three agents, one done and two running."></a>
+                    <a class="sc-stage" href="/assets/shots/desktop/ultra-stage.webp" data-zoom="1640"><img src="/assets/shots/desktop/ultra-stage.webp" width="820" height="546" loading="lazy" decoding="async" alt="An Ultra-mode conversation: the finished review-changes-2 card, a request to fan the review out as a workflow, the assistant's reply that it launched review-changes-3 with the phases Review, Verify and Report, the running review-changes-3 card, the composer with the Ultra mode pill, and the agents pane with the Review panel of three agents, one done and two running, and Verify and Report pending."></a>
                     <figcaption><span class="sc-now">Asked to fan a review out, the assistant launched the saved review-changes workflow with three lenses; its Review panel is running, one agent done.</span> <span class="sc-does">In Ultra mode the assistant takes on big requests by writing and running workflows itself, and reports back when they finish.</span> <a class="sc-doc" href="/docs/desktop/workflows/#ultra-mode">Ultra mode guide</a></figcaption>
                 </figure>
             </div>
             <div class="sc-panel" id="sc-workflow" style="--lane: var(--sky)">
                 <h3 class="sc-h"><span class="sc-g" aria-hidden="true">⧉</span> Workflow</h3>
                 <figure class="sc-fig">
-                    <a class="sc-stage" href="/assets/shots/desktop/workflows-cockpit.webp" data-zoom="1760"><img src="/assets/shots/desktop/workflows-cockpit.webp" width="880" height="318" loading="lazy" decoding="async" alt="The Workflows cockpit: counters Live 1, Need you 0, Week 3 and Spend $1.69, the library, three runs of review-changes, and the live run's pipeline with a Review panel of three agents, one done and two running, and Verify and Report pending."></a>
-                    <figcaption><span class="sc-now">The Workflows cockpit: one run live in its Review phase, an earlier run done, and $1.69 spent on workflows this month.</span> <span class="sc-does">A workflow runs agents in a fixed order written in advance, such as review, verify each finding, then report, so it runs the same way every time.</span> <a class="sc-doc" href="/docs/desktop/workflows/">Workflows guide</a></figcaption>
+                    <a class="sc-stage" href="/assets/shots/desktop/workflows-stage.webp" data-zoom="1760"><img src="/assets/shots/desktop/workflows-stage.webp" width="880" height="428" loading="lazy" decoding="async" alt="The Workflows page: three runs of review-changes, the live one in Review, one done and one stopped, and the live run's pipeline: running, $0.7322 so far, a Review panel of three agents for correctness, security and maintainability, one done and two running, then Verify and Report pending."></a>
+                    <figcaption><span class="sc-now">review-changes-3 is in its Review phase, one agent each for correctness, security and maintainability, one done so far; Verify and Report come next.</span> <span class="sc-does">A workflow runs agents in a fixed order written in advance, such as review, verify each finding, then report, so it runs the same way every time.</span> <a class="sc-doc" href="/docs/desktop/workflows/">Workflows guide</a></figcaption>
                 </figure>
             </div>
             <div class="sc-panel" id="sc-research" style="--lane: var(--cream)">
-                <h3 class="sc-h"><span class="sc-g" aria-hidden="true">⌕</span> Deep research</h3>
+                <h3 class="sc-h"><span class="sc-g" aria-hidden="true">∴</span> Deep research</h3>
                 <figure class="sc-fig">
-                    <a class="sc-stage sc-full" href="/assets/shots/desktop/research-running.webp" data-zoom="1760"><img src="/assets/shots/desktop/research-running.webp" width="880" height="550" loading="lazy" decoding="async" alt="The Deep research page mid-run at level Medium: the question about Elixir rate-limiting libraries and how it was read, a timeline with round 1's three notes done and round 2's three agents working, and counters of 19 sources, 811.0k tokens and $1.4794."></a>
+                    <a class="sc-stage" href="/assets/shots/desktop/research-stage.webp" data-zoom="1640"><img src="/assets/shots/desktop/research-stage.webp" width="820" height="546" loading="lazy" decoding="async" alt="The Deep research page mid-run at level Medium: the question about Elixir rate-limiting libraries and how it was read, a timeline with round 1's three notes done and round 2's three agents working, the counters of 19 sources, 811.0k tokens and $1.4794, and the banner Round 2 of 2, 0 of 3 agents back."></a>
                     <figcaption><span class="sc-now">A Medium research on Elixir rate-limiting libraries: round 1's three notes are in and round 2's three agents are still working, 19 sources so far.</span> <span class="sc-does">A lead plans the angles, worker agents search and read in rounds, and a reporter writes an answer with its sources.</span> <a class="sc-doc" href="/docs/desktop/research/">Deep research guide</a></figcaption>
                 </figure>
             </div>
