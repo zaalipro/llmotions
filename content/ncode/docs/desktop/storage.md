@@ -21,7 +21,7 @@ Click **Clean up…**. The dialog has three tabs:
 - **Sessions**: every session with its size, messages and runs, sortable, so you can pick exactly which to delete. Pinned sessions are excluded unless you tick them here.
 - **Advanced**: separate ages for rewind snapshots, workflow journals of finished runs, agent details and research reports, whether to delete empty sessions, and **Reclaim disk space afterwards (VACUUM)**.
 
-Then click **Review**. The review step lists what will be removed, what will be kept back and why (pinned, open in a window, still running), and warns that deleted sessions, snapshots and reports cannot be recovered. Confirm to run it. When it is done you can **Reclaim disk space now**.
+Then click **Review**. On the Sessions tab, tick the sessions you want, or click **Select all shown**, and Review becomes available; the review step lists what will be removed and warns that deleted sessions, snapshots and reports cannot be recovered. If something the selection matched is left alone, a **Kept back** list says what stayed and why (pinned, open in a window, still running). Confirm to run it. When it is done you can **Reclaim disk space now**.
 
 ![The Clean up dialog's Review step after one session was ticked on the Sessions tab: 1 session, 250 KB, the warning that deleted sessions, snapshots and reports are gone for good, and Back or Delete 1 item.](/assets/shots/desktop/storage-review.webp)
 

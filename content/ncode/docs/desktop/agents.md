@@ -7,7 +7,7 @@ Every run in {{product}} is a small team: one top agent, the agents it starts, a
 
 ## Agent cards
 
-The **Agents** view shows one card per agent: its name and task, its status (running, waiting for you, done, failed, stopped), a progress bar, the model it uses, the tokens it has used and what they cost. Under each agent, its tool calls appear as rows: the file it read, the command it ran, the search it made.
+The **Agents** view shows one card per agent: its name and task, its status (running, waiting for you, done, failed, stopped), a progress bar, the model it uses, the tokens it has used. Under each agent, its tool calls appear as rows: the file it read, the command it ran, the search it made.
 
 - **Tree** shows who started whom: the lead at the top, its sub-agents below it, their own sub-agents below them.
 - **Grid** lays the same cards side by side, which is easier to scan when many agents run at once.
