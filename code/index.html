@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ncode: a coding harness for the Mac and the terminal</title>
-<meta name="description" content="ncode is a coding harness where every run, agent and operation is a process with its own progress bar. A native Mac app and a CLI on one engine. Bring your own model key.">
+<meta name="description" content="ncode is a coding harness where every run, agent and operation is a process with its own progress bar. A native Mac app and a CLI on one engine. Bring your own key for any provider.">
 <link rel="canonical" href="https://code.llmotions.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ncode">
@@ -18,8 +18,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap">
 <link rel="stylesheet" href="/assets/llm.css?v=4c90c21c">
-<link rel="stylesheet" href="/assets/ncode.css?v=31a07ffa">
-<script src="/assets/ncode.js?v=d0248e8e" defer></script>
+<link rel="stylesheet" href="/assets/ncode.css?v=211b546b">
+<script src="/assets/ncode.js?v=5beff562" defer></script>
 </head>
 <body class="nc">
 <a class="nc-skip" href="#main">Skip to content</a>
@@ -53,7 +53,7 @@
             <a class="nc-btn nc-btn-ember" href="#download">Download for Mac</a>
             <a class="nc-btn" href="#install">Install the CLI</a>
         </p>
-        <p class="nc-fine">Developer preview for macOS 15 or later on Apple silicon. Bring your own model key.</p>
+        <p class="nc-fine">Developer preview for macOS 15 or later on Apple silicon. Bring your own key for any provider you choose.</p>
     </div>
 
     <figure class="nc-run" aria-labelledby="run-cap">
@@ -124,17 +124,17 @@
             <h3 id="face-cli">ncode in the terminal</h3>
             <p class="face-lede">A full-screen session with the same runs, the same agents and the same approvals, kept to the keyboard.</p>
             <!-- phase-2 slot: replace this drawing with a capture under /assets/shots/cli/ once the seeded capture exists -->
-            <div class="tty" role="img" aria-label="The ncode terminal session: the swarm run card with the Lead and four reviewers, the found line with one of four reports in, and the key hints for agents, needs you and the side panel.">
-<pre><span class="t-ac">●</span> <b>ailogic</b>   <span class="t-sw">⋔</span> <span class="t-tm">swarm review changes</span> <span class="t-ac">●</span> <span class="t-tm">16:15</span>
+            <div class="tty" role="img" aria-label="The ncode terminal session on the same swarm: the Lead waiting above four sub-agents, ratelimiter-edge done and three thinking, one of four reports in, and the key hints for agents, needs you and the side panel.">
+<pre><span class="t-ac">●</span> <b>ailogic</b>   <span class="t-sw">⋔</span> <span class="t-tm">add edge case tests</span> <span class="t-ac">●</span> <span class="t-tm">1:11</span>
 
- <span class="t-sw">⋔</span> <b class="t-sw">Lead</b>                         <span class="t-ac">thinking ▌</span>
-   <span class="t-tf">├</span> ◒ <span class="t-l2">Docs accuracy</span>  <span class="t-tm">thinking</span>    running a command
-   <span class="t-tf">├</span> <span class="t-ok">✓</span> <span class="t-l1">TS removal</span>     <span class="t-ok">done</span>        Deleting ailogic_typescript/…
-   <span class="t-tf">├</span> ◒ <span class="t-l4">Strategy fit</span>   <span class="t-tm">thinking</span>    wrapping up.
-   <span class="t-tf">╰</span> <span class="t-er">✗</span> <span class="t-l3">Build check</span>    <span class="t-er">turn limit</span>  <span class="t-tm">no answer after 30 turns</span>
+ <span class="t-sw">⋔</span> <b class="t-sw">Lead</b>                         <span class="t-tm">waiting for 3</span>
+   <span class="t-tf">├</span> <span class="t-ok">✓</span> <span class="t-l1">ratelimiter-edge</span>  <span class="t-ok">done</span>      All 14 tests pass…
+   <span class="t-tf">├</span> ◒ <span class="t-l2">templates-edge</span>    <span class="t-tm">thinking</span>
+   <span class="t-tf">├</span> ◒ <span class="t-l3">macros-edge</span>       <span class="t-tm">thinking</span>
+   <span class="t-tf">╰</span> ◒ <span class="t-l4">coreerror-edge</span>    <span class="t-tm">thinking</span>
 
- <span class="t-tm">found</span>           <span class="t-tm">1 of 4 in</span> <span class="t-tf">· no files changed</span>
- <span class="t-sw">⋔</span> <span class="t-l1">▄▄▄▄▄▄▄▄</span> <span class="t-er">▁▁▁▁▁▁▁▁</span> <span class="t-tf">▁▁▁▁▁▁▁▁ ▁▁▁▁▁▁▁▁</span>
+ <span class="t-tm">found</span>           <span class="t-tm">1 of 4 in</span> <span class="t-tf">· 1 file changed</span>
+ <span class="t-sw">⋔</span> <span class="t-l1">▄▄▄▄▄▄▄▄</span> <span class="t-l2">▄▄▄▄</span><span class="t-tf">▁▁▁▁</span> <span class="t-l3">▄▄▄</span><span class="t-tf">▁▁▁▁▁</span> <span class="t-l4">▄▄</span><span class="t-tf">▁▁▁▁▁▁</span>
 
  <span class="t-ac">▌</span><span class="t-tf">                                             </span>
  <b class="t-tm">^F</b> <span class="t-tf">agents</span>  <b class="t-tm">^N</b> <span class="t-tf">needs you</span>  <b class="t-tm">^B</b> <span class="t-tf">panel</span></pre>
@@ -155,27 +155,16 @@
         <h2 id="modes-h">Six ways to send a message</h2>
         <p>The composer carries a mode. It decides what the next message starts: a turn that edits, a read-only plan, a goal, a workflow or a judged plan. <kbd>Shift</kbd>+<kbd>Tab</kbd> flips between Build and Plan in the app, and a slash command that names a mode selects it.</p>
     </header>
-    <div class="composer" role="img" aria-label="The ncode composer with its mode menu open, listing Build, Plan, Goal, Ultra, Workflow and Consensus with their hints.">
-        <ul class="cm-menu">
-            <li class="cm-on"><span class="cm-g">🛠</span><b>Build</b><span>the assistant reads, writes and runs</span></li>
-            <li><span class="cm-g">▤</span><b>Plan</b><span>read-only tools, a step-by-step plan</span></li>
-            <li><span class="cm-g">◎</span><b>Goal</b><span>the next message sets a goal to pursue</span></li>
-            <li><span class="cm-g">⧉</span><b>Ultra</b><span>big tasks become workflows</span></li>
-            <li><span class="cm-g">⧉</span><b>Workflow</b><span>the next message authors and launches a workflow</span></li>
-            <li><span class="cm-g">⚖</span><b>Consensus</b><span>a second model judges the plan first</span></li>
-        </ul>
-        <div class="cm-box">
-            <p class="cm-draft">let's plan how to make this app better<span class="cm-caret"></span></p>
-            <p class="cm-foot"><span class="cm-chip">🛠 Build</span><span class="cm-model">auto</span></p>
-        </div>
-    </div>
+    <figure class="face-shot nc-composer-shot">
+        <a href="/assets/shots/desktop/composer-mode-menu.webp" data-zoom="1760"><img src="/assets/shots/desktop/composer-mode-menu.webp" width="880" height="458" loading="lazy" decoding="async" alt="The real ncode composer with its mode menu open, listing Build, Plan, Goal, Ultra, Workflow and Consensus with their hints, and the model chip set to claude-sonnet-5 at Medium effort."></a>
+    </figure>
 </section>
 
 <!-- ═══ showcase: each mode caught running in the real app (shots: ~/.cache/ncode/demo/shots, QA OK) ═══ -->
 <section id="showcase" class="nc-sec nc-show" aria-labelledby="show-h">
     <header class="nc-head">
         <h2 id="show-h">See them run</h2>
-        <p>Real captures of the Mac app, all on one sandbox Elixir project with claude-sonnet-5 at Medium effort. Pick a mode, then open its window to see it full size.</p>
+        <p>Real captures of the Mac app, all on one sandbox Elixir project with claude-sonnet-5 at Medium effort (a second model judges the consensus run). Pick a mode, then open its window to see it full size.</p>
     </header>
     <div class="sc" data-showcase>
         <div class="sc-tabs" role="tablist" aria-label="Modes and run types" hidden>
@@ -193,64 +182,64 @@
             <div class="sc-panel" id="sc-swarm" style="--lane: var(--teal)">
                 <h3 class="sc-h"><span class="sc-g" aria-hidden="true">⋔</span> Swarm</h3>
                 <figure class="sc-fig">
-                    <a class="sc-stage" href="/assets/shots/desktop/agents-grid.webp" data-zoom="1760"><img src="/assets/shots/desktop/agents-grid.webp" width="880" height="569" loading="lazy" decoding="async" alt="The agents pane in its grid layout: the Lead, waiting, with 0 of 4 sub-agents done, above four sub-agent cards, ratelimiter-edge, templates-edge, macros-edge and coreerror-edge, each active on claude-sonnet-5 with its own bar, cached and total tokens, tool icons and a Stop button."></a>
+                    <a class="sc-stage" href="/assets/shots/desktop/agents-grid.webp" data-zoom="1760"><img src="/assets/shots/desktop/agents-grid.webp" srcset="/assets/shots/desktop/agents-grid-1000.webp 1000w, /assets/shots/desktop/agents-grid.webp 1760w" sizes="(min-width: 1101px) 835px, calc(100vw - 60px)" width="880" height="569" loading="lazy" decoding="async" alt="The agents pane in its grid layout: the Lead, waiting, with 0 of 4 sub-agents done, above four sub-agent cards, ratelimiter-edge, templates-edge, macros-edge and coreerror-edge, each active on claude-sonnet-5 with its own bar, cached and total tokens, tool icons and a Stop button."></a>
                     <figcaption><span class="sc-now">Four sub-agents, one per module, add edge-case tests while the Lead waits; every card keeps its own bar, token count and Stop button.</span> <span class="sc-does"><code>/swarm</code> hands a task to a Lead that splits it, runs sub-agents side by side, then checks their work and reports back.</span> <a class="sc-doc" href="/docs/desktop/swarms/">Swarms guide</a></figcaption>
                 </figure>
             </div>
             <div class="sc-panel" id="sc-consensus" style="--lane: var(--gold)">
                 <h3 class="sc-h"><span class="sc-g" aria-hidden="true">⚖</span> Consensus</h3>
                 <figure class="sc-fig">
-                    <a class="sc-stage" href="/assets/shots/desktop/consensus-spine.webp" data-zoom="1272"><img src="/assets/shots/desktop/consensus-spine.webp" width="636" height="492" loading="lazy" decoding="async" alt="A consensus card in the spine layout: round 1 plan and verdict, round 2 revised plan and verdict, both REVISE with a pass or fail mark per check, then the gate, your go before anything is written, with Approve and Revise, and the implement step still waiting."></a>
+                    <a class="sc-stage" href="/assets/shots/desktop/consensus-spine.webp" data-zoom="1272"><img src="/assets/shots/desktop/consensus-spine.webp" srcset="/assets/shots/desktop/consensus-spine-1000.webp 1000w, /assets/shots/desktop/consensus-spine.webp 1272w" sizes="(min-width: 1101px) 835px, calc(100vw - 60px)" width="636" height="492" loading="lazy" decoding="async" alt="A consensus card in the spine layout: round 1 plan and verdict, round 2 revised plan and verdict, both REVISE with a pass or fail mark per check, then the gate, your go before anything is written, with Approve and Revise, and the implement step still waiting."></a>
                     <figcaption><span class="sc-now">Two rounds on a webhook-retry plan: the judge marked every check and sent it back both times, so the run holds at the gate until you approve.</span> <span class="sc-does">A planner writes the plan and a second model judges it against the checks you pick; they take turns before any code changes.</span> <a class="sc-doc" href="/docs/desktop/consensus/">Consensus guide</a></figcaption>
                 </figure>
             </div>
             <div class="sc-panel" id="sc-plan" style="--lane: var(--ember-2)">
                 <h3 class="sc-h"><span class="sc-g" aria-hidden="true">▤</span> Plan</h3>
                 <figure class="sc-fig">
-                    <a class="sc-stage" href="/assets/shots/desktop/plans-gate.webp" data-zoom="1232"><img src="/assets/shots/desktop/plans-gate.webp" width="616" height="572" loading="lazy" decoding="async" alt="The foot of a finished Planner card: the plan's examples, a Verify step with mix test and mix format, two open questions, $0.0440 spent, and the Approve button's menu open, asking whether the Assistant or a Swarm implements the plan, beside Revise and Decline."></a>
+                    <a class="sc-stage" href="/assets/shots/desktop/plans-gate.webp" data-zoom="1232"><img src="/assets/shots/desktop/plans-gate.webp" srcset="/assets/shots/desktop/plans-gate-1000.webp 1000w, /assets/shots/desktop/plans-gate.webp 1232w" sizes="(min-width: 1101px) 835px, calc(100vw - 60px)" width="616" height="572" loading="lazy" decoding="async" alt="The foot of a finished Planner card: the plan's examples, a Verify step with mix test and mix format, two open questions, $0.0440 spent, and the Approve button's menu open, asking whether the Assistant or a Swarm implements the plan, beside Revise and Decline."></a>
                     <figcaption><span class="sc-now">A finished plan for a pagination helper ends in open questions; Approve asks who builds it, the Assistant alone or a Swarm.</span> <span class="sc-does">In Plan mode the agent only reads and searches; nothing changes until you approve, revise or decline its plan.</span> <a class="sc-doc" href="/docs/desktop/plans/">Plans guide</a></figcaption>
                 </figure>
             </div>
             <div class="sc-panel" id="sc-goal" style="--lane: var(--violet)">
                 <h3 class="sc-h"><span class="sc-g" aria-hidden="true">◎</span> Goal</h3>
                 <figure class="sc-fig">
-                    <a class="sc-stage" href="/assets/shots/desktop/goal-stage.webp" data-zoom="1640"><img src="/assets/shots/desktop/goal-stage.webp" width="820" height="546" loading="lazy" decoding="async" alt="A finished goal run: the purple goal badge and its text, done after 2 minutes 5 seconds and 24 ops, the assistant's report of doctests added to all 7 public functions with 19 tests passed and 0 failures, the two changed files, $0.3010 spent, and the agents pane with the Goal above the Assistant, marked done."></a>
+                    <a class="sc-stage" href="/assets/shots/desktop/goal-stage.webp" data-zoom="1640"><img src="/assets/shots/desktop/goal-stage.webp" srcset="/assets/shots/desktop/goal-stage-1000.webp 1000w, /assets/shots/desktop/goal-stage.webp 1640w" sizes="(min-width: 1101px) 835px, calc(100vw - 60px)" width="820" height="546" loading="lazy" decoding="async" alt="A finished goal run: the purple goal badge and its text, done after 2 minutes 5 seconds and 24 ops, the assistant's report of doctests added to all 7 public functions with 19 tests passed and 0 failures, the two changed files, $0.3010 spent, and the agents pane with the Goal above the Assistant, marked done."></a>
                     <figcaption><span class="sc-now">The goal: a doctest on every public function in Ailogic.Core.Pagination and a passing test run. One turn met it in 2m 05s, 19 passed and 0 failures.</span> <span class="sc-does">Goal mode, or <code>/goal</code>, sets something the conversation keeps working towards across turns.</span> <a class="sc-doc" href="/docs/desktop/composer/#goals">Goals in the composer guide</a></figcaption>
                 </figure>
             </div>
             <div class="sc-panel" id="sc-ultra" style="--lane: var(--pink)">
                 <h3 class="sc-h"><span class="sc-g" aria-hidden="true">⧉</span> Ultra</h3>
                 <figure class="sc-fig">
-                    <a class="sc-stage" href="/assets/shots/desktop/ultra-stage.webp" data-zoom="1640"><img src="/assets/shots/desktop/ultra-stage.webp" width="820" height="546" loading="lazy" decoding="async" alt="An Ultra-mode conversation: the finished review-changes-2 card, a request to fan the review out as a workflow, the assistant's reply that it launched review-changes-3 with the phases Review, Verify and Report, the running review-changes-3 card, the composer with the Ultra mode pill, and the agents pane with the Review panel of three agents, one done and two running, and Verify and Report pending."></a>
+                    <a class="sc-stage" href="/assets/shots/desktop/ultra-stage.webp" data-zoom="1640"><img src="/assets/shots/desktop/ultra-stage.webp" srcset="/assets/shots/desktop/ultra-stage-1000.webp 1000w, /assets/shots/desktop/ultra-stage.webp 1640w" sizes="(min-width: 1101px) 835px, calc(100vw - 60px)" width="820" height="546" loading="lazy" decoding="async" alt="An Ultra-mode conversation: the finished review-changes-2 card, a request to fan the review out as a workflow, the assistant's reply that it launched review-changes-3 with the phases Review, Verify and Report, the running review-changes-3 card, the composer with the pink Ultra mode button, and the agents pane with the Review panel of three agents, one done and two running, and Verify and Report pending."></a>
                     <figcaption><span class="sc-now">Asked to fan a review out, the assistant launched the saved review-changes workflow with three lenses; its Review panel is running, one agent done.</span> <span class="sc-does">In Ultra mode the assistant takes on big requests by writing and running workflows itself, and reports back when they finish.</span> <a class="sc-doc" href="/docs/desktop/workflows/#ultra-mode">Ultra mode guide</a></figcaption>
                 </figure>
             </div>
             <div class="sc-panel" id="sc-workflow" style="--lane: var(--sky)">
                 <h3 class="sc-h"><span class="sc-g" aria-hidden="true">⧉</span> Workflow</h3>
                 <figure class="sc-fig">
-                    <a class="sc-stage" href="/assets/shots/desktop/workflows-stage.webp" data-zoom="1760"><img src="/assets/shots/desktop/workflows-stage.webp" width="880" height="428" loading="lazy" decoding="async" alt="The Workflows page: three runs of review-changes, the live one in Review, one done and one stopped, and the live run's pipeline: running, $0.7322 so far, a Review panel of three agents for correctness, security and maintainability, one done and two running, then Verify and Report pending."></a>
-                    <figcaption><span class="sc-now">review-changes-3 is in its Review phase, one agent each for correctness, security and maintainability, one done so far; Verify and Report come next.</span> <span class="sc-does">A workflow runs agents in a fixed order written in advance, such as review, verify each finding, then report, so it runs the same way every time.</span> <a class="sc-doc" href="/docs/desktop/workflows/">Workflows guide</a></figcaption>
+                    <a class="sc-stage" href="/assets/shots/desktop/workflows-stage.webp" data-zoom="1760"><img src="/assets/shots/desktop/workflows-stage.webp" srcset="/assets/shots/desktop/workflows-stage-1000.webp 1000w, /assets/shots/desktop/workflows-stage.webp 1760w" sizes="(min-width: 1101px) 835px, calc(100vw - 60px)" width="880" height="428" loading="lazy" decoding="async" alt="The Workflows page: three runs of review-changes, the live one in Review, one done and one stopped, and the live run's pipeline: running, $0.7322 so far, a Review panel of three agents for correctness, security and maintainability, one done and two running, then Verify and Report pending."></a>
+                    <figcaption><span class="sc-now">The run the Ultra turn launched, on the Workflows page: review-changes-3 is in its Review phase, one agent each for correctness, security and maintainability, one done so far; Verify and Report come next.</span> <span class="sc-does">A workflow runs agents in a fixed order written in advance, such as review, verify each finding, then report, so it runs the same way every time. <code>/workflow</code> writes a new one from your message.</span> <a class="sc-doc" href="/docs/desktop/workflows/">Workflows guide</a></figcaption>
                 </figure>
             </div>
             <div class="sc-panel" id="sc-research" style="--lane: var(--cream)">
                 <h3 class="sc-h"><span class="sc-g" aria-hidden="true">◈</span> Deep research</h3>
                 <figure class="sc-fig">
-                    <a class="sc-stage" href="/assets/shots/desktop/research-stage.webp" data-zoom="1640"><img src="/assets/shots/desktop/research-stage.webp" width="820" height="546" loading="lazy" decoding="async" alt="The Deep research page mid-run at level Medium: the question about Elixir rate-limiting libraries and how it was read, a timeline with round 1's three notes done and round 2's three agents working, the counters of 19 sources, 811.0k tokens and $1.4794, and the banner Round 2 of 2, 0 of 3 agents back."></a>
+                    <a class="sc-stage" href="/assets/shots/desktop/research-stage.webp" data-zoom="1640"><img src="/assets/shots/desktop/research-stage.webp" srcset="/assets/shots/desktop/research-stage-1000.webp 1000w, /assets/shots/desktop/research-stage.webp 1640w" sizes="(min-width: 1101px) 835px, calc(100vw - 60px)" width="820" height="546" loading="lazy" decoding="async" alt="The Deep research page mid-run at level Medium: the running chip row, a timeline with round 1's three notes done and round 2's three agents working, the counters of 2 of 2 rounds, 6 agents back and 19 sources, the banner Round 2 of 2, 0 of 3 agents back, and the round notes with round 2's agents still working."></a>
                     <figcaption><span class="sc-now">A Medium research on Elixir rate-limiting libraries: round 1's three notes are in and round 2's three agents are still working, 19 sources so far.</span> <span class="sc-does">A lead plans the angles, worker agents search and read in rounds, and a reporter writes an answer with its sources.</span> <a class="sc-doc" href="/docs/desktop/research/">Deep research guide</a></figcaption>
                 </figure>
             </div>
             <div class="sc-panel" id="sc-approvals" style="--lane: var(--gold)">
                 <h3 class="sc-h"><span class="sc-g" aria-hidden="true">?</span> Approvals</h3>
                 <figure class="sc-fig">
-                    <a class="sc-stage" href="/assets/shots/desktop/quickstart-approval.webp" data-zoom="1504"><img src="/assets/shots/desktop/quickstart-approval.webp" width="752" height="462" loading="lazy" decoding="async" alt="A run card flagged needs your answer, waiting on the command mix test test/ailogic/rate_limiter_test.exs, with the buttons Approve, Deny, Deny and stop, and Always allow mix test."></a>
+                    <a class="sc-stage" href="/assets/shots/desktop/quickstart-approval.webp" data-zoom="1504"><img src="/assets/shots/desktop/quickstart-approval.webp" srcset="/assets/shots/desktop/quickstart-approval-1000.webp 1000w, /assets/shots/desktop/quickstart-approval.webp 1504w" sizes="(min-width: 1101px) 835px, calc(100vw - 60px)" width="752" height="462" loading="lazy" decoding="async" alt="A run card flagged needs your answer, waiting on the command mix test test/ailogic/rate_limiter_test.exs, with the buttons Approve, Deny, Deny and stop, and Always allow mix test."></a>
                     <figcaption><span class="sc-now">A run stops before <code>mix test test/ailogic/rate_limiter_test.exs</code> and waits: Approve, Deny, Deny &amp; stop, or Always allow “mix test”.</span> <span class="sc-does">In Auto mode agents write and run safe commands on their own; anything else asks first, on a card in the transcript.</span> <a class="sc-doc" href="/docs/desktop/approvals/#answering-an-approval-card">Approvals guide</a></figcaption>
                 </figure>
             </div>
             <div class="sc-panel" id="sc-changes" style="--lane: var(--ok)">
                 <h3 class="sc-h"><span class="sc-g" aria-hidden="true">±</span> Changes and rewind</h3>
                 <figure class="sc-fig">
-                    <a class="sc-stage" href="/assets/shots/desktop/agents-changes-2col.webp" data-zoom="1744"><img src="/assets/shots/desktop/agents-changes-2col.webp" width="872" height="532" loading="lazy" decoding="async" alt="The Changes view of the agents pane, shown in two columns: all changes plus 171 minus 2, the lib tree open to delivery_worker.ex and webhooks.ex with the test folder folded, and beside it the diff of delivery_worker.ex with removed and added lines."></a>
-                    <figcaption><span class="sc-now">After a judged plan was built, the Changes view lists what it touched, +171 −2, with one file's diff open (the pane is shown here in two columns).</span> <span class="sc-does">Every file is saved before an agent changes it, so one file or a whole turn can be put back from here or with <code>/rewind</code>.</span> <a class="sc-doc" href="/docs/desktop/rewind/">Rewind guide</a></figcaption>
+                    <a class="sc-stage" href="/assets/shots/desktop/agents-changes-2col.webp" data-zoom="1744"><img src="/assets/shots/desktop/agents-changes-2col.webp" srcset="/assets/shots/desktop/agents-changes-2col-1000.webp 1000w, /assets/shots/desktop/agents-changes-2col.webp 1744w" sizes="(min-width: 1101px) 835px, calc(100vw - 60px)" width="872" height="532" loading="lazy" decoding="async" alt="The Changes view of the agents pane, shown in two columns: all changes plus 171 minus 2, the lib tree open to delivery_worker.ex and webhooks.ex with the test folder folded, and beside it the diff of delivery_worker.ex with removed and added lines."></a>
+                    <figcaption><span class="sc-now">In the webhook-retry conversation, the Changes view lists what was touched, +171 −2, with one file's diff open (the pane is shown here in two columns).</span> <span class="sc-does">Every file is saved before an agent changes it, so one file or a whole turn can be put back from here or with <code>/rewind</code>.</span> <a class="sc-doc" href="/docs/desktop/rewind/">Rewind guide</a></figcaption>
                 </figure>
             </div>
         </div>
@@ -381,7 +370,6 @@
         <a class="zm-full" id="nc-zoom-full" href="#">Open the full image</a>
         <button type="button" class="zm-x" id="nc-zoom-x" autofocus>Close</button>
     </div>
-    <img class="zm-img" id="nc-zoom-img" alt="">
 </dialog>
 
 

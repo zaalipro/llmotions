@@ -85,7 +85,7 @@
   if (list) {
     var tabs = Array.prototype.slice.call(list.querySelectorAll("[role=tab]"));
     var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute("aria-controls")); });
-    var wide = window.matchMedia("(min-width: 1101px)");
+    var wide = window.matchMedia("(width > 1100px)");
     var orient = function () { list.setAttribute("aria-orientation", wide.matches ? "vertical" : "horizontal"); };
     var warm = function (i) {
       var img = panels[i].querySelector("img[loading=lazy]");
@@ -99,6 +99,8 @@
         panels[j].hidden = !on;
       });
       warm(i);
+      warm((i + 1) % tabs.length);
+      warm((i - 1 + tabs.length) % tabs.length);
       if (focus) tabs[i].focus({ preventScroll: !wide.matches });
       if (!wide.matches) {
         var t = tabs[i];
@@ -140,7 +142,7 @@
   /* a larger look at a shot: a modal <dialog>. Without it (or without this file) the link opens the image. */
   var box = document.getElementById("nc-zoom");
   if (box && typeof box.showModal === "function") {
-    var zImg = document.getElementById("nc-zoom-img");
+    var zImg = box.appendChild(Object.assign(document.createElement("img"), { className: "zm-img", id: "nc-zoom-img", alt: "" }));
     var zCap = document.getElementById("nc-zoom-cap");
     var zFull = document.getElementById("nc-zoom-full");
     var zBar = box.querySelector(".zm-bar");
@@ -156,7 +158,7 @@
     };
     document.addEventListener("click", function (e) {
       var a = e.target.closest ? e.target.closest("a[data-zoom]") : null;
-      if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || window.innerWidth < 600) return;
       var img = a.querySelector("img");
       if (!img) return;
       e.preventDefault();
