@@ -1,0 +1,72 @@
+#!/bin/sh
+# ncode one-line installer: curl -fsSL https://code.llmotions.com/install.sh | sh
+#
+# Downloads the pinned ncode release, checks its SHA-256 against the value
+# below, and installs it into ~/.local/share/ncode with the command in
+# ~/.local/bin. Nothing outside the prefix is touched; conversations,
+# settings and keys live in the data folder and are never changed.
+#
+#   NCODE_PREFIX=/path   install under /path/share/ncode and /path/bin
+#   sh -s -- --uninstall remove the release, the ncode command and the swarmcode alias
+#   NCODE_TARBALL_URL    download the tarball from another URL (a mirror, or file:// for testing);
+#                        the pinned checksum is still enforced
+set -eu
+
+main() {
+  VERSION="${NCODE_VERSION:-0.1.0}"
+  SHA256="c955d39f657f31f018fde18d88bb06ab283e237f63482c1a5de6b391ba389bb6"
+  name="ncode-${VERSION}-darwin-arm64.tar.gz"
+  url="${NCODE_TARBALL_URL:-https://code.llmotions.com/downloads/${name}}"
+  prefix="${NCODE_PREFIX:-${SWARMCODE_PREFIX:-$HOME/.local}}"
+  share="$prefix/share/ncode"
+  bin="$prefix/bin"
+
+  if [ "${1:-}" = "--uninstall" ]; then
+    rm -f -- "$bin/ncode" "$bin/swarmcode"
+    rm -rf -- "$share"
+    echo "Removed ncode from $prefix. Your data folder was not touched."
+    return 0
+  fi
+
+  if [ "$(uname -s)" != "Darwin" ] || [ "$(uname -m)" != "arm64" ]; then
+    echo "ncode: this release needs macOS 15 or later on Apple silicon (arm64)." >&2
+    return 1
+  fi
+  major="$(sw_vers -productVersion | cut -d. -f1)"
+  if [ "$major" -lt 15 ]; then
+    echo "ncode: this release needs macOS 15 or later (this Mac runs $(sw_vers -productVersion))." >&2
+    return 1
+  fi
+
+  tmp="$(mktemp -d "${TMPDIR:-/tmp}/ncode-install.XXXXXX")"
+  trap 'rm -rf -- "$tmp"' EXIT INT TERM
+  echo "Downloading ncode $VERSION"
+  curl -fsSL -o "$tmp/$name" "$url"
+
+  actual="$(shasum -a 256 "$tmp/$name" | cut -d' ' -f1)"
+  if [ "$actual" != "$SHA256" ]; then
+    echo "ncode: checksum mismatch for $name (expected $SHA256, got $actual). Nothing was installed." >&2
+    return 1
+  fi
+  echo "Checksum OK"
+
+  tar -xzf "$tmp/$name" -C "$tmp"
+  [ -x "$tmp/ncode-$VERSION/bin/ncode" ] || { echo "ncode: the archive has no bin/ncode" >&2; return 1; }
+
+  mkdir -p -- "$prefix/share" "$bin"
+  rm -rf -- "$share"
+  mv -- "$tmp/ncode-$VERSION" "$share"
+  chmod 0600 "$share/releases/COOKIE"
+
+  printf '#!/bin/sh\nexec "%s/bin/ncode" "$@"\n' "$share" > "$bin/ncode"
+  printf '#!/bin/sh\nexec "%s/bin/swarmcode" "$@"\n' "$share" > "$bin/swarmcode"
+  chmod 0755 "$bin/ncode" "$bin/swarmcode"
+
+  echo "Installed ncode $VERSION: $bin/ncode -> $share"
+  case ":$PATH:" in
+    *":$bin:"*) echo "Run: ncode [DIR]" ;;
+    *) echo "Add $bin to your PATH, then run: ncode [DIR]" ;;
+  esac
+}
+
+main "$@"
