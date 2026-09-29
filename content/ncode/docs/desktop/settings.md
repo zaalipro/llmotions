@@ -5,7 +5,7 @@ description: A map of the ncode Settings window, section by section, with what e
 
 Open Settings with [[⌘]]+[[,]], the gear at the bottom of the rail, or **File → Settings…** in the menu bar. The sections are listed on the left; click one to jump to it. Most changes apply at once; forms with several fields have their own **Save** button.
 
-<!-- shot: desktop/settings-overview.png | the Settings window, Carbon dark, scrolled to Providers & models with one Anthropic provider listed and the section list on the left -->
+![The Settings window in Carbon dark at Appearance: the section list on the left with Appearance marked, the eight theme chips with Carbon selected, Dark on, and the layout, window and sidebar options.](/assets/shots/desktop/settings-overview.webp)
 
 ## General
 

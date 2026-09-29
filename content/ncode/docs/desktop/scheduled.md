@@ -20,7 +20,7 @@ A scheduled task is a prompt {{product}} runs by itself: a nightly dependency ch
   - A colour, to tell tasks apart in the calendar and the sidebar.
 4. Click **Save task**.
 
-<!-- shot: desktop/scheduled-form.png | the New scheduled task dialog filled in: name "Nightly dependency check", kind Chat, mode Plan, schedule Daily at 02:00, colour teal -->
+![The New scheduled task dialog filled in: Nightly dependency check, a prompt that runs mix hex.outdated, project ailogic, effort Medium, kind Chat, mode Plan, schedule Daily at 02:00 AM, colour teal, and Catch up missed runs ticked.](/assets/shots/desktop/scheduled-form.webp)
 
 {{> shared/scheduled}}
 
@@ -30,7 +30,7 @@ The Scheduled tasks page shows a calendar and the tasks of the selected day. Eac
 
 In the Chats sidebar, **Scheduled tasks** lists each task with its latest runs underneath; click a run to open its conversation. Tasks are grouped by project; tasks without a project appear under a **GLOBAL** group, which you can hide in **Settings → Appearance** (Show global scheduled tasks).
 
-<!-- shot: desktop/scheduled-calendar.png | the Scheduled tasks page with a month calendar showing coloured task dots and the selected day's three tasks listed on the right -->
+![The Scheduled tasks page: three ailogic tasks in the sidebar, the October 2026 calendar with three coloured dots on the 15th, and that day's three one-off tasks listed on the right.](/assets/shots/desktop/scheduled-calendar.webp)
 
 ## Tips
 

@@ -16,7 +16,7 @@ Click **Workflows** in the rail. The sidebar becomes the workflow cockpit:
 
 The main area shows the selected run as a board of phases and agents, or the selected workflow's details: its description, arguments, the shape the smoke check found, and its source.
 
-<!-- shot: desktop/workflows-cockpit.png | the Workflows panel with the four counters, two runs (one live, one done) and the library, and the main area showing the review-changes run's phase board -->
+![The Workflows panel: the counters LIVE 1, NEED YOU 0, WEEK 3 and SPEND $1.69, the phase board and the library, three runs (review-changes-3 live in Review, review-changes-2 done, an earlier one stopped), and review-changes-3's phase board with a Review panel of three agents and Verify and Report pending.](/assets/shots/desktop/workflows-cockpit.webp)
 
 ## Built-in workflows
 

@@ -55,6 +55,6 @@ Each round, the judge either approves the plan or sends findings back, and the p
 
 The judged turn's card in the agents pane has four layouts: **Scales** (the default), **Rail** (the checks on a rail), **Spine** and **Scorecard**. Set the default under **Settings → Appearance**; a conversation can switch its own from the pane.
 
-<!-- shot: desktop/consensus-layouts.png | the same finished consensus turn in the Rail, Spine and Scorecard layouts, side by side -->
+![One consensus turn in the Rail, Spine and Scorecard layouts side by side: planner claude-sonnet-5, judge gpt-6-luna, two rounds each judged REVISE with a mark per check, waiting for your go.](/assets/shots/desktop/consensus-layouts.webp)
 
 <!-- source: D:lib/swarm_code/engine/consensus.ex:23-200,260-265,325-329, D:lib/swarm_code_web/components/chat.ex:84-89,5860-5970, D:lib/swarm_code/providers.ex:198-212, D:lib/swarm_code_web/components/consensus_components.ex:1186-1192, D:lib/swarm_code/settings/setting.ex:90-92,201-202, D:lib/swarm_code_web/live/settings_live.html.heex:680-700 -->

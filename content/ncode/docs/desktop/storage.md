@@ -11,7 +11,7 @@ description: See how much space ncode's data takes, clean up old sessions, snaps
 
 The bar shows the total size and how it splits: **Sessions**, **Agent details**, **Rewind snapshots**, **Workflow journals**, **Research**, and **Index & free space**. Hover a part to see its size.
 
-<!-- shot: desktop/storage-bar.png | Settings → Storage with the storage bar of a seeded database, each coloured part labelled, and the Clean up… and Retention controls below -->
+![Settings → Storage: the storage bar with each coloured part labelled (Sessions, Agent details, Rewind snapshots, Workflow journals, Research, Index & free space), the size on disk, Clean up… and Re-measure, and Retention off.](/assets/shots/desktop/storage-bar.webp)
 
 ## Cleaning up
 
@@ -23,7 +23,7 @@ Click **Clean up…**. The dialog has three tabs:
 
 Then click **Review**. The review step lists what will be removed, what will be kept back and why (pinned, open in a window, still running), and warns that deleted sessions, snapshots and reports cannot be recovered. Confirm to run it. When it is done you can **Reclaim disk space now**.
 
-<!-- shot: desktop/storage-review.png | the Clean up dialog's Review step for the "Delete sessions older than 30 days" preset, with counts, a Kept back list and the irreversible-delete warning -->
+![The Clean up dialog's Review step after one session was ticked on the Sessions tab: 1 session, 250 KB, the warning that deleted sessions, snapshots and reports are gone for good, and Back or Delete 1 item.](/assets/shots/desktop/storage-review.webp)
 
 ## Retention
 

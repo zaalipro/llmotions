@@ -37,7 +37,7 @@ When a step needs your approval, a card appears in the transcript and on the age
 | **Always allow "…"** | allows it and remembers the command family (for example `mix test`) for this project |
 | **Allow all … this run** | shown instead when there is no command family: allows every call of that tool until the run ends |
 
-<!-- shot: desktop/approvals-card.png | an approval card for a run_command "npm test" in the transcript with Approve, Deny, Deny & stop and Always allow "npm test" -->
+![A run card waiting on an approval for the command mix test test/ailogic/rate_limiter_test.exs, with Approve, Deny, Deny & stop and Always allow “mix test”.](/assets/shots/desktop/quickstart-approval.webp)
 
 An approval nobody answers expires after 10 minutes, and the agent is told it timed out. A conversation with an open approval shows a waiting dot in the sidebar, and the menu bar icon lists it under **Waiting for you**.
 

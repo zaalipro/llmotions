@@ -29,6 +29,7 @@
 <p>Type <code>/swarm</code> followed by the task:</p>
 <div class="code"><div class="code-bar"><span class="code-lang">text</span><button type="button" class="copy" hidden>Copy</button></div><pre><code class="language-text">/swarm add unit tests for every module in lib/billing and make them pass</code></pre></div>
 <p>The assistant can also start a swarm on its own when a request is big enough; it uses the same machinery and you see the same cards.</p>
+<figure><img src="/assets/shots/desktop/swarms-running.webp" alt="A swarm run card in the transcript (running, 1/4 sub-agents, 62 ops) beside the agents pane Tree: the Lead waiting for sub-agents above ratelimiter-edge, done, and templates-edge, macros-edge and coreerror-edge with partly filled bars." width="880" height="409" loading="lazy" decoding="async"></figure>
 <h2 id="who-does-what">Who does what<a class="hash" href="#who-does-what" aria-label="Link to Who does what">#</a></h2>
 <ul><li>The <strong>lead</strong> plans and delegates. It has no file-editing tools of its own: it reads, starts sub-agents, messages them, waits for their results and verifies.</li><li><strong>Sub-agents</strong> do the work: they read, edit and run commands under the project's approval mode, like the assistant.</li><li>A sub-agent can be started in the background, so the lead keeps working and gets the result when it arrives.</li><li>Agents can message each other while they work.</li></ul>
 <p>Every agent appears in the agents pane with its own progress, tokens and cost; the swarm's card sums them up.</p>

@@ -26,7 +26,7 @@ The mode pill at the left of the composer sets how your next message is handled.
 | ⧉ Workflow | your next message authors and launches a workflow |
 | ⚖ Consensus | a second model judges the plan first ([Consensus](/docs/desktop/consensus/)) |
 
-<!-- shot: desktop/composer-mode-menu.png | the composer with the mode menu open, listing Build, Plan, Goal, Ultra, Workflow and Consensus with their hints -->
+![The composer with its mode menu open: Build (ticked), Plan, Goal, Ultra, Workflow and Consensus with their hints, and Shift+Tab to switch between Build and Plan.](/assets/shots/desktop/composer-mode-menu.webp)
 
 ## Model and effort
 
@@ -76,8 +76,8 @@ Every turn sends the conversation so far to the model. When a conversation gets 
 
 - Add a focus to steer the summary: `/compact keep the database migration details`.
 - Nothing is deleted. The earlier messages stay in the transcript and in the database; only what the model reads moves.
-- A divider card, **⊟ Context compacted**, marks the point and shows how much smaller the context became.
+- A **⊟ compact** card marks the point and shows how much smaller the context became, for example `3.1k → 1.2k`.
 
-<!-- shot: desktop/composer-compacted.png | the "⊟ Context compacted" divider card in a long seeded conversation -->
+![Two finished swarm turns followed by the ⊟ compact card: done in 13 seconds on claude-sonnet-5, the context down from 3.1k to 1.2k tokens.](/assets/shots/desktop/composer-compacted.webp)
 
 <!-- source: D:assets/js/hooks.js:880-882, D:lib/swarm_code_web/components/chat.ex:49-102,119-131,5705-5718,5759,5783,6367-6380, D:lib/swarm_code_web/live/workspace_live.ex:3179-3193,7460-7492,7494-7536,7844-7847, D:lib/swarm_code/engine.ex:14-44,270-288,666-678, D:lib/swarm_code/engine/project_context.ex:37-60, D:lib/swarm_code/conversations/run.ex:155, D:lib/swarm_code/attachments.ex:1-28, D:lib/swarm_code_web/live/settings_live.html.heex:202-205, D:CHANGELOG.md:2071-2084 -->

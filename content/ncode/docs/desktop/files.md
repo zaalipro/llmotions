@@ -15,7 +15,7 @@ Show the model what you mean: paste a screenshot into the composer ([[⌘]]+[[V]
 
 The search box at the top of the sidebar, [[⌘]]+[[K]], filters your conversations by title as you type. With three or more characters it also searches the text of every message in every conversation and shows the hits under **Message matches**, with a snippet. Click a hit to open that conversation.
 
-<!-- shot: desktop/files-search.png | the sidebar search with the query "migration" showing title matches and a Message matches section with two snippets -->
+![The sidebar search for “retry”: one conversation title matches, and a Message matches section shows two snippets.](/assets/shots/desktop/files-search.webp)
 
 ## Finding a file in the project
 

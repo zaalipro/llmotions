@@ -5,7 +5,7 @@ description: The rail, the sidebar, the transcript, the agents pane and the side
 
 The {{product}} window has five parts, from left to right: a narrow **rail**, the **sidebar**, the **transcript** with the message box under it, the **agents pane**, and, when you open it, the **side chat**.
 
-<!-- shot: desktop/tour-annotated.png | the full window with a swarm run in the seeded demo project, each of the five parts outlined and labelled: rail, sidebar, transcript + composer, agents pane, side chat -->
+![The full window with its five parts outlined and numbered: 1 rail, 2 sidebar, 3 transcript and composer, 4 side chat, 5 agents pane.](/assets/shots/desktop/tour-annotated.webp)
 
 ## The rail
 

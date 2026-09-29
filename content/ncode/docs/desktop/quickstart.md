@@ -19,7 +19,7 @@ This page takes you from a freshly installed app to a first finished task. You n
 4. Click **Save provider**.
 5. On your new provider's row, click **Fetch models**. {{product}} asks the endpoint for its model list. If models appear, the key works.
 
-<!-- shot: desktop/quickstart-provider-form.png | Settings → Providers & models with the Add provider form open: Name "anthropic", Kind Anthropic, Base URL https://api.anthropic.com, API key field masked -->
+![The Add provider form filled in: name anthropic, kind Anthropic, base URL https://api.anthropic.com, the API key masked, models claude-sonnet-5 and claude-opus-5, and Save provider.](/assets/shots/desktop/quickstart-provider-form.webp)
 
 > **Note** A fresh install already lists one provider with an empty key. Ignore it: the steps above add your own, and step 2 below makes new conversations use yours. You can delete that row once your provider works.
 
@@ -59,7 +59,7 @@ Explain how this project is organised and where the entry point is.
 
 Press [[Return]] to send ([[Shift]]+[[Return]] adds a new line). The answer streams into the transcript, and the agents pane on the right shows each tool call as it happens.
 
-<!-- shot: desktop/quickstart-empty-state.png | the start screen of a newly opened project: the greeting, "Ready when you are — (project name) is open.", and the four suggestion cards -->
+![The start screen of a new conversation in the ailogic project: the greeting, “Ready when you are — ailogic is open.”, four suggestion cards, and the composer set to claude-sonnet-5 · Medium.](/assets/shots/desktop/quickstart-empty-state.webp)
 
 ## 6. Approve a command
 
@@ -76,7 +76,7 @@ When an agent wants to run a command that needs approval, a card appears with th
 - **Deny & stop** refuses it and stops the run.
 - **Always allow "…"** runs it and remembers that command family for this project.
 
-<!-- shot: desktop/quickstart-approval.png | an approval card in the transcript for "mix test" with Approve, Deny, Deny & stop and Always allow "mix test" -->
+![A run card waiting on an approval for the command mix test test/ailogic/rate_limiter_test.exs, with Approve, Deny, Deny & stop and Always allow “mix test”.](/assets/shots/desktop/quickstart-approval.webp)
 
 ## 7. Try a swarm
 

@@ -13,8 +13,8 @@ The **Agents** view shows one card per agent: its name and task, its status (run
 - **Grid** lays the same cards side by side, which is easier to scan when many agents run at once.
 - **Full cards** show everything; **Compact cards** show one line per agent.
 
-<!-- shot: desktop/agents-tree.png | the Agents view as a Tree during a swarm in the seeded demo project: a lead with three sub-agents, progress bars partly filled, token and cost figures visible -->
-<!-- shot: desktop/agents-grid.png | the same swarm in the Grid layout with Compact cards -->
+![The Agents view as a Tree with Compact cards during a swarm: the Lead (claude-sonnet-5, 1/4 sub-agents, 458.0k tokens, waiting for sub-agents) above four sub-agents, one done and three with partly filled bars, each with its tokens and operations.](/assets/shots/desktop/agents-tree.webp)
+![The same swarm in the Grid layout: the Lead and four sub-agent cards side by side, all active on claude-sonnet-5, each with a progress bar, cached and total tokens, a status line and a Stop button.](/assets/shots/desktop/agents-grid.webp)
 
 Everything that waits for you (an approval, a question) is marked on its agent and in the transcript.
 
@@ -22,13 +22,13 @@ Everything that waits for you (an approval, a question) is marked on its agent a
 
 The **Timeline** view puts every step of every agent on a time axis, so you can see what ran in parallel, what waited and what took long. Click a step to open the inspector: the step whole, with its full input and output.
 
-<!-- shot: desktop/agents-timeline.png | the Timeline view of a finished swarm with the inspector open on one run_command step -->
+![The Timeline of a finished swarm with the inspector open on the Lead's run_command step that runs four test files: the Output tab shows the end of the ExUnit output, 71 passed.](/assets/shots/desktop/agents-timeline.webp)
 
 ## Changes
 
 The **Changes** view lists the files the conversation's agents changed, with a diff for each. From here you can restore a single file, or all the files of a turn, to how they were before (see [Rewind](/docs/desktop/rewind/)). Agents that worked in an isolated copy of the project show their work under **Branches** until it is merged (see [Limits and isolation](/docs/desktop/limits/)).
 
-<!-- shot: desktop/agents-changes.png | the Changes view with two changed files and one diff expanded -->
+![The Changes view: All Changes +171 −2, two changed files under lib (delivery_worker.ex +34 −1, selected, and webhooks.ex +15 −1), the test folder folded, and the diff of delivery_worker.ex expanded below.](/assets/shots/desktop/agents-changes.webp)
 
 ## Pause, continue, stop, resume
 

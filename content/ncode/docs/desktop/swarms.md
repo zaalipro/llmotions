@@ -15,7 +15,7 @@ Type `/swarm` followed by the task:
 
 The assistant can also start a swarm on its own when a request is big enough; it uses the same machinery and you see the same cards.
 
-<!-- shot: desktop/swarms-running.png | a swarm run card in the transcript and the agents pane Tree with the lead and four sub-agents at different progress -->
+![A swarm run card in the transcript (running, 1/4 sub-agents, 62 ops) beside the agents pane Tree: the Lead waiting for sub-agents above ratelimiter-edge, done, and templates-edge, macros-edge and coreerror-edge with partly filled bars.](/assets/shots/desktop/swarms-running.webp)
 
 ## Who does what
 

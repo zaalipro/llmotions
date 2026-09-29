@@ -27,7 +27,7 @@ Example: a stdio server that exposes one folder.
 | Command | `npx` |
 | Arguments | `-y @modelcontextprotocol/server-filesystem /path/to/notes` |
 
-<!-- shot: desktop/mcp-card.png | an MCP server card in Settings → MCP servers, status ready, its tools expanded as chips with two of them switched off -->
+![The tavily server card in Settings → MCP servers: ready over http, global, its tools shown as chips with 3 of 5 enabled; tavily_crawl and tavily_research are switched off.](/assets/shots/desktop/mcp-card.webp)
 
 ## Managing servers
 

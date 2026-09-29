@@ -5,7 +5,7 @@ description: ncode is a native Mac app where AI agents read, write and run code 
 
 {{product}} is a coding assistant that lives in a window on your Mac. You open a project folder, say what you want, and agents read the code, edit files and run commands to get it done. Nothing is hidden: every run, every agent and every step it takes appears on screen with its own progress bar, and you approve what matters before it happens.
 
-<!-- shot: desktop/overview-window.png | the full window, Carbon dark theme, seeded demo project open, a swarm running: transcript on the left, agents pane on the right showing the agent tree with progress bars -->
+![The ncode window in Carbon dark: a swarm running on the ailogic project, with the swarm card, its prompt and one sub-agent's report in the transcript, and the agents pane showing the Lead above four sub-agent cards with progress bars, one of them done.](/assets/shots/desktop/overview-window.webp)
 
 ## What you can do with it
 

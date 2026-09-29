@@ -20,8 +20,8 @@ description: Pick one of eight themes in dark or light mode, reduce motion, and 
 
 Click a theme to apply it at once. **Mode** switches between **Dark** and **Light**; the sun or moon button in the rail does the same from anywhere.
 
-<!-- shot: desktop/themes-grid.png | a 4 × 2 grid of the same seeded conversation in each of the eight themes, dark mode -->
-<!-- shot: desktop/themes-paper-light.png | the same conversation in Paper, light mode -->
+![The same conversation in all eight themes, dark mode, as a 4 × 2 grid: Carbon, Obsidian, Graphite & Amber, Aurora Glass, Ember, Fjord, Dusk and Paper.](/assets/shots/desktop/themes-grid.webp)
+![The same conversation in the Paper theme, light mode.](/assets/shots/desktop/themes-paper-light.webp)
 
 ## Motion
 

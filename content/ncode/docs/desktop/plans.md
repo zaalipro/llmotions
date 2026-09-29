@@ -24,7 +24,7 @@ A finished plan carries three buttons at the foot of its card (also in the side 
 
 After **Approve**, the implementation starts at once with the plan as its instructions: follow the steps in order, do not re-plan, verify the work the way the plan says, and finish with what changed, file by file. The composer switches back to Build.
 
-<!-- shot: desktop/plans-gate.png | a finished Planner card with ✓ Approve, ✎ Revise and ✕ Decline at its foot, and the Assistant / Swarm chooser open above Approve -->
+![The foot of a finished plan for total_pages/2: its Verify steps and Open questions, the cost $0.0440, and Approve, Revise and Decline with the chooser open above Approve: implement it with the Assistant or with a Swarm.](/assets/shots/desktop/plans-gate.webp)
 
 Each plan can be decided once. Clicking a button on a plan that was already approved, revised or declined says the plan is no longer open.
 

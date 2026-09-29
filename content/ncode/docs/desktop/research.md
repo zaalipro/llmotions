@@ -16,7 +16,7 @@ Deep research is for questions that need many sources: comparing libraries, coll
 3. Pick a level, and optionally tag it with a project or pick a model for this research.
 4. Click **Start research** or press [[⌘]]+[[Return]].
 
-<!-- shot: desktop/research-running.png | the Deep research page mid-run at level High: the question, round 2 of 3 in progress, worker agents with progress bars and the headline of round 1 -->
+![The Deep research page mid-run at level Medium: the question and how it was read, round 2 of 2 under way with three agents working, round 1's three notes and headline, and the counters: 19 sources, 811.0k tokens, $1.4794.](/assets/shots/desktop/research-running.webp)
 
 ## Following it
 
@@ -34,7 +34,7 @@ When a research is done:
 
 Every research is also saved as files (`result.md`, `report.html` and, if built, `designed.html`) in its own folder; see [Names](/docs/desktop/privacy/#names) for where.
 
-<!-- shot: desktop/research-report.png | a finished designed research report opened in the app, headline, sections and numbered sources visible -->
+![The designed report of a finished Medium research: the headline “Hammer is the answer. Fail-open is not, everywhere.”, a one-paragraph answer, five stat tiles with numbered source links, and the first section, “The four options, today”.](/assets/shots/desktop/research-report.webp)
 
 ## Using a research in a conversation
 
