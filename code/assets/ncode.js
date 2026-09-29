@@ -148,9 +148,10 @@
     var ratio = 1.6;
     var most = 1600;
     var fit = function () {
+      /* the dialog is as wide as the image; the caption bar wraps inside it, so measure it twice */
       for (var pass = 0; pass < 2; pass++) {
-        var w = Math.min(most, window.innerWidth * 0.94, (window.innerHeight * 0.92 - zBar.offsetHeight) * ratio);
-        zImg.style.width = Math.max(240, Math.floor(w)) + "px";
+        var w = Math.min(most, window.innerWidth * 0.94 - 2, (window.innerHeight * 0.92 - zBar.offsetHeight - 2) * ratio);
+        box.style.width = Math.max(240, Math.floor(w)) + 2 + "px";
       }
     };
     document.addEventListener("click", function (e) {
@@ -166,6 +167,8 @@
       var said = fig && (fig.querySelector(".sc-now") || fig.querySelector("figcaption"));
       zCap.textContent = said ? said.textContent : img.alt;
       zImg.alt = img.alt;
+      zImg.width = +img.getAttribute("width");
+      zImg.height = +img.getAttribute("height");
       zImg.src = a.getAttribute("href");
       zFull.href = a.getAttribute("href");
       box.showModal();
