@@ -1,4 +1,4 @@
-/* ncode landing — the copy button, the page's own progress bar and the run card's clock.
+/* ncode landing — the copy button, the page's own progress bar, the run card's clock, the mode showcase and its lightbox.
    The page reads the same without this file. Nothing here loads a library. */
 (function () {
   "use strict";
@@ -78,5 +78,106 @@
     }).observe(card);
     document.addEventListener("visibilitychange", sync);
     if (reduce.addEventListener) reduce.addEventListener("change", sync);
+  }
+  /* the mode showcase: a tab rail over the panels, which all show, stacked, without this file */
+  var show = document.querySelector("[data-showcase]");
+  var list = show && show.querySelector("[role=tablist]");
+  if (list) {
+    var tabs = Array.prototype.slice.call(list.querySelectorAll("[role=tab]"));
+    var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute("aria-controls")); });
+    var wide = window.matchMedia("(min-width: 1101px)");
+    var orient = function () { list.setAttribute("aria-orientation", wide.matches ? "vertical" : "horizontal"); };
+    var warm = function (i) {
+      var img = panels[i].querySelector("img[loading=lazy]");
+      if (img) img.loading = "eager";
+    };
+    var select = function (i, focus) {
+      tabs.forEach(function (t, j) {
+        var on = j === i;
+        t.setAttribute("aria-selected", on ? "true" : "false");
+        t.tabIndex = on ? 0 : -1;
+        panels[j].hidden = !on;
+      });
+      warm(i);
+      if (focus) tabs[i].focus({ preventScroll: !wide.matches });
+      if (!wide.matches) {
+        var t = tabs[i];
+        list.scrollTo({ left: t.offsetLeft - (list.clientWidth - t.offsetWidth) / 2, behavior: reduce.matches ? "auto" : "smooth" });
+      }
+    };
+    panels.forEach(function (p, j) {
+      p.setAttribute("role", "tabpanel");
+      p.setAttribute("aria-labelledby", tabs[j].id);
+    });
+    list.addEventListener("click", function (e) {
+      var t = e.target.closest("[role=tab]");
+      if (t) select(tabs.indexOf(t), false);
+    });
+    list.addEventListener("keydown", function (e) {
+      var i = tabs.indexOf(document.activeElement);
+      if (i < 0) return;
+      var n = tabs.length;
+      var k = e.key;
+      var to = null;
+      if (k === "ArrowRight" || (wide.matches && k === "ArrowDown")) to = (i + 1) % n;
+      else if (k === "ArrowLeft" || (wide.matches && k === "ArrowUp")) to = (i - 1 + n) % n;
+      else if (k === "Home") to = 0;
+      else if (k === "End") to = n - 1;
+      if (to === null) return;
+      e.preventDefault();
+      select(to, true);
+    });
+    tabs.forEach(function (t, j) {
+      t.addEventListener("pointerenter", function () { warm(j); });
+    });
+    orient();
+    if (wide.addEventListener) wide.addEventListener("change", orient);
+    show.classList.add("is-tabbed");
+    list.hidden = false;
+    select(0, false);
+  }
+
+  /* a larger look at a shot: a modal <dialog>. Without it (or without this file) the link opens the image. */
+  var box = document.getElementById("nc-zoom");
+  if (box && typeof box.showModal === "function") {
+    var zImg = document.getElementById("nc-zoom-img");
+    var zCap = document.getElementById("nc-zoom-cap");
+    var zFull = document.getElementById("nc-zoom-full");
+    var zBar = box.querySelector(".zm-bar");
+    var opener = null;
+    var ratio = 1.6;
+    var most = 1600;
+    var fit = function () {
+      for (var pass = 0; pass < 2; pass++) {
+        var w = Math.min(most, window.innerWidth * 0.94, (window.innerHeight * 0.92 - zBar.offsetHeight) * ratio);
+        zImg.style.width = Math.max(240, Math.floor(w)) + "px";
+      }
+    };
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest ? e.target.closest("a[data-zoom]") : null;
+      if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var img = a.querySelector("img");
+      if (!img) return;
+      e.preventDefault();
+      opener = a;
+      ratio = (+img.getAttribute("width") / +img.getAttribute("height")) || 1.6;
+      most = +a.getAttribute("data-zoom") || 1600;
+      var fig = a.closest("figure");
+      var said = fig && (fig.querySelector(".sc-now") || fig.querySelector("figcaption"));
+      zCap.textContent = said ? said.textContent : img.alt;
+      zImg.alt = img.alt;
+      zImg.src = a.getAttribute("href");
+      zFull.href = a.getAttribute("href");
+      box.showModal();
+      fit();
+    });
+    document.getElementById("nc-zoom-x").addEventListener("click", function () { box.close(); });
+    box.addEventListener("click", function (e) { if (e.target === box) box.close(); });
+    box.addEventListener("close", function () {
+      zImg.removeAttribute("src");
+      if (opener) opener.focus();
+      opener = null;
+    });
+    window.addEventListener("resize", function () { if (box.open) fit(); }, { passive: true });
   }
 })();
