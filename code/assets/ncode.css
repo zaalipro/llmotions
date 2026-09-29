@@ -254,12 +254,15 @@ nav.nc-nav { padding: 14px 40px; gap: 28px; }
 .face-shot figcaption { margin-top: 14px; color: var(--faint); font-size: 0.82rem; }
 .nc .face-shot a:focus-visible { border-radius: 12px; }
 
-/* ─── showcase: a rail of modes beside one stage. Without ncode.js every panel shows, stacked. ─── */
+/* ─── showcase: a rail of modes beside one stage. With scripts off, the <noscript> rule in index.html stacks every panel. ─── */
 .sc { display: grid; grid-template-columns: 236px minmax(0, 1fr); gap: 40px; align-items: start; }
 .sc:not(.is-tabbed) { display: block; }
 .sc-panels { display: grid; gap: 72px; }
 /* a link to a panel (#sc-plan) lands below the fixed header, not under it */
 .sc-panel { scroll-margin-top: 110px; }
+/* in one column the tab rail (63-71 px) and the 16 px gap sit above the panel: leave room for them too, so the rail
+   lands at about 110 px as in two columns instead of under the header. Tabs only ([role] is set by ncode.js). */
+@media (width <= 1100px) { .sc-panel[role="tabpanel"] { scroll-margin-top: 196px; } }
 .sc-h { display: flex; align-items: baseline; gap: 10px; margin: 0 0 16px; font-size: 1.3rem; font-weight: 600; letter-spacing: -0.02em; }
 .sc-g { color: var(--lane); text-align: center; }
 .sc.is-tabbed .sc-h { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
