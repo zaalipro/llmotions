@@ -18,8 +18,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap">
 <link rel="stylesheet" href="/assets/llm.css?v=4c90c21c">
-<link rel="stylesheet" href="/assets/ncode.css?v=30339486">
-<script src="/assets/ncode.js?v=5beff562" defer></script>
+<link rel="stylesheet" href="/assets/ncode.css?v=670951f0">
+<noscript><style>.sc-tabs{display:none}.sc.is-tabbed{display:block}.sc-panel[hidden]{display:block}.sc.is-tabbed .sc-h{position:static;width:auto;height:auto;overflow:visible;clip-path:none;white-space:normal}</style></noscript>
+<script src="/assets/ncode.js?v=57d3511b" defer></script>
 </head>
 <body class="nc">
 <a class="nc-skip" href="#main">Skip to content</a>
@@ -166,17 +167,17 @@
         <h2 id="show-h">See them run</h2>
         <p>Real captures of the Mac app, all on one sandbox Elixir project with claude-sonnet-5 at Medium effort (a second model judges the consensus run). Pick a mode, then open its window to see it full size.</p>
     </header>
-    <div class="sc" data-showcase>
-        <div class="sc-tabs" role="tablist" aria-label="Modes and run types" hidden>
+    <div class="sc is-tabbed" data-showcase>
+        <div class="sc-tabs" role="tablist" aria-label="Modes and run types">
             <button type="button" role="tab" id="sc-t-swarm" aria-controls="sc-swarm" aria-selected="true" style="--lane: var(--teal)"><span class="sc-g" aria-hidden="true">⋔</span><b>Swarm</b><span class="sc-cmd">/swarm</span><i aria-hidden="true"></i></button>
-            <button type="button" role="tab" id="sc-t-consensus" aria-controls="sc-consensus" aria-selected="false" style="--lane: var(--gold)"><span class="sc-g" aria-hidden="true">⚖</span><b>Consensus</b><span class="sc-cmd">/consensus</span><i aria-hidden="true"></i></button>
-            <button type="button" role="tab" id="sc-t-plan" aria-controls="sc-plan" aria-selected="false" style="--lane: var(--ember-2)"><span class="sc-g" aria-hidden="true">▤</span><b>Plan</b><span class="sc-cmd">/plan</span><i aria-hidden="true"></i></button>
-            <button type="button" role="tab" id="sc-t-goal" aria-controls="sc-goal" aria-selected="false" style="--lane: var(--violet)"><span class="sc-g" aria-hidden="true">◎</span><b>Goal</b><span class="sc-cmd">/goal</span><i aria-hidden="true"></i></button>
-            <button type="button" role="tab" id="sc-t-ultra" aria-controls="sc-ultra" aria-selected="false" style="--lane: var(--pink)"><span class="sc-g" aria-hidden="true">⧉</span><b>Ultra</b><span class="sc-cmd">/ultra</span><i aria-hidden="true"></i></button>
-            <button type="button" role="tab" id="sc-t-workflow" aria-controls="sc-workflow" aria-selected="false" style="--lane: var(--sky)"><span class="sc-g" aria-hidden="true">⧉</span><b>Workflow</b><span class="sc-cmd">/workflow</span><i aria-hidden="true"></i></button>
-            <button type="button" role="tab" id="sc-t-research" aria-controls="sc-research" aria-selected="false" style="--lane: var(--cream)"><span class="sc-g" aria-hidden="true">◈</span><b>Research</b><i aria-hidden="true"></i></button>
-            <button type="button" role="tab" id="sc-t-approvals" aria-controls="sc-approvals" aria-selected="false" style="--lane: var(--gold)"><span class="sc-g" aria-hidden="true">?</span><b>Approvals</b><i aria-hidden="true"></i></button>
-            <button type="button" role="tab" id="sc-t-changes" aria-controls="sc-changes" aria-selected="false" style="--lane: var(--ok)"><span class="sc-g" aria-hidden="true">±</span><b>Changes</b><span class="sc-cmd">/rewind</span><i aria-hidden="true"></i></button>
+            <button type="button" role="tab" id="sc-t-consensus" tabindex="-1" aria-controls="sc-consensus" aria-selected="false" style="--lane: var(--gold)"><span class="sc-g" aria-hidden="true">⚖</span><b>Consensus</b><span class="sc-cmd">/consensus</span><i aria-hidden="true"></i></button>
+            <button type="button" role="tab" id="sc-t-plan" tabindex="-1" aria-controls="sc-plan" aria-selected="false" style="--lane: var(--ember-2)"><span class="sc-g" aria-hidden="true">▤</span><b>Plan</b><span class="sc-cmd">/plan</span><i aria-hidden="true"></i></button>
+            <button type="button" role="tab" id="sc-t-goal" tabindex="-1" aria-controls="sc-goal" aria-selected="false" style="--lane: var(--violet)"><span class="sc-g" aria-hidden="true">◎</span><b>Goal</b><span class="sc-cmd">/goal</span><i aria-hidden="true"></i></button>
+            <button type="button" role="tab" id="sc-t-ultra" tabindex="-1" aria-controls="sc-ultra" aria-selected="false" style="--lane: var(--pink)"><span class="sc-g" aria-hidden="true">⧉</span><b>Ultra</b><span class="sc-cmd">/ultra</span><i aria-hidden="true"></i></button>
+            <button type="button" role="tab" id="sc-t-workflow" tabindex="-1" aria-controls="sc-workflow" aria-selected="false" style="--lane: var(--sky)"><span class="sc-g" aria-hidden="true">⧉</span><b>Workflow</b><span class="sc-cmd">/workflow</span><i aria-hidden="true"></i></button>
+            <button type="button" role="tab" id="sc-t-research" tabindex="-1" aria-controls="sc-research" aria-selected="false" style="--lane: var(--cream)"><span class="sc-g" aria-hidden="true">◈</span><b>Research</b><i aria-hidden="true"></i></button>
+            <button type="button" role="tab" id="sc-t-approvals" tabindex="-1" aria-controls="sc-approvals" aria-selected="false" style="--lane: var(--gold)"><span class="sc-g" aria-hidden="true">?</span><b>Approvals</b><i aria-hidden="true"></i></button>
+            <button type="button" role="tab" id="sc-t-changes" tabindex="-1" aria-controls="sc-changes" aria-selected="false" style="--lane: var(--ok)"><span class="sc-g" aria-hidden="true">±</span><b>Changes</b><span class="sc-cmd">/rewind</span><i aria-hidden="true"></i></button>
         </div>
         <div class="sc-panels">
             <div class="sc-panel" id="sc-swarm" style="--lane: var(--teal)">
@@ -186,56 +187,56 @@
                     <figcaption><span class="sc-now">Four sub-agents, one per module, add edge-case tests while the Lead waits; every card keeps its own bar, token count and Stop button.</span> <span class="sc-does"><code>/swarm</code> hands a task to a Lead that splits it, runs sub-agents side by side, then checks their work and reports back.</span> <a class="sc-doc" href="/docs/desktop/swarms/">Swarms guide</a></figcaption>
                 </figure>
             </div>
-            <div class="sc-panel" id="sc-consensus" style="--lane: var(--gold)">
+            <div class="sc-panel" id="sc-consensus" hidden style="--lane: var(--gold)">
                 <h3 class="sc-h"><span class="sc-g" aria-hidden="true">⚖</span> Consensus</h3>
                 <figure class="sc-fig">
                     <a class="sc-stage" href="/assets/shots/desktop/consensus-spine.webp" data-zoom="1272"><img src="/assets/shots/desktop/consensus-spine.webp" srcset="/assets/shots/desktop/consensus-spine-1000.webp 1000w, /assets/shots/desktop/consensus-spine.webp 1272w" sizes="(min-width: 1101px) 835px, calc(100vw - 60px)" width="636" height="492" loading="lazy" decoding="async" alt="A consensus card in the spine layout: round 1 plan and verdict, round 2 revised plan and verdict, both REVISE with a pass or fail mark per check, then the gate, your go before anything is written, with Approve and Revise, and the implement step still waiting."></a>
                     <figcaption><span class="sc-now">Two rounds on a webhook-retry plan: the judge marked every check and sent it back both times, so the run holds at the gate until you approve.</span> <span class="sc-does">A planner writes the plan and a second model judges it against the checks you pick; they take turns before any code changes.</span> <a class="sc-doc" href="/docs/desktop/consensus/">Consensus guide</a></figcaption>
                 </figure>
             </div>
-            <div class="sc-panel" id="sc-plan" style="--lane: var(--ember-2)">
+            <div class="sc-panel" id="sc-plan" hidden style="--lane: var(--ember-2)">
                 <h3 class="sc-h"><span class="sc-g" aria-hidden="true">▤</span> Plan</h3>
                 <figure class="sc-fig">
                     <a class="sc-stage" href="/assets/shots/desktop/plans-gate.webp" data-zoom="1232"><img src="/assets/shots/desktop/plans-gate.webp" srcset="/assets/shots/desktop/plans-gate-1000.webp 1000w, /assets/shots/desktop/plans-gate.webp 1232w" sizes="(min-width: 1101px) 835px, calc(100vw - 60px)" width="616" height="572" loading="lazy" decoding="async" alt="The foot of a finished Planner card: the plan's examples, a Verify step with mix test and mix format, two open questions, $0.0440 spent, and the Approve button's menu open, asking whether the Assistant or a Swarm implements the plan, beside Revise and Decline."></a>
                     <figcaption><span class="sc-now">A finished plan for a pagination helper ends in open questions; Approve asks who builds it, the Assistant alone or a Swarm.</span> <span class="sc-does">In Plan mode the agent only reads and searches; nothing changes until you approve, revise or decline its plan.</span> <a class="sc-doc" href="/docs/desktop/plans/">Plans guide</a></figcaption>
                 </figure>
             </div>
-            <div class="sc-panel" id="sc-goal" style="--lane: var(--violet)">
+            <div class="sc-panel" id="sc-goal" hidden style="--lane: var(--violet)">
                 <h3 class="sc-h"><span class="sc-g" aria-hidden="true">◎</span> Goal</h3>
                 <figure class="sc-fig">
                     <a class="sc-stage" href="/assets/shots/desktop/goal-stage.webp" data-zoom="1640"><img src="/assets/shots/desktop/goal-stage.webp" srcset="/assets/shots/desktop/goal-stage-1000.webp 1000w, /assets/shots/desktop/goal-stage.webp 1640w" sizes="(min-width: 1101px) 835px, calc(100vw - 60px)" width="820" height="546" loading="lazy" decoding="async" alt="A finished goal run: the purple goal badge and its text, done after 2 minutes 5 seconds and 24 ops, the assistant's report of doctests added to all 7 public functions with 19 tests passed and 0 failures, the two changed files, $0.3010 spent, and the agents pane with the Goal above the Assistant, marked done."></a>
                     <figcaption><span class="sc-now">The goal: a doctest on every public function in Ailogic.Core.Pagination and a passing test run. One turn met it in 2m 05s, 19 passed and 0 failures.</span> <span class="sc-does">Goal mode, or <code>/goal</code>, sets something the conversation keeps working towards across turns.</span> <a class="sc-doc" href="/docs/desktop/composer/#goals">Goals in the composer guide</a></figcaption>
                 </figure>
             </div>
-            <div class="sc-panel" id="sc-ultra" style="--lane: var(--pink)">
+            <div class="sc-panel" id="sc-ultra" hidden style="--lane: var(--pink)">
                 <h3 class="sc-h"><span class="sc-g" aria-hidden="true">⧉</span> Ultra</h3>
                 <figure class="sc-fig">
                     <a class="sc-stage" href="/assets/shots/desktop/ultra-stage.webp" data-zoom="1640"><img src="/assets/shots/desktop/ultra-stage.webp" srcset="/assets/shots/desktop/ultra-stage-1000.webp 1000w, /assets/shots/desktop/ultra-stage.webp 1640w" sizes="(min-width: 1101px) 835px, calc(100vw - 60px)" width="820" height="546" loading="lazy" decoding="async" alt="An Ultra-mode conversation: the finished review-changes-2 card, a request to fan the review out as a workflow, the assistant's reply that it launched review-changes-3 with the phases Review, Verify and Report, the running review-changes-3 card, the composer with the pink Ultra mode button, and the agents pane with the Review panel of three agents, one done and two running, and Verify and Report pending."></a>
                     <figcaption><span class="sc-now">Asked to fan a review out, the assistant launched the saved review-changes workflow with three lenses; its Review panel is running, one agent done.</span> <span class="sc-does">In Ultra mode the assistant takes on big requests by writing and running workflows itself, and reports back when they finish.</span> <a class="sc-doc" href="/docs/desktop/workflows/#ultra-mode">Ultra mode guide</a></figcaption>
                 </figure>
             </div>
-            <div class="sc-panel" id="sc-workflow" style="--lane: var(--sky)">
+            <div class="sc-panel" id="sc-workflow" hidden style="--lane: var(--sky)">
                 <h3 class="sc-h"><span class="sc-g" aria-hidden="true">⧉</span> Workflow</h3>
                 <figure class="sc-fig">
                     <a class="sc-stage" href="/assets/shots/desktop/workflows-stage.webp" data-zoom="1760"><img src="/assets/shots/desktop/workflows-stage.webp" srcset="/assets/shots/desktop/workflows-stage-1000.webp 1000w, /assets/shots/desktop/workflows-stage.webp 1760w" sizes="(min-width: 1101px) 835px, calc(100vw - 60px)" width="880" height="428" loading="lazy" decoding="async" alt="The Workflows page: three runs of review-changes, the live one in Review, one done and one stopped, and the live run's pipeline: running, $0.7322 so far, a Review panel of three agents for correctness, security and maintainability, one done and two running, then Verify and Report pending."></a>
                     <figcaption><span class="sc-now">The run the Ultra turn launched, on the Workflows page: review-changes-3 is in its Review phase, one agent each for correctness, security and maintainability, one done so far; Verify and Report come next.</span> <span class="sc-does">A workflow runs agents in a fixed order written in advance, such as review, verify each finding, then report, so it runs the same way every time. <code>/workflow</code> writes a new one from your message.</span> <a class="sc-doc" href="/docs/desktop/workflows/">Workflows guide</a></figcaption>
                 </figure>
             </div>
-            <div class="sc-panel" id="sc-research" style="--lane: var(--cream)">
+            <div class="sc-panel" id="sc-research" hidden style="--lane: var(--cream)">
                 <h3 class="sc-h"><span class="sc-g" aria-hidden="true">◈</span> Deep research</h3>
                 <figure class="sc-fig">
                     <a class="sc-stage" href="/assets/shots/desktop/research-stage.webp" data-zoom="1640"><img src="/assets/shots/desktop/research-stage.webp" srcset="/assets/shots/desktop/research-stage-1000.webp 1000w, /assets/shots/desktop/research-stage.webp 1640w" sizes="(min-width: 1101px) 835px, calc(100vw - 60px)" width="820" height="546" loading="lazy" decoding="async" alt="The Deep research page mid-run at level Medium: the running chip row, a timeline with round 1's three notes done and round 2's three agents working, the counters of 2 of 2 rounds, 6 agents back and 19 sources, the banner Round 2 of 2, 0 of 3 agents back, and the round notes with round 2's agents still working."></a>
                     <figcaption><span class="sc-now">A Medium research on Elixir rate-limiting libraries: round 1's three notes are in and round 2's three agents are still working, 19 sources so far.</span> <span class="sc-does">A lead plans the angles, worker agents search and read in rounds, and a reporter writes an answer with its sources.</span> <a class="sc-doc" href="/docs/desktop/research/">Deep research guide</a></figcaption>
                 </figure>
             </div>
-            <div class="sc-panel" id="sc-approvals" style="--lane: var(--gold)">
+            <div class="sc-panel" id="sc-approvals" hidden style="--lane: var(--gold)">
                 <h3 class="sc-h"><span class="sc-g" aria-hidden="true">?</span> Approvals</h3>
                 <figure class="sc-fig">
                     <a class="sc-stage" href="/assets/shots/desktop/quickstart-approval.webp" data-zoom="1504"><img src="/assets/shots/desktop/quickstart-approval.webp" srcset="/assets/shots/desktop/quickstart-approval-1000.webp 1000w, /assets/shots/desktop/quickstart-approval.webp 1504w" sizes="(min-width: 1101px) 835px, calc(100vw - 60px)" width="752" height="462" loading="lazy" decoding="async" alt="A run card flagged needs your answer, waiting on the command mix test test/ailogic/rate_limiter_test.exs, with the buttons Approve, Deny, Deny and stop, and Always allow mix test."></a>
                     <figcaption><span class="sc-now">A run stops before <code>mix test test/ailogic/rate_limiter_test.exs</code> and waits: Approve, Deny, Deny &amp; stop, or Always allow “mix test”.</span> <span class="sc-does">In Auto mode agents write and run safe commands on their own; anything else asks first, on a card in the transcript.</span> <a class="sc-doc" href="/docs/desktop/approvals/#answering-an-approval-card">Approvals guide</a></figcaption>
                 </figure>
             </div>
-            <div class="sc-panel" id="sc-changes" style="--lane: var(--ok)">
+            <div class="sc-panel" id="sc-changes" hidden style="--lane: var(--ok)">
                 <h3 class="sc-h"><span class="sc-g" aria-hidden="true">±</span> Changes and rewind</h3>
                 <figure class="sc-fig">
                     <a class="sc-stage" href="/assets/shots/desktop/agents-changes-2col.webp" data-zoom="1744"><img src="/assets/shots/desktop/agents-changes-2col.webp" srcset="/assets/shots/desktop/agents-changes-2col-1000.webp 1000w, /assets/shots/desktop/agents-changes-2col.webp 1744w" sizes="(min-width: 1101px) 835px, calc(100vw - 60px)" width="872" height="532" loading="lazy" decoding="async" alt="The Changes view of the agents pane, shown in two columns: all changes plus 171 minus 2, the lib tree open to delivery_worker.ex and webhooks.ex with the test folder folded, and beside it the diff of delivery_worker.ex with removed and added lines."></a>

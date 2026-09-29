@@ -1,5 +1,6 @@
 /* ncode landing — the copy button, the page's own progress bar, the run card's clock, the mode showcase and its lightbox.
-   The page reads the same without this file. Nothing here loads a library. */
+   Without scripts the page still reads in full (the <noscript> rule in the head stacks the showcase panels).
+   Nothing here loads a library. */
 (function () {
   "use strict";
   var reduce = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : { matches: false };
@@ -79,7 +80,10 @@
     document.addEventListener("visibilitychange", sync);
     if (reduce.addEventListener) reduce.addEventListener("change", sync);
   }
-  /* the mode showcase: a tab rail over the panels, which all show, stacked, without this file */
+  /* the mode showcase: a tab rail over the panels. The markup ships already tabbed (one panel showing, the rest
+     hidden) so the page does not change height when this file runs; a <noscript> rule in the head stacks the panels
+     for readers without scripts. This code adds the roles and the behaviour, and repeats the initial state so the
+     two never disagree. */
   var show = document.querySelector("[data-showcase]");
   var list = show && show.querySelector("[role=tablist]");
   if (list) {
@@ -137,6 +141,20 @@
     show.classList.add("is-tabbed");
     list.hidden = false;
     select(0, false);
+    /* a link to a panel, or to something inside one, opens that tab first: the others are hidden, so the browser
+       could not scroll to them */
+    var reveal = function () {
+      var id = location.hash.slice(1);
+      try { id = decodeURIComponent(id); } catch (err) { return; }
+      var el = id ? document.getElementById(id) : null;
+      var p = el && el.closest("[role=tabpanel]");
+      var i = p ? panels.indexOf(p) : -1;
+      if (i < 0 || !p.hidden) return;
+      select(i, false);
+      el.scrollIntoView();
+    };
+    reveal();
+    window.addEventListener("hashchange", reveal);
   }
 
   /* a larger look at a shot: a modal <dialog>. Without it (or without this file) the link opens the image. */

@@ -258,6 +258,8 @@ nav.nc-nav { padding: 14px 40px; gap: 28px; }
 .sc { display: grid; grid-template-columns: 236px minmax(0, 1fr); gap: 40px; align-items: start; }
 .sc:not(.is-tabbed) { display: block; }
 .sc-panels { display: grid; gap: 72px; }
+/* a link to a panel (#sc-plan) lands below the fixed header, not under it */
+.sc-panel { scroll-margin-top: 110px; }
 .sc-h { display: flex; align-items: baseline; gap: 10px; margin: 0 0 16px; font-size: 1.3rem; font-weight: 600; letter-spacing: -0.02em; }
 .sc-g { color: var(--lane); text-align: center; }
 .sc.is-tabbed .sc-h { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
