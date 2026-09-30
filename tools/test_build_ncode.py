@@ -669,6 +669,8 @@ class _ShowcaseScan(HTMLParser):
         classes = (a.get("class") or "").split()
         if tag == "head":
             self.in_head = True
+        elif tag == "body":
+            self.in_head = False       # </head> is optional in HTML
         elif tag == "noscript":
             self.in_noscript = True
         elif tag == "style" and self.in_noscript and self.in_head:
@@ -719,16 +721,45 @@ class LandingShowcase(unittest.TestCase):
 
     def test_the_check_notices_each_broken_condition(self):
         html = (HERE.parent / "code" / "index.html").read_text(encoding="utf-8")
+
+        def edit_tag(marker, fn):
+            """Rewrites the one start tag carrying `marker`, whatever its attribute order or spacing."""
+            def mutate(page):
+                tags = re.findall(r"<[a-zA-Z][^>]*%s[^>]*>" % marker, page)
+                self.assertEqual(len(tags), 1, "the fixture tag %s moved" % marker)
+                return page.replace(tags[0], fn(tags[0]), 1)
+            return mutate
+
+        def add_hidden(tag):
+            return tag[:-1] + " hidden>"
+
+        def drop_hidden(tag):
+            return re.sub(r'\s+hidden(?:="[^"]*")?(?=[\s>])', "", tag)
+
+        def unwrap_noscript(page):
+            out, n = re.subn(r"<noscript>(\s*<style)", r"\1", page)
+            self.assertEqual(n, 1, "the fixture <noscript><style> moved")
+            return out
+
+        def noscript_to_body(page):
+            block = re.search(r"<noscript>\s*<style.*?</noscript>", page, re.S)
+            self.assertIsNotNone(block, "the fixture <noscript><style> moved")
+            page = page.replace(block.group(0), "", 1)
+            return re.sub(r"(<body[^>]*>)", lambda m: m.group(1) + block.group(0), page, count=1)
+
         breaks = {
-            "class": ('class="sc is-tabbed" data-showcase', 'class="sc" data-showcase'),
-            "tablist": ('role="tablist"', 'role="tablist" hidden'),
-            "panel": ('<div class="sc-panel" id="sc-consensus" hidden', '<div class="sc-panel" id="sc-consensus"'),
-            "noscript": ("<noscript><style>", "<style>"),
+            "class": edit_tag(r"\bdata-showcase\b", lambda t: re.sub(r"\bis-tabbed\b", "", t)),
+            "tablist": edit_tag(r'role="tablist"', add_hidden),
+            "two open panels": edit_tag(r'id="sc-consensus"', drop_hidden),
+            "no open panel": edit_tag(r'id="sc-swarm"', add_hidden),
+            "noscript unwrapped": unwrap_noscript,
+            "noscript in body": noscript_to_body,
         }
-        for name, (old, new) in breaks.items():
+        for name, mutate in breaks.items():
             with self.subTest(name):
-                self.assertEqual(html.count(old), 1, "the fixture text for this break moved")
-                self.assertTrue(showcase_problems(html.replace(old, new)), "the broken page passed")
+                broken = mutate(html)
+                self.assertNotEqual(broken, html, "the break changed nothing")
+                self.assertTrue(showcase_problems(broken), "the broken page passed")
 
 
 if __name__ == "__main__":
