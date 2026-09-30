@@ -15,6 +15,7 @@ import sys
 import tempfile
 import unittest
 from contextlib import redirect_stderr, redirect_stdout
+from html.parser import HTMLParser
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -649,6 +650,85 @@ class Markdown(unittest.TestCase):
     def test_h1_in_body_is_an_error(self):
         _, _, rep = self.render("# Title")
         self.assertTrue(errors_of(rep, "no `#` heading"))
+
+
+class _ShowcaseScan(HTMLParser):
+    """Collects what the landing's showcase must ship in its no-JS-safe, already-tabbed state."""
+
+    def __init__(self):
+        super().__init__()
+        self.in_head = False
+        self.in_noscript = False
+        self.sc_classes = None          # class tokens of the [data-showcase] element
+        self.tablists = []              # attribute dicts of role=tablist elements
+        self.panels = []                # attribute dicts of .sc-panel elements
+        self.noscript_style_in_head = False
+
+    def handle_starttag(self, tag, attrs):
+        a = dict(attrs)
+        classes = (a.get("class") or "").split()
+        if tag == "head":
+            self.in_head = True
+        elif tag == "noscript":
+            self.in_noscript = True
+        elif tag == "style" and self.in_noscript and self.in_head:
+            self.noscript_style_in_head = True
+        if "data-showcase" in a:
+            self.sc_classes = classes
+        if a.get("role") == "tablist":
+            self.tablists.append(a)
+        if "sc-panel" in classes:
+            self.panels.append(a)
+
+    def handle_endtag(self, tag):
+        if tag == "head":
+            self.in_head = False
+        elif tag == "noscript":
+            self.in_noscript = False
+
+
+def showcase_problems(html):
+    """What is wrong with the landing's showcase markup, as a list of sentences (empty when it is right).
+
+    ncode.js only enhances: the page must already be tabbed, with one panel open, when it arrives, or the
+    layout changes height when the script runs (S8); the <noscript> style in <head> turns it back into a
+    plain list of panels for visitors without JavaScript."""
+    scan = _ShowcaseScan()
+    scan.feed(html)
+    problems = []
+    if scan.sc_classes is None or "sc" not in scan.sc_classes or "is-tabbed" not in scan.sc_classes:
+        problems.append('the [data-showcase] element must have class="sc is-tabbed"')
+    if len(scan.tablists) != 1:
+        problems.append("expected exactly one role=tablist, found %d" % len(scan.tablists))
+    elif "hidden" in scan.tablists[0]:
+        problems.append("the tablist must not carry the hidden attribute")
+    open_panels = [p for p in scan.panels if "hidden" not in p]
+    if len(open_panels) != 1:
+        problems.append("expected exactly one .sc-panel without hidden, found %d" % len(open_panels))
+    if not scan.noscript_style_in_head:
+        problems.append("the <noscript><style> block must be inside <head>")
+    return problems
+
+
+class LandingShowcase(unittest.TestCase):
+    """Guards the hand-written landing page (code/index.html): it ships tabbed, JavaScript only enhances it."""
+
+    def test_landing_ships_tabbed_with_one_open_panel(self):
+        html = (HERE.parent / "code" / "index.html").read_text(encoding="utf-8")
+        self.assertEqual(showcase_problems(html), [])
+
+    def test_the_check_notices_each_broken_condition(self):
+        html = (HERE.parent / "code" / "index.html").read_text(encoding="utf-8")
+        breaks = {
+            "class": ('class="sc is-tabbed" data-showcase', 'class="sc" data-showcase'),
+            "tablist": ('role="tablist"', 'role="tablist" hidden'),
+            "panel": ('<div class="sc-panel" id="sc-consensus" hidden', '<div class="sc-panel" id="sc-consensus"'),
+            "noscript": ("<noscript><style>", "<style>"),
+        }
+        for name, (old, new) in breaks.items():
+            with self.subTest(name):
+                self.assertEqual(html.count(old), 1, "the fixture text for this break moved")
+                self.assertTrue(showcase_problems(html.replace(old, new)), "the broken page passed")
 
 
 if __name__ == "__main__":
