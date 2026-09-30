@@ -143,7 +143,7 @@
     select(0, false);
     /* a link to a panel, or to something inside one, opens that tab first: the others are hidden, so the browser
        could not scroll to them */
-    var reveal = function () {
+    var reveal = function (e) {
       var id = location.hash.slice(1);
       try { id = decodeURIComponent(id); } catch (err) { return; }
       var el = id ? document.getElementById(id) : null;
@@ -151,7 +151,8 @@
       var i = p ? panels.indexOf(p) : -1;
       if (i < 0 || !p.hidden) return;
       select(i, false);
-      el.scrollIntoView();
+      /* html{scroll-behavior:smooth} would animate the first load from the top; only a later hash change glides */
+      el.scrollIntoView(e ? undefined : { behavior: "instant" });
     };
     reveal();
     window.addEventListener("hashchange", reveal);
