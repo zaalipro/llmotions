@@ -3,8 +3,6 @@ title: Install
 description: Install the ncode command with one line, check it, put it on your PATH, update it, remove it, or build it from source.
 ---
 
-> **Note** This is a preview of the docs. The download and the one-line installer go live with the 0.1.0 release; until then these steps describe how they will work.
-
 The `{{cmd}}` command installs into your home folder with one line. It needs no administrator password and touches nothing outside its own folders.
 
 ## One-line install
@@ -28,7 +26,7 @@ To install somewhere else, set a prefix. The release then goes to `<prefix>/shar
 curl -fsSL {{install_url}} | {{env_prefix}}PREFIX="$HOME/tools" sh
 ```
 
-<!-- capture: cli/install | the one-line installer's output on a fresh Mac: platform check, download, checksum OK, installed paths, the PATH hint and the next steps | 100x24 -->
+![The ncode 0.1.0 installer on Darwin arm64: download, checksum confirmation, isolated installation paths, PATH hint and version check.](/assets/shots/cli/install.webp)
 
 ## Check that it works
 
@@ -95,11 +93,11 @@ macOS checks an unnotarized program when it carries a *quarantine* mark, which b
 
 ## Install the release by hand {#manual-install}
 
-If you prefer not to pipe a script into `sh`, download the release yourself. The asset is on the [GitHub releases]({{cli_repo}}/releases) of the `{{cmd}}` repository, named `ncode-{{version}}-darwin-arm64.tar.gz`:
+If you prefer not to pipe a script into `sh`, download [ncode-{{version}}-darwin-arm64.tar.gz](https://code.llmotions.com/downloads/ncode-{{version}}-darwin-arm64.tar.gz) directly:
 
 ```sh
 cd ~/Downloads
-curl -fLO {{cli_repo}}/releases/download/v{{version}}/ncode-{{version}}-darwin-arm64.tar.gz
+curl -fLO https://code.llmotions.com/downloads/ncode-{{version}}-darwin-arm64.tar.gz
 shasum -a 256 ncode-{{version}}-darwin-arm64.tar.gz
 ```
 

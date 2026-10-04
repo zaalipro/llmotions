@@ -15,7 +15,7 @@ Agents change real files in your project. {{product}} keeps a snapshot of every 
 
 {{product}} puts the files back and adds a note to the conversation, for example *Rewound 3 file(s) to before turn 4.* If a file cannot be restored, it stops and says which one and how far it got; fix the cause and rewind again.
 
-<!-- shot: desktop/rewind-dialog.png | the Rewind dialog with two turns listed, the second expanded to show three files with Restore buttons and "Restore files to before this turn" -->
+![Rewind dialog with two turns, the second expanded to three project-relative files and restore controls.](/assets/shots/desktop/rewind-dialog.webp)
 
 Edits you saved yourself in the Changes view appear as a separate **Manual edits** group, restorable file by file.
 

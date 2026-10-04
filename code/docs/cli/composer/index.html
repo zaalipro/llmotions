@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap">
-<link rel="stylesheet" href="/assets/docs.css?v=77bd5446">
+<link rel="stylesheet" href="/assets/docs.css?v=b11baeac">
 <script src="/assets/docs.js?v=bc353f2b" defer></script>
 </head>
 <body class="d" data-product="cli">
@@ -36,6 +36,7 @@
 <p>Nothing is refused because work is running.</p>
 <ul><li><strong>Steer.</strong> A message you send while this conversation's chat turn is working goes to that turn. The transcript marks it <code>→ to the running turn</code>, and the running turn receives it.</li><li><strong>Queue.</strong> <kbd>Tab</kbd> or <kbd>Alt</kbd>+<kbd>Enter</kbd> queues the draft instead: it waits under the live turn, marked <code>queued</code>, and is sent when the turn ends. <code>/queue &lt;text&gt;</code> does the same.</li><li><strong>Start something beside it.</strong> <code>/swarm</code>, <code>/plan &lt;task&gt;</code>, <code>/consensus</code>, <code>/create-workflow</code>, a workflow or a goal start their own run at once, next to the running one.</li></ul>
 <p><code>/compact</code> sent during a turn, and a message sent while the conversation is being compacted, wait their turn in the queue.</p>
+<figure><img src="/assets/shots/cli/composer-steer-queue.webp" alt="Running ncode chat turn with guidance marked to the running turn and a separate queued message that will send after the current turn finishes." width="1072" height="626" loading="lazy" decoding="async"></figure>
 <h2 id="attaching-an-image">Attaching an image<a class="hash" href="#attaching-an-image" aria-label="Link to Attaching an image">#</a></h2>
 <div class="code"><div class="code-bar"><span class="code-lang">text</span><button type="button" class="copy" hidden>Copy</button></div><pre><code class="language-text">/attach docs/screenshot.png</code></pre></div>
 <p>stages an image file from inside the project for your next message; it is sent with that message.</p>

@@ -7,7 +7,9 @@ description: ncode in your terminal: a full-screen coding session, a plain line 
 
 Everything stays on your Mac: conversations, runs, settings and your keys live in one local database that the {{product}} desktop app uses too. There is no account and no {{product}} server in the middle. You bring your own model provider key (Anthropic, or any OpenAI-compatible endpoint), and the requests go straight from your Mac to that provider.
 
-<!-- capture: cli/hero | a swarm run in the full-screen session: transcript on the left, the side panel full with four agents, one approval waiting, the status line showing "auto" | 120x40 -->
+![ncode's dark full-screen session on ailogic during a four-agent swarm: the Lead and three workers in the transcript, Verify changes waiting for approval at the top of the full side panel, model status lines, $0.04 spent, and auto approval mode in the status line.](/assets/shots/cli/hero.webp)
+
+Screenshots in the CLI guides use a local demo project and scripted provider responses. Model labels, token counts and costs are illustrative.
 
 ## Three ways to run it
 

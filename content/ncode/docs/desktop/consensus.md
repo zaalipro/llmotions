@@ -49,7 +49,7 @@ The planner model is the conversation's chat model.
 
 Each round, the judge either approves the plan or sends findings back, and the planner revises. If the rounds run out, the planner goes on with its best plan and the card says so. The agents pane shows the rounds, the verdicts and each finding.
 
-<!-- shot: desktop/consensus-scales.png | a consensus card in the Scales layout after two rounds, the judge's findings and the final verdict visible -->
+![The finished Consensus Scales card: R1 plan and R2 revised plan sent back with REVISE, R3 changes REVISE, and R4 changes APPROVED with all five checks passed; four rounds in 26m 48s.](/assets/shots/desktop/consensus-scales.webp)
 
 ## Card layouts
 

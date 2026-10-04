@@ -5,7 +5,7 @@ description: What each part of the full-screen session shows, how to read long o
 
 `{{cmd}}` opens one conversation of one project in full screen. The screen is built around the composer: letters always type into your draft, and nothing you type is taken as a command unless it starts with `/`.
 
-<!-- capture: cli/session-annotated | a full frame with five numbered areas: 1 run tabs, 2 transcript, 3 side panel, 4 composer, 5 status line; a chat turn with two tool rows and one worker running | 120x40 -->
+![The 120 by 40 ncode session with five numbered markers: 1 run tabs, 2 transcript, 3 side panel, 4 composer, and 5 status line. The chat has two successful file-read rows, while a separate swarm's Flow review worker is running in the same conversation.](/assets/shots/cli/session-annotated.webp)
 
 ## Layout
 
@@ -19,7 +19,7 @@ description: What each part of the full-screen session shows, how to read long o
 
 Under 120 columns the side panel becomes a one-line strip, or disappears. A small 80 × 24 terminal still works.
 
-<!-- capture: cli/session-narrow | the same conversation at 80x24 with the side panel as a strip | 80x24 -->
+![The same conversation resized to 80 by 24: chat and swarm tabs above a one-line swarm panel strip, two successful file reads in the transcript, a running Flow review worker, the empty composer, and the auto approval-mode status line.](/assets/shots/cli/session-narrow.webp)
 
 ## Reading long output
 
@@ -65,6 +65,6 @@ Quitting stops this session's runs. Back in your shell, a short summary lists th
 
 A [[Ctrl]]+[[C]] outside the full screen (while it starts, during a `-p` run, or after the summary) simply ends the program.
 
-<!-- capture: cli/session-exit-summary | the shell after quitting a session with one live run: the stopped run and the "--resume <id>" line | 100x12 -->
+![The real 100 by 12 shell after quitting ncode: ailogic's ncode --new . command, the last prompt about ticket transitions, Stopped 1 live run with its title, the ncode --resume conversation-ID command, and the returned shell prompt.](/assets/shots/cli/session-exit-summary.webp)
 
 <!-- source: C:README.md:70-93, C:README.md:115-126, C:README.md:223-228, C:AGENTS.md:171-177, C:AGENTS.md:186-188, C:AGENTS.md:208-213, C:AGENTS.md:219-227, C:AGENTS.md:256-259, C:docs/keybindings.md:6-13,21-38,50-61,81-88, C:apps/swarm_code_core/lib/swarm_code/commands.ex:36-38 -->

@@ -140,6 +140,7 @@ h2:hover .hash, h3:hover .hash, h4:hover .hash, .hash:focus-visible { opacity: 1
 .d-article p, .d-article li { color: #d6d6e6; }
 .d-article ul, .d-article ol { padding-left: 1.3em; }
 .d-article li { margin: 0.3em 0; }
+.d-relpage .d-article li { overflow-wrap: anywhere; }
 .d-article li::marker { color: var(--faint); }
 .d-article strong { color: #fff; font-weight: 600; }
 .d-article img { max-width: 100%; height: auto; border: 1px solid var(--line-2); border-radius: 10px; }

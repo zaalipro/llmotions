@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap">
-<link rel="stylesheet" href="/assets/docs.css?v=77bd5446">
+<link rel="stylesheet" href="/assets/docs.css?v=b11baeac">
 <script src="/assets/docs.js?v=bc353f2b" defer></script>
 </head>
 <body class="d" data-product="cli">
@@ -27,12 +27,16 @@
 <p><code>ncode</code> runs in any terminal on macOS and adapts to what the terminal can show. Everything on this page is a setting of <strong>this terminal</strong>, kept in <code>cli.json</code> beside the database, so the desktop app is not affected.</p>
 <h2 id="supported-terminals">Supported terminals<a class="hash" href="#supported-terminals" aria-label="Link to Supported terminals">#</a></h2>
 <p>The full glyph set, with thin rails and fine progress bars, needs a truecolor terminal whose <code>TERM</code> names <strong>Ghostty</strong>, <strong>kitty</strong>, <strong>WezTerm</strong> or <strong>iTerm</strong>. Everywhere else, including Terminal.app and inside tmux or GNU screen, <code>ncode</code> draws a plainer glyph set with the same layout and keys.</p>
+<figure><img src="/assets/shots/cli/tier-rich.webp" alt="The four-agent swarm in the rich truecolor glyph tier: thin transcript rails and tree branches, fine tick-style swarm progress bars, one verification approval waiting, the full side panel, and auto approval mode." width="1072" height="806" loading="lazy" decoding="async"></figure>
+<figure><img src="/assets/shots/cli/tier-plain.webp" alt="The matching four-agent swarm in the Terminal.app-style measured glyph tier, with plainer tree connectors, wider rails and outlined progress cells, while the approval, agent rows, composer and auto status line keep the same layout." width="1072" height="806" loading="lazy" decoding="async"></figure>
 <h2 id="dark-and-light">Dark and light<a class="hash" href="#dark-and-light" aria-label="Link to Dark and light">#</a></h2>
 <p><code>/theme dark</code> and <code>/theme light</code> switch at once and are remembered. At launch the theme is chosen in this order:</p>
 <ol><li><code>NCODE_THEME=dark</code> or <code>light</code>, while it is set;</li><li>the theme you chose with <code>/theme</code> (or in Settings → Appearance);</li><li>the desktop app's light or dark mode;</li><li>dark.</li></ol>
+<figure><img src="/assets/shots/cli/theme-light.webp" alt="The matching four-agent swarm in ncode's light theme: a pale transcript and panel, coloured agent names, Verify changes waiting for approval, thin rich-tier rails and progress bars, $0.04 spent, and auto approval mode." width="1072" height="806" loading="lazy" decoding="async"></figure>
 <h2 id="plain-glyphs-and-monochrome">Plain glyphs and monochrome<a class="hash" href="#plain-glyphs-and-monochrome" aria-label="Link to Plain glyphs and monochrome">#</a></h2>
 <ul><li><code>NCODE_ASCII=1</code>, or <strong>Glyphs</strong> in Settings → Appearance, draws plain ASCII glyphs, for a terminal or font without the symbols.</li><li><code>NO_COLOR</code> gives a monochrome screen; <strong>Colours</strong> in Settings → Appearance sets colour too.</li><li><strong>Ambiguous-width characters</strong> (narrow or wide) fixes misaligned borders in fonts that draw box characters two cells wide.</li><li><strong>Reduced motion</strong> is a switch on the same page.</li><li><strong>Accent colour</strong> takes a <code>#RRGGBB</code> value.</li></ul>
 <p>These apply at the next launch.</p>
+<figure><img src="/assets/shots/cli/tier-ascii.webp" alt="The matching four-agent swarm with ASCII glyphs: S swarm marks, pipe and backtick tree connectors, hyphen progress bars and composer divider, one verification approval waiting, and the full side panel with auto approval mode." width="1072" height="806" loading="lazy" decoding="async"></figure>
 <h2 id="mouse-and-selection">Mouse and selection<a class="hash" href="#mouse-and-selection" aria-label="Link to Mouse and selection">#</a></h2>
 <ul><li>The mouse wheel scrolls the pane under the pointer, three lines a notch (<strong>Lines per notch</strong> in Settings → Keys &amp; input).</li><li>To select text while the wheel is on, hold <kbd>Shift</kbd> while dragging; in Terminal.app and iTerm2, hold <kbd>Option</kbd>.</li><li><code>/mouse off</code> gives the terminal its own mouse selection back; <code>/mouse on</code> turns wheel scrolling on again. <code>NCODE_MOUSE=0</code> or <code>1</code> wins over both while set.</li></ul>
 <h2 id="vim-keys">Vim keys<a class="hash" href="#vim-keys" aria-label="Link to Vim keys">#</a></h2>

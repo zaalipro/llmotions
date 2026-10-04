@@ -65,6 +65,4 @@ The bottom of the sidebar shows the app version, how much memory {{product}} use
 - **Closing the window** only hides it. Runs keep going and notifications still arrive. Click the {{product}} icon in the Dock, or use the menu bar icon, to bring it back. The menu bar icon also lists conversations **Waiting for you**.
 - **Quitting** ([[⌘]]+[[Q]]) asks first. The dialog says what is still running. Quitting stops running work; paused workflows keep their journal and resume where they stopped.
 
-<!-- shot: desktop/tour-tray-menu.png | the menu bar icon's menu open with "Waiting for you · 1", one conversation, Show ncode and Quit -->
-
 <!-- source: D:lib/swarm_code_web/components/frame.ex:400-471,608-672,780-819,865-891,1076,1506-1528, D:lib/swarm_code_web/components/swarm_pane.ex:212-295,3482, D:lib/swarm_code_web/components/chat.ex:3318-3385,4325-4336,6367-6370, D:lib/swarm_code_web/components/chat_header.ex:80-92, D:lib/swarm_code_web/components/side_chat.ex:1-10, D:lib/swarm_code_web/live/workspace_live.ex:3179-3193,3692-3696, D:lib/swarm_code/settings.ex:98-110, D:lib/swarm_code/desktop.ex:40-50, D:lib/swarm_code/tray_menu.ex:50-60, D:lib/swarm_code_web/components/quit_modal.ex:70-120, D:lib/swarm_code_web/live/history_live.ex:1-23, D:CHANGELOG.md:302-305 -->

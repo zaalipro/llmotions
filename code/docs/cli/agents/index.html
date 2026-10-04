@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap">
-<link rel="stylesheet" href="/assets/docs.css?v=77bd5446">
+<link rel="stylesheet" href="/assets/docs.css?v=b11baeac">
 <script src="/assets/docs.js?v=bc353f2b" defer></script>
 </head>
 <body class="d" data-product="cli">
@@ -30,6 +30,8 @@
 <div class="tbl" role="region" tabindex="0" aria-label="Table: Size, What you see"><table><thead><tr><th>Size</th><th>What you see</th></tr></thead><tbody><tr><td>full</td><td>one row per agent with its name, a status line and one figure</td></tr><tr><td>compact</td><td>a narrower panel</td></tr><tr><td>hidden</td><td>no panel; the transcript takes the width</td></tr></tbody></table></div>
 <p>Under 120 columns the panel becomes a one-line strip at the edge, or is off. <code>/panel full</code>, <code>/panel compact</code> and <code>/panel hidden</code> set the size directly; your choice is kept for the next session.</p>
 <p>Workflow and consensus runs also draw their own sections in the panel: the phases of a workflow, the rounds of a judged plan.</p>
+<figure><img src="/assets/shots/cli/panel-full.webp" alt="The full side panel during a five-agent swarm, with Verify changes waiting for approval first, followed by Ticket flow, Regression audit, Docs polish and the Lead; short model-written status lines, turn counts, and $0.05 spent are visible." width="1072" height="806" loading="lazy" decoding="async"></figure>
+<figure><img src="/assets/shots/cli/panel-compact.webp" alt="The same five-agent swarm with the compact side panel: the pending verification command above compact rows for Verify changes, Ticket flow, Regression audit, Docs polish and the Lead, with $0.05 spent and the Panel compact confirmation in the status line." width="1072" height="806" loading="lazy" decoding="async"></figure>
 <h2 id="reading-an-agent-row">Reading an agent row<a class="hash" href="#reading-an-agent-row" aria-label="Link to Reading an agent row">#</a></h2>
 <p>Rows are sorted by attention. Each row has:</p>
 <ul><li><strong>a name</strong> the model gave the agent when it started it (for example "Audit the auth tests");</li><li><strong>a status line</strong>, a short sentence written by a model about what the agent is doing right now;</li><li><strong>one figure</strong>; a <code>$</code> amount appears only when the agent's cost is known (a price is set for its model).</li></ul>
@@ -40,11 +42,13 @@
 <p><kbd>Ctrl</kbd>+<kbd>F</kbd> (or <kbd>Ctrl</kbd>+<kbd>Space</kbd>) puts a letter badge before every agent in the panel:</p>
 <ul><li>press an agent's letter to open its overlay;</li><li>press a digit to show one run, or <code>0</code> to open the runs dashboard (every run);</li><li>press <kbd>Ctrl</kbd>+<kbd>F</kbd> again to jump to the next approval or question, like <kbd>Ctrl</kbd>+<kbd>N</kbd>;</li><li><kbd>Esc</kbd> cancels.</li></ul>
 <p>Hint letters never answer an approval. Hint mode also works over an approval card: the letter opens the overlay of the agent that asked. The letters used for badges can be changed under <strong>Hint letters</strong> in Settings → Keys &amp; input.</p>
+<figure><img src="/assets/shots/cli/panel-hints.webp" alt="Hint mode in the full swarm panel, with orange s, f, g, h and j badges for Verify changes, Ticket flow, Regression audit, Docs polish and the Lead, a 1 run badge, and the footer s-j open, 1 run, Ctrl-F again needs you, Esc." width="1072" height="806" loading="lazy" decoding="async"></figure>
 <h2 id="the-agent-overlay">The agent overlay<a class="hash" href="#the-agent-overlay" aria-label="Link to The agent overlay">#</a></h2>
 <p>A badge letter, or <kbd>Enter</kbd> on an agent row in select mode, opens that agent full screen:</p>
 <ul><li>its request, if it is waiting for you, with the approval keys;</li><li>its life on a time axis;</li><li>its brief and its findings;</li><li>what it did, grouped; <code>o</code> lists every raw operation;</li><li>where it sits in the run;</li><li>a composer that steers <strong>only this agent</strong>: a message you send here goes to it, not to the whole run.</li></ul>
 <div class="tbl" role="region" tabindex="0" aria-label="Table: Key, Does"><table><thead><tr><th>Key</th><th>Does</th></tr></thead><tbody><tr><td><code>[</code> / <code>]</code></td><td>previous / next agent of the run</td></tr><tr><td><kbd>Tab</kbd></td><td>move between the request, the activity and the composer</td></tr><tr><td><code>o</code></td><td>every raw operation</td></tr><tr><td><code>x</code></td><td>stop this agent (asks first)</td></tr><tr><td><kbd>Esc</kbd></td><td>back to the chat, at the same scroll and with the same draft</td></tr></tbody></table></div>
 <p>The approval letters and <code>o</code>, <code>[</code>, <code>]</code>, <code>x</code> act only while the overlay's composer is empty. Here <code>a</code> is a second key for "allow once", beside <code>y</code>.</p>
+<figure><img src="/assets/shots/cli/agent-overlay.webp" alt="The Ticket flow worker overlay with its life timeline and brief, grouped activity showing three documentation-file writes and git status --short, the run's agent tree, three changed files, token and turn counts, and an empty composer that steers only Ticket flow." width="1072" height="806" loading="lazy" decoding="async"></figure>
 <h2 id="runs-dashboard-and-run-palette">Runs dashboard and run palette<a class="hash" href="#runs-dashboard-and-run-palette" aria-label="Link to Runs dashboard and run palette">#</a></h2>
 <p>A conversation can have several runs at once: a chat turn, a swarm, a workflow, a plan. The run tabs above the transcript switch between them (<kbd>Alt</kbd>+<kbd>1</kbd> … <kbd>Alt</kbd>+<kbd>4</kbd>); <kbd>Ctrl</kbd>+<kbd>G</kbd> opens the runs dashboard and <kbd>Ctrl</kbd>+<kbd>R</kbd> the run palette, to find and open a run. <code>/stop</code> stops everything running in the conversation.</p>
 <h2 id="what-an-agent-can-do">What an agent can do<a class="hash" href="#what-an-agent-can-do" aria-label="Link to What an agent can do">#</a></h2>

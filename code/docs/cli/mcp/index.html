@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap">
-<link rel="stylesheet" href="/assets/docs.css?v=77bd5446">
+<link rel="stylesheet" href="/assets/docs.css?v=b11baeac">
 <script src="/assets/docs.js?v=bc353f2b" defer></script>
 </head>
 <body class="d" data-product="cli">
@@ -33,6 +33,9 @@
 <p>Open Settings (<kbd>F2</kbd>) at <strong>MCP servers</strong>. There you can:</p>
 <ul><li>add a <strong>stdio</strong> server (a command, its arguments and <code>KEY=VALUE</code> environment variables) or an <strong>HTTP</strong> server (a URL and <code>Name: value</code> headers);</li><li><strong>import</strong> the servers of a <code>.mcp.json</code> file, the format other coding tools use;</li><li>switch a server, or single tools of it, on and off;</li><li><strong>reconnect</strong> a server after you changed or restarted it.</li></ul>
 <p>Environment values and headers are masked on screen. Probing a server runs as a task with its seconds shown; <code>c</code> cancels it.</p>
+<figure><img src="/assets/shots/cli/settings-mcp-list.webp" alt="MCP server list with Docs connected over HTTP using two of three tools and Files connected over stdio using one tool." width="1072" height="806" loading="lazy" decoding="async"></figure>
+<p>Open a server to inspect its connection, masked headers and individual tools.</p>
+<figure><img src="/assets/shots/cli/settings-mcp.webp" alt="The connected Docs HTTP MCP server, its masked header, and three tools with refresh_index switched off." width="1072" height="806" loading="lazy" decoding="async"></figure>
 <h2 id="adding-a-server-from-a-script">Adding a server from a script<a class="hash" href="#adding-a-server-from-a-script" aria-label="Link to Adding a server from a script">#</a></h2>
 <div class="code"><div class="code-bar"><span class="code-lang">sh</span><button type="button" class="copy" hidden>Copy</button></div><pre><code class="language-sh">ncode config record add mcp_server docs --http https://mcp.example.com/mcp
 printf '%s' "$DOCS_TOKEN" | ncode config secret mcp_server:docs.headers.Authorization --stdin

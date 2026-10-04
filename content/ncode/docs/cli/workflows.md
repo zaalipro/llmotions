@@ -25,7 +25,7 @@ For a multi-round research with an HTML report, use [Deep research](/docs/cli/re
 
 You can also start one from the library: `/workflows`, or **Workflows** in the [[Ctrl]]+[[P]] palette, lists every workflow and its runs. A row opens a form for the workflow's arguments: arrow keys cycle choices and switches, [[Enter]] starts it, [[Esc]] cancels. A value the workflow does not accept stays in the form with the error next to it.
 
-<!-- capture: cli/workflow-run | a review-changes run: the transcript with the phase headings and the side panel showing the Review phase with four agents and the Verify phase waiting | 120x40 -->
+![ncode review-changes workflow with Correctness, Security, Maintainability and Performance reviewers thinking in parallel; the side panel shows Review active, Verify and Report waiting, and four live agents.](/assets/shots/cli/workflow-run.webp)
 
 ## Controlling a run
 

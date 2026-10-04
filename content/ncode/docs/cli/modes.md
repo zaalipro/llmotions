@@ -41,7 +41,7 @@ A conversation has a **mode** that shapes what your next message does, and each 
 | Judge model | the sub-agent model |
 | Implementer model | the planner implements |
 
-<!-- capture: cli/consensus-verdict | a consensus run in the transcript: the plan, the judge's verdict per check, and the panel showing the round section | 120x40 -->
+![ncode consensus transcript containing a minimal release-check plan and an approved Judge round 1, with passing checks and the judge summary in the side panel.](/assets/shots/cli/consensus-verdict.webp)
 
 ## Swarm
 

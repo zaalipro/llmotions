@@ -14,7 +14,7 @@ set -eu
 
 main() {
   VERSION="${NCODE_VERSION:-0.1.0}"
-  SHA256="c955d39f657f31f018fde18d88bb06ab283e237f63482c1a5de6b391ba389bb6"
+  SHA256="78585c7667f906e7ef12f6252436213fa17f62da723a857fe46f28d550fd3ed7"
   name="ncode-${VERSION}-darwin-arm64.tar.gz"
   url="${NCODE_TARBALL_URL:-https://code.llmotions.com/downloads/${name}}"
   prefix="${NCODE_PREFIX:-${SWARMCODE_PREFIX:-$HOME/.local}}"

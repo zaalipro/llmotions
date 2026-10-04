@@ -18,7 +18,7 @@ Every setting the desktop app has, and this terminal's own, are in one full-scre
 
 `{{cmd}} settings` needs a terminal. From a script, use [`{{cmd}} config`](/docs/cli/config/) instead.
 
-<!-- capture: cli/settings-overview | Settings at 120x40: the section rail on the left, the Providers page open with two providers, the footer keys | 120x40 -->
+![Providers in Settings, with the section rail, Anthropic and OpenRouter providers, masked keys, model counts and footer shortcuts.](/assets/shots/cli/settings-overview.webp)
 
 ## Sections
 

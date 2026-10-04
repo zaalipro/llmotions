@@ -3,8 +3,6 @@ title: Quickstart
 description: From install to a first answer: add your own provider key, open a project, trust it, send a message, approve a command, quit and come back.
 ---
 
-> **Note** This is a preview of the docs. The download and the one-line installer go live with the 0.1.0 release; until then these steps describe how they will work.
-
 This page takes you from a fresh install to a first finished task in a few minutes. You need `{{cmd}}` [installed](/docs/cli/install/) and a key for a model provider: Anthropic, OpenAI, OpenRouter, DeepSeek, or any other OpenAI-compatible endpoint. A local server such as Ollama or LM Studio works without a key.
 
 ## Add a model provider
@@ -39,7 +37,7 @@ printf '%s' "$ANTHROPIC_API_KEY" | {{cmd}} config secret provider:Anthropic --st
 {{cmd}} config set models.chat Anthropic/<model-id>
 ```
 
-<!-- capture: cli/quickstart-providers | Settings at Providers with one Anthropic provider added from its preset, its key row masked "●●●●●●●● set · ends 4f2a" and the test result; no other provider rows | 120x40 -->
+![Anthropic provider settings added from its preset, with the default api.anthropic.com base URL, the selected API key row masked and ending 4f2a, Test connection below, and default model claude-sonnet-5.](/assets/shots/cli/quickstart-providers.webp)
 
 ### From the environment (first run only) {#from-the-environment}
 
@@ -69,7 +67,7 @@ cd ~/dev/app
 
 `{{cmd}}` opens the folder you run it from (or the one you name, `{{cmd}} ~/dev/app`) as the project, in full screen, with the composer ready for typing. It continues the project's latest conversation; `{{cmd}} --new` starts a fresh one.
 
-<!-- capture: cli/quickstart-first-screen | the session on a new project: empty transcript, composer with the cursor, the status line reading "read-only" | 120x40 -->
+![A new ailogic session with an empty transcript, message composer, claude-sonnet-5 and read-only, untrusted status.](/assets/shots/cli/quickstart-first-screen.webp)
 
 ## Trust the project
 
@@ -108,7 +106,7 @@ When the assistant wants to run a command that auto mode does not allow on its o
 
 The letters answer only while your draft is empty, so a sentence you are typing never answers a card by accident.
 
-<!-- capture: cli/quickstart-approval | the approval card above the composer with a three-line command and the keys y Y A d D n | 120x40 -->
+![ncode terminal session for ailogic with an approval card above the empty composer, a focused test command wrapped over three lines, and y, Y, A, d, D and n keyboard actions.](/assets/shots/cli/quickstart-approval.webp)
 
 ## Quit and come back
 

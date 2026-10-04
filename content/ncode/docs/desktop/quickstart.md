@@ -3,8 +3,6 @@ title: Quickstart
 description: Add your own model provider key, open a project, trust it and send your first message in about five minutes.
 ---
 
-> **Note** This is a preview of the docs. The download and the one-line installer go live with the 0.1.0 release; until then these steps describe how they will work.
-
 This page takes you from a freshly installed app to a first finished task. You need {{product}} [installed](/docs/desktop/install/) and an API key from a model provider: Anthropic, or any service with an OpenAI-compatible API.
 
 ## 1. Add your provider key

@@ -44,9 +44,9 @@ A card offers only the answers that apply to it, and only those letters answer i
 
 [[Ctrl]]+[[N]] opens the next approval or question waiting on you. In an [agent overlay](/docs/cli/agents/#the-agent-overlay) the same letters answer that agent's request.
 
-<!-- capture: cli/approval-card | the approval card with a three-line shell command and the keys y Y A d D n on its footer; the draft empty | 120x40 -->
+![ncode approval card asking permission to run a three-line mix test command, with once, this run, always, deny, deny-and-stop and next actions beneath it.](/assets/shots/cli/approval-card.webp)
 
-<!-- capture: cli/approval-folded | the card with a long command folded at six lines, the footer saying Enter shows all | 120x40 -->
+![Long shell-command approval in ncode folded after six lines, with two more lines hidden and an Enter shows all hint.](/assets/shots/cli/approval-folded.webp)
 
 ## Approvals in headless runs
 

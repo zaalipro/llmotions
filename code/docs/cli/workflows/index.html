@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap">
-<link rel="stylesheet" href="/assets/docs.css?v=77bd5446">
+<link rel="stylesheet" href="/assets/docs.css?v=b11baeac">
 <script src="/assets/docs.js?v=bc353f2b" defer></script>
 </head>
 <body class="d" data-product="cli">
@@ -33,6 +33,7 @@
 /workflow summarize-changes base=main</code></pre></div>
 <p><code>/workflow &lt;name&gt;</code> starts a workflow (the second line runs one of your own); arguments follow as <code>key=value</code>. A workflow run starts at once, beside any turn that is running. Saved workflows also appear in the <code>/</code> list as commands of their own.</p>
 <p>You can also start one from the library: <code>/workflows</code>, or <strong>Workflows</strong> in the <kbd>Ctrl</kbd>+<kbd>P</kbd> palette, lists every workflow and its runs. A row opens a form for the workflow's arguments: arrow keys cycle choices and switches, <kbd>Enter</kbd> starts it, <kbd>Esc</kbd> cancels. A value the workflow does not accept stays in the form with the error next to it.</p>
+<figure><img src="/assets/shots/cli/workflow-run.webp" alt="ncode review-changes workflow with Correctness, Security, Maintainability and Performance reviewers thinking in parallel; the side panel shows Review active, Verify and Report waiting, and four live agents." width="1072" height="806" loading="lazy" decoding="async"></figure>
 <h2 id="controlling-a-run">Controlling a run<a class="hash" href="#controlling-a-run" aria-label="Link to Controlling a run">#</a></h2>
 <div class="code"><div class="code-bar"><span class="code-lang">text</span><button type="button" class="copy" hidden>Copy</button></div><pre><code class="language-text">/workflow pause &lt;run&gt;
 /workflow resume &lt;run&gt;

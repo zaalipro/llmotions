@@ -48,7 +48,7 @@ Click **Efforts** on a provider's row to edit which effort levels it offers and 
 - **Usage history** in the rail shows spend over the last 7, 30 or 90 days, run by run.
 - **Settings → Budget → Monthly budget (USD)** is a target the usage bar fills against. Nothing stops when it is reached.
 
-<!-- shot: desktop/providers-usage.png | the Usage history page for 30 days with the monthly budget bar about half full and a list of runs with their costs -->
+![Usage history for 30 days with $15.14 of a $30.00 monthly budget and run costs.](/assets/shots/desktop/providers-usage.webp)
 
 ## Web search {#web-search}
 

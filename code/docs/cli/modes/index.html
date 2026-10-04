@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap">
-<link rel="stylesheet" href="/assets/docs.css?v=77bd5446">
+<link rel="stylesheet" href="/assets/docs.css?v=b11baeac">
 <script src="/assets/docs.js?v=bc353f2b" defer></script>
 </head>
 <body class="d" data-product="cli">
@@ -37,6 +37,7 @@
 <h2 id="consensus">Consensus<a class="hash" href="#consensus" aria-label="Link to Consensus">#</a></h2>
 <p><code>/consensus</code> alone switches the conversation to Consensus mode. <code>/consensus &lt;task&gt;</code> runs that one turn as a judged plan without changing the mode: a planner writes a plan, a judge model checks it against a list of checks over one or more rounds, and only then an implementer carries it out. In Settings, per conversation:</p>
 <div class="tbl" role="region" tabindex="0" aria-label="Table: Setting, Default"><table><thead><tr><th>Setting</th><th>Default</th></tr></thead><tbody><tr><td>Consensus checks</td><td>7 of the 12 checks are on; tick them on or off in Settings</td></tr><tr><td>Consensus rounds</td><td>2</td></tr><tr><td>Judge model</td><td>the sub-agent model</td></tr><tr><td>Implementer model</td><td>the planner implements</td></tr></tbody></table></div>
+<figure><img src="/assets/shots/cli/consensus-verdict.webp" alt="ncode consensus transcript containing a minimal release-check plan and an approved Judge round 1, with passing checks and the judge summary in the side panel." width="1072" height="806" loading="lazy" decoding="async"></figure>
 <h2 id="swarm">Swarm<a class="hash" href="#swarm" aria-label="Link to Swarm">#</a></h2>
 <p><code>/swarm &lt;task&gt;</code> starts a team: a lead agent splits the task and starts workers, and you follow them in the <a href="/docs/cli/agents/">side panel</a>. A swarm starts at once, beside any running turn.</p>
 <h2 id="review">Review<a class="hash" href="#review" aria-label="Link to Review">#</a></h2>

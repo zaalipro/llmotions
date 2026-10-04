@@ -11,7 +11,7 @@ The question opens by itself over the conversation as one note, with every quest
 
 For a moment after the note opens, your keys keep typing into the draft, so a sentence you are writing is never taken as an answer.
 
-<!-- capture: cli/question-note | an interview note with two questions: the first a single choice with three options and "other", the second a multi-select with two ticked; the step marker showing 1 of 2 | 120x40 -->
+![ncode interview note on question 1 of 2, showing three interface choices and an other option, with Keyboard hints and Progress detail selected for the second question.](/assets/shots/cli/question-note.webp)
 
 ## Answering
 

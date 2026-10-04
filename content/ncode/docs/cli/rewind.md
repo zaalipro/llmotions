@@ -19,7 +19,7 @@ opens this conversation's checkpoints. Pick the turn to go back to: the files it
 
 > **Warning** Rewind covers file-tool writes only. If an agent ran a command that changed files (a formatter, a generator, `git checkout`), undo that with your own tools, for example Git.
 
-<!-- capture: cli/rewind-list | the /rewind checkpoints layer for a conversation with three file-changing turns, the second highlighted | 120x40 -->
+![ncode Checkpoints layer over three file-changing turns, with release_step_2.txt highlighted between release_step_3.txt and release_step_1.txt and a Restore action below its details.](/assets/shots/cli/rewind-list.webp)
 
 ## What changed
 

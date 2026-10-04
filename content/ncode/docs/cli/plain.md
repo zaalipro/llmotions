@@ -57,6 +57,6 @@ printf 'send -- inspect this project\ndetach\n' | {{cmd}} --plain
 
 The record format is not documented yet and may change between releases.
 
-<!-- capture: cli/plain-session | a plain session in a pipe: the "not a terminal" notice, a sent message, streamed answer lines and the detach line | 100x24 -->
+![Piped ncode plain session showing the not a terminal notice, TEXT lines for a sent request and streamed reply, and the DETACHED — SESSION CLOSED line.](/assets/shots/cli/plain-session.webp)
 
 <!-- source: C:README.md:47-61, C:README.md:166-168, C:rel/overlays/bin/swarmcode:38-40, C:rel/overlays/bin/swarmcode:191-193, C:rel/overlays/bin/swarmcode:259-265, C:AGENTS.md:260, C:apps/swarm_code_cli/lib/swarm_code_cli/plain/session.ex:494-498, C:apps/swarm_code_cli/lib/swarm_code_cli/plain/command.ex:171 -->

@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap">
-<link rel="stylesheet" href="/assets/docs.css?v=77bd5446">
+<link rel="stylesheet" href="/assets/docs.css?v=b11baeac">
 <script src="/assets/docs.js?v=bc353f2b" defer></script>
 </head>
 <body class="d" data-product="cli">
@@ -48,6 +48,8 @@
 <p>A card offers only the answers that apply to it, and only those letters answer it. Three rules keep you from answering by accident:</p>
 <ul><li>For a moment after a card opens, your keys keep typing into the draft, so a sentence you are in the middle of is never taken as an answer.</li><li>The letters answer only while your draft is empty. Any other letter types, and <kbd>Enter</kbd> with a draft sends the draft; the card stays.</li><li>The same applies to a card you brought back with <kbd>Ctrl</kbd>+<kbd>N</kbd> or <code>n</code>.</li></ul>
 <p><kbd>Ctrl</kbd>+<kbd>N</kbd> opens the next approval or question waiting on you. In an <a href="/docs/cli/agents/#the-agent-overlay">agent overlay</a> the same letters answer that agent's request.</p>
+<figure><img src="/assets/shots/cli/approval-card.webp" alt="ncode approval card asking permission to run a three-line mix test command, with once, this run, always, deny, deny-and-stop and next actions beneath it." width="1072" height="806" loading="lazy" decoding="async"></figure>
+<figure><img src="/assets/shots/cli/approval-folded.webp" alt="Long shell-command approval in ncode folded after six lines, with two more lines hidden and an Enter shows all hint." width="1072" height="806" loading="lazy" decoding="async"></figure>
 <h2 id="approvals-in-headless-runs">Approvals in headless runs<a class="hash" href="#approvals-in-headless-runs" aria-label="Link to Approvals in headless runs">#</a></h2>
 <p>A <a href="/docs/cli/headless/">headless run</a> (<code>ncode -p</code>) has nobody to ask. It uses the project's approval mode as it is: whatever the mode allows runs, and anything that would still need a person is denied, with a line on stderr saying what was denied. In full access the stderr line says that nothing asks. An agent's question stops a headless run.</p>
 <nav class="d-pager" aria-label="Previous and next page"><a class="d-prev" rel="prev" href="/docs/cli/composer/"><span>Previous</span>Composer: send, steer, queue</a><a class="d-next" rel="next" href="/docs/cli/questions/"><span>Next</span>Questions from agents</a></nav></article></main><aside class="d-toc" aria-labelledby="d-toc-h"><p id="d-toc-h">On this page</p><ul><li><a href="#the-rules">The rules</a><ul><li><a href="#approval-modes">Approval modes</a></li><li><a href="#project-trust">Project trust</a></li><li><a href="#remembered-commands">Remembered commands</a></li></ul></li><li><a href="#changing-the-mode">Changing the mode</a></li><li><a href="#the-approval-card">The approval card</a></li><li><a href="#approvals-in-headless-runs">Approvals in headless runs</a></li></ul></aside></div>

@@ -3,8 +3,6 @@ title: Install on macOS
 description: Download the ncode disk image, check it, move the app to Applications and open it for the first time on macOS 15 or later.
 ---
 
-> **Note** This is a preview of the docs. The download and the one-line installer go live with the 0.1.0 release; until then these steps describe how they will work.
-
 {{product}} {{version}} is a developer preview. It runs on a Mac with {{arch}} and macOS {{min_macos}} or later. Installing takes a few minutes; the only unusual step is the first launch, because the app is not yet notarized by Apple.
 
 ## Download
@@ -29,16 +27,11 @@ Compare the long number it prints with the line for `{{dmg}}` in [SHA256SUMS]({{
 
 Open {{product}} from Applications. The first time, macOS stops it with a message that begins **"Apple could not verify…"**, because the app is not notarized (see below). Click **Done**, not **Move to Trash**.
 
-<!-- shot: desktop/gatekeeper-1.png | owner | the macOS dialog "Apple could not verify “ncode” is free of malware…" on first launch, with the Done and Move to Trash buttons -->
-
 Then allow it once:
 
 1. Open **System Settings** and choose **Privacy & Security** in the sidebar.
 2. Scroll down to **Security**. You will see a line saying {{product}} was blocked, with an **Open Anyway** button. Click **Open Anyway**.
 3. Confirm with your password or Touch ID, then click **Open** in the dialog that follows.
-
-<!-- shot: desktop/gatekeeper-2.png | owner | System Settings → Privacy & Security, scrolled to Security, showing the “ncode” was blocked line and the Open Anyway button -->
-<!-- shot: desktop/gatekeeper-3.png | owner | the confirmation dialog after Open Anyway, with the Open button, before the password prompt -->
 
 You only do this once. From then on, {{product}} opens like any other app.
 

@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap">
-<link rel="stylesheet" href="/assets/docs.css?v=77bd5446">
+<link rel="stylesheet" href="/assets/docs.css?v=b11baeac">
 <script src="/assets/docs.js?v=bc353f2b" defer></script>
 </head>
 <body class="d" data-product="cli">
@@ -29,6 +29,7 @@
 <div class="tbl" role="region" tabindex="0" aria-label="Table: From, How"><table><thead><tr><th>From</th><th>How</th></tr></thead><tbody><tr><td>a session</td><td><kbd>F2</kbd>, or <code>/settings</code> (also <code>/config</code>, <code>/prefs</code>)</td></tr><tr><td>a session, at one place</td><td><code>/settings &lt;what&gt;</code>, for example <code>/settings theme</code></td></tr><tr><td>the palette</td><td><strong>Settings</strong> in <kbd>Ctrl</kbd>+<kbd>P</kbd>; <code>&gt;settings:theme</code> lists single settings</td></tr><tr><td>a shell</td><td><code>ncode settings</code>, or <code>ncode settings &lt;what&gt;</code></td></tr></tbody></table></div>
 <p><code>&lt;what&gt;</code> is a section, a key (<code>limits.max_agent_depth</code>), a label or a synonym; Settings opens with the cursor on that row. <code>ncode settings providers</code> opens at Providers even when no provider is set up yet, which makes it the place to start on a new Mac.</p>
 <p><code>ncode settings</code> needs a terminal. From a script, use <a href="/docs/cli/config/"><code>ncode config</code></a> instead.</p>
+<figure><img src="/assets/shots/cli/settings-overview.webp" alt="Providers in Settings, with the section rail, Anthropic and OpenRouter providers, masked keys, model counts and footer shortcuts." width="1072" height="806" loading="lazy" decoding="async"></figure>
 <h2 id="sections">Sections<a class="hash" href="#sections" aria-label="Link to Sections">#</a></h2>
 <p>22 sections hold about 170 settings:</p>
 <ul><li><strong>Overview</strong></li><li><strong>Models &amp; effort</strong>, <strong>Providers</strong> (presets, pasted keys, fetching model lists, effort levels), <strong>Pricing</strong></li><li><strong>Search &amp; web</strong> (engines in fallback order, readers), <strong>Deep research</strong>, <strong>MCP servers</strong>, <strong>Language servers</strong></li><li><strong>Agents &amp; limits</strong>, <strong>Approvals &amp; trust</strong>, <strong>Project file</strong>, <strong>Memory &amp; instructions</strong>, <strong>Library</strong> (commands, agents, skills, workflows)</li><li><strong>Appearance</strong>, <strong>Layout &amp; transcript</strong>, <strong>Keys &amp; input</strong> (rebind any action), <strong>Session &amp; startup</strong></li><li><strong>Storage</strong> (measure, clean up, vacuum, retention), <strong>Budget &amp; usage</strong></li><li><strong>Desktop app</strong>, <strong>Files &amp; environment</strong> (the doctor), <strong>Import &amp; export</strong></li></ul>

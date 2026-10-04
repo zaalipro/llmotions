@@ -17,7 +17,7 @@ The library lists your researches. From it you can open one, and stop, retry or 
 
 > **Note** A research needs at least one [web search engine](/docs/cli/search/) with your key. Set one up first under Settings → Search & web.
 
-<!-- capture: cli/research-form | the New research form over the library: the question field filled in, level medium selected, the Start control | 120x40 -->
+![The New research form asking about durable job queues for a local-first Elixir application, with medium selected and Start below.](/assets/shots/cli/research-form.webp)
 
 ## Where the reports are
 

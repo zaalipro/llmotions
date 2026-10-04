@@ -33,7 +33,7 @@ printf '%s' "$OPENROUTER_API_KEY" | {{cmd}} config secret provider:OpenRouter --
 
 The record takes the preset's name (`Anthropic`, `OpenRouter`, …) unless you give `--name`. See [`{{cmd}} config`](/docs/cli/config/#records).
 
-<!-- capture: cli/settings-providers | Settings at Providers: an OpenRouter provider with its key row masked, the fetched model list with two new models marked, the effort levels row | 120x40 -->
+![OpenRouter provider settings with a masked API key, model settings and the fetched model list.](/assets/shots/cli/settings-providers.webp)
 
 ## Choosing models
 

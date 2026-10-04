@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap">
-<link rel="stylesheet" href="/assets/docs.css?v=77bd5446">
+<link rel="stylesheet" href="/assets/docs.css?v=b11baeac">
 <script src="/assets/docs.js?v=bc353f2b" defer></script>
 </head>
 <body class="d" data-product="cli">
@@ -34,6 +34,7 @@
 <p>opens this conversation's checkpoints. Pick the turn to go back to: the files its later turns changed are restored to how they were before, and files those turns created are deleted again. The conversation itself stays as it was; only files change.</p>
 <p><strong>Checkpoints</strong> in the <kbd>Ctrl</kbd>+<kbd>P</kbd> palette opens them too.</p>
 <div class="callout callout-warning" role="note"><p><strong class="callout-label">Warning</strong> Rewind covers file-tool writes only. If an agent ran a command that changed files (a formatter, a generator, <code>git checkout</code>), undo that with your own tools, for example Git.</p></div>
+<figure><img src="/assets/shots/cli/rewind-list.webp" alt="ncode Checkpoints layer over three file-changing turns, with release_step_2.txt highlighted between release_step_3.txt and release_step_1.txt and a Restore action below its details." width="1072" height="806" loading="lazy" decoding="async"></figure>
 <h2 id="what-changed">What changed<a class="hash" href="#what-changed" aria-label="Link to What changed">#</a></h2>
 <p><strong>Changes</strong> in the <kbd>Ctrl</kbd>+<kbd>P</kbd> palette shows the files this conversation changed.</p>
 <p>In the transcript, each file-writing tool row shows its diff under it. <code>/diff off</code> draws every tool row on one line instead, and <code>/diff on</code> brings the diffs back; <strong>Diff lines shown</strong> in Settings → Layout &amp; transcript sets how many lines a row shows (12 by default).</p>

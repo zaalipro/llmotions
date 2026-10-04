@@ -19,9 +19,9 @@ Under 120 columns the panel becomes a one-line strip at the edge, or is off. `/p
 
 Workflow and consensus runs also draw their own sections in the panel: the phases of a workflow, the rounds of a judged plan.
 
-<!-- capture: cli/panel-full | the side panel full during a swarm: five agents sorted by attention, one waiting for an approval at the top, AI status lines, one cost figure | 120x40 -->
+![The full side panel during a five-agent swarm, with Verify changes waiting for approval first, followed by Ticket flow, Regression audit, Docs polish and the Lead; short model-written status lines, turn counts, and $0.05 spent are visible.](/assets/shots/cli/panel-full.webp)
 
-<!-- capture: cli/panel-compact | the same swarm with the panel compact | 120x40 -->
+![The same five-agent swarm with the compact side panel: the pending verification command above compact rows for Verify changes, Ticket flow, Regression audit, Docs polish and the Lead, with $0.05 spent and the Panel compact confirmation in the status line.](/assets/shots/cli/panel-compact.webp)
 
 ## Reading an agent row
 
@@ -48,7 +48,7 @@ The status lines are written by a model. Turn them off with `/panel summaries of
 
 Hint letters never answer an approval. Hint mode also works over an approval card: the letter opens the overlay of the agent that asked. The letters used for badges can be changed under **Hint letters** in Settings → Keys & input.
 
-<!-- capture: cli/panel-hints | hint mode: letter badges s f g h before five agents in the panel and the footer hint | 120x40 -->
+![Hint mode in the full swarm panel, with orange s, f, g, h and j badges for Verify changes, Ticket flow, Regression audit, Docs polish and the Lead, a 1 run badge, and the footer s-j open, 1 run, Ctrl-F again needs you, Esc.](/assets/shots/cli/panel-hints.webp)
 
 ## The agent overlay
 
@@ -71,7 +71,7 @@ A badge letter, or [[Enter]] on an agent row in select mode, opens that agent fu
 
 The approval letters and `o`, `[`, `]`, `x` act only while the overlay's composer is empty. Here `a` is a second key for "allow once", beside `y`.
 
-<!-- capture: cli/agent-overlay | the overlay of a worker: brief, time axis, grouped activity with three edits and one command, its composer empty | 120x40 -->
+![The Ticket flow worker overlay with its life timeline and brief, grouped activity showing three documentation-file writes and git status --short, the run's agent tree, three changed files, token and turn counts, and an empty composer that steers only Ticket flow.](/assets/shots/cli/agent-overlay.webp)
 
 ## Runs dashboard and run palette
 

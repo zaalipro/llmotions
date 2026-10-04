@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap">
-<link rel="stylesheet" href="/assets/docs.css?v=77bd5446">
+<link rel="stylesheet" href="/assets/docs.css?v=b11baeac">
 <script src="/assets/docs.js?v=bc353f2b" defer></script>
 </head>
 <body class="d" data-product="cli">
@@ -47,6 +47,7 @@
 printf '%s' "$OPENROUTER_API_KEY" | ncode config secret provider:OpenRouter --stdin
 ncode config set models.chat OpenRouter/&lt;model-id&gt;</code></pre></div>
 <p>The record takes the preset's name (<code>Anthropic</code>, <code>OpenRouter</code>, …) unless you give <code>--name</code>. See <a href="/docs/cli/config/#records"><code>ncode config</code></a>.</p>
+<figure><img src="/assets/shots/cli/settings-providers.webp" alt="OpenRouter provider settings with a masked API key, model settings and the fetched model list." width="1072" height="806" loading="lazy" decoding="async"></figure>
 <h2 id="choosing-models">Choosing models<a class="hash" href="#choosing-models" aria-label="Link to Choosing models">#</a></h2>
 <div class="tbl" role="region" tabindex="0" aria-label="Table: Where, Setting or command, Scope"><table><thead><tr><th>Where</th><th>Setting or command</th><th>Scope</th></tr></thead><tbody><tr><td>Default chat model</td><td><strong>Chat model</strong> (<code>models.chat</code>) in Models &amp; effort</td><td>every new conversation</td></tr><tr><td>Default sub-agent model</td><td><strong>Sub-agent model</strong> (<code>models.sub_agent</code>)</td><td>agents started from now on</td></tr><tr><td>Other roles</td><td><code>models.scheduled</code>, <code>models.workflow</code>, <code>models.implementer</code></td><td>their runs</td></tr><tr><td>This conversation</td><td><code>/model</code>, <code>/swarm_model</code></td><td>this conversation, saved</td></tr><tr><td>This session only</td><td><code>ncode --model &lt;model&gt;</code> or <code>--model provider/model</code></td><td>until you quit or use <code>/model</code>; nothing is saved</td></tr></tbody></table></div>
 <p>Until you choose, the chat and sub-agent models are those of the first provider with a key. Effort works the same way: <strong>Default effort</strong> and <strong>Sub-agent effort</strong> in Settings, <code>/effort</code> and <code>/swarm_effort</code> in a conversation (see <a href="/docs/cli/modes/#model-and-effort">Modes and run types</a>).</p>

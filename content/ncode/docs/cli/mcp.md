@@ -16,7 +16,11 @@ Open Settings ([[F2]]) at **MCP servers**. There you can:
 
 Environment values and headers are masked on screen. Probing a server runs as a task with its seconds shown; `c` cancels it.
 
-<!-- capture: cli/settings-mcp | Settings at MCP servers with one HTTP and one stdio server, the HTTP server's tools listed with one switched off, a header value masked | 120x40 -->
+![MCP server list with Docs connected over HTTP using two of three tools and Files connected over stdio using one tool.](/assets/shots/cli/settings-mcp-list.webp)
+
+Open a server to inspect its connection, masked headers and individual tools.
+
+![The connected Docs HTTP MCP server, its masked header, and three tools with refresh_index switched off.](/assets/shots/cli/settings-mcp.webp)
 
 ## Adding a server from a script
 

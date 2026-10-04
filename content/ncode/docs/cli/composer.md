@@ -33,7 +33,7 @@ Nothing is refused because work is running.
 
 `/compact` sent during a turn, and a message sent while the conversation is being compacted, wait their turn in the queue.
 
-<!-- capture: cli/composer-steer-queue | a live chat turn with one steered message marked "→ to the running turn" and one queued message drawn under the turn | 120x30 -->
+![Running ncode chat turn with guidance marked to the running turn and a separate queued message that will send after the current turn finishes.](/assets/shots/cli/composer-steer-queue.webp)
 
 ## Attaching an image
 

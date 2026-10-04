@@ -9,9 +9,9 @@ description: Which terminals draw the richest screen, dark and light themes, pla
 
 The full glyph set, with thin rails and fine progress bars, needs a truecolor terminal whose `TERM` names **Ghostty**, **kitty**, **WezTerm** or **iTerm**. Everywhere else, including Terminal.app and inside tmux or GNU screen, `{{cmd}}` draws a plainer glyph set with the same layout and keys.
 
-<!-- capture: cli/tier-rich | the same swarm frame in Ghostty with truecolor: thin rails, tick progress bars | 120x40 -->
+![The four-agent swarm in the rich truecolor glyph tier: thin transcript rails and tree branches, fine tick-style swarm progress bars, one verification approval waiting, the full side panel, and auto approval mode.](/assets/shots/cli/tier-rich.webp)
 
-<!-- capture: cli/tier-plain | the same frame in Terminal.app: plain glyph tier | 120x40 -->
+![The matching four-agent swarm in the Terminal.app-style measured glyph tier, with plainer tree connectors, wider rails and outlined progress cells, while the approval, agent rows, composer and auto status line keep the same layout.](/assets/shots/cli/tier-plain.webp)
 
 ## Dark and light
 
@@ -22,7 +22,7 @@ The full glyph set, with thin rails and fine progress bars, needs a truecolor te
 3. the desktop app's light or dark mode;
 4. dark.
 
-<!-- capture: cli/theme-light | the same frame with the light theme | 120x40 -->
+![The matching four-agent swarm in ncode's light theme: a pale transcript and panel, coloured agent names, Verify changes waiting for approval, thin rich-tier rails and progress bars, $0.04 spent, and auto approval mode.](/assets/shots/cli/theme-light.webp)
 
 ## Plain glyphs and monochrome
 
@@ -34,7 +34,7 @@ The full glyph set, with thin rails and fine progress bars, needs a truecolor te
 
 These apply at the next launch.
 
-<!-- capture: cli/tier-ascii | the same frame with ASCII glyphs | 120x40 -->
+![The matching four-agent swarm with ASCII glyphs: S swarm marks, pipe and backtick tree connectors, hyphen progress bars and composer divider, one verification approval waiting, and the full side panel with auto approval mode.](/assets/shots/cli/tier-ascii.webp)
 
 ## Mouse and selection
 
