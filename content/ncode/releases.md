@@ -3,7 +3,7 @@
 
 ### What's new in the Mac app
 
-- **Ultra missions.** In Ultra mode the orchestrator plans big work as a mission: a validation contract, features and milestones, an approval card in the transcript, parallel isolated workers, scrutiny and user-testing validators, fix rounds, and a Mission Control view. Approving a mission lets its workers run non-dangerous commands without asking. See [Ultra missions](/docs/desktop/missions/).
+- **Ultra missions.** In Ultra mode the orchestrator plans big work as a mission: a validation contract, features and milestones, an approval card above the message box, parallel isolated workers, scrutiny and user-testing validators, fix rounds, and a Mission Control view. Approving a mission lets its workers run non-dangerous commands without asking. See [Ultra missions](/docs/desktop/missions/).
 - **Worker model.** The "Sub agent model" setting is now called Worker model.
 - **Validator model.** A new Validator model setting chooses the model that checks a mission's work. By default it is the same as your main model.
 - **Speed monitor.** The sidebar shows tokens per second and time to first token next to the memory chip: one row for chat, two rows (Main and Worker) for consensus or swarm runs, and three rows (Orchestrator, Worker and Validator) in Ultra. It shows a live estimate while a reply streams and the exact figure when it finishes.

@@ -866,7 +866,9 @@ def topbar(site, product=None):
     ) % (MARK_SVG, switch, search)
 
 
-def footer(site, notes=()):
+def footer(site, notes=(), product=None):
+    # The CLI guide names the CLI's own version; every other page names the desktop app's.
+    version = site.name("cli_version", site.name("version")) if product == "cli" else site.name("version")
     extra = "".join('<p class="d-gen">%s</p>' % n for n in notes)
     return (
         '<footer class="d-foot"><div class="d-foot-in">'
@@ -874,7 +876,7 @@ def footer(site, notes=()):
         '<p class="d-foot-links"><a href="/docs/">Docs</a><a href="/releases/">Releases</a>'
         '<a href="%s">CLI source</a><a href="https://llmotions.com/">LLMotions</a></p>%s'
         "</div></footer>\n"
-    ) % (MARK_SVG, esc(site.name("version")), esc(site.name("cli_repo", "https://github.com/")), extra)
+    ) % (MARK_SVG, esc(version), esc(site.name("cli_repo", "https://github.com/")), extra)
 
 
 def sidebar(product, groups, current):
@@ -955,7 +957,7 @@ def render_page(site, product, groups, page, prev, nxt):
         "</article></main>",
         toc(page["doc"].headings),
         "</div>\n",
-        footer(site, notes),
+        footer(site, notes, product),
         "</body>\n</html>\n",
     ])
 

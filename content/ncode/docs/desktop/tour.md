@@ -62,7 +62,7 @@ The bottom of the sidebar shows the app version, how much memory {{product}} use
 
 ## Speed monitor
 
-In the conversation view, a few small rows sit just above the footer, next to the memory chip. They show how fast the models of the conversation last wrote, in output tokens per second (for example `45 t/s`). How many rows you see depends on the mode:
+In the sidebar, a few small rows sit just above the footer, next to the memory chip. They show how fast the models of the conversation last wrote, in output tokens per second (for example `45 t/s`). How many rows you see depends on the mode:
 
 | Mode | Rows |
 |---|---|
