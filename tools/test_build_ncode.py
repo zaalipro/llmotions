@@ -431,7 +431,7 @@ class Release(unittest.TestCase):
         install = 'VERSION="${NCODE_VERSION:-0.0.9}"\nSHA256="%s"\n' % ("c" * 64)
         code, log = self.tree(install).run("--check", "--no-drift", "--release")
         self.assertEqual(code, 1)
-        self.assertIn("do not match the newest release", log)
+        self.assertIn("do not match the newest CLI release", log)
         code, log = self.tree(install).run("--check", "--no-drift")
         self.assertEqual(code, 0, "a mismatch is a warning outside --release")
 
@@ -480,6 +480,58 @@ class Release(unittest.TestCase):
         code, log = tree.run("--check", "--no-drift", "--release")
         self.assertEqual(code, 1)
         self.assertIn("names.json: dmg 'ncode-0.2.0.dmg' differs", log)
+
+    DESKTOP_ONLY = ("## 0.2.0 — 2026-10-06 {#v0-2-0}\n- desktop: ncode-0.2.0.dmg sha256 %s\n\n- Desktop only.\n\n"
+                    % ("d" * 64)) + RELEASE
+
+    def split_tree(self, install=STAMPED, landing_cli="CLI 0.1.0"):
+        """The desktop is at 0.2.0 while the CLI (and install.sh) stay at 0.1.0."""
+        overrides = {"content/releases.md": self.DESKTOP_ONLY}
+        for rel in ("content/docs/cli/overview.md", "content/docs/desktop/overview.md",
+                    "content/docs/desktop/install.md"):
+            text = (FX / rel).read_text()
+            overrides[rel] = "\n".join(l for l in text.split("\n") if "capture:" not in l and "shot:" not in l)
+        names = (FX / "content" / "names.json").read_text()
+        overrides["content/names.json"] = (names.replace('"version": "0.1.0"', '"version": "0.2.0"')
+                                           .replace("ncode-0.1.0.dmg", "ncode-0.2.0.dmg"))
+        overrides["site/install.sh"] = install
+        landing = (FX / "site" / "index.html").read_text().replace("ncode 0.1.0", "ncode 0.2.0").replace("ncode-0.1.0.dmg", "ncode-0.2.0.dmg")
+        overrides["site/index.html"] = landing.replace(
+            '<h1 id="top">', '<p>ncode 0.2.0 <a href="/downloads/ncode-0.2.0.dmg">dmg</a> %s '
+            '<code id="dmg-sha">%s</code></p><h1 id="top">' % (landing_cli, "d" * 64))
+        return Tree(self, overrides)
+
+    def test_desktop_only_release_keeps_the_cli_stamp_on_the_older_release(self):
+        code, log = self.split_tree().run("--check", "--no-drift", "--release")
+        self.assertEqual(code, 0, log)
+
+    def test_desktop_only_release_rejects_an_installer_bumped_to_the_desktop_version(self):
+        install = self.STAMPED.replace("0.1.0", "0.2.0")
+        code, log = self.split_tree(install).run("--check", "--no-drift", "--release")
+        self.assertEqual(code, 1)
+        self.assertIn("do not match the newest CLI release '0.1.0'", log)
+
+    def test_desktop_only_release_rejects_a_landing_cli_version_of_the_desktop(self):
+        code, log = self.split_tree(landing_cli="CLI 0.2.0").run("--check", "--no-drift", "--release")
+        self.assertEqual(code, 1)
+        self.assertIn("CLI version 0.2.0 is not the newest CLI release 0.1.0", log)
+
+    def test_names_cli_version_follows_the_newest_cli_release(self):
+        tree = self.split_tree()
+        names = tree.content / "names.json"
+        names.write_text(names.read_text().replace('"cli_version": "0.1.0"', '"cli_version": "0.2.0"'),
+                         encoding="utf-8")
+        code, log = tree.run("--check", "--no-drift", "--release")
+        self.assertEqual(code, 1)
+        self.assertIn("cli_version '0.2.0' differs from the newest CLI release's '0.1.0'", log)
+
+    def test_newest_release_tracks_cli_and_desktop_separately(self):
+        info = B.newest_release(self.DESKTOP_ONLY)
+        self.assertEqual(info["version"], "0.2.0")
+        self.assertEqual(info["desktop_version"], "0.2.0")
+        self.assertEqual(info["desktop"], ("ncode-0.2.0.dmg", "d" * 64))
+        self.assertEqual(info["cli_version"], "0.1.0")
+        self.assertEqual(info["cli"], ("ncode-0.1.0-darwin-arm64.tar.gz", self.SHA))
 
     def test_tbd_in_a_hand_written_page(self):
         tree = self.tree(None)

@@ -5,7 +5,7 @@ description: The line-by-line presenter for pipes, SSH and terminals where the f
 
 Plain mode drives a saved session one line at a time: you write commands on standard input, and it writes what happens as plain, append-only lines on standard output. It is meant for pipes, SSH sessions, CI logs and terminals where the full-screen view cannot draw.
 
-> **Note** Plain mode is experimental in {{version}}. Its commands and output may change; for scripts, prefer [headless runs](/docs/cli/headless/) (`{{cmd}} -p`), whose `--json` output is one documented object.
+> **Note** Plain mode is experimental in {{cli_version}}. Its commands and output may change; for scripts, prefer [headless runs](/docs/cli/headless/) (`{{cmd}} -p`), whose `--json` output is one documented object.
 
 ## When it is used
 

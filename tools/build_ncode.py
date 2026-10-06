@@ -1143,22 +1143,33 @@ def check_output(files, handwritten, rep, origin):
 
 
 def newest_release(text):
-    """The first `## ` entry of releases.md -> dict(version, cli, desktop, date)."""
-    info = {"version": None, "date": None, "cli": None, "desktop": None}
+    """releases.md -> dict(version, date, cli, desktop) of the first `## ` entry, plus
+    the version and (name, sha256) of the newest entry that lists each product (cli, desktop; the
+    versions are cli_version and desktop_version). The Mac app and the CLI are versioned
+    separately, so a desktop-only release (no `- cli:` line) leaves the CLI at the last release
+    that has one."""
+    info = {"version": None, "date": None, "cli": None, "desktop": None,
+            "cli_version": None, "desktop_version": None}
     seen = False
+    version = None
     for line in text.split("\n"):
         if line.startswith("## "):
-            if seen:
-                break
-            seen = True
             m = re.search(r"(\d+\.\d+\.\d+)", line)
-            info["version"] = m.group(1) if m else None
-            d = re.search(r"(\d{4}-\d{2}-[0-9X]{2})", line)
-            info["date"] = d.group(1) if d else None
+            version = m.group(1) if m else None
+            if not seen:
+                info["version"] = version
+                d = re.search(r"(\d{4}-\d{2}-[0-9X]{2})", line)
+                info["date"] = d.group(1) if d else None
+            seen = True
+            continue
+        if not seen:
             continue
         m = re.match(r"^-\s*(cli|desktop):\s*(\S+)\s+sha256\s+(\S+)\s*$", line.strip())
-        if seen and m:
-            info[m.group(1)] = (m.group(2), m.group(3))
+        if m:
+            kind = m.group(1)
+            if info[kind + "_version"] is None:
+                info[kind + "_version"] = version
+                info[kind] = (m.group(2), m.group(3))
     return info
 
 
@@ -1193,12 +1204,13 @@ def check_release(content, site, rep, release):
     ver = ver.group(1) if ver else None
     sha = sha.group(1) if sha else None
     cli_sha = info["cli"][1] if info["cli"] else None
-    if ver != info["version"] or sha != cli_sha or not sha or not re.match(r"^[0-9a-f]{64}$", sha or ""):
-        report(rel(install, ROOT), "stamps VERSION=%r SHA256=%r do not match the newest release %r / %r"
-               % (ver, sha, info["version"], cli_sha))
+    if ver != info["cli_version"] or sha != cli_sha or not sha or not re.match(r"^[0-9a-f]{64}$", sha or ""):
+        report(rel(install, ROOT), "stamps VERSION=%r SHA256=%r do not match the newest CLI release %r / %r"
+               % (ver, sha, info["cli_version"], cli_sha))
 
 
 LANDING_VERSION_RE = re.compile(r"(?:\bncode[- ]|\b[Vv]ersion )(\d+\.\d+\.\d+)")
+LANDING_CLI_VERSION_RE = re.compile(r"\bCLI (\d+\.\d+\.\d+)")
 DMG_SHA_RE = re.compile(r'id="dmg-sha"[^>]*>([^<]*)<')
 
 
@@ -1211,7 +1223,8 @@ def check_landing(content, site, info, report):
         return
     label = rel(page, ROOT)
     text = page.read_text(encoding="utf-8")
-    version = info["version"]
+    version = info["desktop_version"]       # {{version}}, the landing's "ncode X.Y.Z": the Mac app
+    cli_version = info["cli_version"]       # install.sh and {{cli_version}}: the CLI, versioned separately
     dmg, dmg_sha = info["desktop"] or (None, None)
     names_label = rel(content / "names.json", ROOT)
     names = load_names(content, Report())       # build() already reported a broken names.json
@@ -1221,6 +1234,9 @@ def check_landing(content, site, info, report):
         report(names_label, "dmg %r differs from the newest release's %r" % (names.get("dmg"), dmg))
     if names.get("version") != version:
         report(names_label, "version %r differs from the newest release's %r" % (names.get("version"), version))
+    if names.get("cli_version") != cli_version:
+        report(names_label, "cli_version %r differs from the newest CLI release's %r"
+               % (names.get("cli_version"), cli_version))
     shown = DMG_SHA_RE.search(text)
     if not shown:
         report(label, 'no <code id="dmg-sha"> showing the DMG\'s SHA-256')
@@ -1232,6 +1248,9 @@ def check_landing(content, site, info, report):
         for found in LANDING_VERSION_RE.findall(line):
             if found != version:
                 report("%s:%d" % (label, n), "version %s is not the newest release %s" % (found, version))
+        for found in LANDING_CLI_VERSION_RE.findall(line):
+            if found != cli_version:
+                report("%s:%d" % (label, n), "CLI version %s is not the newest CLI release %s" % (found, cli_version))
 
 
 # ----------------------------------------------------------------------------- build

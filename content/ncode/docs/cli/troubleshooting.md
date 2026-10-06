@@ -79,8 +79,8 @@ Re-run the [installer](/docs/cli/install/#update), as the message says.
 
 ## macOS blocks it, or a `dyld` error names a macOS version
 
-- **"cannot be opened because the developer cannot be verified"**, or a similar Gatekeeper message: {{product}} {{version}} is a [developer preview that is not notarized](/docs/cli/install/#developer-preview), so macOS blocks it when the archive carries a quarantine mark, which browsers add and `curl` does not. Remove the mark as shown in [Install the release by hand](/docs/cli/install/#manual-install); the one-line installer is not affected.
-- **A `dyld` error that names a macOS version** means the Mac runs an older macOS than {{product}} was built for. {{product}} {{version}} needs macOS {{min_macos}} or later on {{arch}}.
+- **"cannot be opened because the developer cannot be verified"**, or a similar Gatekeeper message: {{product}} {{cli_version}} is a [developer preview that is not notarized](/docs/cli/install/#developer-preview), so macOS blocks it when the archive carries a quarantine mark, which browsers add and `curl` does not. Remove the mark as shown in [Install the release by hand](/docs/cli/install/#manual-install); the one-line installer is not affected.
+- **A `dyld` error that names a macOS version** means the Mac runs an older macOS than {{product}} was built for. {{product}} {{cli_version}} needs macOS {{min_macos}} or later on {{arch}}.
 
 ## Keys do something unexpected
 

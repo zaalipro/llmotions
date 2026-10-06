@@ -14,7 +14,7 @@ The `{{cmd}}` command installs into your home folder with one line. It needs no 
 The installer:
 
 1. checks that the Mac runs macOS {{min_macos}} or later on {{arch}}, and stops with a message otherwise;
-2. downloads the release for version {{version}} and checks its SHA-256 checksum against the one pinned in the installer; on a mismatch it stops and changes nothing;
+2. downloads the release for version {{cli_version}} and checks its SHA-256 checksum against the one pinned in the installer; on a mismatch it stops and changes nothing;
 3. puts the release in `~/.local/share/{{cmd}}` and a small `{{cmd}}` command in `~/.local/bin`;
 4. prints what to run next.
 
@@ -34,7 +34,7 @@ curl -fsSL {{install_url}} | {{env_prefix}}PREFIX="$HOME/tools" sh
 {{cmd}} --version
 ```
 
-This prints `{{cmd}} {{version}}`. `{{cmd}} --help` prints every option. Both are answered before anything else starts, so they work even while the desktop app is open.
+This prints `{{cmd}} {{cli_version}}`. `{{cmd}} --help` prints every option. Both are answered before anything else starts, so they work even while the desktop app is open.
 
 ## Put ~/.local/bin on your PATH {#path}
 
@@ -87,27 +87,27 @@ rm -rf ~/.local/share/{{cmd}} ~/.local/share/{{old_cmd}}
 
 ## Developer preview: why it opens without a warning {#developer-preview}
 
-{{product}} {{version}} is a developer preview. It is not notarized by Apple, because notarizing needs a paid Apple Developer ID, which {{product}} does not have yet.
+{{product}} {{cli_version}} is a developer preview. It is not notarized by Apple, because notarizing needs a paid Apple Developer ID, which {{product}} does not have yet.
 
 macOS checks an unnotarized program when it carries a *quarantine* mark, which browsers and Mail add to everything they download. `curl` adds no such mark, so a release installed by the one-line installer starts without a Gatekeeper prompt. This holds **only for downloads made with `curl`**. A release downloaded with a browser is quarantined, and macOS refuses to run its programs until the mark is removed (see the manual install below).
 
 ## Install the release by hand {#manual-install}
 
-If you prefer not to pipe a script into `sh`, download [ncode-{{version}}-darwin-arm64.tar.gz](https://code.llmotions.com/downloads/ncode-{{version}}-darwin-arm64.tar.gz) directly:
+If you prefer not to pipe a script into `sh`, download [ncode-{{cli_version}}-darwin-arm64.tar.gz](https://code.llmotions.com/downloads/ncode-{{cli_version}}-darwin-arm64.tar.gz) directly:
 
 ```sh
 cd ~/Downloads
-curl -fLO https://code.llmotions.com/downloads/ncode-{{version}}-darwin-arm64.tar.gz
-shasum -a 256 ncode-{{version}}-darwin-arm64.tar.gz
+curl -fLO https://code.llmotions.com/downloads/ncode-{{cli_version}}-darwin-arm64.tar.gz
+shasum -a 256 ncode-{{cli_version}}-darwin-arm64.tar.gz
 ```
 
 Compare the printed checksum with the one on the [releases page](/releases/); stop if they differ. Then unpack it and put it where the installer would:
 
 ```sh
-tar -xzf ncode-{{version}}-darwin-arm64.tar.gz
+tar -xzf ncode-{{cli_version}}-darwin-arm64.tar.gz
 mkdir -p ~/.local/share ~/.local/bin
 rm -rf ~/.local/share/{{cmd}}
-mv ncode-{{version}} ~/.local/share/{{cmd}}
+mv ncode-{{cli_version}} ~/.local/share/{{cmd}}
 chmod 0600 ~/.local/share/{{cmd}}/releases/COOKIE
 ln -sf ~/.local/share/{{cmd}}/bin/{{cmd}} ~/.local/bin/{{cmd}}
 ```

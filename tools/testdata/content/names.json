@@ -3,6 +3,7 @@
   "product": "ncode",
   "app": "ncode.app",
   "version": "0.1.0",
+  "cli_version": "0.1.0",
   "install_url": "https://code.llmotions.com/install.sh",
   "install": "curl -fsSL https://code.llmotions.com/install.sh | sh",
   "uninstall": "curl -fsSL https://code.llmotions.com/install.sh | sh -s -- --uninstall",

@@ -39,7 +39,7 @@ The CLI and the desktop app are two faces of the same engine and the same databa
 - A terminal. At 120 columns or more the side panel is drawn in full; narrower windows get a strip, and a small 80 × 24 window still works. A truecolor terminal such as Ghostty, kitty, WezTerm or iTerm2 draws the richest glyphs.
 - A key for a model provider, or a local OpenAI-compatible server such as Ollama or LM Studio.
 
-> **Note** {{product}} {{version}} is a developer preview. It is not notarized by Apple; the [install page](/docs/cli/install/) explains why the one-line installer still works.
+> **Note** {{product}} {{cli_version}} is a developer preview. It is not notarized by Apple; the [install page](/docs/cli/install/) explains why the one-line installer still works.
 
 ## Next steps
 
