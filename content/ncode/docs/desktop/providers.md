@@ -34,9 +34,9 @@ Deleting a provider asks first; conversations that used it fall back to the defa
 
 ## Default models
 
-**Settings → General → Defaults** sets the model each role starts with: **Chat model**, **Sub agent model**, **Default scheduled model**, **Default workflow model** and **Implementer model (consensus)**, plus a default effort for each. Click **Save defaults**. The research roles have their own pickers under **Deep research**.
+**Settings → General → Defaults** sets the model each role starts with: **Chat model**, **Worker model**, **Validator model**, **Default scheduled model**, **Default workflow model** and **Implementer model (consensus)**, plus a default effort for each. Click **Save defaults**. The research roles have their own pickers under **Deep research**.
 
-A conversation can override its chat and sub-agent model from the composer's model chooser.
+**Worker model** is the model the agents a conversation starts use (swarm sub-agents, mission workers, workflow agents without a model of their own). **Validator model** is the one that checks a mission's work; leave it blank (**Same as main model**) to use the conversation's main model. A conversation can override its chat, worker and validator models from the composer's model chooser; the validator row shows in Ultra mode ([Ultra missions](/docs/desktop/missions/#the-models)).
 
 ## Effort levels per provider
 

@@ -26,7 +26,7 @@ This page takes you from a freshly installed app to a first finished task. You n
 ## 2. Make it the default
 
 1. In Settings, go to **General**. The **Defaults** card lists the models new conversations start with.
-2. Pick one of your provider's models as the **Chat model** and the **Sub agent model** (the model helper agents use), then click **Save defaults**.
+2. Pick one of your provider's models as the **Chat model** and the **Worker model** (the model helper agents use), then click **Save defaults**.
 
 Each conversation can still switch models later from the composer.
 

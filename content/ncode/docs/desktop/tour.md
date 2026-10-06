@@ -60,6 +60,18 @@ Drag the edges between the columns to resize them, or use [[Shift]]+[[⌥]]+[[�
 
 The bottom of the sidebar shows the app version, how much memory {{product}} uses, and a button that lists the keyboard shortcuts.
 
+## Speed monitor
+
+In the conversation view, a few small rows sit just above the footer, next to the memory chip. They show how fast the models of the conversation last wrote, in output tokens per second (for example `45 t/s`). How many rows you see depends on the mode:
+
+| Mode | Rows |
+|---|---|
+| Ultra | 3: **Orchestrator**, **Worker**, **Validator** ([Ultra missions](/docs/desktop/missions/)) |
+| Consensus, an armed `/swarm`, or a conversation whose latest run is a swarm | 2: **Main**, **Worker** |
+| Anything else | 1: **Main** |
+
+A row shows `—` until something has been measured. While a model is still writing, its row is marked live and shows an estimate that settles once the call ends; the estimate appears after about a second of streaming. Hover a row for the model's name, the time to its first token and, for a finished call, when it was measured. Each row shows the latest value for that role in this conversation.
+
 ## Closing and quitting
 
 - **Closing the window** only hides it. Runs keep going and notifications still arrive. Click the {{product}} icon in the Dock, or use the menu bar icon, to bring it back. The menu bar icon also lists conversations **Waiting for you**.

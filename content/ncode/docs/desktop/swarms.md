@@ -5,6 +5,8 @@ description: Split a big task between several agents working in parallel, with a
 
 A swarm is a team of agents for one task. A **lead** agent breaks the task into parts, hands each part to a **sub-agent**, the sub-agents work at the same time, and the lead checks their work and reports back to you.
 
+> **Tip** For big work that you want planned, approved and checked by validators, use Ultra mode instead: [Ultra missions](/docs/desktop/missions/).
+
 ## Starting a swarm
 
 Type `/swarm` followed by the task:
@@ -28,7 +30,7 @@ Every agent appears in the agents pane with its own progress, tokens and cost; t
 
 ## Models and effort
 
-Sub-agents use the conversation's **sub-agent model** and its **sub-agent effort** (`/swarm_effort <level>`). Pick a faster, cheaper model for sub-agents and keep a stronger one for the chat, or the other way round. See [Providers, models and web search](/docs/desktop/providers/).
+Sub-agents use the conversation's **Worker model** and its worker effort (`/swarm_effort <level>`). Pick a faster, cheaper model for sub-agents and keep a stronger one for the chat, or the other way round. See [Providers, models and web search](/docs/desktop/providers/).
 
 ## Limits
 

@@ -24,6 +24,8 @@ A command that is still running after 10 seconds is not killed: it moves to the 
 
 With **Isolate sub-agents in git worktrees** on (the default), sub-agents in a git project can work in their own copy of the project, so two agents editing at once never overwrite each other. Their changes wait on a branch until they are merged back into the project, and the **Changes** view shows them under **Branches**.
 
+The parallel workers of an [Ultra mission](/docs/desktop/missions/) use the same setting: with it off, or in a folder that is not a git repository or has no commit yet, the mission builds its features one at a time in the project folder.
+
 **Isolation backend**:
 
 - **Auto** (default): an APFS clone when the disk supports it, otherwise a git worktree.

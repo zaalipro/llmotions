@@ -22,7 +22,7 @@ The mode pill at the left of the composer sets how your next message is handled.
 | 🛠 Build | the assistant reads, writes and runs (the default) |
 | ▤ Plan | read-only tools; the result is a step-by-step plan you approve ([Plans you approve](/docs/desktop/plans/)) |
 | ◎ Goal | your next message sets a goal to pursue (see below) |
-| ⧉ Ultra | big tasks become workflows the assistant runs ([Workflows](/docs/desktop/workflows/)) |
+| ⧉ Ultra | big tasks become missions the assistant plans and you approve ([Ultra missions](/docs/desktop/missions/)) |
 | ⧉ Workflow | your next message authors and launches a workflow |
 | ⚖ Consensus | a second model judges the plan first ([Consensus](/docs/desktop/consensus/)) |
 
@@ -30,7 +30,7 @@ The mode pill at the left of the composer sets how your next message is handled.
 
 ## Model and effort
 
-The model chooser in the composer sets this conversation's two models: the chat model for its own turns and the sub-agent model for the agents it starts. New conversations start with the defaults from Settings. The effort control sets how hard each model thinks. `/effort <level>` and `/swarm_effort <level>` do the same from the keyboard; they accept the levels the current model offers, and a wrong level answers with the valid ones. See [Providers, models and web search](/docs/desktop/providers/).
+The model chooser in the composer sets this conversation's models: the **Model** for its own turns and the **Worker model** for the agents it starts. In Ultra mode the first row reads **Orchestrator model**, and a third row, **Validator model**, appears; it reads **Same as main model** until you pick one ([Ultra missions](/docs/desktop/missions/#the-models)). New conversations start with the defaults from Settings. The effort control sets how hard each model thinks. `/effort <level>` and `/swarm_effort <level>` do the same from the keyboard; they accept the levels the current model offers, and a wrong level answers with the valid ones. See [Providers, models and web search](/docs/desktop/providers/).
 
 ## Slash commands
 
@@ -43,8 +43,8 @@ Type `/` at the start of the message to open the command list, then keep typing 
 | `/plan` | switch plan mode on or off |
 | `/consensus [task]` | run this turn as a judged plan: planner and judge take turns until the judge approves |
 | `/review` | review the uncommitted changes and report problems |
-| `/effort <level>` | reasoning effort of this conversation's chat model |
-| `/swarm_effort <level>` | reasoning effort of its sub-agent model |
+| `/effort <level>` | reasoning effort of this conversation's main model (the orchestrator in Ultra) |
+| `/swarm_effort <level>` | reasoning effort of its worker model |
 | `/compact [focus]` | summarise the conversation so far and continue from the summary (see below) |
 | `/rewind` | restore files to how they were before an earlier turn ([Rewind](/docs/desktop/rewind/)) |
 | `/stop` | stop everything running in this conversation |
@@ -52,7 +52,7 @@ Type `/` at the start of the message to open the command list, then keep typing 
 | `/workflow <name> [key=value…]` | launch a workflow; `/workflow pause`, `resume`, `stop` or `save` with a run controls one |
 | `/workflows` | open the workflow dashboard |
 | `/create-workflow [what it should do]` | write a new workflow with the assistant |
-| `/ultra` | switch Ultra mode on or off |
+| `/ultra` | switch Ultra mode on or off ([Ultra missions](/docs/desktop/missions/)) |
 | `/deep_research [id]` | attach a finished deep research to this message ([Deep research](/docs/desktop/research/)) |
 | `/profile <name>` | switch this conversation to a profile from the project file ([Instructions, memory and project config](/docs/desktop/instructions/)); type it in full, it is not in the list |
 

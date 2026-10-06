@@ -59,7 +59,7 @@ Before any workflow is saved or run, a smoke check parses it and runs it once wi
 
 ## Ultra mode
 
-In **Ultra** mode (pick it in the mode pill or type `/ultra`), the assistant handles big requests by writing and running workflows itself, and reports back when they are done.
+In **Ultra** mode (pick it in the mode pill or type `/ultra`), the assistant handles big requests as **missions**: it plans them, you approve the plan, and workers and validators carry it out. It no longer writes workflows on its own in this mode; use `/create-workflow` or `/workflow` for that. See [Ultra missions](/docs/desktop/missions/). The built-in mission is not in the Library.
 
 ## Where workflows live
 

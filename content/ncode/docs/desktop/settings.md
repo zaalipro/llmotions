@@ -9,7 +9,7 @@ Open Settings with [[⌘]]+[[,]], the gear at the bottom of the rail, or **File 
 
 ## General
 
-The **Defaults** card: which models new conversations start with (**Chat model**, **Sub agent model**, **Default scheduled model**, **Default workflow model**, **Implementer model (consensus)**) and the default reasoning effort for chat, scheduled tasks, workflows, swarms and the implementer. Click **Save defaults** after changing a model. See [Providers, models and web search](/docs/desktop/providers/).
+The **Defaults** card: which models new conversations start with (**Chat model**, **Worker model**, **Validator model** (blank means **Same as main model**), **Default scheduled model**, **Default workflow model**, **Implementer model (consensus)**) and the default reasoning effort for chat, scheduled tasks, workflows, swarms and the implementer. Click **Save defaults** after changing a model. See [Providers, models and web search](/docs/desktop/providers/).
 
 ## Deep research
 

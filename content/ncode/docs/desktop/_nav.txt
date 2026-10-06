@@ -11,6 +11,7 @@ agents | Watching agents work
 plans | Plans you approve
 consensus | Consensus
 swarms | Swarms
+missions | Ultra missions
 rewind | Rewind
 files | Images, search and export
 

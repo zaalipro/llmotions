@@ -17,7 +17,7 @@ In Consensus mode the composer shows a settings popover for the conversation:
 | Setting | Meaning |
 |---|---|
 | Planner model | the model that writes the plan |
-| Judge model | the model that reviews it; if unset, the sub-agent model |
+| Judge model | the model that reviews it; if unset, the **Worker model** |
 | Implementer model | the model that carries out the approved plan; by default the planner implements |
 | Rounds | 1, 2 or 3 review rounds (2 by default) |
 | Judge for | the checks below |

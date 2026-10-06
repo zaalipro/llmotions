@@ -11,16 +11,16 @@ A provider has:
 
 ### Models per role
 
-Different kinds of work can use different models. Each role has its own default, and a conversation can still pick its own chat and sub-agent model:
+Different kinds of work can use different models. Each role has its own default, and a conversation can still pick its own chat model and the model for the agents it starts (the helper agents; the desktop app calls it the Worker model):
 
 | Role | Used for |
 |---|---|
 | Chat | the assistant's turns |
-| Sub-agent | the agents a swarm or the assistant starts |
+| Sub-agent (desktop: Worker) | the agents a swarm, a mission or the assistant starts |
 | Scheduled | tasks that run on a schedule |
 | Workflow | agents inside workflow runs |
 | Implementer | the agent that carries out a judged plan |
-| Judge | the reviewer in a judged (consensus) turn; it falls back to the sub-agent model |
+| Judge | the reviewer in a judged (consensus) turn; it falls back to the sub-agent (worker) model |
 | Research lead, worker and reporter | the three roles of a deep research |
 
 ### Reasoning effort

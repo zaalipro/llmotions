@@ -41,6 +41,10 @@ When a step needs your approval, a card appears in the transcript and on the age
 
 An approval nobody answers expires after 10 minutes, and the agent is told it timed out. A conversation with an open approval shows a waiting dot in the sidebar, and the menu bar icon lists it under **Waiting for you**.
 
+## Missions
+
+When you approve an Ultra mission's plan, its workers and validators may run commands without asking for that mission only. Dangerous commands still ask, and Read-only mode still blocks them. See [Ultra missions](/docs/desktop/missions/#the-approval-card).
+
 ## Forgetting remembered commands
 
 Open **Settings → Limits** and scroll to **Approved commands**. It lists, per project, every command family you allowed with **Always allow**. Click the **×** on one to forget it, or **Clear all** to forget every one of a project.
